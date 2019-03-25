@@ -4,8 +4,8 @@
 - [Toasts vs Snackbar]         
 - [Localization]      
 - [Device compatibility]        
-    - [Pixel densities]     
-    - [UI Spec]
+- [Lifecycle]       
+- [Jetpack]       
 
 
 
@@ -79,14 +79,57 @@ To see more details by automatically importing icons with Android Studio Image A
 [doc](https://developer.android.com/guide/practices/screens_support)        
 
 
+# Lifecycle
+## Saving UI states
+1. ```ViewModel```      
+2. ```onSaveInstanceState()```      
+3. Persistent in local storage for complex or large data       
 
+
+[doc](https://developer.android.com/topic/libraries/architecture/saving-states.html)
+
+
+## Monitor lifecycle events via ```Lifecycle``` class in two ways:        
+1. Implement both ```LifecycleObserver``` and ```LifecycleOwner```      
+```Java
+public class MainActivity extends AppCompatActivity implements LifecycleOwner {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        getLifecycle().addObserver(new LifecycleObserverImpl());
+    }
+}
+```
+
+```Java
+public class LifecycleObserverImpl implements LifecycleObserver {
+    private final static String TAG = LifecycleObserverImpl.class.getSimpleName();
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+    public void connectListener() {
+        Log.d(TAG, "ON_RESUME");
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+    public void disconnectListener() {
+        Log.d(TAG, "ON_STOP");
+    }
+}
+```
+
+2. Associate with Jetpack       
+
+[doc](https://developer.android.com/topic/libraries/architecture/lifecycle.html#java)
+
+# Jetpack
 
 [Toasts vs Snackbar]:<:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#toast-vs-snackbar>
 [Localization]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#localization>
 [Device compatibility]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#device-compatibility>
-[Pixel densities]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#pixel-desities>
-[UI Spec]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#ui-spec>
 [res]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/res/
+[Lifecycle]:<<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#lifecycle>
+[Jetpack]:<<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#jetpack>
 
 [MainActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/MainActivity.java>
 [Grid and keyline shapes]:<https://material.io/design/iconography/#grid-keyline-shapes>
