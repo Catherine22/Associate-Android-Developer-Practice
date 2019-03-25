@@ -1,8 +1,12 @@
 # AAD-Preparation
 
 # Navigation
-- (Toasts vs Snackbar)[]         
-- (Localization)[]      
+- [Toasts vs Snackbar]         
+- [Localization]      
+- [Device compatibility]        
+    - [Pixel densities]     
+    - [UI Spec]
+
 
 
 # ```Toast``` vs ```Snackbar```       
@@ -19,20 +23,18 @@
 
 
 # Localization
-Resource directories example:       
+List all resource directories you should take care of:       
 1. animator     
 2. anim     
 3. color        
 4. drawable     
 5. mipmap       
 6. layout       
-7. memu     
+7. menu     
 8. raw      
 9. values       
 10. xml     
-11. font        
-
-## drawable
+11. font       
 
 
 # Device compatibility
@@ -42,12 +44,15 @@ Resource directories example:
     - Prefer ```ConstraintLayout```     
     - Redraw views when window configuration changes (multi-window mode or screen rotation)        
 3. Define alternative layouts for specific screen sizes. E.g. ```layout-w600dp``` and ```layout-w600dp-land``` for 7” tablets and 7” tablets in landscape representative        
-4. Build a dynamic UI with fragments        
+4. Create stretchable nine-patch bitmaps        
+5. Build a dynamic UI with fragments        
+6. Test on all screen sizes     
 
-ConstraintLayout example: []()      
-Fragments example: []()     
+ConstraintLayout example: []      
+Fragments example: []     
 
 [doc](https://developer.android.com/training/multiscreen/screensizes)
+
 
 ## Pixel densities
 Pixel density is how many pixels within a physical area of the screen, **dpi** is the basic unit.       
@@ -56,11 +61,34 @@ Pixel density is how many pixels within a physical area of the screen, **dpi** i
 **dp or dip**: Instead of px (pixel), measure UI with dp (density-independent pixels) on mobile devices       
 
 
+## UI Spec
+|               | ldpi     | mdpi     | hdpi     | xhdpi    | xxhdpi     | xxxhdpi    |
+|---------------|----------|----------|----------|----------|------------|------------|
+| Scaling ratio | 0.75x    | 1x       | 1.5x     | 2x       | 3x         | 4x         |
+| Dpi           | ~120dpi  | ~160dpi  | ~240dpi  | 320dpi   | 480dpi     | 640dip     |
+| App icon size | 36x36 px | 48x48 px | 72x72 px | 96x96 px | 144x144 px | 192x192 px |
+
+> nodpi: bitmaps in nodpi drawables look larger in xhdpi devices whereas it seems smaller on mdpi devices.      
+> anydpi: These bitmaps in anydpi have priority when no bitmaps are found in other drawable directories. For instance, we have ```drawable-hdpi/banner.9.png``` and ```drawable-anydpi/banner.xml```, ```banner.9.png``` will be used on hdpi devices and ```banner.xml``` will be seen on other devices.       
+
+To see more details by automatically importing icons with Android Studio Image Asset tools and have a look at [Grid and keyline shapes]        
+![screenshot](https://raw.githubusercontent.com/Catherine22/AAD-Preparation/master/screenshots/image-asset.png)  
+
+```res``` directory example: [res]     
+
 [doc](https://developer.android.com/guide/practices/screens_support)        
 
 
 
 
-
+[Toasts vs Snackbar]:<:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#toast-vs-snackbar>
+[Localization]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#localization>
+[Device compatibility]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#device-compatibility>
+[Pixel densities]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#pixel-desities>
+[UI Spec]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#ui-spec>
+[res]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/res/
 
 [MainActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/MainActivity.java>
+[Grid and keyline shapes]:<https://material.io/design/iconography/#grid-keyline-shapes>
+
+
