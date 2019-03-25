@@ -83,6 +83,8 @@ To see more details by automatically importing icons with Android Studio Image A
 ## Saving UI states
 1. ```ViewModel```      
 2. ```onSaveInstanceState()```      
+Have ```Do not keep activities``` be selected on system Settings page to test ```onSaveInstanceState``` and ```onRestoreInstanceState```       
+Code: [LifecycleActivity]       
 3. Persistent in local storage for complex or large data       
 
 
@@ -91,32 +93,7 @@ To see more details by automatically importing icons with Android Studio Image A
 
 ## Monitor lifecycle events via ```Lifecycle``` class in two ways:        
 1. Implement both ```LifecycleObserver``` and ```LifecycleOwner```      
-```Java
-public class MainActivity extends AppCompatActivity implements LifecycleOwner {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        getLifecycle().addObserver(new LifecycleObserverImpl());
-    }
-}
-```
-
-```Java
-public class LifecycleObserverImpl implements LifecycleObserver {
-    private final static String TAG = LifecycleObserverImpl.class.getSimpleName();
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    public void connectListener() {
-        Log.d(TAG, "ON_RESUME");
-    }
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-    public void disconnectListener() {
-        Log.d(TAG, "ON_STOP");
-    }
-}
-```
+Code: [LifecycleActivity], [LifecycleObserverImpl]
 
 2. Associate with Jetpack       
 
@@ -131,7 +108,10 @@ public class LifecycleObserverImpl implements LifecycleObserver {
 [Lifecycle]:<<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#lifecycle>
 [Jetpack]:<<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#jetpack>
 
-[MainActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/MainActivity.java>
+[MainActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/MainActivity.java>
+[LifecycleActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/LifecycleActivity.java>
+[LifecycleObserverImpl]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/LifecycleObserverImpl.java>
+
 [Grid and keyline shapes]:<https://material.io/design/iconography/#grid-keyline-shapes>
 
 
