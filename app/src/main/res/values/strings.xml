@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Material Design App</string>
     <string name="alert_icon">alert icon</string>
+    <string name="undo">undo</string>
 </resources>
