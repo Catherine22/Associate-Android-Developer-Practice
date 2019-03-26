@@ -10,9 +10,25 @@
     <string name="undo">undo</string>
     <string name="hello_world">Hello World!</string>
     <string name="settings">Settings</string>
+    <string name="start_service">Start services</string>
+    <string name="stop_service">Stop services</string>
+    <string name="start_job_scheduler">Start job scheduler</string>
+    <string name="stop_job_scheduler">Stop job scheduler</string>
+    <string name="start_broadcast">Broadcast receivers</string>
+    <string name="content_providers">Content providers</string>
+
+    <string-array name="drawer_array">
+        <item>App components</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+    </string-array>
 
 
-    <!-- No need to be translated -->
+    <string name="foreground_service" translatable="false">Foreground service</string>
+    <string name="background_service" translatable="false">Background service</string>
+    <string name="job_scheduler" translatable="false">Job scheduler</string>
+
     <string name="countdown" translatable="false"><xliff:g example="5 days" id="time">%1$s</xliff:g>until holiday</string>
     <!-- Example placeholder for a special unicode symbol -->
     <string name="star_rating" translatable="false">Check out our 5<xliff:g id="star">\u2605</xliff:g></string>
@@ -22,4 +38,16 @@
     <string name="prod_name" translatable="false">Learn more at <xliff:g id="prod_gamegroup">Game Group</xliff:g></string>
     <!-- Example placeholder for a literal -->
     <string name="promo_message" translatable="false">Please use the "<xliff:g id="promotion_code">ABCDEFG</xliff:g>" to get a discount.</string>
+    <plurals name="numberOfSongsAvailable" translatable="false">
+        <!--
+             As a developer, you should always supply "one" and "other"
+             strings. Your translators will know which strings are actually
+             needed for their language. Always include %d in "one" because
+             translators will need to use %d for languages where "one"
+             doesn't mean 1 (as explained above).
+          -->
+        <item quantity="one">%d song found.</item>
+        <item quantity="other">%d songs found.</item>
+    </plurals>
+
 </resources>

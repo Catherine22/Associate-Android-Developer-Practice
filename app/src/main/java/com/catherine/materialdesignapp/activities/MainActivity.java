@@ -51,6 +51,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        Menu menu = navigationView.getMenu();
+        String[] menuTitles = getResources().getStringArray(R.array.drawer_array);
+
+        MenuItem nav_camera = menu.findItem(R.id.nav_camera);
+        nav_camera.setTitle(menuTitles[0]);
+
         LocationHelper locationHelper = new LocationHelper();
         TextView tv_location = findViewById(R.id.tv_location);
         tv_location.setText(String.format(Locale.US, "Preferred language: %s", locationHelper.getPreferredLanguage()));
@@ -97,6 +103,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public boolean onNavigationItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_camera:
+                Intent cameraIntent = new Intent(this, AppComponentsActivity.class);
+                startActivity(cameraIntent);
                 break;
             case R.id.nav_gallery:
                 break;

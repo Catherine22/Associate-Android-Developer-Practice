@@ -10,4 +10,17 @@
     <string name="undo">فك</string>
     <string name="hello_world">مرحبا بالعالم!</string>
     <string name="settings">الإعدادات</string>
+    <string name="start_service">Start services</string>
+    <string name="stop_service">Stop services</string>
+    <string name="start_job_scheduler">Start job scheduler</string>
+    <string name="stop_job_scheduler">Stop job scheduler</string>
+    <string name="start_broadcast">Broadcast receivers</string>
+    <string name="content_providers">Content providers</string>
+
+    <string-array name="drawer_array">
+        <item>مكونات التطبيق</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+    </string-array>
 </resources>

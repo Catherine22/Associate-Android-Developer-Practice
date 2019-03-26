@@ -30,9 +30,10 @@ public class LifecycleActivity extends BaseActivity implements LifecycleOwner {
         getLifecycle().addObserver(new LifecycleObserverImpl());
 
         TextView textView = findViewById(R.id.tv_content);
-        textView.setText(String.format(Locale.US, "Untranslatable strings: \n%s\n%s\n%s\n%s\n%s", getResources().getString(R.string.countdown),
-                getResources().getString(R.string.star_rating), getResources().getString(R.string.app_homeurl),
-                getResources().getString(R.string.prod_name), getResources().getString(R.string.promo_message)));
+        textView.setText(String.format(Locale.US, "Untranslatable strings: \n%s\n%s\n%s\n%s\n%s\n%s",
+                getString(R.string.countdown), getString(R.string.star_rating),
+                getString(R.string.app_homeurl), getString(R.string.prod_name),
+                getString(R.string.promo_message), getResources().getQuantityString(R.plurals.numberOfSongsAvailable, 3)));
     }
 
     @Override

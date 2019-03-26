@@ -5,6 +5,7 @@
 - [Localization]      
 - [Device compatibility]        
 - [Lifecycle]       
+- [App components]      
 - [Jetpack]       
 
 
@@ -119,7 +120,35 @@ Code: [LifecycleActivity], [LifecycleObserverImpl]
     }
 ```
 Code: [BaseActivity]        
-[Read more](https://blog.csdn.net/zhaokaiqiang1992/article/details/19921703)
+[Read more](https://blog.csdn.net/zhaokaiqiang1992/article/details/19921703)        
+[Read more](https://blog.csdn.net/zhaokaiqiang1992/article/details/19921703)        
+
+# App components
+There are four different types of app components:       
+- Activity      
+- Services      
+- Broadcast receivers       
+- Content providers     
+
+[Read more](https://developer.android.com/guide/components/fundamentals)
+
+## Activity
+
+> Activity vs Fragment
+
+## Services
+Two services in Android - background service and foreground service     
+Background services are no longer working since Android Oreo, you are suppose to use ```JobScheduler``` instead.      
+Foreground services and JobScheduler are alternatives to run app in the background, but ```notification``` is required while running a foreground service.      
+
+| Android API level | background service | foreground service | job scheduler |
+| -- | -- | -- | -- |
+| ≤ 25 | O | X | X |
+| ≥ 26 | X | O | O |
+
+Code: [AppComponentsActivity], [MusicPlayerService], [MusicPlayerJobScheduler], [AndroidManifest]       
+[Read more](https://developer.android.com/guide/components/services)        
+
 
 # Jetpack
 
@@ -134,6 +163,9 @@ Code: [BaseActivity]
 [MainActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/MainActivity.java>
 [LifecycleActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/LifecycleActivity.java>
 [LifecycleObserverImpl]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/LifecycleObserverImpl.java>
+[MusicPlayerService]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/MusicPlayerService.java>
+[MusicPlayerJobScheduler]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/MusicPlayerJobScheduler.java>
+[AndroidManifest]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/AndroidManifest.xml>
 
 [Grid and keyline shapes]:<https://material.io/design/iconography/#grid-keyline-shapes>
 
