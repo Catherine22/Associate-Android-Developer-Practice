@@ -1,0 +1,13 @@
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <string name="app_name">المواد تصميم التطبيقات</string>
+    <string name="navigation_drawer_open">فتح درج التنقل</string>
+    <string name="navigation_drawer_close">أغلق درج التنقل</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">رأس الملاحة</string>
+    <string name="action_lifecycle">دورة الحياة</string>
+    <string name="alert_icon">أيقونة التنبيه</string>
+    <string name="undo">فك</string>
+    <string name="hello_world">مرحبا بالعالم!</string>
+    <string name="settings">الإعدادات</string>
+</resources>

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Material Design 应用</string>
+    <string name="navigation_drawer_open">开启侧边栏菜单</string>
+    <string name="navigation_drawer_close">关闭侧边栏菜单</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">侧边栏顶部</string>
+    <string name="action_lifecycle">生命周期</string>
+    <string name="alert_icon">提醒图标</string>
+    <string name="undo">还原</string>
+    <string name="hello_world">你好啊！</string>
+    <string name="settings">设置</string>
+</resources>

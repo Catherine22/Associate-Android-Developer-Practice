@@ -13,11 +13,13 @@ android {
     buildTypes {
         debug {
             minifyEnabled false
+            pseudoLocalesEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
         release {
             minifyEnabled true
+            pseudoLocalesEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

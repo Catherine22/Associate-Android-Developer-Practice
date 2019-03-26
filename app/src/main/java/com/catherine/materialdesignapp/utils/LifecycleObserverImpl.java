@@ -17,4 +17,24 @@ public class LifecycleObserverImpl implements LifecycleObserver {
     public void disconnectListener() {
         Log.d(TAG, "ON_STOP");
     }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
+    public void onStart() {
+        Log.d(TAG, "ON_START");
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    public void onCreate() {
+        Log.d(TAG, "ON_CREATE");
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+    public void onPause() {
+        Log.d(TAG, "ON_PAUSE");
+    }
+
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+    public void onDestroy() {
+        Log.d(TAG, "ON_DESTROY");
+    }
 }

@@ -13,6 +13,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activities.MainActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -29,17 +30,19 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:scheme="https"
-                    android:host="guarded-basin-12509.herokuapp.com" />
+                    android:host="guarded-basin-12509.herokuapp.com"
+                    android:scheme="https" />
             </intent-filter>
         </activity>
 
         <activity
             android:name=".activities.SettingsActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activities.LifecycleActivity"
+            android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>

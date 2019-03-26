@@ -1,40 +1,40 @@
 # AAD-Preparation
 
 # Navigation
-- [Toasts vs Snackbar]         
+- [Material design]         
 - [Localization]      
 - [Device compatibility]        
 - [Lifecycle]       
 - [Jetpack]       
 
 
-
-# ```Toast``` vs ```Snackbar```       
+# Material design
+## ```Toast``` vs ```Snackbar```       
 |             | Toast                                                                | Snackbar            |
 |-------------|----------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
 | Overview    | A toast provides simple feedback about an operation in a small popup | Snackbars provide lightweight feedback about an operation                                                                                         |
 | Interaction | Toasts automatically disappear after a timeout                       | Snackbar could either automatically disappear after a timeout, or be manually closed                                                           |
 | More info   |                                                                      | 1. Having a CoordinatorLayout in your view hierarchy allows Snackbar to enable certain features 2. Snackbars can contain an action such as "undo"|
-| Sample code | [MainActivity],[MainActivity]                                        | [MainActivity]      |
+| Sample code | [BaseActivity]                                                       | [BaseActivity]      |
 
 
-[doc](https://developer.android.com/guide/topics/ui/notifiers/toasts)       
-[doc](https://developer.android.com/reference/android/support/design/widget/Snackbar)       
+[Read more](https://developer.android.com/guide/topics/ui/notifiers/toasts)       
+[Read more](https://developer.android.com/reference/android/support/design/widget/Snackbar)       
 
 
 # Localization
 List all resource directories you should take care of:       
-1. animator     
-2. anim     
-3. color        
-4. drawable     
-5. mipmap       
-6. layout       
-7. menu     
-8. raw      
-9. values       
-10. xml     
-11. font       
+1. animator/     
+2. anim/     
+3. color/        
+4. drawable/     
+5. mipmap/       
+6. layout/       
+7. menu/     
+8. raw/      
+9. values/       
+10. xml/     
+11. font/       
 
 
 # Device compatibility
@@ -51,11 +51,12 @@ List all resource directories you should take care of:
 ConstraintLayout example: []      
 Fragments example: []     
 
-[doc](https://developer.android.com/training/multiscreen/screensizes)
+[Read more](https://developer.android.com/training/multiscreen/screensizes)
 
 
 ## Pixel densities
-Pixel density is how many pixels within a physical area of the screen, **dpi** is the basic unit.       
+Pixel density is how many pixels within a physical area of the screen, ```dpi``` is the basic unit.       
+
 **dpi**: Dots per inch      
 **resolution**: The total number of pixels on a screen      
 **dp or dip**: Instead of px (pixel), measure UI with dp (density-independent pixels) on mobile devices       
@@ -76,10 +77,13 @@ To see more details by automatically importing icons with Android Studio Image A
 
 ```res``` directory example: [res]     
 
-[doc](https://developer.android.com/guide/practices/screens_support)        
+[Read more](https://developer.android.com/guide/practices/screens_support)        
 
 
 # Lifecycle
+[Read more](https://developer.android.com/guide/components/activities/activity-lifecycle)
+
+
 ## Saving UI states
 1. ```ViewModel```      
 2. ```onSaveInstanceState()```      
@@ -87,8 +91,7 @@ Have ```Do not keep activities``` be selected on system Settings page to test ``
 Code: [LifecycleActivity]       
 3. Persistent in local storage for complex or large data       
 
-
-[doc](https://developer.android.com/topic/libraries/architecture/saving-states.html)
+[Read more](https://developer.android.com/topic/libraries/architecture/saving-states.html)     
 
 
 ## Monitor lifecycle events via ```Lifecycle``` class in two ways:        
@@ -97,17 +100,37 @@ Code: [LifecycleActivity], [LifecycleObserverImpl]
 
 2. Associate with Jetpack       
 
-[doc](https://developer.android.com/topic/libraries/architecture/lifecycle.html#java)
+[Read more](https://developer.android.com/topic/libraries/architecture/lifecycle.html#java)
+
+## Handle configuration changes     
+1. Enable activities to handle configuration changes like screen rotation and keyboard availability change
+```xml
+<activity android:name=".MyActivity"
+          android:configChanges="orientation|keyboardHidden"
+          android:label="@string/app_name">
+```
+
+2. In activities        
+```Java
+ @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // do something 
+    }
+```
+Code: [BaseActivity]        
+[Read more](https://blog.csdn.net/zhaokaiqiang1992/article/details/19921703)
 
 # Jetpack
 
-[Toasts vs Snackbar]:<:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#toast-vs-snackbar>
+[Material design]:<:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#material-design>
 [Localization]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#localization>
 [Device compatibility]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#device-compatibility>
 [res]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/res/
 [Lifecycle]:<<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#lifecycle>
 [Jetpack]:<<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#jetpack>
 
+[BaseActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/BaseActivity.java>
 [MainActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/MainActivity.java>
 [LifecycleActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/LifecycleActivity.java>
 [LifecycleObserverImpl]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/LifecycleObserverImpl.java>

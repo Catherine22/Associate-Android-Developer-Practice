@@ -1,26 +1,23 @@
 package com.catherine.materialdesignapp.activities;
 
-import android.arch.lifecycle.LifecycleOwner;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.catherine.materialdesignapp.R;
+import com.catherine.materialdesignapp.utils.LocationHelper;
+
+import java.util.Locale;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
     private final static String TAG = MainActivity.class.getSimpleName();
@@ -53,6 +50,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        LocationHelper locationHelper = new LocationHelper();
+        TextView tv_location = findViewById(R.id.tv_location);
+        tv_location.setText(String.format(Locale.US, "Preferred language: %s", locationHelper.getPreferredLanguage()));
     }
 
     private void handleAppLinks() {
@@ -116,48 +117,5 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-
-    private void showSnackbar(CharSequence message) {
-        DrawerLayout layout = findViewById(R.id.drawer_layout);
-        final Snackbar snackbar = Snackbar.make(layout, message, Snackbar.LENGTH_LONG);
-        snackbar.setActionTextColor(getResources().getColor(R.color.yellow));
-        snackbar.setAction(getResources().getString(R.string.undo), new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                snackbar.dismiss();
-                // do something
-            }
-        });
-        snackbar.show();
-    }
-
-    private void showBasicToast(CharSequence message) {
-        makeBasicToast(message).show();
-    }
-
-    private void showToastOnTopLeft(CharSequence message) {
-        Toast toast = makeBasicToast(message);
-        toast.setGravity(Gravity.TOP | Gravity.START, 100, 50);
-        toast.show();
-    }
-
-    private void showCustomToast(CharSequence message) {
-        LayoutInflater layoutInflater = getLayoutInflater();
-        View layout = layoutInflater.inflate(R.layout.c_toast, (ViewGroup) findViewById(R.id.custom_toast_container));
-
-        TextView textView = layout.findViewById(R.id.text);
-        textView.setText(message);
-
-        Toast toast = new Toast(this);
-        toast.setView(layout);
-        toast.setDuration(Toast.LENGTH_SHORT);
-//        toast.setGravity(Gravity.TOP | Gravity.START, 100, 50);
-        toast.show();
-    }
-
-    private Toast makeBasicToast(CharSequence message) {
-        return Toast.makeText(this, message, Toast.LENGTH_SHORT);
     }
 }

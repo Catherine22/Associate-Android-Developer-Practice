@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">Material Design App</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -8,4 +8,18 @@
     <string name="action_lifecycle">Lifecycle</string>
     <string name="alert_icon">alert icon</string>
     <string name="undo">undo</string>
+    <string name="hello_world">Hello World!</string>
+    <string name="settings">Settings</string>
+
+
+    <!-- No need to be translated -->
+    <string name="countdown" translatable="false"><xliff:g example="5 days" id="time">%1$s</xliff:g>until holiday</string>
+    <!-- Example placeholder for a special unicode symbol -->
+    <string name="star_rating" translatable="false">Check out our 5<xliff:g id="star">\u2605</xliff:g></string>
+    <!-- Example placeholder for a for a URL -->
+    <string name="app_homeurl" translatable="false">Visit us at <xliff:g id="application_homepage">http://my/app/home.html</xliff:g></string>
+    <!-- Example placeholder for a name -->
+    <string name="prod_name" translatable="false">Learn more at <xliff:g id="prod_gamegroup">Game Group</xliff:g></string>
+    <!-- Example placeholder for a literal -->
+    <string name="promo_message" translatable="false">Please use the "<xliff:g id="promotion_code">ABCDEFG</xliff:g>" to get a discount.</string>
 </resources>

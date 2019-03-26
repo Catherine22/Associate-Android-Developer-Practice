@@ -4,6 +4,7 @@ import android.arch.lifecycle.LifecycleOwner;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.utils.LifecycleObserverImpl;
@@ -20,13 +21,18 @@ public class LifecycleActivity extends BaseActivity implements LifecycleOwner {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        setContentView(R.layout.activity_lifecycle);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(true); // enable back arrow on the top left area
 
         getLifecycle().addObserver(new LifecycleObserverImpl());
+
+        TextView textView = findViewById(R.id.tv_content);
+        textView.setText(String.format(Locale.US, "Untranslatable strings: \n%s\n%s\n%s\n%s\n%s", getResources().getString(R.string.countdown),
+                getResources().getString(R.string.star_rating), getResources().getString(R.string.app_homeurl),
+                getResources().getString(R.string.prod_name), getResources().getString(R.string.promo_message)));
     }
 
     @Override
