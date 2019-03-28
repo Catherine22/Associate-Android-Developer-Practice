@@ -88,7 +88,7 @@ To see more details by automatically importing icons with Android Studio Image A
 ## Saving UI states
 1. ```ViewModel```      
 2. ```onSaveInstanceState()```      
-Have ```Do not keep activities``` be selected on system Settings page to test ```onSaveInstanceState``` and ```onRestoreInstanceState```       
+Have ```Do not keep activities``` selected on system Settings page to test ```onSaveInstanceState``` and ```onRestoreInstanceState```       
 Code: [LifecycleActivity]       
 3. Persistent in local storage for complex or large data       
 
@@ -149,6 +149,40 @@ Foreground services and JobScheduler are alternatives to run app in the backgrou
 Code: [AppComponentsActivity], [MusicPlayerService], [MusicPlayerJobScheduler], [AndroidManifest]       
 [Read more](https://developer.android.com/guide/components/services)        
 
+## Broadcast receiver
+You could either register receivers by dynamically extending ```BroadcastReceiver``` or statically declaring an implementation with the ```<receiver>``` tag in the AndroidManifest.xml
+
+Code: [NetworkHealthService], [NetworkHealthJobScheduler], [InternetConnectivityReceiver]        
+[Read more](https://developer.android.com/reference/android/content/BroadcastReceiver)       
+
+## Content Provider
+Create your own content providers to share data with other applications or access existing content providers in another applications.       
+
+### System content providers
+**In order to get the uri path, we are going to have a look at android source code.**       
+1. Go to https://android.googlesource.com/platform/packages/providers/ and pick out needed providers        
+2. Search ```<provider>``` tag in AndroidManifest, e.g. in https://android.googlesource.com/platform/packages/providers/UserDictionaryProvider/+/refs/tags/android-9.0.0_r33/AndroidManifest.xml        
+```xml
+<provider android:name="CallLogProvider"
+            android:authorities="call_log"
+            android:syncable="false" android:multiprocess="false"
+            android:exported="true"
+            android:readPermission="android.permission.READ_CALL_LOG"
+            android:writePermission="android.permission.WRITE_CALL_LOG">
+        </provider>
+```
+3. Now we have host name (```android:authorities```), then, go to [CallLogProvider] (```android:name```) to get the table name        
+4. Search "urimatcher" in [UserDictionaryProvider], and have a bunch of ```sURIMatcher.addURI()``` found. We figure out that one url is "content://call_log/calls"        
+5. Grant permission: ```<uses-permission android:name="android.permission.READ_CALL_LOG" />```, ```<uses-permission android:name="android.permission.WRITE_CALL_LOG" />```
+
+**CRUD - Create**
+
+**CRUD - Read**
+
+**CRUD - Update**
+
+**CRUD - Delete**
+
 
 # Jetpack
 
@@ -166,6 +200,11 @@ Code: [AppComponentsActivity], [MusicPlayerService], [MusicPlayerJobScheduler], 
 [MusicPlayerService]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/MusicPlayerService.java>
 [MusicPlayerJobScheduler]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/MusicPlayerJobScheduler.java>
 [AndroidManifest]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/AndroidManifest.xml>
+[InternetConnectivityReceiver]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/receivers/InternetConnectivityReceiver.java>
+[NetworkHealthService]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/NetworkHealthService.java>
+[NetworkHealthJobScheduler]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/NetworkHealthJobScheduler.java>
+
+[CallLogProvider]:<https://android.googlesource.com/platform/packages/providers/ContactsProvider/+/refs/tags/android-9.0.0_r34/src/com/android/providers/contacts/CallLogProvider.java>
 
 [Grid and keyline shapes]:<https://material.io/design/iconography/#grid-keyline-shapes>
 

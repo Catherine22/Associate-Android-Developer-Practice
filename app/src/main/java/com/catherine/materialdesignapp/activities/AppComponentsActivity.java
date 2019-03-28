@@ -1,5 +1,6 @@
 package com.catherine.materialdesignapp.activities;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
@@ -7,7 +8,9 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -15,12 +18,19 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.catherine.materialdesignapp.R;
+import com.catherine.materialdesignapp.content_providers.CallLogDao;
+import com.catherine.materialdesignapp.content_providers.UserDictionaryDao;
+import com.catherine.materialdesignapp.listeners.OnRequestPermissionsListener;
+import com.catherine.materialdesignapp.models.Word;
 import com.catherine.materialdesignapp.services.MusicPlayerJobScheduler;
 import com.catherine.materialdesignapp.services.MusicPlayerService;
+
+import java.util.List;
 
 import static com.catherine.materialdesignapp.services.BusyJobs.JOB_MUSIC_PLAYER;
 
 public class AppComponentsActivity extends BaseActivity implements OnClickListener {
+    public final static String TAG = AppComponentsActivity.class.getSimpleName();
 
     private enum ServiceType {
         FOREGROUND, BACKGROUND, JOB_SCHEDULER
@@ -71,8 +81,6 @@ public class AppComponentsActivity extends BaseActivity implements OnClickListen
             }
 
         });
-
-
     }
 
     @Override
@@ -97,10 +105,33 @@ public class AppComponentsActivity extends BaseActivity implements OnClickListen
                 }
                 break;
             case R.id.btn_broadcast_receivers:
-
+                // TODO add one more broadcast receiver
                 break;
             case R.id.btn_content_providers:
+//                UserDictionaryDao dao = new UserDictionaryDao();
+//                dao.query();
+//
+//                Word word = new Word("new word", 999, "new shortcut", "en_US");
+//                dao.insert(word);
 
+                String[] permissions = {Manifest.permission.READ_CALL_LOG, Manifest.permission.WRITE_CALL_LOG};
+                getPermissions(permissions, new OnRequestPermissionsListener() {
+                    @Override
+                    public void onGranted() {
+                        CallLogDao callLogDao = new CallLogDao();
+                        callLogDao.read();
+                    }
+
+                    @Override
+                    public void onDenied(@Nullable List<String> deniedPermissions) {
+                        Log.d(TAG, "onDenied");
+                    }
+
+                    @Override
+                    public void onRetry() {
+                        Log.d(TAG, "onRetry");
+                    }
+                });
                 break;
         }
     }
