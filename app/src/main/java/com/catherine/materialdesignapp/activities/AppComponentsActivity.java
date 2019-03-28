@@ -18,8 +18,9 @@ import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.services.MusicPlayerJobScheduler;
 import com.catherine.materialdesignapp.services.MusicPlayerService;
 
+import static com.catherine.materialdesignapp.services.BusyJobs.JOB_MUSIC_PLAYER;
+
 public class AppComponentsActivity extends BaseActivity implements OnClickListener {
-    private final static int JOB_ID = 1;
 
     private enum ServiceType {
         FOREGROUND, BACKGROUND, JOB_SCHEDULER
@@ -125,7 +126,7 @@ public class AppComponentsActivity extends BaseActivity implements OnClickListen
         try {
             JobScheduler jobScheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
             ComponentName componentName = new ComponentName(this, MusicPlayerJobScheduler.class);
-            JobInfo jobInfo = new JobInfo.Builder(JOB_ID, componentName)
+            JobInfo jobInfo = new JobInfo.Builder(JOB_MUSIC_PLAYER, componentName)
                     .setRequiresStorageNotLow(false)
                     .setRequiresBatteryNotLow(true)
                     .setRequiresCharging(false)
@@ -141,8 +142,8 @@ public class AppComponentsActivity extends BaseActivity implements OnClickListen
         try {
             JobScheduler jobScheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
             for (JobInfo jobInfo : jobScheduler.getAllPendingJobs()) {
-                if (jobInfo.getId() == JOB_ID) {
-                    jobScheduler.cancel(JOB_ID);
+                if (jobInfo.getId() == JOB_MUSIC_PLAYER) {
+                    jobScheduler.cancel(JOB_MUSIC_PLAYER);
                 }
             }
         } catch (NullPointerException e) {

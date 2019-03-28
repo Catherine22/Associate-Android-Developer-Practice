@@ -27,6 +27,4 @@ public class MusicPlayerJobScheduler extends JobService {
         musicPlayer.stop();
         return false;
     }
-
-
 }

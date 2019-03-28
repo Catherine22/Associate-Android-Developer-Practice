@@ -3,6 +3,7 @@
     package="com.catherine.materialdesignapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
@@ -54,19 +55,27 @@
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <!--Foreground Service-->
+        <!--Services-->
         <service android:name=".services.MusicPlayerService">
             <intent-filter>
-                <action android:name="it.com.foregroundservice.ForegroundService" />
+                <action android:name="com.catherine.materialdesignapp.startMusicPlayerService" />
             </intent-filter>
         </service>
-        <!--Foreground Service-->
+        <service android:name=".services.NetworkHealthService">
+            <intent-filter>
+                <action android:name="com.catherine.materialdesignapp.startNetworkHealthService" />
+            </intent-filter>
+        </service>
+        <!--Services-->
 
-        <!--JobScheduler-->
+        <!--JobSchedulers-->
         <service
             android:name=".services.MusicPlayerJobScheduler"
             android:permission="android.permission.BIND_JOB_SERVICE"></service>
-        <!--JobScheduler-->
-    </application>
+        <service
+            android:name=".services.NetworkHealthJobScheduler"
+            android:permission="android.permission.BIND_JOB_SERVICE"></service>
+        <!--JobSchedulers-->
 
+    </application>
 </manifest>
