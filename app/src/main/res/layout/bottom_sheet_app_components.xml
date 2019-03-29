@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    app:behavior_hideable="true"
+    app:layout_behavior="@string/bottom_sheet_behavior">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.catherine.materialdesignapp.components.BottomSheetItem
+            android:id="@+id/item_create"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:c_icon="@drawable/ic_add_black_24dp" />
+
+        <com.catherine.materialdesignapp.components.BottomSheetItem
+            android:id="@+id/item_read"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:c_icon="@drawable/ic_insert_drive_file_black_24dp" />
+
+        <com.catherine.materialdesignapp.components.BottomSheetItem
+            android:id="@+id/item_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:c_icon="@drawable/ic_mode_edit_black_24dp" />
+
+        <com.catherine.materialdesignapp.components.BottomSheetItem
+            android:id="@+id/item_delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:c_icon="@drawable/ic_remove_black_24dp" />
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

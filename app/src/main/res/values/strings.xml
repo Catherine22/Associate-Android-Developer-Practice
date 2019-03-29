@@ -25,6 +25,14 @@
     </string-array>
 
 
+    <string-array name="app_components_bottom_sheet_array">
+        <item>Create</item>
+        <item>Read</item>
+        <item>Update</item>
+        <item>Delete</item>
+    </string-array>
+
+
     <string name="foreground_service" translatable="false">Foreground service</string>
     <string name="background_service" translatable="false">Background service</string>
     <string name="job_scheduler" translatable="false">Job scheduler</string>

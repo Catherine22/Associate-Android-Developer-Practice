@@ -5,4 +5,13 @@
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+
+
+    <dimen name="safe_area_margin_width">16dp</dimen>
+    <dimen name="safe_area_margin_height">16dp</dimen>
+    <dimen name="bottom_sheet_item_height">56dp</dimen>
+    <dimen name="bottom_sheet_height">224dp</dimen> <!-- 56 * 4 -->
+
+    <dimen name="icon_24">24dp</dimen>
 </resources>

@@ -23,6 +23,12 @@
 [Read more](https://developer.android.com/reference/android/support/design/widget/Snackbar)       
 
 
+## BottomSheet
+
+## Create your own ui components
+
+
+
 # Localization
 List all resource directories you should take care of:       
 1. animator/     

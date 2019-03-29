@@ -8,7 +8,11 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.button.MaterialButton;
+import android.support.design.widget.BottomSheetBehavior;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -16,16 +20,17 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.catherine.materialdesignapp.R;
+import com.catherine.materialdesignapp.components.BottomSheetItem;
 import com.catherine.materialdesignapp.content_providers.CallLogDao;
-import com.catherine.materialdesignapp.content_providers.UserDictionaryDao;
 import com.catherine.materialdesignapp.listeners.OnRequestPermissionsListener;
-import com.catherine.materialdesignapp.models.Word;
 import com.catherine.materialdesignapp.services.MusicPlayerJobScheduler;
 import com.catherine.materialdesignapp.services.MusicPlayerService;
 
 import java.util.List;
+import java.util.Locale;
 
 import static com.catherine.materialdesignapp.services.BusyJobs.JOB_MUSIC_PLAYER;
 
@@ -37,6 +42,9 @@ public class AppComponentsActivity extends BaseActivity implements OnClickListen
     }
 
     private ServiceType selectedServiceType = ServiceType.BACKGROUND;
+    //    private BottomSheetBehavior behavior;
+    private BottomSheetDialog bottomSheetDialog;
+    private CallLogDao callLogDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +65,7 @@ public class AppComponentsActivity extends BaseActivity implements OnClickListen
         btn_content_providers.setOnClickListener(this);
 
 
+        // radio buttons
         RadioGroup rg_service_switch = findViewById(R.id.rg_service_switch);
         RadioButton rbn_foreground_service = findViewById(R.id.rbn_foreground_service);
         RadioButton rbn_job_scheduler = findViewById(R.id.rbn_job_scheduler);
@@ -81,12 +90,62 @@ public class AppComponentsActivity extends BaseActivity implements OnClickListen
             }
 
         });
+
+
+        // bottom sheet dialog
+        bottomSheetDialog = new BottomSheetDialog(this);
+        View view = getLayoutInflater().inflate(R.layout.bottom_sheet_app_components, null);
+        bottomSheetDialog.setContentView(view);
+
+        String[] titles = getResources().getStringArray(R.array.app_components_bottom_sheet_array);
+        BottomSheetItem item_create = bottomSheetDialog.findViewById(R.id.item_create);
+        item_create.setTitle(titles[0]);
+        item_create.setOnClickListener(this);
+        BottomSheetItem item_read = bottomSheetDialog.findViewById(R.id.item_read);
+        item_read.setTitle(titles[1]);
+        item_read.setOnClickListener(this);
+        BottomSheetItem item_update = bottomSheetDialog.findViewById(R.id.item_update);
+        item_update.setTitle(titles[2]);
+        item_update.setOnClickListener(this);
+        BottomSheetItem item_delete = bottomSheetDialog.findViewById(R.id.item_delete);
+        item_delete.setTitle(titles[3]);
+        item_delete.setOnClickListener(this);
+
+        // bottom sheet another version
+//        View bottomSheet = findViewById(R.id.bottom_sheet);
+//        behavior = BottomSheetBehavior.from(bottomSheet);
+//        behavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+//        behavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+//            @Override
+//            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+//                Log.d(TAG, String.format(Locale.US, "bottomSheet: %d", newState));
+//            }
+//
+//            @Override
+//            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+//            }
+//        });
+//        behavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+//        String[] titles = getResources().getStringArray(R.array.app_components_bottom_sheet_array);
+//        TextView tv_create = findViewById(R.id.tv_create);
+//        tv_create.setText(titles[0]);
+//        tv_create.setOnClickListener(this);
+//        TextView tv_read = findViewById(R.id.tv_read);
+//        tv_read.setText(titles[1]);
+//        tv_read.setOnClickListener(this);
+//        TextView tv_update = findViewById(R.id.tv_update);
+//        tv_update.setText(titles[2]);
+//        tv_update.setOnClickListener(this);
+//        TextView tv_delete = findViewById(R.id.tv_delete);
+//        tv_delete.setText(titles[3]);
+//        tv_delete.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_start_service:
+//                behavior.setState(BottomSheetBehavior.STATE_HIDDEN);
                 if (selectedServiceType == ServiceType.BACKGROUND) {
                     startService(true);
                 } else if (selectedServiceType == ServiceType.FOREGROUND) {
@@ -96,6 +155,7 @@ public class AppComponentsActivity extends BaseActivity implements OnClickListen
                 }
                 break;
             case R.id.btn_stop_service:
+//                behavior.setState(BottomSheetBehavior.STATE_HIDDEN);
                 if (selectedServiceType == ServiceType.BACKGROUND) {
                     stopService();
                 } else if (selectedServiceType == ServiceType.FOREGROUND) {
@@ -105,21 +165,26 @@ public class AppComponentsActivity extends BaseActivity implements OnClickListen
                 }
                 break;
             case R.id.btn_broadcast_receivers:
+//                behavior.setState(BottomSheetBehavior.STATE_HIDDEN);
                 // TODO add one more broadcast receiver
                 break;
             case R.id.btn_content_providers:
-//                UserDictionaryDao dao = new UserDictionaryDao();
-//                dao.query();
-//
-//                Word word = new Word("new word", 999, "new shortcut", "en_US");
-//                dao.insert(word);
-
                 String[] permissions = {Manifest.permission.READ_CALL_LOG, Manifest.permission.WRITE_CALL_LOG};
                 getPermissions(permissions, new OnRequestPermissionsListener() {
                     @Override
                     public void onGranted() {
-                        CallLogDao callLogDao = new CallLogDao();
-                        callLogDao.read();
+//                        if (behavior.getState() == BottomSheetBehavior.STATE_HIDDEN) {
+//                            callLogDao = new CallLogDao();
+//                            behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+//                        } else
+//                            behavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+
+                        if (bottomSheetDialog.isShowing()) {
+                            bottomSheetDialog.closeOptionsMenu();
+                        } else {
+                            callLogDao = new CallLogDao();
+                            bottomSheetDialog.show();
+                        }
                     }
 
                     @Override
@@ -132,6 +197,24 @@ public class AppComponentsActivity extends BaseActivity implements OnClickListen
                         Log.d(TAG, "onRetry");
                     }
                 });
+                break;
+            case R.id.item_create:
+//                behavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                bottomSheetDialog.closeOptionsMenu();
+                break;
+            case R.id.item_read:
+//                behavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                bottomSheetDialog.closeOptionsMenu();
+                callLogDao.read();
+                break;
+            case R.id.item_update:
+//                behavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                bottomSheetDialog.closeOptionsMenu();
+                break;
+            case R.id.item_delete:
+//                behavior.setState(BottomSheetBehavior.STATE_HIDDEN);
+                bottomSheetDialog.closeOptionsMenu();
+
                 break;
         }
     }

@@ -10,17 +10,25 @@
     <string name="undo">还原</string>
     <string name="hello_world">你好啊！</string>
     <string name="settings">设置</string>
-    <string name="start_service">Start services</string>
-    <string name="stop_service">Stop services</string>
-    <string name="start_job_scheduler">Start job scheduler</string>
-    <string name="stop_job_scheduler">Stop job scheduler</string>
-    <string name="start_broadcast">Broadcast receivers</string>
-    <string name="content_providers">Content providers</string>
+    <string name="start_service">启动服务</string>
+    <string name="stop_service">停止服务</string>
+    <string name="start_job_scheduler">启动 job scheduler</string>
+    <string name="stop_job_scheduler">停止 job scheduler</string>
+    <string name="start_broadcast">广播接收者</string>
+    <string name="content_providers">内容提供者</string>
 
     <string-array name="drawer_array">
         <item>应用组件</item>
         <item>Venus</item>
         <item>Earth</item>
         <item>Mars</item>
+    </string-array>
+
+
+    <string-array name="app_components_bottom_sheet_array">
+        <item>增</item>
+        <item>查</item>
+        <item>改</item>
+        <item>删</item>
     </string-array>
 </resources>
