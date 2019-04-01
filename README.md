@@ -199,8 +199,24 @@ The exam is only available in Java at this time (4/1/2019)
     - Characters      
     - Strings         
     - Array     
+2. [Control Flow](https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/ControlFlow.kt)     
+    - ```when```      
+    - ```if```        
+    - ```while```       
+3. [ReturnsAndJumps](https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/ReturnsAndJumps.kt)     
+    - ```break```       
+    - ```xxx@ for``` or ```xxx@ while```     
+    - ```return```      
+4. [Classes and Inheritance](https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/MyClass.kt)      
+    - Class with multiple constructors      
+    - Inheritance       
+    - ```interface```     
+    - ```override```      
+    - ```inner class```     
+    - ```super@xxx.f()```       
+    - ```abstract class```      
+5. 
 
-2. 
 
 [Material design]:<:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#material-design>
 [Localization]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#localization>
