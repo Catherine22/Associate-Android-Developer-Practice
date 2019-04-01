@@ -7,6 +7,7 @@
 - [Lifecycle]       
 - [App components]      
 - [Jetpack]       
+- [Kotlin]
 
 
 # Material design
@@ -24,10 +25,6 @@
 
 
 ## BottomSheet
-
-## Create your own ui components
-
-
 
 # Localization
 List all resource directories you should take care of:       
@@ -191,6 +188,19 @@ Create your own content providers to share data with other applications or acces
 
 
 # Jetpack
+
+# Kotlin
+The exam is only available in Java at this time (4/1/2019)      
+
+1. [Basic Types](https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/BasicTypes.kt)    
+    - Bitwise operators     
+    - == vs ===     
+    - Numbers       
+    - Characters      
+    - Strings         
+    - Array     
+
+2. 
 
 [Material design]:<:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#material-design>
 [Localization]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#localization>
