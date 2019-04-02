@@ -14,6 +14,15 @@ fun main(args: Array<String>) {
 //    val propertiesAndFields = PropertiesAndFields()
 //    propertiesAndFields.test()
 
-    val baseClass = BaseClass()
-    baseClass.test()
+//    val baseClass = BaseClass()
+//    baseClass.test()
+
+//    val dataClass = DataClass()
+//    dataClass.test()
+
+//    val sealedClass = SealedClass()
+//    sealedClass.test()
+
+    val generics = Generics()
+    generics.test()
 }

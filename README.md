@@ -232,6 +232,15 @@ The exam is only available in Java at this time (4/1/2019)
     - Companion objects (which is similar to ```static```)     
     - Call extension functions of the base class declared other class       
     - Call functions both declared in the base class and self class inside extension functions (check [BaseClassExtensions])      
+8. [Data Class], [User], [Employee]     
+    - Properties declared in the primary constructor or class body      
+    - Copying       
+9. [enum and sealed class]             
+    - enum vs sealed class      
+10. [Generics]      
+    - Declaration-site variance     
+    - Type projections      
+
 
 
 
@@ -260,6 +269,10 @@ The exam is only available in Java at this time (4/1/2019)
 [Visibility Modifiers]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/package1/VisibilityModifiers.kt>
 [BaseClass]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/BaseClass.kt>
 [BaseClassExtensions]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/BaseClassExtensions.kt>
+[Data Class]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/DataClass.kt>
+[User]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/User.kt>
+[Employee]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/Employee.kt>
+[enum and sealed class]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/SealedClass.kt>
 
 [CallLogProvider]:<https://android.googlesource.com/platform/packages/providers/ContactsProvider/+/refs/tags/android-9.0.0_r34/src/com/android/providers/contacts/CallLogProvider.java>
 
