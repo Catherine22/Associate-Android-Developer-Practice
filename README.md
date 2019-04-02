@@ -191,23 +191,24 @@ Create your own content providers to share data with other applications or acces
 
 # Kotlin
 The exam is only available in Java at this time (4/1/2019)      
+[Read more](https://kotlinlang.org/docs/reference/)     
 
-1. [Basic Types](https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/BasicTypes.kt)    
+1. [Basic Types]    
     - Bitwise operators     
     - == vs ===     
     - Numbers       
     - Characters      
     - Strings         
     - Array     
-2. [Control Flow](https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/ControlFlow.kt)     
+2. [Control Flow]     
     - ```when```      
     - ```if```        
     - ```while```       
-3. [ReturnsAndJumps](https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/ReturnsAndJumps.kt)     
+3. [ReturnsAndJumps]     
     - ```break```       
     - ```xxx@ for``` or ```xxx@ while```     
     - ```return```      
-4. [Classes and Inheritance](https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/MyClass.kt)      
+4. [Classes and Inheritance]      
     - Class with multiple constructors      
     - Inheritance       
     - ```interface```     
@@ -215,7 +216,23 @@ The exam is only available in Java at this time (4/1/2019)
     - ```inner class```     
     - ```super@xxx.f()```       
     - ```abstract class```      
-5. 
+5. [PropertiesAndFields]       
+    - getter and setter      
+    - ```lateinit```        
+    - ```::```      
+6. [Visibility Modifiers]     
+    - ```open```        
+    - ```public```      
+    - ```internal```        
+    - ```protected```       
+    - ```private```     
+7. [BaseClass], [BaseClassExtensions]       
+    - Extension functions       
+    - Extension properties      
+    - Companion objects (which is similar to ```static```)     
+    - Call extension functions of the base class declared other class       
+    - Call functions both declared in the base class and self class inside extension functions (check [BaseClassExtensions])      
+
 
 
 [Material design]:<:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#material-design>
@@ -235,6 +252,14 @@ The exam is only available in Java at this time (4/1/2019)
 [InternetConnectivityReceiver]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/receivers/InternetConnectivityReceiver.java>
 [NetworkHealthService]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/NetworkHealthService.java>
 [NetworkHealthJobScheduler]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/NetworkHealthJobScheduler.java>
+[Basic Types]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/BasicTypes.kt>
+[Control Flow]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/ControlFlow.kt>
+[ReturnsAndJumps]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/ReturnsAndJumps.kt>
+[Classes and Inheritance]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/MyClass.kt>
+[PropertiesAndFields]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/PropertiesAndFields.kt>
+[Visibility Modifiers]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/package1/VisibilityModifiers.kt>
+[BaseClass]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/BaseClass.kt>
+[BaseClassExtensions]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/BaseClassExtensions.kt>
 
 [CallLogProvider]:<https://android.googlesource.com/platform/packages/providers/ContactsProvider/+/refs/tags/android-9.0.0_r34/src/com/android/providers/contacts/CallLogProvider.java>
 

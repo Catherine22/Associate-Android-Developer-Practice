@@ -8,6 +8,12 @@ fun main(args: Array<String>) {
 //    val returnsAndJumps = ReturnsAndJumps()
 //    returnsAndJumps.test()
 
-    val myClass = MyClass()
-    myClass.test()
+//    val myClass = MyClass()
+//    myClass.test()
+
+//    val propertiesAndFields = PropertiesAndFields()
+//    propertiesAndFields.test()
+
+    val baseClass = BaseClass()
+    baseClass.test()
 }
