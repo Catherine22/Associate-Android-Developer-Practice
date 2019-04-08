@@ -199,17 +199,19 @@ public class AppComponentsActivity extends BaseActivity implements OnClickListen
                 break;
             case R.id.item_read:
 //                behavior.setState(BottomSheetBehavior.STATE_HIDDEN);
-                bottomSheetDialog.closeOptionsMenu();
                 callLogDao.read();
+                bottomSheetDialog.closeOptionsMenu();
+                // TODO show call logs on RecyclerView
                 break;
             case R.id.item_update:
 //                behavior.setState(BottomSheetBehavior.STATE_HIDDEN);
                 bottomSheetDialog.closeOptionsMenu();
+                // TODO select call logs presented RecyclerView
                 break;
             case R.id.item_delete:
 //                behavior.setState(BottomSheetBehavior.STATE_HIDDEN);
                 bottomSheetDialog.closeOptionsMenu();
-
+                // TODO select call logs presented RecyclerView
                 break;
         }
     }

@@ -23,6 +23,15 @@ fun main(args: Array<String>) {
 //    val sealedClass = SealedClass()
 //    sealedClass.test()
 
-    val generics = Generics()
-    generics.test()
+//    val generics = Generics()
+//    generics.test()
+
+//    val innerClassExample = InnerClassExample()
+//    innerClassExample.test()
+
+//    val enumClasses = EnumClasses()
+//    enumClasses.test()
+
+    val objects = Objects()
+    objects.test();
 }

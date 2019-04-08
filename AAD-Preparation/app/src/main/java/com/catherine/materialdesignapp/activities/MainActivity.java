@@ -104,7 +104,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         switch (item.getItemId()) {
             case R.id.nav_camera:
                 Intent cameraIntent = new Intent(this, AppComponentsActivity.class);
-                startActivity(cameraIntent);
+                startActivityForResult(cameraIntent, 12345);
                 break;
             case R.id.nav_gallery:
                 break;

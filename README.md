@@ -186,6 +186,10 @@ Create your own content providers to share data with other applications or acces
 
 **CRUD - Delete**
 
+### User-defined content providers
+A content provider uri should be ```scheme + authority + table + [id] + [filter]```. E.g. ```content://com.catherine.myapp/member/1/name```     
+
+
 
 # Jetpack
 
@@ -240,6 +244,21 @@ The exam is only available in Java at this time (4/1/2019)
 10. [Generics]      
     - Declaration-site variance     
     - Type projections      
+11. [Nested and Inner Classes]      
+    - Nested Class      
+    - Inner Class       
+    - Anonymous Inner Class [NOT YET]     
+12. [Enum classes]      
+    - Basic usage of enum classes       
+    - Another way to initialise the enum     
+    - Enum constants can also declare their own anonymous classes       
+    - Print all values of enum class        
+13. [Objects]       
+    - Object expressions - class        
+    - Object expressions - class + interface        
+    - Anonymous objects     
+    - Object declarations (Singleton)       
+    - Companion objects     
 
 
 
@@ -273,6 +292,9 @@ The exam is only available in Java at this time (4/1/2019)
 [User]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/User.kt>
 [Employee]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/Employee.kt>
 [enum and sealed class]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/SealedClass.kt>
+[Nested and Inner Classes]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/InnerClassExample.kt>
+[Enum Classes]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/EnumClasses.kt>
+[Objects]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/Objects.kt>
 
 [CallLogProvider]:<https://android.googlesource.com/platform/packages/providers/ContactsProvider/+/refs/tags/android-9.0.0_r34/src/com/android/providers/contacts/CallLogProvider.java>
 

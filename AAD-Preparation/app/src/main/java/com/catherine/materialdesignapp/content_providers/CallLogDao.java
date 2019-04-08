@@ -84,6 +84,4 @@ public class CallLogDao extends Dao<String> {
             contentResolver.unregisterContentObserver(this);
         }
     }
-
-
 }
