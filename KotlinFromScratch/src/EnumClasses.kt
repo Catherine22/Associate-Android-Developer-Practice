@@ -30,7 +30,7 @@ class EnumClasses {
 
     enum class RGB { RED, GREEN, BLUE }
 
-    inline fun <reified T : Enum<T>> printAllValues() {
+    private inline fun <reified T : Enum<T>> printAllValues() {
         print(enumValues<T>().joinToString { it.name })
     }
 

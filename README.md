@@ -2,7 +2,7 @@
 
 # Navigation
 - [Material design]         
-- [Localization]      
+- [Localisation]      
 - [Device compatibility]        
 - [Lifecycle]       
 - [App components]      
@@ -26,7 +26,7 @@
 
 ## BottomSheet
 
-# Localization
+# Localisation
 List all resource directories you should take care of:       
 1. animator/     
 2. anim/     
@@ -119,7 +119,7 @@ Code: [LifecycleActivity], [LifecycleObserverImpl]
  @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        // do something 
+        // do something
     }
 ```
 Code: [BaseActivity]        
@@ -208,7 +208,7 @@ The exam is only available in Java at this time (4/1/2019)
     - ```when```      
     - ```if```        
     - ```while```       
-3. [ReturnsAndJumps]     
+3. [Returns and Jumps]     
     - ```break```       
     - ```xxx@ for``` or ```xxx@ while```     
     - ```return```      
@@ -220,7 +220,7 @@ The exam is only available in Java at this time (4/1/2019)
     - ```inner class```     
     - ```super@xxx.f()```       
     - ```abstract class```      
-5. [PropertiesAndFields]       
+5. [Properties and Fields]       
     - getter and setter      
     - ```lateinit```        
     - ```::```      
@@ -236,9 +236,10 @@ The exam is only available in Java at this time (4/1/2019)
     - Companion objects (which is similar to ```static```)     
     - Call extension functions of the base class declared other class       
     - Call functions both declared in the base class and self class inside extension functions (check [BaseClassExtensions])      
-8. [Data Class], [User], [Employee]     
+8. [Data Class]     
     - Properties declared in the primary constructor or class body      
-    - Copying       
+    - Copying    
+    - E.g. [User], [Employee]      
 9. [enum and sealed class]             
     - enum vs sealed class      
 10. [Generics]      
@@ -259,12 +260,56 @@ The exam is only available in Java at this time (4/1/2019)
     - Anonymous objects     
     - Object declarations (Singleton)       
     - Companion objects     
+14. [Type aliases]      
+    - Shorten types declaration     
+15. [Inline classes]      
+    - An inline class must have a single property initialised in the primary constructor        
+    - Inline classes cannot have properties with backing fields, ie, your code would be:     
+    ```Kotlin
+    val length: Int
+      get() = s.length
+    ```
+    - Representation: Inline classes could be as inline, generic, interface or nullable   
+    - Inline classes vs type aliases    
+    - Enable inline classes in Gradle:    
+    ```Gradle
+    compileKotlin {
+        kotlinOptions.freeCompilerArgs += ["-XXLanguage:+InlineClasses"]
+    }
+    ```
+16. [Delegation]    
+  - Implementation by delegation    
+  - ```by```    
+  ```Kotlin
+  // The last "b" (from ": Base by b") is implemented by the "b" in "Derived(b: Base)"
+  class Derived(b: Base) : Base by b
+  ```
+  - Overriding functions and variables is optional    
+17. [Delegated Properties]    
+  - Declare standard Delegates(```Lazy```, ```Observable``` and storing properties in a Map) via ```by```
+  - Implement properties including standard delegates once for all    
+  - Local delegated properties    
+  -     
+18. [Kotlin Singleton] vs [Java Singleton]    
+19. [Functions]   
+  - Basic functions   
+  - Functions with default arguments    
+  - Override functions    
+  - lambda    
+  - variable number of arguments (```vararg```)    
+  - Unit-returning functions    
+  - ```infix fun```       
+20. Projections   
+  - in-projections    
+  - out-projections   
+  - star-projections    
+21.
 
 
 
 
 [Material design]:<:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#material-design>
-[Localization]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#localization>
+[Localisation]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#Localisation>
 [Device compatibility]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#device-compatibility>
 [res]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/res/
 [Lifecycle]:<<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#lifecycle>
@@ -280,11 +325,12 @@ The exam is only available in Java at this time (4/1/2019)
 [InternetConnectivityReceiver]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/receivers/InternetConnectivityReceiver.java>
 [NetworkHealthService]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/NetworkHealthService.java>
 [NetworkHealthJobScheduler]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/NetworkHealthJobScheduler.java>
+
 [Basic Types]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/BasicTypes.kt>
 [Control Flow]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/ControlFlow.kt>
-[ReturnsAndJumps]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/ReturnsAndJumps.kt>
+[Returns and Jumps]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/ReturnsAndJumps.kt>
 [Classes and Inheritance]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/MyClass.kt>
-[PropertiesAndFields]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/PropertiesAndFields.kt>
+[Properties and Fields]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/PropertiesAndFields.kt>
 [Visibility Modifiers]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/package1/VisibilityModifiers.kt>
 [BaseClass]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/BaseClass.kt>
 [BaseClassExtensions]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/BaseClassExtensions.kt>
@@ -295,9 +341,13 @@ The exam is only available in Java at this time (4/1/2019)
 [Nested and Inner Classes]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/InnerClassExample.kt>
 [Enum Classes]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/EnumClasses.kt>
 [Objects]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/Objects.kt>
+[Type aliases]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/TypeAliases.kt>
+[Inline classes]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/InlineClass.kt>
+[Delegation]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/Delegation.kt>
+[Delegated Properties]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/DelegatedProperties.kt>
+[Kotlin Singleton]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/singleton_kotlin/>
+[Java Singleton]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/singleton_java/>
+[Functions]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/Functions.kt>
 
 [CallLogProvider]:<https://android.googlesource.com/platform/packages/providers/ContactsProvider/+/refs/tags/android-9.0.0_r34/src/com/android/providers/contacts/CallLogProvider.java>
-
 [Grid and keyline shapes]:<https://material.io/design/iconography/#grid-keyline-shapes>
-
-
