@@ -52,8 +52,11 @@ fun main(args: Array<String>) {
 //    testJavaSingleton()
 //    testKotlinSingleton()
 
-    val functions = Functions()
-    functions.test()
+//    val functions = Functions()
+//    functions.test()
+
+    val lambdas = Lambdas()
+    lambdas.test()
 
 }
 

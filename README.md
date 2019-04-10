@@ -295,7 +295,7 @@ The exam is only available in Java at this time (4/1/2019)
   - Basic functions   
   - Functions with default arguments    
   - Override functions    
-  - lambda    
+  - Lambda    
   - variable number of arguments (```vararg```)    
   - Unit-returning functions    
   - ```infix fun```       
@@ -303,7 +303,17 @@ The exam is only available in Java at this time (4/1/2019)
   - in-projections    
   - out-projections   
   - star-projections    
-21.
+21. [Higher-Order Functions and Lambdas]    
+  - Higher-Order Functions is a function that takes functions as parameters, or returns a function.   
+  - Compare callbacks in Java and Kotlin (SAM for Kotlin classes)    
+  - Lambda functions    
+  - Pass functions as arguments to another function (```this::func```)    
+  - Passing a lambda to the last parameter    
+  - Implement a function type as an interface (You can either override ```invoke()``` or run ```invoke()```)   
+  - ```invoke()```    
+  - ```::```    
+22. Inline Functions    
+  
 
 
 
@@ -348,6 +358,7 @@ The exam is only available in Java at this time (4/1/2019)
 [Kotlin Singleton]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/singleton_kotlin/>
 [Java Singleton]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/singleton_java/>
 [Functions]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/Functions.kt>
+[Higher-Order Functions and Lambdas]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/Lambdas.kt>
 
 [CallLogProvider]:<https://android.googlesource.com/platform/packages/providers/ContactsProvider/+/refs/tags/android-9.0.0_r34/src/com/android/providers/contacts/CallLogProvider.java>
 [Grid and keyline shapes]:<https://material.io/design/iconography/#grid-keyline-shapes>
