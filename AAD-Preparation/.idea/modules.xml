@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AAD-Preparation.iml" filepath="$PROJECT_DIR$/AAD-Preparation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/messagecenter/messagecenter.iml" filepath="$PROJECT_DIR$/messagecenter/messagecenter.iml" />
     </modules>
   </component>
 </project>

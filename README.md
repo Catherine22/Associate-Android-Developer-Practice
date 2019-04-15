@@ -313,7 +313,6 @@ The exam is only available in Java at this time (4/1/2019)
   - ```invoke()```    
   - ```::```    
 22. Inline Functions    
-  
 
 
 
