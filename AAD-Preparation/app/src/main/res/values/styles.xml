@@ -17,4 +17,37 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="item_title" parent="AppTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_marginLeft">@dimen/safe_area_margin_width</item>
+        <item name="android:layout_marginRight">@dimen/safe_area_margin_width</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="item_subtitle" parent="AppTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/safe_area_margin_width</item>
+        <item name="android:layout_marginRight">@dimen/safe_area_margin_width</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="small_bottom" parent="AppTheme">
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/round_default_bottom_selector</item>
+        <item name="android:textColor">@android:color/primary_text_dark</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_marginLeft">@dimen/safe_area_margin_width</item>
+        <item name="android:layout_marginRight">@dimen/safe_area_margin_width</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
 </resources>

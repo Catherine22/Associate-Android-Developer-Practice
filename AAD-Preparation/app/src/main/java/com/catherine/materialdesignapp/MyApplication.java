@@ -10,6 +10,7 @@ import android.os.HandlerThread;
 
 import com.catherine.materialdesignapp.services.NetworkHealthJobScheduler;
 import com.catherine.materialdesignapp.services.NetworkHealthService;
+import com.facebook.drawee.backends.pipeline.Fresco;
 
 import static com.catherine.materialdesignapp.services.BusyJobs.JOB_NETWORK_STAYE;
 
@@ -23,6 +24,7 @@ public class MyApplication extends Application {
         super.onCreate();
         INSTANCE = this;
 
+        Fresco.initialize(this);
         // start network monitoring service
         Intent intent = new Intent(INSTANCE, NetworkHealthService.class);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cv"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardCornerRadius="@dimen/card_radius"
+    app:cardElevation="@dimen/card_elevations"
+    app:cardMaxElevation="@dimen/card_elevations"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:id="@+id/rv_card_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:id="@+id/fl_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:id="@+id/sdv_main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                app:fadeDuration="300"
+                app:failureImage="@color/gray"
+                app:placeholderImage="@color/colorPrimary"
+                app:retryImage="@drawable/ic_refresh_black_24dp"
+                app:retryImageScaleType="centerInside" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/item_title"
+                android:layout_gravity="end|start"
+                android:layout_marginTop="@dimen/safe_area_margin_height" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/tv_subtitle"
+            style="@style/item_subtitle"
+            android:layout_below="@+id/fl_title"
+            android:layout_marginTop="@dimen/safe_area_margin_height"
+            android:layout_marginBottom="@dimen/safe_area_margin_height" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_subtitle"
+            android:gravity="end|center_vertical"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/bt_left"
+                style="@style/small_bottom" />
+
+            <Button
+                android:id="@+id/bt_right"
+                style="@style/small_bottom" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

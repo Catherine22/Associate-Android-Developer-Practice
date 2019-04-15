@@ -35,12 +35,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showSnackbar("sent");
-            }
-        });
+        fab.setOnClickListener(view -> showSnackbar("sent"));
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -54,8 +49,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         Menu menu = navigationView.getMenu();
         String[] menuTitles = getResources().getStringArray(R.array.drawer_array);
 
-        MenuItem nav_camera = menu.findItem(R.id.nav_camera);
-        nav_camera.setTitle(menuTitles[0]);
+        int[] ids = {R.id.nav_camera, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_manage};
+        for (int i = 0; i < ids.length; i++) {
+            MenuItem nav = menu.findItem(ids[i]);
+            nav.setTitle(menuTitles[i]);
+        }
 
         LocationHelper locationHelper = new LocationHelper();
         TextView tv_location = findViewById(R.id.tv_location);
@@ -107,6 +105,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 startActivityForResult(cameraIntent, 12345);
                 break;
             case R.id.nav_gallery:
+                Intent backgroundIntent = new Intent(this, BackgroundActivity.class);
+                startActivity(backgroundIntent);
                 break;
             case R.id.nav_slideshow:
                 break;

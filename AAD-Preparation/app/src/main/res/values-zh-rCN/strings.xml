@@ -19,7 +19,7 @@
 
     <string-array name="drawer_array">
         <item>应用组件</item>
-        <item>Venus</item>
+        <item>背景运行</item>
         <item>Earth</item>
         <item>Mars</item>
     </string-array>
@@ -30,5 +30,9 @@
         <item>查</item>
         <item>改</item>
         <item>删</item>
+    </string-array>
+
+    <string-array name="background_task_array">
+        <item>AsyncTask</item>
     </string-array>
 </resources>

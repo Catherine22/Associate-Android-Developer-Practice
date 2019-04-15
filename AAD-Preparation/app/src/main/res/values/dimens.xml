@@ -14,4 +14,7 @@
     <dimen name="bottom_sheet_height">224dp</dimen> <!-- 56 * 4 -->
 
     <dimen name="icon_24">24dp</dimen>
+
+    <dimen name="card_radius">5dp</dimen>
+    <dimen name="card_elevations">5dp</dimen> <!--shadow-->
 </resources>

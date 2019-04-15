@@ -19,7 +19,7 @@
 
     <string-array name="drawer_array">
         <item>App components</item>
-        <item>Venus</item>
+        <item>Working in the background</item>
         <item>Earth</item>
         <item>Mars</item>
     </string-array>
@@ -30,6 +30,10 @@
         <item>Read</item>
         <item>Update</item>
         <item>Delete</item>
+    </string-array>
+
+    <string-array name="background_task_array">
+        <item>AsyncTask</item>
     </string-array>
 
 
