@@ -91,7 +91,7 @@ To see more details by automatically importing icons with Android Studio Image A
 ## Saving UI states
 1. ```ViewModel```      
 2. ```onSaveInstanceState()```      
-Have ```Do not keep activities``` selected on system Settings page to test ```onSaveInstanceState``` and ```onRestoreInstanceState```       
+To test ```savedInstanceState```, have ```Do not keep activities``` selected on system Settings page to test ```onSaveInstanceState``` and ```onRestoreInstanceState```       
 Code: [LifecycleActivity]       
 3. Persistent in local storage for complex or large data       
 

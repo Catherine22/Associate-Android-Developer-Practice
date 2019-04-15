@@ -35,4 +35,8 @@
     <string-array name="background_task_array">
         <item>AsyncTask</item>
     </string-array>
+
+    <string-array name="background_task_info_array">
+        <item>点击并静候5秒</item>
+    </string-array>
 </resources>

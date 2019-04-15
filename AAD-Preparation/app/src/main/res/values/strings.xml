@@ -36,6 +36,10 @@
         <item>AsyncTask</item>
     </string-array>
 
+    <string-array name="background_task_info_array">
+        <item>Click and wait for 5 seconds</item>
+    </string-array>
+
 
     <string name="foreground_service" translatable="false">Foreground service</string>
     <string name="background_service" translatable="false">Background service</string>
