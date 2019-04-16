@@ -11,6 +11,7 @@ public class SleepTaskLoader extends AsyncTaskLoader<String> {
     private final static String TAG = SleepTaskLoader.class.getSimpleName();
     private int SECONDS = 5;
     private String text;
+    private String cache;
 
     public SleepTaskLoader(Context context, String text) {
         super(context);
@@ -39,17 +40,18 @@ public class SleepTaskLoader extends AsyncTaskLoader<String> {
     }
 
     @Override
-    protected void onStopLoading() {
-        Log.i(TAG, "onStopLoading");
-        cancelLoad();
+    public void stopLoading() {
+        Log.i(TAG, "stopLoading");
+        deliverResult(String.format(Locale.US, "%s canceled", cache));
+        super.stopLoading();
     }
 
     @Override
     public void deliverResult(String data) {
-        Log.i(TAG, "deliverResult");
+        Log.i(TAG, String.format(Locale.US, "deliverResult: %s", data));
+        cache = data;
         if (!isReset() && isStarted()) {
-            super.deliverResult(data);
+            super.deliverResult(cache);
         }
-
     }
 }

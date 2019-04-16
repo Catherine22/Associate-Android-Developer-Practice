@@ -67,6 +67,14 @@ public class BackgroundActivity extends BaseActivity {
         titles = getResources().getStringArray(R.array.background_task_array);
         subtitles = getResources().getStringArray(R.array.background_task_info_array);
 
+        // stop tasks
+        if (sleepTask != null && !sleepTask.isCancelled()) {
+            sleepTask.cancel(true);
+        }
+        if (sleepTaskLoader != null && sleepTaskLoader.isStarted()) {
+            sleepTaskLoader.stopLoading();
+        }
+
         // restore data
         persistentTextViews = new TextView[titles.length];
         if (savedInstanceState != null) {
@@ -101,7 +109,6 @@ public class BackgroundActivity extends BaseActivity {
                             sleepTask.cancel(true);
                         } else {
                             sleepTask = new SleepTask(subtitle).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "Hello,", "there!");
-
                         }
                         break;
                     case 1:
@@ -112,7 +119,10 @@ public class BackgroundActivity extends BaseActivity {
                         if (sleepTaskLoader == null) {
                             sleepTaskLoader = getLoaderManager().initLoader(LoaderIds.SLEEP_TASK.getValue(), b, new LoaderCallbacksImpl());
                         } else {
-                            getLoaderManager().restartLoader(LoaderIds.SLEEP_TASK.getValue(), b, new LoaderCallbacksImpl());
+                            if (sleepTaskLoader.isStarted())
+                                sleepTaskLoader.stopLoading();
+                            else
+                                getLoaderManager().restartLoader(LoaderIds.SLEEP_TASK.getValue(), b, new LoaderCallbacksImpl());
                         }
                         break;
                     case 2:
@@ -152,14 +162,20 @@ public class BackgroundActivity extends BaseActivity {
         public void onLoadFinished(Loader<String> loader, String data) {
             // finished loading
             Log.i(TAG, "onLoadFinished");
-            runOnUiThread(() -> persistentTextViews[1].setText(data));
+            runOnUiThread(() -> {
+                if (persistentTextViews != null && persistentTextViews[1] != null)
+                    persistentTextViews[1].setText(data);
+            });
         }
 
         @Override
         public void onLoaderReset(Loader<String> loader) {
             // the created loader is being reset
             Log.i(TAG, "onLoaderReset");
-            runOnUiThread(() -> persistentTextViews[1].setText(subtitles[1]));
+            runOnUiThread(() -> {
+                if (persistentTextViews != null && persistentTextViews[1] != null)
+                    persistentTextViews[1].setText(subtitles[1]);
+            });
         }
     }
 
