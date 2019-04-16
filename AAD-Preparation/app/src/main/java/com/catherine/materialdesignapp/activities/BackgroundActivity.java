@@ -1,5 +1,7 @@
 package com.catherine.materialdesignapp.activities;
 
+import android.app.LoaderManager;
+import android.content.Loader;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -14,7 +16,9 @@ import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.adapters.CardRVAdapter;
 import com.catherine.materialdesignapp.listeners.OnItemClickListener;
 import com.catherine.materialdesignapp.models.CardItem;
+import com.catherine.materialdesignapp.tasks.LoaderIds;
 import com.catherine.materialdesignapp.tasks.SleepTask;
+import com.catherine.materialdesignapp.tasks.SleepTaskLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +33,9 @@ public class BackgroundActivity extends BaseActivity {
     private String[] titles;
     private String[] subtitles;
     private TextView[] persistentTextViews;
+
+    private AsyncTask sleepTask;
+    private Loader sleepTaskLoader;
 
 
     @Override
@@ -84,12 +91,32 @@ public class BackgroundActivity extends BaseActivity {
         adapter = new CardRVAdapter(this, cards, new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Log.d(TAG, String.format(Locale.US, "clicked %d", position));
+                Log.i(TAG, String.format(Locale.US, "clicked %d", position));
+                TextView subtitle = view.findViewById(R.id.tv_subtitle);
                 switch (position) {
                     case 0:
-                        TextView subtitle = view.findViewById(R.id.tv_subtitle);
+                        // AsyncTask
                         persistentTextViews[0] = subtitle;
-                        new SleepTask(subtitle).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "Hello,", "there!");
+                        if (sleepTask != null && !sleepTask.isCancelled()) {
+                            sleepTask.cancel(true);
+                        } else {
+                            sleepTask = new SleepTask(subtitle).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "Hello,", "there!");
+
+                        }
+                        break;
+                    case 1:
+                        // AsyncTaskLoader
+                        persistentTextViews[1] = subtitle;
+                        Bundle b = new Bundle();
+                        b.putString("message", "Hello, there!");
+                        if (sleepTaskLoader == null) {
+                            sleepTaskLoader = getLoaderManager().initLoader(LoaderIds.SLEEP_TASK.getValue(), b, new LoaderCallbacksImpl());
+                        } else {
+                            getLoaderManager().restartLoader(LoaderIds.SLEEP_TASK.getValue(), b, new LoaderCallbacksImpl());
+                        }
+                        break;
+                    case 2:
+                        // ViewModels and LiveData
                         break;
                 }
             }
@@ -111,5 +138,34 @@ public class BackgroundActivity extends BaseActivity {
             }
         });
         recyclerView.setAdapter(adapter);
+    }
+
+    class LoaderCallbacksImpl implements LoaderManager.LoaderCallbacks<String> {
+        @Override
+        public Loader<String> onCreateLoader(int id, Bundle args) {
+            // this will be called if the id is unique, which has never been used before.
+            Log.i(TAG, "onCreateLoader");
+            return new SleepTaskLoader(BackgroundActivity.this, args.getString("message"));
+        }
+
+        @Override
+        public void onLoadFinished(Loader<String> loader, String data) {
+            // finished loading
+            Log.i(TAG, "onLoadFinished");
+            runOnUiThread(() -> persistentTextViews[1].setText(data));
+        }
+
+        @Override
+        public void onLoaderReset(Loader<String> loader) {
+            // the created loader is being reset
+            Log.i(TAG, "onLoaderReset");
+            runOnUiThread(() -> persistentTextViews[1].setText(subtitles[1]));
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        getLoaderManager().destroyLoader(LoaderIds.SLEEP_TASK.getValue());
+        super.onDestroy();
     }
 }

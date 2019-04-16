@@ -52,4 +52,10 @@ public class SleepTask extends AsyncTask<String, Integer, String> {
         textView.get().setText(s);
         super.onPostExecute(s);
     }
+
+    @Override
+    protected void onCancelled() {
+        textView.get().setText(String.format("%s canceled", textView.get().getText().toString()));
+        super.onCancelled();
+    }
 }

@@ -6,6 +6,7 @@
 - [Device compatibility]        
 - [Lifecycle]       
 - [App components]      
+- [Working in the background]      
 - [Jetpack]       
 - [Kotlin]
 
@@ -189,7 +190,34 @@ Create your own content providers to share data with other applications or acces
 ### User-defined content providers
 A content provider uri should be ```scheme + authority + table + [id] + [filter]```. E.g. ```content://com.catherine.myapp/member/1/name```     
 
+# Working in the background
+Tasks on a background thread using ```AsyncTask``` (for short or interruptible tasks) or ```AsyncTaskLoader``` (for tasks that are high-priority, or tasks that need to report back to the user or UI).   
 
+## AsyncTask
+- run on UI thread: ```onPreExecute```, ```onProgressUpdate``` and ```onPostExecute```    
+- update progress to UI via ```publishProgress```, handle data in ```onProgressUpdate```   
+- ```WeakReference```   
+- ```executeOnExecutor```      
+
+Code: [BackgroundActivity], [SleepTask]   
+
+## AsyncTaskLoader    
+When you want the data to be available even if the device configuration changes, use ```loaders```    
+This ```getLoaderManager()``` or ```getSupportLoaderManager()``` is deprecated since Android P. Instead, we use ```ViewModels``` and ```LiveData```   
+
+- Call ```getLoaderManager()``` or ```getSupportLoaderManager()``` depends on whether you use ```Support Library```   
+- ```initLoader``` is supposed to be called in ```onCreate()```   
+- Call ```restartLoader``` is equivalent to ```initLoader```, but ```initLoader``` only works at the first time.    
+- ```onLoadFinished``` is run on background thread, this may cause memory leak if updating UI here - use at your own risk.    
+
+Code: [BackgroundActivity], [SleepTaskLoader]   
+
+## ViewModels and LiveData
+
+
+
+[Read more - AsyncTask](https://codelabs.developers.google.com/codelabs/android-training-create-asynctask/index.html?index=..%2F..%2Fandroid-training#0)
+[Read more - AsyncTaskLoader](https://google-developer-training.github.io/android-developer-fundamentals-course-concepts-v2/unit-3-working-in-the-background/lesson-7-background-tasks/7-1-c-asynctask-and-asynctaskloader/7-1-c-asynctask-and-asynctaskloader.html)
 
 # Jetpack
 
@@ -334,6 +362,9 @@ The exam is only available in Java at this time (4/1/2019)
 [InternetConnectivityReceiver]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/receivers/InternetConnectivityReceiver.java>
 [NetworkHealthService]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/NetworkHealthService.java>
 [NetworkHealthJobScheduler]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/NetworkHealthJobScheduler.java>
+[BackgroundActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/BackgroundActivity.java>
+[SleepTask]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/tasks/SleepTask.java>
+[SleepTaskLoader]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/tasks/SleepTaskLoader.java>
 
 [Basic Types]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/BasicTypes.kt>
 [Control Flow]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/ControlFlow.kt>

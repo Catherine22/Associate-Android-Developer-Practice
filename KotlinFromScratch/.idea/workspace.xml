@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ead4a42c-220e-4a08-87e1-404b838f1035" name="Default Changelist" comment="" />
+    <list default="true" id="ead4a42c-220e-4a08-87e1-404b838f1035" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../AAD-Preparation/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AAD-Preparation/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/BackgroundActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/BackgroundActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/tasks/SleepTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/tasks/SleepTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -98,8 +103,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/singleton_kotlin/BillPughSingleton.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="5" lean-forward="true" selection-start-line="11" selection-start-column="23" selection-end-line="20" selection-end-column="5" />
+            <state relative-caret-position="315">
+              <caret line="21" column="1" lean-forward="true" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -307,7 +312,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3299363" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.27515924" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.27515924" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -600,8 +605,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/singleton_kotlin/BillPughSingleton.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="5" lean-forward="true" selection-start-line="11" selection-start-column="23" selection-end-line="20" selection-end-column="5" />
+        <state relative-caret-position="315">
+          <caret line="21" column="1" lean-forward="true" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
         </state>
       </provider>
     </entry>

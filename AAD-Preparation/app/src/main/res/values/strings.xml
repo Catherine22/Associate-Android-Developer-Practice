@@ -34,9 +34,13 @@
 
     <string-array name="background_task_array">
         <item>AsyncTask</item>
+        <item>AsyncTaskLoader</item>
+        <item>ViewModels and LiveData</item>
     </string-array>
 
     <string-array name="background_task_info_array">
+        <item>Click and wait for 5 seconds</item>
+        <item>Click and wait for 5 seconds</item>
         <item>Click and wait for 5 seconds</item>
     </string-array>
 
