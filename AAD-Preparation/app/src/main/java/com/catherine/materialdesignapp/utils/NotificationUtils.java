@@ -4,6 +4,7 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
@@ -65,9 +66,13 @@ public class NotificationUtils extends ContextWrapper {
      * @param notificationId user defined
      */
     public void sendChannelNotification(String title, String body, int notificationId) {
+        // Create an Intent for the activity you want to start
         Intent resultIntent = new Intent(this, MainActivity.class);
-        PendingIntent pi = PendingIntent.getActivity(this, 0, resultIntent, PendingIntent
-                .FLAG_UPDATE_CURRENT);
+        // Create the TaskStackBuilder and add the intent, which inflates the back stack
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+        stackBuilder.addNextIntentWithParentStack(resultIntent);
+        // Get the PendingIntent containing the entire back stack
+        PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(),
@@ -77,7 +82,7 @@ public class NotificationUtils extends ContextWrapper {
                     .setTicker("This is a default ticker")
                     .setSmallIcon(R.mipmap.ic_launcher_round)
                     .setAutoCancel(true)
-                    .setContentIntent(pi);
+                    .setContentIntent(pendingIntent);
             getNotificationManager().notify(notificationId, builder.build());
         } else {
             NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext())
@@ -86,7 +91,7 @@ public class NotificationUtils extends ContextWrapper {
                     .setTicker("This is a default ticker")
                     .setSmallIcon(R.mipmap.ic_launcher_round)
                     .setAutoCancel(true)
-                    .setContentIntent(pi);
+                    .setContentIntent(pendingIntent);
             getNotificationManager().notify(notificationId, builder.build());
         }
     }
@@ -98,9 +103,13 @@ public class NotificationUtils extends ContextWrapper {
      */
     @RequiresApi(Build.VERSION_CODES.O)
     public Notification getServiceNotification() {
+        // Create an Intent for the activity you want to start
         Intent resultIntent = new Intent(this, MainActivity.class);
-        PendingIntent pi = PendingIntent.getActivity(this, 0, resultIntent, PendingIntent
-                .FLAG_UPDATE_CURRENT);
+        // Create the TaskStackBuilder and add the intent, which inflates the back stack
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+        stackBuilder.addNextIntentWithParentStack(resultIntent);
+        // Get the PendingIntent containing the entire back stack
+        PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
         RemoteViews contentView = new RemoteViews(getPackageName(), R.layout.notification_view);
         contentView.setImageViewResource(R.id.iv_icon, R.mipmap.ic_launcher_round);
@@ -112,7 +121,7 @@ public class NotificationUtils extends ContextWrapper {
                 .setTicker("Foreground Service Ticker")
                 .setSmallIcon(R.mipmap.ic_launcher_round)
                 .setAutoCancel(true)
-                .setContentIntent(pi)
+                .setContentIntent(pendingIntent)
 //                .setCustomContentView(contentView)
                 .build();
     }

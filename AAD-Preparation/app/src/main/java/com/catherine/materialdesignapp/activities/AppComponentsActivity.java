@@ -9,8 +9,9 @@ import android.util.Log;
 
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.adapters.TabLayoutActivityFSPAdapter;
+import com.catherine.materialdesignapp.listeners.OnActivityEventListener;
 
-public class AppComponentsActivity extends BaseActivity {
+public class AppComponentsActivity extends BaseActivity implements OnActivityEventListener {
     private final static String TAG = AppComponentsActivity.class.getSimpleName();
     private Toolbar toolbar;
     private TabLayoutActivityFSPAdapter adapter;
@@ -39,7 +40,7 @@ public class AppComponentsActivity extends BaseActivity {
 
             @Override
             public void onPageSelected(int position) {
-                Log.e(TAG, String.format("onPageSelected:%d", position));
+                Log.i(TAG, String.format("onPageSelected:%d", position));
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     switch (position) {
                         case 0:
