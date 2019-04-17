@@ -223,6 +223,35 @@ Code: [BackgroundActivity], [SleepTaskLoader]
 
 # Jetpack
 
+## Migrate to AndroidX
+1. In order to activate AndroidX, add two flags in gradle.properties    
+```
+android.useAndroidX=true
+android.enableJetifier=true
+```
+
+2. Remove android support libraries ```com.android.support...``` and ```android.arch...```, all the changes must be implemented to both classes and layouts.    
+
+3. Update test options in build.gradle    
+```gradle
+android {
+  defaultConfig {
+          testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+      }
+  testOptions {
+          execution 'ANDROIDX_TEST_ORCHESTRATOR'
+      }
+}
+
+dependencies {
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestUtil 'androidx.test:orchestrator:1.1.1'
+}
+```
+
+
+[Read More](https://developer.android.com/jetpack/androidx/migrate)
+
 # Kotlin
 The exam is only available in Java at this time (4/1/2019)      
 [Read more](https://kotlinlang.org/docs/reference/)     
