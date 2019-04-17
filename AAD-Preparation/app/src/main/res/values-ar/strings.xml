@@ -16,6 +16,14 @@
     <string name="stop_job_scheduler">وقف جدولة الوظيفة</string>
     <string name="start_broadcast">استقبال البث</string>
     <string name="content_providers">موفري المحتوى</string>
+    <string name="local_notification">Local notification</string>
+    <string name="title">Title</string>
+    <string name="subtitle">Subtitle</string>
+    <string name="channel">Channel</string>
+    <string name="default_string">Default</string>
+    <string name="cannot_be_empty">%s cannot be empty</string>
+    <string name="no_notification_services_selected">You haven\'t select notification service(s)</string>
+    <string name="push">Push</string>
 
     <string-array name="drawer_array">
         <item>مكونات التطبيق</item>

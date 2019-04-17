@@ -13,7 +13,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -283,16 +282,12 @@ public class BaseActivity extends AppCompatActivity {
     }
 
 
-    protected void showSnackbar(CharSequence message) {
-        DrawerLayout layout = findViewById(R.id.drawer_layout);
+    protected void showSnackbar(View layout, CharSequence message) {
         final Snackbar snackbar = Snackbar.make(layout, message, Snackbar.LENGTH_LONG);
         snackbar.setActionTextColor(getResources().getColor(R.color.yellow));
-        snackbar.setAction(getResources().getString(R.string.undo), new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                snackbar.dismiss();
-                // do something
-            }
+        snackbar.setAction(getResources().getString(R.string.undo), v -> {
+            snackbar.dismiss();
+            // do something
         });
         snackbar.show();
     }
@@ -309,7 +304,7 @@ public class BaseActivity extends AppCompatActivity {
 
     protected void showCustomToast(CharSequence message) {
         LayoutInflater layoutInflater = getLayoutInflater();
-        View layout = layoutInflater.inflate(R.layout.c_toast, (ViewGroup) findViewById(R.id.custom_toast_container));
+        View layout = layoutInflater.inflate(R.layout.c_toast, findViewById(R.id.custom_toast_container));
 
         TextView textView = layout.findViewById(R.id.text);
         textView.setText(message);
