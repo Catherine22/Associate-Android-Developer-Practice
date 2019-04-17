@@ -20,7 +20,7 @@
     <string-array name="drawer_array">
         <item>应用组件</item>
         <item>背景运行</item>
-        <item>Earth</item>
+        <item>消息推送服务</item>
         <item>Mars</item>
     </string-array>
 

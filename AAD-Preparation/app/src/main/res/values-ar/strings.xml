@@ -20,7 +20,7 @@
     <string-array name="drawer_array">
         <item>مكونات التطبيق</item>
         <item>Working in the background</item>
-        <item>Earth</item>
+        <item>Notification</item>
         <item>Mars</item>
     </string-array>
 

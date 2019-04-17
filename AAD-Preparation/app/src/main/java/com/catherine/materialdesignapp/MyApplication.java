@@ -12,7 +12,7 @@ import com.catherine.materialdesignapp.services.NetworkHealthJobScheduler;
 import com.catherine.materialdesignapp.services.NetworkHealthService;
 import com.facebook.drawee.backends.pipeline.Fresco;
 
-import static com.catherine.materialdesignapp.services.BusyJobs.JOB_NETWORK_STAYE;
+import static com.catherine.materialdesignapp.services.BusyJobs.JOB_NETWORK_STATE;
 
 public class MyApplication extends Application {
     public static MyApplication INSTANCE;
@@ -31,7 +31,7 @@ public class MyApplication extends Application {
             try {
                 JobScheduler jobScheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
                 ComponentName componentName = new ComponentName(this, NetworkHealthJobScheduler.class);
-                JobInfo jobInfo = new JobInfo.Builder(JOB_NETWORK_STAYE, componentName)
+                JobInfo jobInfo = new JobInfo.Builder(JOB_NETWORK_STATE, componentName)
                         .setRequiresStorageNotLow(false)
                         .setRequiresBatteryNotLow(true)
                         .setRequiresCharging(false)

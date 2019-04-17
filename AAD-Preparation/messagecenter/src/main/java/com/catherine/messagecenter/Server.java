@@ -3,7 +3,8 @@ package com.catherine.messagecenter;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.content.LocalBroadcastManager;
+
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import static com.catherine.messagecenter.Config.messagesList;
 
@@ -37,7 +38,7 @@ public class Server {
         }
         if (messagesList.containsKey(action)) {
             String key = messagesList.get(action);
-            if (!key.equals("MESSAGES_BUNDLE")) {
+            if (!"MESSAGES_DOUBLE".equals(key)) {
                 ar.onFailure(ErrorMessages.MULTIPLE_VALUE);
                 CLog.e(TAG, "MULTIPLE_VALUE:" + action);
                 return;
@@ -63,7 +64,7 @@ public class Server {
         }
         if (messagesList.containsKey(action)) {
             String key = messagesList.get(action);
-            if (!key.equals("MESSAGES_BOOLEAN")) {
+            if (!"MESSAGES_DOUBLE".equals(key)) {
                 ar.onFailure(ErrorMessages.MULTIPLE_VALUE);
                 CLog.e(TAG, "MULTIPLE_VALUE:" + action);
                 return;
@@ -89,7 +90,7 @@ public class Server {
         }
         if (messagesList.containsKey(action)) {
             String key = messagesList.get(action);
-            if (!key.equals("MESSAGES_STRING")) {
+            if (!"MESSAGES_DOUBLE".equals(key)) {
                 ar.onFailure(ErrorMessages.MULTIPLE_VALUE);
                 CLog.e(TAG, "MULTIPLE_VALUE:" + action);
                 return;
@@ -115,7 +116,7 @@ public class Server {
         }
         if (messagesList.containsKey(action)) {
             String key = messagesList.get(action);
-            if (!key.equals("MESSAGES_INT")) {
+            if (!"MESSAGES_DOUBLE".equals(key)) {
                 ar.onFailure(ErrorMessages.MULTIPLE_VALUE);
                 CLog.e(TAG, "MULTIPLE_VALUE:" + action);
                 return;
@@ -141,7 +142,7 @@ public class Server {
         }
         if (messagesList.containsKey(action)) {
             String key = messagesList.get(action);
-            if (!key.equals("MESSAGES_DOUBLE")) {
+            if (!"MESSAGES_DOUBLE".equals(key)) {
                 ar.onFailure(ErrorMessages.MULTIPLE_VALUE);
                 CLog.e(TAG, "MULTIPLE_VALUE:" + action);
                 return;
@@ -166,7 +167,7 @@ public class Server {
         }
         if (messagesList.containsKey(action)) {
             String key = messagesList.get(action);
-            if (!key.equals("MESSAGES_BYTE")) {
+            if (!"MESSAGES_BYTE".equals(key)) {
                 ar.onFailure(ErrorMessages.MULTIPLE_VALUE);
                 CLog.e(TAG, "MULTIPLE_VALUE:" + action);
                 return;

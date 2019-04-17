@@ -2,7 +2,6 @@ package com.catherine.materialdesignapp.components;
 
 import android.content.Context;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,6 +9,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.catherine.materialdesignapp.R;
+
+import androidx.annotation.RequiresApi;
 
 public class BottomSheetItem extends RelativeLayout {
     private ImageView iv_icon;

@@ -1,17 +1,7 @@
 package com.catherine.materialdesignapp.fragments;
 
 import android.Manifest;
-import android.app.Activity;
-import android.app.job.JobInfo;
-import android.app.job.JobScheduler;
-import android.content.ComponentName;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.BottomSheetDialog;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,17 +9,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.catherine.materialdesignapp.R;
-import com.catherine.materialdesignapp.activities.MainActivity;
 import com.catherine.materialdesignapp.components.BottomSheetItem;
 import com.catherine.materialdesignapp.content_providers.CallLogDao;
 import com.catherine.materialdesignapp.listeners.OnActivityEventListener;
 import com.catherine.materialdesignapp.listeners.OnRequestPermissionsListener;
-import com.catherine.materialdesignapp.services.MusicPlayerJobScheduler;
-import com.catherine.materialdesignapp.services.MusicPlayerService;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.List;
 
-import static com.catherine.materialdesignapp.services.BusyJobs.JOB_MUSIC_PLAYER;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 public class ContentProviderFragment extends Fragment implements View.OnClickListener {
     private final static String TAG = ContentProviderFragment.class.getSimpleName();

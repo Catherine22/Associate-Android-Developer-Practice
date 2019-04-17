@@ -4,10 +4,6 @@ import android.app.LoaderManager;
 import android.content.Loader;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -23,6 +19,11 @@ import com.catherine.materialdesignapp.tasks.SleepTaskLoader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class BackgroundActivity extends BaseActivity {
     public final static String TAG = BackgroundActivity.class.getSimpleName();

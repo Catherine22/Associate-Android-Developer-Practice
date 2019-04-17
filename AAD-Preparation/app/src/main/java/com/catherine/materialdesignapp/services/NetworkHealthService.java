@@ -4,10 +4,11 @@ import android.app.Service;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
 
 import com.catherine.materialdesignapp.listeners.ProguardIgnored;
 import com.catherine.materialdesignapp.receivers.InternetConnectivityReceiver;
+
+import androidx.annotation.Nullable;
 
 
 public class NetworkHealthService extends Service implements ProguardIgnored {

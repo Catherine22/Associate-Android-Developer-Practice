@@ -21,12 +21,7 @@ public class InternetConnectivityReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         try {
-            Server sv = new Server(context, new AsyncResponse() {
-                @Override
-                public void onFailure(int errorCode) {
-                    Log.e(TAG, "onFailure:" + errorCode);
-                }
-            });
+            Server sv = new Server(context, errorCode -> Log.e(TAG, "onFailure:" + errorCode));
             if (intent.getExtras() != null) {
                 ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
                 if (connectivityManager == null)

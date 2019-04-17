@@ -62,6 +62,11 @@
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activities.NotificationActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <!--Services-->
         <service android:name=".services.MusicPlayerService">

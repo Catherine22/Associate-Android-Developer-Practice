@@ -3,8 +3,6 @@ package com.catherine.materialdesignapp.adapters;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
@@ -28,6 +26,8 @@ import com.facebook.imagepipeline.request.Postprocessor;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import jp.wasabeef.fresco.processors.BlurPostprocessor;
 
 public class CardRVAdapter extends RecyclerView.Adapter<CardRVAdapter.MainRvHolder> {

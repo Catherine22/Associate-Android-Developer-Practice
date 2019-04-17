@@ -3,20 +3,21 @@ package com.catherine.materialdesignapp.activities;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.utils.LocationHelper;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.Locale;
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
     private final static String TAG = MainActivity.class.getSimpleName();
@@ -48,7 +49,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         Menu menu = navigationView.getMenu();
         String[] menuTitles = getResources().getStringArray(R.array.drawer_array);
 
-        int[] ids = {R.id.nav_camera, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_manage};
+        int[] ids = {R.id.nav_app_components, R.id.nav_background, R.id.nav_notification, R.id.nav_manage};
         for (int i = 0; i < ids.length; i++) {
             MenuItem nav = menu.findItem(ids[i]);
             nav.setTitle(menuTitles[i]);
@@ -99,15 +100,17 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.nav_camera:
+            case R.id.nav_app_components:
                 Intent cameraIntent = new Intent(this, AppComponentsActivity.class);
                 startActivityForResult(cameraIntent, 12345);
                 break;
-            case R.id.nav_gallery:
+            case R.id.nav_background:
                 Intent backgroundIntent = new Intent(this, BackgroundActivity.class);
                 startActivity(backgroundIntent);
                 break;
-            case R.id.nav_slideshow:
+            case R.id.nav_notification:
+                Intent notificationActivity = new Intent(this, NotificationActivity.class);
+                startActivity(notificationActivity);
                 break;
             case R.id.nav_manage:
                 Intent aboutIntent = new Intent(this, SettingsActivity.class);

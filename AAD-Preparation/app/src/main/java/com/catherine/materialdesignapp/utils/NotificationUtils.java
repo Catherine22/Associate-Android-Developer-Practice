@@ -10,13 +10,14 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.NotificationCompat;
 import android.widget.RemoteViews;
 
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.activities.MainActivity;
 import com.catherine.materialdesignapp.models.ChannelInfo;
+
+import androidx.annotation.RequiresApi;
+import androidx.core.app.NotificationCompat;
 
 public class NotificationUtils extends ContextWrapper {
     private ChannelInfo channelInfo;

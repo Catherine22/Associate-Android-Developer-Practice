@@ -1,9 +1,6 @@
 package com.catherine.materialdesignapp.adapters;
 
 import android.os.Build;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.catherine.materialdesignapp.fragments.BackgroundServiceFragment;
 import com.catherine.materialdesignapp.fragments.BroadcastReceiverFragment;
@@ -11,6 +8,10 @@ import com.catherine.materialdesignapp.fragments.ContentProviderFragment;
 import com.catherine.materialdesignapp.fragments.ForegroundServiceFragment;
 import com.catherine.materialdesignapp.MyApplication;
 import com.catherine.materialdesignapp.R;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 public class TabLayoutActivityFSPAdapter extends FragmentStatePagerAdapter {
     private String TABS[];

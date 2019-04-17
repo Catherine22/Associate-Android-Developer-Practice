@@ -1,8 +1,6 @@
 package com.catherine.materialdesignapp.activities;
 
-import android.arch.lifecycle.LifecycleOwner;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -12,6 +10,9 @@ import com.catherine.materialdesignapp.utils.LifecycleObserverImpl;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+
+import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.LifecycleOwner;
 
 public class LifecycleActivity extends BaseActivity implements LifecycleOwner {
     private final static String TAG = LifecycleActivity.class.getSimpleName();
