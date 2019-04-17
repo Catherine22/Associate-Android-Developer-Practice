@@ -1,14 +1,17 @@
 # AAD-Preparation
 
+Associate Android Developer Study Guide   
+https://developers.google.com/training/certification/associate-android-developer/study-guide/   
+
 # Navigation
-- [Material design]         
-- [Localisation]      
-- [Device compatibility]        
-- [Lifecycle]       
-- [App components]      
-- [Working in the background]      
-- [Jetpack]       
-- [Kotlin]
+- [Material design](https://github.com/Catherine22/material-design#)         
+- [Localisation](https://github.com/Catherine22/localisation#)      
+- [Device compatibility](https://github.com/Catherine22/device-compativility#)        
+- [Lifecycle](https://github.com/Catherine22/lifecycle#)       
+- [App components](https://github.com/Catherine22/app-components#)      
+- [Working in the background](https://github.com/Catherine22/working-in-the-background#)      
+- [Jetpack](https://github.com/Catherine22/Jetpack#)       
+- [Kotlin](https://github.com/Catherine22/Kotlin#)
 
 
 # Material design
@@ -124,7 +127,6 @@ Code: [LifecycleActivity], [LifecycleObserverImpl]
     }
 ```
 Code: [BaseActivity]        
-[Read more](https://blog.csdn.net/zhaokaiqiang1992/article/details/19921703)        
 [Read more](https://blog.csdn.net/zhaokaiqiang1992/article/details/19921703)        
 
 # App components
@@ -345,7 +347,7 @@ The exam is only available in Java at this time (4/1/2019)
 
 
 
-[Material design]:<:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#material-design>
+[Material design]:<<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#material-design>
 [Localisation]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#Localisation>
 [Device compatibility]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#device-compatibility>
 [res]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/res/
@@ -356,6 +358,7 @@ The exam is only available in Java at this time (4/1/2019)
 [MainActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/MainActivity.java>
 [LifecycleActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/LifecycleActivity.java>
 [LifecycleObserverImpl]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/LifecycleObserverImpl.java>
+[AppComponentsActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/AppComponentsActivity.java>
 [MusicPlayerService]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/MusicPlayerService.java>
 [MusicPlayerJobScheduler]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/MusicPlayerJobScheduler.java>
 [AndroidManifest]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/AndroidManifest.xml>
