@@ -21,6 +21,7 @@ implementation 'com.google.android.material:material:1.0.0'
 ```
 
 - ```Toast``` vs ```Snackbar```       
+
 |             | Toast                                                                | Snackbar            |
 |-------------|----------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
 | Overview    | A toast provides simple feedback about an operation in a small popup | Snackbars provide lightweight feedback about an operation                                                                                         |
@@ -29,8 +30,8 @@ implementation 'com.google.android.material:material:1.0.0'
 | Sample code | [BaseActivity]                                                       | [BaseActivity]      |
 
 
-[Read more](https://developer.android.com/guide/topics/ui/notifiers/toasts)       
-[Read more](https://developer.android.com/reference/android/support/design/widget/Snackbar)       
+[Read more - Toasts](https://developer.android.com/guide/topics/ui/notifiers/toasts)       
+[Read more - Snackbar](https://developer.android.com/reference/android/support/design/widget/Snackbar)       
 
 
 - BottomSheet   
@@ -183,7 +184,7 @@ Foreground services and JobScheduler are alternatives to run app in the backgrou
 
 ### ```JobScheduler``` TIPS:
 1. Because setting this property is not compatible with persisted jobs, doing so will throw an IllegalArgumentException when ```JobInfo.Builder.build()``` is called.   
-2. ```jobScheduler.cancel(JOB_ID)``` or jobScheduler.cancelAll()``` only works while jobs haven't started. For example, a job is scheduled to start in 5 seconds (```setMinimumLatency(5000)```), ```cancel()``` works right before the job actually runs.    
+2. ```jobScheduler.cancel(JOB_ID)``` or ```jobScheduler.cancelAll()``` only works while jobs haven't started. For example, a job is scheduled to start in 5 seconds (```setMinimumLatency(5000)```), ```cancel()``` works right before the job actually runs.    
 3. Don't forget to finish jobs if the task is done. (```jobFinished(jobParameters, false)```)
 
 Code: [BackgroundServiceFragment], [MusicPlayerService], [MusicPlayerJobScheduler], [AndroidManifest]       
