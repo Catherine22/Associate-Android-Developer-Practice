@@ -17,6 +17,8 @@
     <string name="start_broadcast">Broadcast receivers</string>
     <string name="content_providers">Content providers</string>
     <string name="local_notification">Local notification</string>
+    <string name="local_hands_up_notification">Hands-up notification</string>
+    <string name="local_replying_notification">Replying Notification</string>
     <string name="title">Title</string>
     <string name="subtitle">Subtitle</string>
     <string name="channel">Channel</string>
@@ -24,6 +26,7 @@
     <string name="cannot_be_empty">%s cannot be empty</string>
     <string name="no_notification_services_selected">You haven\'t select notification service(s)</string>
     <string name="push">Push</string>
+    <string name="share">Share</string>
 
     <string-array name="drawer_array">
         <item>App components</item>

@@ -15,7 +15,12 @@ https://developers.google.com/training/certification/associate-android-developer
 
 
 # Material design
-## ```Toast``` vs ```Snackbar```       
+Add the material dependency in build.gradle
+```gradle
+implementation 'com.google.android.material:material:1.0.0'
+```
+
+- ```Toast``` vs ```Snackbar```       
 |             | Toast                                                                | Snackbar            |
 |-------------|----------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
 | Overview    | A toast provides simple feedback about an operation in a small popup | Snackbars provide lightweight feedback about an operation                                                                                         |
@@ -28,7 +33,24 @@ https://developers.google.com/training/certification/associate-android-developer
 [Read more](https://developer.android.com/reference/android/support/design/widget/Snackbar)       
 
 
-## BottomSheet
+- BottomSheet   
+  Code: [ContentProviderFragment]   
+- MaterialCardView    
+  Code: [BackgroundActivity]   
+- Chip    
+  Code: [NotificationActivity]   
+- TextInputLayout, TextInputEditText    
+  Code: [NotificationActivity]   
+- MaterialButton    
+  Code: [BackgroundServiceFragment]   
+- AppBarLayout    
+  Code: Any activity in this app   
+- NavigationView    
+  Code: [MainActivity]   
+- TabLayout   
+  Code: [AppComponentsActivity]   
+- FloatingActionButton    
+  Code: [MainActivity]   
 
 # Localisation
 List all resource directories you should take care of:       
@@ -152,7 +174,7 @@ Foreground services and JobScheduler are alternatives to run app in the backgrou
 | ≤ 25 | O | X | X |
 | ≥ 26 | X | O | O |
 
-Code: [AppComponentsActivity], [MusicPlayerService], [MusicPlayerJobScheduler], [AndroidManifest]       
+Code: [BackgroundServiceFragment], [MusicPlayerService], [MusicPlayerJobScheduler], [AndroidManifest]       
 [Read more](https://developer.android.com/guide/components/services)        
 
 ## Broadcast receiver
@@ -192,6 +214,8 @@ Create your own content providers to share data with other applications or acces
 ### User-defined content providers
 A content provider uri should be ```scheme + authority + table + [id] + [filter]```. E.g. ```content://com.catherine.myapp/member/1/name```     
 
+Code: [ContentProviderFragment]
+
 # Working in the background
 Tasks on a background thread using ```AsyncTask``` (for short or interruptible tasks) or ```AsyncTaskLoader``` (for tasks that are high-priority, or tasks that need to report back to the user or UI).   
 
@@ -216,10 +240,17 @@ Code: [BackgroundActivity], [SleepTaskLoader]
 
 ## ViewModels and LiveData
 
+# Notification
+
+## Notification dots (Badge)
+Long click app icons on Android O+ devices, notification badge will pop up.    
+
+## Notification Channels
+Classify notifications by channels in the Settings app on Android O+ devices.    
 
 
-[Read more - AsyncTask](https://codelabs.developers.google.com/codelabs/android-training-create-asynctask/index.html?index=..%2F..%2Fandroid-training#0)
-[Read more - AsyncTaskLoader](https://google-developer-training.github.io/android-developer-fundamentals-course-concepts-v2/unit-3-working-in-the-background/lesson-7-background-tasks/7-1-c-asynctask-and-asynctaskloader/7-1-c-asynctask-and-asynctaskloader.html)
+Code: [NotificationActivity]    
+[Read more](https://codelabs.developers.google.com/codelabs/android-training-notifications/index.html?index=..%2F..android-training#0)
 
 # Jetpack
 
@@ -397,6 +428,9 @@ The exam is only available in Java at this time (4/1/2019)
 [BackgroundActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/BackgroundActivity.java>
 [SleepTask]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/tasks/SleepTask.java>
 [SleepTaskLoader]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/tasks/SleepTaskLoader.java>
+[NotificationActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/NotificationActivity.java>
+[ContentProviderFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/fragments/ContentProviderFragment.java>
+[BackgroundServiceFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/fragments/BackgroundServiceFragment.java>
 
 [Basic Types]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/BasicTypes.kt>
 [Control Flow]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/ControlFlow.kt>

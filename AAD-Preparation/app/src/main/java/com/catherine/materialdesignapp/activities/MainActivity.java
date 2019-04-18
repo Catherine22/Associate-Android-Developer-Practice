@@ -1,6 +1,7 @@
 package com.catherine.materialdesignapp.activities;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,7 +9,9 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.catherine.materialdesignapp.R;
+import com.catherine.materialdesignapp.receivers.NotificationReceiver;
 import com.catherine.materialdesignapp.utils.LocationHelper;
+import com.catherine.materialdesignapp.utils.OccupiedActions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
@@ -21,6 +24,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
     private final static String TAG = MainActivity.class.getSimpleName();
+    private NotificationReceiver notificationReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         setContentView(R.layout.activity_main);
         initComponents();
         handleAppLinks();
+        registerReceivers();
     }
 
     private void initComponents() {
@@ -65,6 +70,15 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         Intent appLinkIntent = getIntent();
         String appLinkAction = appLinkIntent.getAction();
         Uri appLinkData = appLinkIntent.getData();
+    }
+
+    private void registerReceivers() {
+        notificationReceiver = new NotificationReceiver();
+        registerReceiver(notificationReceiver, new IntentFilter(OccupiedActions.ACTION_UPDATE_NOTIFICATION));
+    }
+
+    private void unregisterReceivers() {
+        unregisterReceiver(notificationReceiver);
     }
 
     @Override
@@ -127,5 +141,11 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onDestroy() {
+        unregisterReceivers();
+        super.onDestroy();
     }
 }

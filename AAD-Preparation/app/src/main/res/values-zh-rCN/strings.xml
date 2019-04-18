@@ -17,6 +17,8 @@
     <string name="start_broadcast">广播接收者</string>
     <string name="content_providers">内容提供者</string>
     <string name="local_notification">本地推送</string>
+    <string name="local_hands_up_notification">含确认取消键的本地推送</string>
+    <string name="local_replying_notification">可回覆信息的本地推送</string>
     <string name="title">标题</string>
     <string name="subtitle">副标题</string>
     <string name="channel">渠道</string>
@@ -24,6 +26,7 @@
     <string name="cannot_be_empty">%s不得为空</string>
     <string name="no_notification_services_selected">你还没选择推送服务</string>
     <string name="push">发送</string>
+    <string name="share">分享</string>
 
     <string-array name="drawer_array">
         <item>应用组件</item>

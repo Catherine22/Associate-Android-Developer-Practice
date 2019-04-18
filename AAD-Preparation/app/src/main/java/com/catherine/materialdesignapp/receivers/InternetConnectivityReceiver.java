@@ -8,7 +8,6 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.catherine.messagecenter.AsyncResponse;
 import com.catherine.messagecenter.Server;
 
 import static com.catherine.materialdesignapp.utils.OccupiedActions.ACTION_NETWORK_STATE;

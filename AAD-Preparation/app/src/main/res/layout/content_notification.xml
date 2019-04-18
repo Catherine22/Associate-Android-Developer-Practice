@@ -22,42 +22,55 @@
             android:layout_marginEnd="@dimen/safe_area_margin_width"
             android:orientation="vertical">
 
-            <LinearLayout
+            <com.google.android.material.chip.ChipGroup
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/chip_height"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/safe_area_margin_height"
+                android:layout_marginBottom="@dimen/safe_area_margin_height"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                app:chipSpacing="@dimen/chip_margin_width">
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_local"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="@dimen/chip_height"
                     android:text="@string/local_notification" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_local_hands_up"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/chip_height"
+                    android:text="@string/local_hands_up_notification" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_local_reply"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/chip_height"
+                    android:text="@string/local_replying_notification" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_fcm"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/chip_margin_width"
+                    android:layout_height="@dimen/chip_height"
                     android:text="@string/fcm" />
-            </LinearLayout>
+            </com.google.android.material.chip.ChipGroup>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_title"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/safe_area_margin_height"
                 app:errorTextAppearance="@style/error_appearance">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tiet_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/title"
                     android:inputType="textCapWords" />
 
             </com.google.android.material.textfield.TextInputLayout>

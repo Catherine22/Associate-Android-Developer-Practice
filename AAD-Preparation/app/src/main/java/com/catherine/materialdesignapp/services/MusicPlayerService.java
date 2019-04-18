@@ -23,7 +23,7 @@ public class MusicPlayerService extends Service {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationUtils notificationUtils = new NotificationUtils(this, NotificationChannelsGroup.CHANNELS.get(NotificationChannelsGroup.FOREGROUND_SERVICE));
-            startForeground(1, notificationUtils.getServiceNotification());
+            startForeground(1, notificationUtils.getNotificationForForegroundServices());
         }
     }
 

@@ -38,14 +38,12 @@ public class ForegroundServiceFragment extends Fragment implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_start_service:
-//                behavior.setState(BottomSheetBehavior.STATE_HIDDEN);
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     Intent intent = new Intent(getActivity(), MusicPlayerService.class);
                     getActivity().startForegroundService(intent);
                 }
                 break;
             case R.id.btn_stop_service:
-//                behavior.setState(BottomSheetBehavior.STATE_HIDDEN);
                 Intent intent = new Intent(getActivity(), MusicPlayerService.class);
                 getActivity().stopService(intent);
                 break;

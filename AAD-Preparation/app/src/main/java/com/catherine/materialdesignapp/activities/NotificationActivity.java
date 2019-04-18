@@ -56,6 +56,8 @@ public class NotificationActivity extends BaseActivity implements View.OnClickLi
         btn_push.setOnClickListener(this);
         Chip chip_local = findViewById(R.id.chip_local);
         chip_local.setOnCheckedChangeListener(this);
+        Chip chip_local_hands_up = findViewById(R.id.chip_local_hands_up);
+        chip_local_hands_up.setOnCheckedChangeListener(this);
         Chip chip_fcm = findViewById(R.id.chip_fcm);
         chip_fcm.setOnCheckedChangeListener(this);
         til_title = findViewById(R.id.til_title);
@@ -65,6 +67,9 @@ public class NotificationActivity extends BaseActivity implements View.OnClickLi
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             til_channel = findViewById(R.id.til_channel);
             til_channel.getEditText().addTextChangedListener(new MyTextWatcher(til_channel.getEditText().getId()));
+
+            Chip chip_local_reply = findViewById(R.id.chip_local_reply);
+            chip_local_reply.setOnCheckedChangeListener(this);
         }
     }
 
@@ -127,10 +132,42 @@ public class NotificationActivity extends BaseActivity implements View.OnClickLi
                                 }
                                 ChannelInfo channelInfo = new ChannelInfo(id, channel);
                                 NotificationUtils notificationUtils = new NotificationUtils(this, channelInfo);
-                                notificationUtils.sendChannelNotification(title, subtitle, (int) System.currentTimeMillis() / 1000);
+                                notificationUtils.sendNotification(title, subtitle, (int) System.currentTimeMillis() / 1000);
                             } else {
                                 NotificationUtils notificationUtils = new NotificationUtils(this);
-                                notificationUtils.sendChannelNotification(title, subtitle, (int) System.currentTimeMillis() / 1000);
+                                notificationUtils.sendNotification(title, subtitle, (int) System.currentTimeMillis() / 1000);
+                            }
+                            break;
+                        case R.id.chip_local_hands_up:
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                String id;
+                                if (channelTable.containsKey(channel)) {
+                                    id = channelTable.get(channel);
+                                } else {
+                                    id = System.currentTimeMillis() / 1000 + "";
+                                    channelTable.put(channel, id);
+                                }
+                                ChannelInfo channelInfo = new ChannelInfo(id, channel);
+                                NotificationUtils notificationUtils = new NotificationUtils(this, channelInfo);
+                                notificationUtils.sendHandsUpNotification(title, subtitle, (int) System.currentTimeMillis() / 1000);
+                            } else {
+                                NotificationUtils notificationUtils = new NotificationUtils(this);
+                                notificationUtils.sendHandsUpNotification(title, subtitle, (int) System.currentTimeMillis() / 1000);
+                            }
+                            break;
+                        case R.id.chip_local_reply:
+
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                String id;
+                                if (channelTable.containsKey(channel)) {
+                                    id = channelTable.get(channel);
+                                } else {
+                                    id = System.currentTimeMillis() / 1000 + "";
+                                    channelTable.put(channel, id);
+                                }
+                                ChannelInfo channelInfo = new ChannelInfo(id, channel);
+                                NotificationUtils notificationUtils = new NotificationUtils(this, channelInfo);
+                                notificationUtils.sendNotificationWithResponse(title, subtitle, (int) System.currentTimeMillis() / 1000);
                             }
                             break;
                         case R.id.chip_fcm:
