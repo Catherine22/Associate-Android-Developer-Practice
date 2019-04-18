@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.catherine.materialdesignapp.R;
+import com.catherine.materialdesignapp.listeners.OnActivityEventListener;
 import com.catherine.materialdesignapp.listeners.OnRequestPermissionsListener;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -30,9 +31,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends AppCompatActivity implements OnActivityEventListener {
     private final static String TAG = BaseActivity.class.getSimpleName();
     private OnRequestPermissionsListener listener;
 
@@ -282,7 +282,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
 
-    protected void showSnackbar(View layout, CharSequence message) {
+    public void showSnackbar(View layout, CharSequence message) {
         final Snackbar snackbar = Snackbar.make(layout, message, Snackbar.LENGTH_LONG);
         snackbar.setActionTextColor(getResources().getColor(R.color.yellow));
         snackbar.setAction(getResources().getString(R.string.undo), v -> {

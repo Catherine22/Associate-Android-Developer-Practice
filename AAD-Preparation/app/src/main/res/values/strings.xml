@@ -31,6 +31,7 @@
     <string name="require_battery_not_low">Require battery not low</string>
     <string name="require_device_idle">Require device idle</string>
     <string name="deadline">Deadline</string>
+    <string name="latency">Latency</string>
 
     <!--radio group-->
     <string name="require_network">Require Network</string>

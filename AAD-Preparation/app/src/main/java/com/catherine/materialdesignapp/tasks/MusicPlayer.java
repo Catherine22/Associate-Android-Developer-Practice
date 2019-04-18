@@ -7,13 +7,19 @@ import android.os.HandlerThread;
 
 import com.catherine.materialdesignapp.MyApplication;
 import com.catherine.materialdesignapp.R;
+import com.catherine.materialdesignapp.listeners.OnMusicPlayerListener;
 
-public class MusicPlayer {
+public class MusicPlayer implements MediaPlayer.OnCompletionListener {
     private MediaPlayer mediaPlayer;
+    private OnMusicPlayerListener onMusicPlayerListener;
 
     public MusicPlayer() {
         MyApplication.INSTANCE.musicPlayerThread = new HandlerThread("music player thread");
         MyApplication.INSTANCE.musicPlayerThread.start();
+    }
+
+    public void setOnMusicPlayerListener(OnMusicPlayerListener onMusicPlayerListener) {
+        this.onMusicPlayerListener = onMusicPlayerListener;
     }
 
     public void play() {
@@ -21,12 +27,21 @@ public class MusicPlayer {
             return;
 
         Handler handler = new Handler(MyApplication.INSTANCE.musicPlayerThread.getLooper());
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                mediaPlayer = MediaPlayer.create(MyApplication.INSTANCE.getApplicationContext(), R.raw.breathing);
-                mediaPlayer.start();
+        handler.post(() -> {
+            mediaPlayer = MediaPlayer.create(MyApplication.INSTANCE.getApplicationContext(), R.raw.breathing);
+
+            // play the music
+//            mediaPlayer.setOnCompletionListener(this);
+//            mediaPlayer.start();
+
+
+            // test
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
+            onCompletion(mediaPlayer);
         });
     }
 
@@ -42,5 +57,12 @@ public class MusicPlayer {
             else
                 MyApplication.INSTANCE.musicPlayerThread.quit();
         }
+    }
+
+    @Override
+    public void onCompletion(MediaPlayer mp) {
+        if (onMusicPlayerListener != null)
+            onMusicPlayerListener.onFinished();
+        stop();
     }
 }

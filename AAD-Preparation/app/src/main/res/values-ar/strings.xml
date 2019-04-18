@@ -31,6 +31,7 @@
     <string name="require_battery_not_low">تتطلب البطارية ليست منخفضة</string>
     <string name="require_device_idle">تتطلب الخمول الجهاز</string>
     <string name="deadline">الموعد النهائي</string>
+    <string name="latency">Latency</string>
 
     <!--radio group-->
     <string name="require_network">Require Network</string>

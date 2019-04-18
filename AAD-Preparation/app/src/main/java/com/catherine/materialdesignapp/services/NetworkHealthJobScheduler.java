@@ -11,7 +11,7 @@ import com.catherine.materialdesignapp.receivers.InternetConnectivityReceiver;
 
 @TargetApi(Build.VERSION_CODES.O)
 public class NetworkHealthJobScheduler extends JobService {
-    private static final String TAG = MusicPlayerService.class.getSimpleName();
+    private static final String TAG = NetworkHealthJobScheduler.class.getSimpleName();
     private InternetConnectivityReceiver internetReceiver;
 
     @Override

@@ -51,6 +51,11 @@ implementation 'com.google.android.material:material:1.0.0'
   Code: [AppComponentsActivity]   
 - FloatingActionButton    
   Code: [MainActivity]   
+- RadioGroup    
+  Code: [BackgroundActivity]   
+- Seekbar (sliders)   
+  Code: [BackgroundActivity]   
+
 
 # Localisation
 List all resource directories you should take care of:       
@@ -174,6 +179,12 @@ Foreground services and JobScheduler are alternatives to run app in the backgrou
 | -- | -- | -- | -- |
 | ≤ 25 | O | X | X |
 | ≥ 26 | X | O | O |
+
+
+### ```JobScheduler``` TIPS:
+1. Because setting this property is not compatible with persisted jobs, doing so will throw an IllegalArgumentException when ```JobInfo.Builder.build()``` is called.   
+2. ```jobScheduler.cancel(JOB_ID)``` or jobScheduler.cancelAll()``` only works while jobs haven't started. For example, a job is scheduled to start in 5 seconds (```setMinimumLatency(5000)```), ```cancel()``` works right before the job actually runs.    
+3. Don't forget to finish jobs if the task is done. (```jobFinished(jobParameters, false)```)
 
 Code: [BackgroundServiceFragment], [MusicPlayerService], [MusicPlayerJobScheduler], [AndroidManifest]       
 [Read more](https://developer.android.com/guide/components/services)        

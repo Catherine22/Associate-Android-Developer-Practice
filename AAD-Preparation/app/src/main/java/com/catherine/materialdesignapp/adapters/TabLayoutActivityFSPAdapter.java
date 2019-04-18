@@ -2,12 +2,12 @@ package com.catherine.materialdesignapp.adapters;
 
 import android.os.Build;
 
+import com.catherine.materialdesignapp.MyApplication;
+import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.fragments.BackgroundServiceFragment;
 import com.catherine.materialdesignapp.fragments.BroadcastReceiverFragment;
 import com.catherine.materialdesignapp.fragments.ContentProviderFragment;
 import com.catherine.materialdesignapp.fragments.ForegroundServiceFragment;
-import com.catherine.materialdesignapp.MyApplication;
-import com.catherine.materialdesignapp.R;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;

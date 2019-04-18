@@ -79,6 +79,33 @@
                     android:layout_height="@dimen/text_area_height"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
+                    android:text="@string/latency" />
+
+                <TextView
+                    android:id="@+id/tv_latency"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/text_area_height"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true" />
+
+                <androidx.appcompat.widget.AppCompatSeekBar
+                    android:id="@+id/sb_latency"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/safe_area_margin_height" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/safe_area_margin_height">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/text_area_height"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
                     android:text="@string/deadline" />
 
                 <TextView

@@ -6,13 +6,12 @@ import android.util.Log;
 
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.adapters.TabLayoutActivityFSPAdapter;
-import com.catherine.materialdesignapp.listeners.OnActivityEventListener;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
-public class AppComponentsActivity extends BaseActivity implements OnActivityEventListener {
+public class AppComponentsActivity extends BaseActivity {
     private final static String TAG = AppComponentsActivity.class.getSimpleName();
     private Toolbar toolbar;
     private TabLayoutActivityFSPAdapter adapter;

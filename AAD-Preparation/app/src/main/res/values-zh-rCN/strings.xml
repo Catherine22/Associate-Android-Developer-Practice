@@ -30,7 +30,8 @@
     <string name="require_charging">需要手机充电中</string>
     <string name="require_battery_not_low">需要电量不可太低</string>
     <string name="require_device_idle">需要手机空闲状态</string>
-    <string name="deadline">最长延迟时间</string>
+    <string name="deadline">最长保留时间</string>
+    <string name="latency">延迟启动时间</string>
 
     <!--radio group-->
     <string name="require_network">网络限制</string>
