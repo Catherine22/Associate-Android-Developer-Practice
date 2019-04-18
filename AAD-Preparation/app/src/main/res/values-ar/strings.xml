@@ -16,22 +16,32 @@
     <string name="stop_job_scheduler">وقف جدولة الوظيفة</string>
     <string name="start_broadcast">استقبال البث</string>
     <string name="content_providers">موفري المحتوى</string>
-    <string name="local_notification">Local notification</string>
-    <string name="local_hands_up_notification">Hands-up notification</string>
-    <string name="local_replying_notification">Replying Notification</string>
-    <string name="title">Title</string>
-    <string name="subtitle">Subtitle</string>
-    <string name="channel">Channel</string>
-    <string name="default_string">Default</string>
-    <string name="cannot_be_empty">%s cannot be empty</string>
-    <string name="no_notification_services_selected">You haven\'t select notification service(s)</string>
-    <string name="push">Push</string>
-    <string name="share">Share</string>
+    <string name="local_notification">إخطار محلي</string>
+    <string name="local_hands_up_notification">اليدين إشعار</string>
+    <string name="local_replying_notification">الرد على الإخطار</string>
+    <string name="title">عنوان</string>
+    <string name="subtitle">عنوان فرعي</string>
+    <string name="channel">قناة</string>
+    <string name="default_string">افتراضي</string>
+    <string name="cannot_be_empty">لا يمكن أن يكون %s فارغًا</string>
+    <string name="no_notification_services_selected">لم تختر خدمة (خدمات) الإعلام</string>
+    <string name="push">إدفع</string>
+    <string name="share">شارك</string>
+    <string name="require_charging">تتطلب الشحن</string>
+    <string name="require_battery_not_low">تتطلب البطارية ليست منخفضة</string>
+    <string name="require_device_idle">تتطلب الخمول الجهاز</string>
+    <string name="deadline">الموعد النهائي</string>
+
+    <!--radio group-->
+    <string name="require_network">Require Network</string>
+    <string name="any">أي</string>
+    <string name="cellular">خلوي</string>
+    <string name="unmetered">غير المحددة بمقدار بيانات</string>
 
     <string-array name="drawer_array">
         <item>مكونات التطبيق</item>
-        <item>Working in the background</item>
-        <item>Notification</item>
+        <item>العمل في الخلفية</item>
+        <item>إعلام</item>
         <item>Mars</item>
     </string-array>
 
@@ -67,4 +77,12 @@
         <item>Broadcast Receiver</item>
         <item>Content Provider</item>
     </string-array>
+
+    <plurals name="second">
+        <item quantity="zero">صفر ثانية</item>
+        <item quantity="one">ثانية واحدة</item>
+        <item quantity="two">ثانيتين</item>
+        <item quantity="few">ثوان ع d%</item>
+        <item quantity="many">ثوان ع d%</item>
+    </plurals>
 </resources>

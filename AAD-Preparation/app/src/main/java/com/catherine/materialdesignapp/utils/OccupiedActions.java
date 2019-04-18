@@ -8,7 +8,7 @@ public class OccupiedActions {
     public final static String TYPE_NAME = "TYPE_NAME";
 
     // actions for broadcast
-    public final static String ACTION_UPDATE_NOTIFICATION = String.format("%s.ACTION_UPDATE_NOTIFICATION", MyApplication.INSTANCE.getPackageName());
+    public final static String ACTION_UPDATE_NOTIFICATION = String.format("%s.updateNotification", MyApplication.INSTANCE.getPackageName());
     public final static String ACTION_POSITIVE_CLICK = "ACTION_POSITIVE_CLICK";
     public final static String ACTION_NEGATIVE_CLICK = "ACTION_NEGATIVE_CLICK";
     public final static String ACTION_REPLAY = "ACTION_REPLAY";

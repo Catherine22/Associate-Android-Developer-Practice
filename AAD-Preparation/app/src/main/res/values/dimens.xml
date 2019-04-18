@@ -16,6 +16,7 @@
     <dimen name="chip_height">32dp</dimen>
     <dimen name="chip_margin_width">8dp</dimen>
     <dimen name="chip_area_height">64dp</dimen>
+    <dimen name="text_area_height">36dp</dimen>
 
     <dimen name="icon_24">24dp</dimen>
 

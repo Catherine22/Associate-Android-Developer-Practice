@@ -27,6 +27,16 @@
     <string name="no_notification_services_selected">You haven\'t select notification service(s)</string>
     <string name="push">Push</string>
     <string name="share">Share</string>
+    <string name="require_charging">Require charging</string>
+    <string name="require_battery_not_low">Require battery not low</string>
+    <string name="require_device_idle">Require device idle</string>
+    <string name="deadline">Deadline</string>
+
+    <!--radio group-->
+    <string name="require_network">Require Network</string>
+    <string name="any">Any</string>
+    <string name="cellular">Cellular</string>
+    <string name="unmetered">Unmetered</string>
 
     <string-array name="drawer_array">
         <item>App components</item>
@@ -72,7 +82,7 @@
     <string name="foreground_service" translatable="false">Foreground service</string>
     <string name="background_service" translatable="false">Background service</string>
     <string name="job_scheduler" translatable="false">Job scheduler</string>
-    <string name="fcm" translatable="false" >Firebase</string>
+    <string name="fcm" translatable="false">Firebase</string>
 
     <string name="countdown" translatable="false"><xliff:g example="5 days" id="time">%1$s</xliff:g>until holiday</string>
     <!-- Example placeholder for a special unicode symbol -->
@@ -93,6 +103,12 @@
           -->
         <item quantity="one">%d song found.</item>
         <item quantity="other">%d songs found.</item>
+    </plurals>
+
+    <plurals name="second">
+        <item quantity="zero">%d second</item>
+        <item quantity="one">%d second</item>
+        <item quantity="other">%d seconds</item>
     </plurals>
 
 </resources>

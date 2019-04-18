@@ -168,6 +168,7 @@ There are four different types of app components:
 Two services in Android - background service and foreground service     
 Background services are no longer working since Android Oreo, you are suppose to use ```JobScheduler``` instead.      
 Foreground services and JobScheduler are alternatives to run app in the background, but ```notification``` is required while running a foreground service.      
+```JobScheduler``` is only available on devices running API 21+. Fore devices running API 14+ including devices without Google Play serivces, ```WorkManager``` let you schedule background tasks that need guaranteed completion,  whether or not the app process is running.
 
 | Android API level | background service | foreground service | job scheduler |
 | -- | -- | -- | -- |
@@ -241,6 +242,10 @@ Code: [BackgroundActivity], [SleepTaskLoader]
 ## ViewModels and LiveData
 
 # Notification
+Three style of notifications:   
+1. Standard notification    
+2. Notification with actions (one or two buttons)   
+3. Replying notification
 
 ## Notification dots (Badge)
 Long click app icons on Android O+ devices, notification badge will pop up.    

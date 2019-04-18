@@ -12,6 +12,7 @@ public class NotificationReceiver extends BroadcastReceiver {
     private final static String TAG = NotificationReceiver.class.getSimpleName();
 
     public NotificationReceiver() {
+        Log.i(TAG, "init");
     }
 
     @Override

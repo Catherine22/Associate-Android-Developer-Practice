@@ -90,5 +90,13 @@
             android:permission="android.permission.BIND_JOB_SERVICE"></service>
         <!--JobSchedulers-->
 
+        <!--<receiver-->
+            <!--android:name=".receivers.NotificationReceiver"-->
+            <!--android:enabled="true">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="com.catherine.materialdesignapp.updateNotification" />-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
+
     </application>
 </manifest>

@@ -15,7 +15,6 @@ import android.widget.RemoteViews;
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.activities.MainActivity;
 import com.catherine.materialdesignapp.models.ChannelInfo;
-import com.catherine.materialdesignapp.receivers.NotificationReceiver;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
@@ -109,12 +108,12 @@ public class NotificationUtils extends ContextWrapper {
         PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
         // action
-        Intent positive = new Intent(this, NotificationReceiver.class);
+        Intent positive = new Intent(OccupiedActions.ACTION_UPDATE_NOTIFICATION);
         positive.putExtra(OccupiedActions.NOTIFICATION_ID, notificationId);
         positive.setAction(OccupiedActions.ACTION_POSITIVE_CLICK);
         PendingIntent positiveIntent = PendingIntent.getBroadcast(this, notificationId, positive, PendingIntent.FLAG_CANCEL_CURRENT);
 
-        Intent negative = new Intent(this, NotificationReceiver.class);
+        Intent negative =new Intent(OccupiedActions.ACTION_UPDATE_NOTIFICATION);
         negative.putExtra(OccupiedActions.NOTIFICATION_ID, notificationId);
         negative.setAction(OccupiedActions.ACTION_NEGATIVE_CLICK);
         PendingIntent negativeIntent = PendingIntent.getBroadcast(this, notificationId, negative, PendingIntent.FLAG_CANCEL_CURRENT);
@@ -146,10 +145,9 @@ public class NotificationUtils extends ContextWrapper {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     public void sendNotificationWithResponse(String title, String body, int notificationId) {
         // Create an Intent for the activity you want to start
-        Intent resultIntent = new Intent(this, MainActivity.class);
+        Intent resultIntent = new Intent(OccupiedActions.ACTION_UPDATE_NOTIFICATION);
         // Create the TaskStackBuilder and add the intent, which inflates the back stack
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
         stackBuilder.addNextIntentWithParentStack(resultIntent);
@@ -157,7 +155,7 @@ public class NotificationUtils extends ContextWrapper {
         PendingIntent pendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
 
         // action
-        Intent reply = new Intent(this, NotificationReceiver.class);
+        Intent reply = new Intent(OccupiedActions.ACTION_UPDATE_NOTIFICATION);
         reply.putExtra(OccupiedActions.NOTIFICATION_ID, notificationId);
         reply.setAction(OccupiedActions.ACTION_REPLAY);
         PendingIntent replyRendingIntent = PendingIntent.getBroadcast(this, notificationId, reply, PendingIntent.FLAG_CANCEL_CURRENT);
