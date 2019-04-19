@@ -271,6 +271,38 @@ Code: [NotificationActivity]
 1. Set ContentDescription       
 2. Make the views focusable     
 
+
+# Day/Night Mode
+1. Define your own style in styles.xml, notice your style must extend whatever styles contain ".DayNight" keyword.      
+```xml
+<style name="AppTheme.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <item name="windowActionBar">false</item>
+    <item name="windowNoTitle">true</item>
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorAccent">@color/colorAccent</item>
+</style>
+```
+or
+```xml
+<style name="AppTheme" parent="AppTheme.DayNight">
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    <item name="colorAccent">@color/colorAccent</item>
+</style>
+```
+
+2. 
+In Manifest, update the theme
+```xml
+android:theme="@style/AppTheme.NoActionBar"
+```
+
+3. Switch style programmatically
+```Java
+
+```
+
  
 [Read more](https://www.youtube.com/watch?v=1by5J7c5Vz4)       
 

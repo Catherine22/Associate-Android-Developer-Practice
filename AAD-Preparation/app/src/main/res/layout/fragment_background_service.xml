@@ -106,7 +106,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/safe_area_margin"
-                app:c_slider_title="@string/latency"
+                app:c_name="@string/latency"
                 app:layout_constraintBottom_toTopOf="@id/slider_deadline"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -117,7 +117,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/safe_area_margin"
-                app:c_slider_title="@string/deadline"
+                app:c_name="@string/deadline"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/slider_latency" />

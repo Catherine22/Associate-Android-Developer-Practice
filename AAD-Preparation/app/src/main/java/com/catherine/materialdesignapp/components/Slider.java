@@ -51,7 +51,7 @@ public class Slider extends ConstraintLayout {
         int min = styleable.getInt(R.styleable.Slider_c_min_progress, MIN_PROGRESS);
         int max = styleable.getInt(R.styleable.Slider_c_max_progress, MAX_PROGRESS);
         int progress = styleable.getInt(R.styleable.Slider_c_progress, MIN_PROGRESS);
-        String title = styleable.getString(R.styleable.Slider_c_slider_title);
+        String title = styleable.getString(R.styleable.Slider_c_name);
         String desc = styleable.getString(R.styleable.Slider_c_progress_desc);
         styleable.recycle();
         if (TextUtils.isEmpty(desc)) {

@@ -17,7 +17,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:textColor="@drawable/clickable_textview_color_set"
         android:layout_marginStart="@dimen/safe_area_margin_width"
         android:layout_marginEnd="@dimen/safe_area_margin_width" />
 

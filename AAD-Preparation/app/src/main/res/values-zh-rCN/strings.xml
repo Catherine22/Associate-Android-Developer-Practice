@@ -6,6 +6,8 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">侧边栏顶部</string>
     <string name="action_lifecycle">生命周期</string>
+    <string name="action_night_mode">夜间模式</string>
+    <string name="action_day_mode">日间模式</string>
     <string name="alert_icon">提醒图标</string>
     <string name="undo">还原</string>
     <string name="hello_world">你好啊！</string>

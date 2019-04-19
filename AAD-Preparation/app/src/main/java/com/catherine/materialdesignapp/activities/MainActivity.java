@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -12,12 +13,14 @@ import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.receivers.NotificationReceiver;
 import com.catherine.materialdesignapp.utils.LocationHelper;
 import com.catherine.materialdesignapp.utils.OccupiedActions;
+import com.catherine.materialdesignapp.utils.Storage;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.Locale;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -28,11 +31,23 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        initNightMode();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initComponents();
         handleAppLinks();
         registerReceivers();
+    }
+
+    // We set the theme, immediately in the Activity’s onCreate()
+    private void initNightMode() {
+        Storage storage = new Storage(this);
+        int nightMode = storage.retrieveInt(Storage.NIGHT_MODE);
+        if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
     }
 
     private void initComponents() {
@@ -95,6 +110,14 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
+        Storage storage = new Storage(this);
+        int nightMode = storage.retrieveInt(Storage.NIGHT_MODE);
+        if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {
+            menu.getItem(1).setTitle(getString(R.string.action_day_mode));
+        } else {
+            menu.getItem(1).setTitle(getString(R.string.action_night_mode));
+        }
         return true;
     }
 
@@ -104,6 +127,21 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             case R.id.action_lifecycle:
                 Intent lifecycleIntent = new Intent(this, LifecycleActivity.class);
                 startActivity(lifecycleIntent);
+                return true;
+            case R.id.action_night_mode:
+                Storage storage = new Storage(this);
+                int nightMode = AppCompatDelegate.getDefaultNightMode();
+                if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    item.setTitle(getString(R.string.action_night_mode));
+                    storage.save(Storage.NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_NO);
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    item.setTitle(getString(R.string.action_day_mode));
+                    storage.save(Storage.NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_YES);
+                }
+                // Recreate the activity for the theme change to take effect.
+                recreate();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

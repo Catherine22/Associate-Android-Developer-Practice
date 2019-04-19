@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.catherine.materialdesignapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -17,12 +18,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.NoActionBar">
         <activity
             android:name=".activities.MainActivity"
             android:configChanges="orientation|keyboardHidden"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,7 +30,9 @@
             </intent-filter>
 
             <!-- THIS WORKS ON API 23+, open https://guarded-basin-12509.herokuapp.com to test app links  -->
-            <intent-filter android:autoVerify="true">
+            <intent-filter
+                android:autoVerify="true"
+                tools:targetApi="m">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
@@ -46,8 +48,7 @@
             android:name=".activities.SettingsActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
-            android:parentActivityName=".activities.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".activities.MainActivity">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -57,8 +58,7 @@
             android:name=".activities.LifecycleActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
-            android:parentActivityName=".activities.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".activities.MainActivity">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -68,8 +68,7 @@
             android:name=".activities.AppComponentsActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
-            android:parentActivityName=".activities.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".activities.MainActivity">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -79,8 +78,7 @@
             android:name=".activities.BackgroundActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
-            android:parentActivityName=".activities.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".activities.MainActivity">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -90,8 +88,7 @@
             android:name=".activities.NotificationActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name"
-            android:parentActivityName=".activities.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".activities.MainActivity">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -114,10 +111,10 @@
         <!--JobSchedulers-->
         <service
             android:name=".services.MusicPlayerJobScheduler"
-            android:permission="android.permission.BIND_JOB_SERVICE"></service>
+            android:permission="android.permission.BIND_JOB_SERVICE" />
         <service
             android:name=".services.NetworkHealthJobScheduler"
-            android:permission="android.permission.BIND_JOB_SERVICE"></service>
+            android:permission="android.permission.BIND_JOB_SERVICE" />
         <!--JobSchedulers-->
 
         <!--<receiver-->

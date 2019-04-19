@@ -1,23 +1,26 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
+    <style name="AppTheme.DayNight" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <!--Fixed the title of AppBar not changing color pattern while day/night mode switches-->
+    <style name="AppTheme.AppBarOverlay" parent="AppTheme" />
+    <!--Fixed menu not changing color pattern while day/night mode switches-->
+    <style name="AppTheme.PopupOverlay" parent="AppTheme" />
 
-    <style name="item_title" parent="AppTheme">
+    <style name="item_title" parent="AppTheme.DayNight">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@android:color/white</item>
@@ -29,7 +32,7 @@
         <item name="android:ellipsize">end</item>
     </style>
 
-    <style name="item_subtitle" parent="AppTheme">
+    <style name="item_subtitle" parent="AppTheme.DayNight">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginLeft">@dimen/safe_area_margin_width</item>
@@ -38,7 +41,7 @@
         <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="small_bottom" parent="AppTheme">
+    <style name="small_bottom" parent="AppTheme.DayNight">
         <item name="android:layout_width">100dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/round_default_bottom_selector</item>
@@ -51,7 +54,7 @@
         <item name="android:ellipsize">end</item>
     </style>
 
-    <style name="single_line_edittext" parent="AppTheme">
+    <style name="single_line_edittext" parent="AppTheme.DayNight">
         <item name="android:layout_width">140dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/colorPrimary</item>

@@ -7,7 +7,7 @@
     </declare-styleable>
 
     <declare-styleable name="Slider">
-        <attr name="c_slider_title" format="string" />
+        <attr name="c_name" format="string" />
         <attr name="c_progress_desc" format="string" />
         <attr name="c_min_progress" format="integer" />
         <attr name="c_max_progress" format="integer" />
