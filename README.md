@@ -34,28 +34,20 @@ implementation 'com.google.android.material:material:1.0.0'
 [Read more - Snackbar](https://developer.android.com/reference/android/support/design/widget/Snackbar)       
 
 
-- BottomSheet   
-  Code: [ContentProviderFragment]   
-- MaterialCardView    
-  Code: [BackgroundActivity]   
-- Chip    
-  Code: [NotificationActivity]   
-- TextInputLayout, TextInputEditText    
-  Code: [NotificationActivity]   
-- MaterialButton    
-  Code: [BackgroundServiceFragment]   
-- AppBarLayout    
-  Code: Any activity in this app   
-- NavigationView    
-  Code: [MainActivity]   
-- TabLayout   
-  Code: [AppComponentsActivity]   
-- FloatingActionButton    
-  Code: [MainActivity]   
-- RadioGroup    
-  Code: [BackgroundActivity]   
-- Seekbar (sliders)   
-  Code: [BackgroundActivity]   
+## Layouts
+
+- AppBarLayout -> [Any activity in this app      
+- BottomSheet -> [ContentProviderFragment]      
+- Chip -> [NotificationActivity]      
+- ConstraintLayout -> [BackgroundServiceFragment]      
+- FloatingActionButton -> [MainActivity]      
+- MaterialButton -> [BackgroundServiceFragment]      
+- MaterialCardView -> [BackgroundActivity]      
+- NavigationView -> [MainActivity]      
+- RadioGroup -> [BackgroundActivity]      
+- Seekbar (sliders) -> [BackgroundActivity]      
+- TabLayout -> [AppComponentsActivity]      
+- TextInputLayout, TextInputEditText -> [NotificationActivity]      
 
 
 # Localisation
@@ -171,10 +163,10 @@ There are four different types of app components:
 > Activity vs Fragment
 
 ## Services
-Two services in Android - background service and foreground service     
-Background services are no longer working since Android Oreo, you are suppose to use ```JobScheduler``` instead.      
-Foreground services and JobScheduler are alternatives to run app in the background, but ```notification``` is required while running a foreground service.      
-```JobScheduler``` is only available on devices running API 21+. Fore devices running API 14+ including devices without Google Play serivces, ```WorkManager``` let you schedule background tasks that need guaranteed completion,  whether or not the app process is running.
+- Two services in Android - background service and foreground service     
+- Background services are no longer working since Android Oreo, you are suppose to use ```JobScheduler``` instead.      
+- Foreground services and JobScheduler are alternatives to run app in the background, but ```notification``` is required while running a foreground service.      
+- ```JobScheduler``` is only available on devices running API 21+. Fore devices running API 14+ including devices without Google Play serivces, ```WorkManager``` let you schedule background tasks that need guaranteed completion,  whether or not the app process is running.
 
 | Android API level | background service | foreground service | job scheduler |
 | -- | -- | -- | -- |

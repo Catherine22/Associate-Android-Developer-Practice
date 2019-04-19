@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
@@ -26,6 +25,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.AppCompatSeekBar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
 import static com.catherine.materialdesignapp.services.BusyJobs.JOB_MUSIC_PLAYER;
@@ -50,15 +50,12 @@ public class BackgroundServiceFragment extends Fragment implements View.OnClickL
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Button btn_start_service = view.findViewById(R.id.btn_start_service);
-        btn_start_service.setOnClickListener(this);
-        Button btn_stop_service = view.findViewById(R.id.btn_stop_service);
-        btn_stop_service.setOnClickListener(this);
-        LinearLayout layout_android_o = view.findViewById(R.id.ll_oreo);
+        ConstraintLayout layout_job_scheduler = view.findViewById(R.id.layout_job_scheduler);
+        ConstraintLayout layout_background = view.findViewById(R.id.layout_background);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            btn_start_service.setVisibility(View.GONE);
-            btn_stop_service.setVisibility(View.GONE);
-            layout_android_o.setVisibility(View.VISIBLE);
+            layout_background.setVisibility(View.GONE);
+            layout_job_scheduler.setVisibility(View.VISIBLE);
 
             Button btn_start_job = view.findViewById(R.id.btn_start_job);
             btn_start_job.setOnClickListener(this);
@@ -129,9 +126,13 @@ public class BackgroundServiceFragment extends Fragment implements View.OnClickL
                 }
             });
         } else {
-            btn_start_service.setVisibility(View.VISIBLE);
-            btn_stop_service.setVisibility(View.VISIBLE);
-            layout_android_o.setVisibility(View.GONE);
+            layout_background.setVisibility(View.VISIBLE);
+            layout_job_scheduler.setVisibility(View.GONE);
+
+            Button btn_start_service = view.findViewById(R.id.btn_start_service);
+            btn_start_service.setOnClickListener(this);
+            Button btn_stop_service = view.findViewById(R.id.btn_stop_service);
+            btn_stop_service.setOnClickListener(this);
         }
 
         onActivityEventListener = (OnActivityEventListener) getActivity();

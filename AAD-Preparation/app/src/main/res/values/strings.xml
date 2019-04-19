@@ -80,6 +80,7 @@
     </string-array>
 
 
+    <string name="logcat" translatable="false">LogCat</string>
     <string name="foreground_service" translatable="false">Foreground service</string>
     <string name="background_service" translatable="false">Background service</string>
     <string name="job_scheduler" translatable="false">Job scheduler</string>

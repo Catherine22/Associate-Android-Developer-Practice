@@ -1,32 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/ll_oreo"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_job_scheduler"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/safe_area_margin_width"
-            android:layout_marginEnd="@dimen/safe_area_margin_width"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <Switch
                 android:id="@+id/switch_require_network"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/text_area_height"
-                android:text="@string/require_network" />
+                android:layout_marginStart="@dimen/safe_area_margin_width"
+                android:layout_marginEnd="@dimen/safe_area_margin_width"
+                android:text="@string/require_network"
+                app:layout_constraintBottom_toTopOf="@+id/rb_network"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <RadioGroup
                 android:id="@+id/rb_network"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginStart="@dimen/safe_area_margin_width"
+                android:layout_marginEnd="@dimen/safe_area_margin_width"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@id/switch_battery_not_low"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/switch_require_network">
 
                 <androidx.appcompat.widget.AppCompatRadioButton
                     android:id="@+id/radio_any"
@@ -55,73 +68,102 @@
                 android:id="@+id/switch_battery_not_low"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/text_area_height"
-                android:text="@string/require_battery_not_low" />
+                android:layout_marginStart="@dimen/safe_area_margin_width"
+                android:layout_marginEnd="@dimen/safe_area_margin_width"
+                android:text="@string/require_battery_not_low"
+                app:layout_constraintBottom_toTopOf="@id/switch_charging"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rb_network" />
 
             <Switch
                 android:id="@+id/switch_charging"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/text_area_height"
-                android:text="@string/require_charging" />
+                android:layout_marginStart="@dimen/safe_area_margin_width"
+                android:layout_marginEnd="@dimen/safe_area_margin_width"
+                android:text="@string/require_charging"
+                app:layout_constraintBottom_toTopOf="@id/switch_device_idle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/switch_battery_not_low" />
 
             <Switch
                 android:id="@+id/switch_device_idle"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/text_area_height"
-                android:text="@string/require_device_idle" />
+                android:layout_marginStart="@dimen/safe_area_margin_width"
+                android:layout_marginEnd="@dimen/safe_area_margin_width"
+                android:text="@string/require_device_idle"
+                app:layout_constraintBottom_toTopOf="@id/tv_latency"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/switch_charging" />
 
-            <RelativeLayout
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/text_area_height"
+                android:layout_marginStart="@dimen/safe_area_margin_width"
+                android:layout_marginTop="@dimen/safe_area_margin"
+                android:text="@string/latency"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/switch_device_idle" />
+
+            <TextView
+                android:id="@+id/tv_latency"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/text_area_height"
+                android:layout_marginTop="@dimen/safe_area_margin"
+                android:layout_marginEnd="@dimen/safe_area_margin_width"
+                app:layout_constraintBottom_toTopOf="@id/sb_latency"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/switch_device_idle" />
+
+            <androidx.appcompat.widget.AppCompatSeekBar
+                android:id="@+id/sb_latency"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/safe_area_margin_height">
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="@dimen/safe_area_margin_width"
+                android:layout_marginTop="@dimen/safe_area_margin_height"
+                android:layout_marginEnd="@dimen/safe_area_margin_width"
+                app:layout_constraintBottom_toTopOf="@id/tv_deadline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_latency" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/text_area_height"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:text="@string/latency" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/text_area_height"
+                android:layout_marginStart="@dimen/safe_area_margin_width"
+                android:layout_marginTop="@dimen/safe_area_margin"
+                android:text="@string/deadline"
+                app:layout_constraintBottom_toTopOf="@id/sb_deadline"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sb_latency" />
 
-                <TextView
-                    android:id="@+id/tv_latency"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/text_area_height"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true" />
+            <TextView
+                android:id="@+id/tv_deadline"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/text_area_height"
+                android:layout_marginStart="@dimen/safe_area_margin_width"
+                android:layout_marginTop="@dimen/safe_area_margin"
+                app:layout_constraintBottom_toTopOf="@id/sb_deadline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sb_latency" />
 
-                <androidx.appcompat.widget.AppCompatSeekBar
-                    android:id="@+id/sb_latency"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="@dimen/safe_area_margin_height" />
-            </RelativeLayout>
-
-            <RelativeLayout
+            <androidx.appcompat.widget.AppCompatSeekBar
+                android:id="@+id/sb_deadline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/safe_area_margin_height">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/text_area_height"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:text="@string/deadline" />
-
-                <TextView
-                    android:id="@+id/tv_deadline"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/text_area_height"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true" />
-
-                <androidx.appcompat.widget.AppCompatSeekBar
-                    android:id="@+id/sb_deadline"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="@dimen/safe_area_margin_height" />
-            </RelativeLayout>
+                android:layout_marginStart="@dimen/safe_area_margin_width"
+                android:layout_marginTop="@dimen/safe_area_margin_height"
+                android:layout_marginEnd="@dimen/safe_area_margin_width"
+                app:layout_constraintBottom_toTopOf="@id/btn_start_job"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_deadline" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_start_job"
@@ -130,7 +172,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/safe_area_margin_width"
                 android:layout_marginEnd="@dimen/safe_area_margin_width"
-                android:text="@string/start_job_scheduler" />
+                android:text="@string/start_job_scheduler"
+                app:layout_constraintBottom_toTopOf="@id/btn_stop_job"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sb_deadline" />
+
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_stop_job"
@@ -139,27 +186,47 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/safe_area_margin_width"
                 android:layout_marginEnd="@dimen/safe_area_margin_width"
-                android:text="@string/stop_job_scheduler" />
-        </LinearLayout>
+                android:text="@string/stop_job_scheduler"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_start_job" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_start_service"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/safe_area_margin_width"
-            android:layout_marginEnd="@dimen/safe_area_margin_width"
-            android:text="@string/start_service" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_stop_service"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/safe_area_margin_width"
-            android:layout_marginEnd="@dimen/safe_area_margin_width"
-            android:text="@string/stop_service" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_start_service"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/safe_area_margin_width"
+                android:layout_marginEnd="@dimen/safe_area_margin_width"
+                android:text="@string/start_service"
+                app:layout_constraintBottom_toTopOf="@id/btn_stop_service"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_stop_service"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/safe_area_margin_width"
+                android:layout_marginEnd="@dimen/safe_area_margin_width"
+                android:text="@string/stop_service"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_start_service" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
