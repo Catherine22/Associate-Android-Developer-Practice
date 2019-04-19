@@ -1,6 +1,7 @@
 package com.catherine.materialdesignapp.components;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
@@ -46,14 +47,14 @@ public class BottomSheetItem extends RelativeLayout {
 
     private void initView(Context ctx, AttributeSet attrs) {
         initView(ctx);
-
-        String namespace = String.format("%s%s", "http://schemas.android.com/apk/",  ctx.getPackageName());
-        String title = attrs.getAttributeValue(namespace, "c_title");
-        int icon = attrs.getAttributeResourceValue(namespace, "c_icon", -1);
+        TypedArray styleable = ctx.obtainStyledAttributes(attrs, R.styleable.BottomSheetItem);
+        String title = styleable.getString(R.styleable.BottomSheetItem_c_title);
+        int icon = styleable.getInt(R.styleable.BottomSheetItem_c_icon, -1);
         if (icon != -1) {
             setIcon(icon);
         }
         setTitle(title);
+        styleable.recycle();
     }
 
     public void setTitle(String title) {

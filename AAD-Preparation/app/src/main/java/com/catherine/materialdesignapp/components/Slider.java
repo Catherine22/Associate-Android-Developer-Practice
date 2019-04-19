@@ -67,9 +67,6 @@ public class Slider extends ConstraintLayout {
         }
         seekBar.setMax(max);
         seekBar.setProgress(progress);
-
-        Log.e("dddd", "max:" + max);
-        Log.e("dddd", "title:" + title);
     }
 
 
