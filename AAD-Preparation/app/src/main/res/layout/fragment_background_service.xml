@@ -95,75 +95,33 @@
                 android:layout_marginStart="@dimen/safe_area_margin_width"
                 android:layout_marginEnd="@dimen/safe_area_margin_width"
                 android:text="@string/require_device_idle"
-                app:layout_constraintBottom_toTopOf="@id/tv_latency"
+                app:layout_constraintBottom_toTopOf="@id/slider_latency"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/switch_charging" />
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/text_area_height"
-                android:layout_marginStart="@dimen/safe_area_margin_width"
+            <com.catherine.materialdesignapp.components.Slider
+                android:id="@+id/slider_latency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/safe_area_margin"
-                android:text="@string/latency"
+                app:c_slider_title="@string/latency"
+                app:layout_constraintBottom_toTopOf="@id/slider_deadline"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/switch_device_idle" />
 
-            <TextView
-                android:id="@+id/tv_latency"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/text_area_height"
-                android:layout_marginTop="@dimen/safe_area_margin"
-                android:layout_marginEnd="@dimen/safe_area_margin_width"
-                app:layout_constraintBottom_toTopOf="@id/sb_latency"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/switch_device_idle" />
-
-            <androidx.appcompat.widget.AppCompatSeekBar
-                android:id="@+id/sb_latency"
+            <com.catherine.materialdesignapp.components.Slider
+                android:id="@+id/slider_deadline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginStart="@dimen/safe_area_margin_width"
-                android:layout_marginTop="@dimen/safe_area_margin_height"
-                android:layout_marginEnd="@dimen/safe_area_margin_width"
-                app:layout_constraintBottom_toTopOf="@id/tv_deadline"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_latency" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/text_area_height"
-                android:layout_marginStart="@dimen/safe_area_margin_width"
                 android:layout_marginTop="@dimen/safe_area_margin"
-                android:text="@string/deadline"
-                app:layout_constraintBottom_toTopOf="@id/sb_deadline"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/sb_latency" />
-
-            <TextView
-                android:id="@+id/tv_deadline"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/text_area_height"
-                android:layout_marginStart="@dimen/safe_area_margin_width"
-                android:layout_marginTop="@dimen/safe_area_margin"
-                app:layout_constraintBottom_toTopOf="@id/sb_deadline"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/sb_latency" />
-
-            <androidx.appcompat.widget.AppCompatSeekBar
-                android:id="@+id/sb_deadline"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/safe_area_margin_width"
-                android:layout_marginTop="@dimen/safe_area_margin_height"
-                android:layout_marginEnd="@dimen/safe_area_margin_width"
-                app:layout_constraintBottom_toTopOf="@id/btn_start_job"
+                app:c_slider_title="@string/deadline"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_deadline" />
+                app:layout_constraintTop_toBottomOf="@id/slider_latency" />
+
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_start_job"
@@ -176,7 +134,7 @@
                 app:layout_constraintBottom_toTopOf="@id/btn_stop_job"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/sb_deadline" />
+                app:layout_constraintTop_toBottomOf="@id/slider_deadline" />
 
 
             <com.google.android.material.button.MaterialButton

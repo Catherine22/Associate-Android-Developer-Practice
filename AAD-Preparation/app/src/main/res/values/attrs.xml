@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <declare-styleable name="BottomSheetItem">
         <attr name="c_title" format="string" />
         <attr name="c_icon" format="reference|color" />
+    </declare-styleable>
+
+    <declare-styleable name="Slider">
+        <attr name="c_slider_title" format="string" />
+        <attr name="c_progress_desc" format="string" />
+        <attr name="c_min_progress" format="integer" />
+        <attr name="c_max_progress" format="integer" />
+        <attr name="c_progress" format="integer" />
     </declare-styleable>
 </resources>

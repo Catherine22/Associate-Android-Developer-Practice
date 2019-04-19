@@ -17,6 +17,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.catherine.materialdesignapp.R;
+import com.catherine.materialdesignapp.components.Slider;
 import com.catherine.materialdesignapp.listeners.OnActivityEventListener;
 import com.catherine.materialdesignapp.services.MusicPlayerJobScheduler;
 import com.catherine.materialdesignapp.services.MusicPlayerService;
@@ -36,8 +37,7 @@ public class BackgroundServiceFragment extends Fragment implements View.OnClickL
     private JobScheduler jobScheduler;
     private RadioGroup rb_network;
     private Switch switch_require_network, switch_battery_not_low, switch_charging, switch_device_idle;
-    private AppCompatSeekBar sb_deadline, sb_latency;
-    private TextView tv_deadline, tv_latency;
+    private Slider slider_latency, slider_deadline;
     private OnActivityEventListener onActivityEventListener;
 
     @Override
@@ -80,18 +80,17 @@ public class BackgroundServiceFragment extends Fragment implements View.OnClickL
             switch_battery_not_low = view.findViewById(R.id.switch_battery_not_low);
             switch_charging = view.findViewById(R.id.switch_charging);
             switch_device_idle = view.findViewById(R.id.switch_device_idle);
-            sb_deadline = view.findViewById(R.id.sb_deadline);
-            sb_latency = view.findViewById(R.id.sb_latency);
+            slider_deadline = view.findViewById(R.id.slider_deadline);
+            slider_latency = view.findViewById(R.id.slider_latency);
 
             int PROGRESS_MIN = 0;
             int PROGRESS_MAX = 100;
-            sb_deadline.setMax(PROGRESS_MAX);
-            tv_deadline = view.findViewById(R.id.tv_deadline);
-            tv_deadline.setText(String.format(getResources().getQuantityString(R.plurals.second, PROGRESS_MIN), PROGRESS_MIN));
-            sb_deadline.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            slider_deadline.setMaxProgress(PROGRESS_MAX);
+            slider_deadline.setProgressDesc(String.format(getResources().getQuantityString(R.plurals.second, PROGRESS_MIN), PROGRESS_MIN));
+            slider_deadline.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                    tv_deadline.setText(String.format(getResources().getQuantityString(R.plurals.second, progress), progress));
+                    slider_deadline.setProgressDesc(String.format(getResources().getQuantityString(R.plurals.second, progress), progress));
                 }
 
                 @Override
@@ -106,13 +105,12 @@ public class BackgroundServiceFragment extends Fragment implements View.OnClickL
             });
 
 
-            sb_latency.setMax(PROGRESS_MAX);
-            tv_latency = view.findViewById(R.id.tv_latency);
-            tv_latency.setText(String.format(getResources().getQuantityString(R.plurals.second, PROGRESS_MIN), PROGRESS_MIN));
-            sb_latency.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            slider_latency.setMaxProgress(PROGRESS_MAX);
+            slider_latency.setProgressDesc(String.format(getResources().getQuantityString(R.plurals.second, PROGRESS_MIN), PROGRESS_MIN));
+            slider_latency.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                    tv_latency.setText(String.format(getResources().getQuantityString(R.plurals.second, progress), progress));
+                    slider_latency.setProgressDesc(String.format(getResources().getQuantityString(R.plurals.second, progress), progress));
                 }
 
                 @Override
@@ -175,8 +173,8 @@ public class BackgroundServiceFragment extends Fragment implements View.OnClickL
                                 .setRequiresBatteryNotLow(switch_battery_not_low.isChecked())
                                 .setRequiresCharging(switch_charging.isChecked())
                                 .setRequiredNetworkType(requiresNetwork)
-                                .setMinimumLatency(1000 * sb_latency.getProgress())
-                                .setBackoffCriteria(1000 * sb_deadline.getProgress(), JobInfo.BACKOFF_POLICY_LINEAR)
+                                .setMinimumLatency(1000 * slider_latency.getProgress())
+                                .setBackoffCriteria(1000 * slider_deadline.getProgress(), JobInfo.BACKOFF_POLICY_LINEAR)
                                 .build();
                         jobScheduler.schedule(jobInfo);
                     } catch (IllegalArgumentException e) {

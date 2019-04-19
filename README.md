@@ -35,7 +35,6 @@ implementation 'com.google.android.material:material:1.0.0'
 
 
 ## Layouts
-
 - AppBarLayout -> [Any activity in this app      
 - BottomSheet -> [ContentProviderFragment]      
 - Chip -> [NotificationActivity]      
@@ -48,6 +47,13 @@ implementation 'com.google.android.material:material:1.0.0'
 - Seekbar (sliders) -> [BackgroundActivity]      
 - TabLayout -> [AppComponentsActivity]      
 - TextInputLayout, TextInputEditText -> [NotificationActivity]      
+
+
+## Custom Layouts
+Build a custom view from scratch:       
+1. [Slider](https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/components/Slider.java)        
+2. [attrs](https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/res/values/attrs.xml)      
+3. [BackgroundServiceFragment], [fragment_background_service](https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/res/layout/fragment_background_service.xml)         
 
 
 # Localisation
