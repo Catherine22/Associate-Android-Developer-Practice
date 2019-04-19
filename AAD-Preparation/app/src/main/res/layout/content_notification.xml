@@ -27,6 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/safe_area_margin_height"
                 android:layout_marginBottom="@dimen/safe_area_margin_height"
+                android:focusable="true"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 app:chipSpacing="@dimen/chip_margin_width">
@@ -71,6 +72,7 @@
                     android:id="@+id/tiet_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="@string/title"
                     android:inputType="textCapWords" />
 
             </com.google.android.material.textfield.TextInputLayout>

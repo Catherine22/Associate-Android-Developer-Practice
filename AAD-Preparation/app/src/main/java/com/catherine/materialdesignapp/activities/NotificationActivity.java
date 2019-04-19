@@ -38,8 +38,10 @@ public class NotificationActivity extends BaseActivity implements View.OnClickLi
         setContentView(R.layout.activity_notification);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null)
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true); // enable back arrow on the top left area
+            getSupportActionBar().setTitle(TAG);
+        }
         selectedChips = new HashSet<>();
         channelTable = new HashMap<>();
         initComponent();

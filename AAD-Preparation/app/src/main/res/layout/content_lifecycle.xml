@@ -15,6 +15,7 @@
         android:layout_marginStart="@dimen/safe_area_margin"
         android:layout_marginTop="@dimen/safe_area_margin"
         android:layout_marginEnd="@dimen/safe_area_margin"
+        android:focusable="true"
         android:text="@string/logcat"
         app:layout_constraintBottom_toTopOf="@+id/nestedScrollView"
         app:layout_constraintStart_toStartOf="parent"

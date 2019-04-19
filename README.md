@@ -267,6 +267,13 @@ Classify notifications by channels in the Settings app on Android O+ devices.
 Code: [NotificationActivity]    
 [Read more](https://codelabs.developers.google.com/codelabs/android-training-notifications/index.html?index=..%2F..android-training#0)
 
+# Accessibility Features
+1. Set ContentDescription       
+2. Make the views focusable     
+
+ 
+[Read more](https://www.youtube.com/watch?v=1by5J7c5Vz4)       
+
 # Jetpack
 
 ## Migrate to AndroidX

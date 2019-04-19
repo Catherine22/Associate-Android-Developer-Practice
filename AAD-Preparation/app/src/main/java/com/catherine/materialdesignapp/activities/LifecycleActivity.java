@@ -28,8 +28,10 @@ public class LifecycleActivity extends BaseActivity implements LifecycleOwner, L
         setContentView(R.layout.activity_lifecycle);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null)
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true); // enable back arrow on the top left area
+            getSupportActionBar().setTitle(TAG);
+        }
 
         getLifecycle().addObserver(new LifecycleObserverImpl());
 

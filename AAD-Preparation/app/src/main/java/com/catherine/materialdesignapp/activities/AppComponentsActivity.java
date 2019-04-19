@@ -26,8 +26,10 @@ public class AppComponentsActivity extends BaseActivity {
     private void initComponent() {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null)
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true); // enable back arrow on the top left area
+            getSupportActionBar().setTitle(TAG);
+        }
         ViewPager viewpager = findViewById(R.id.viewpager);
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         adapter = new TabLayoutActivityFSPAdapter(getSupportFragmentManager());

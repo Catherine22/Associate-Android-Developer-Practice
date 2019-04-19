@@ -45,8 +45,10 @@ public class BackgroundActivity extends BaseActivity {
         setContentView(R.layout.activity_background);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null)
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true); // enable back arrow on the top left area
+            getSupportActionBar().setTitle(TAG);
+        }
         initComponent();
         fillInData(savedInstanceState);
     }
