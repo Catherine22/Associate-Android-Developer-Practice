@@ -3,19 +3,22 @@ package com.catherine.materialdesignapp.activities;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.fragments.FavoritesFragment;
 import com.catherine.materialdesignapp.fragments.HomeFragment;
 import com.catherine.materialdesignapp.fragments.MusicFragment;
+import com.catherine.materialdesignapp.listeners.UIComponentsListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
-public class UIComponentsActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class UIComponentsActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener, UIComponentsListener {
     public final static String TAG = UIComponentsActivity.class.getSimpleName();
     private final String TAG_HOME = "HOME";
     private final String TAG_MUSIC = "MUSIC";
@@ -23,25 +26,28 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
 
     private Fragment homeFragment, musicFragment, favoritesFragment;
     private Fragment currentFragment;
+    private Toolbar toolbar;
+    private TabLayout tabLayout;
+    private String[] titles;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ui_components);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        initComponent();
+    }
+
+    private void initComponent() {
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true); // enable back arrow on the top left area
             getSupportActionBar().setTitle(TAG);
         }
 
-        initView();
-    }
-
-    private void initView() {
         BottomNavigationView navigationView = findViewById(R.id.bottom_navigation);
         Menu menu = navigationView.getMenu();
-        String[] titles = getResources().getStringArray(R.array.ui_component_bottom_navigation);
+        titles = getResources().getStringArray(R.array.ui_component_bottom_navigation);
         for (int i = 0; i < titles.length; i++) {
             menu.getItem(i).setTitle(titles[i]);
         }
@@ -51,39 +57,63 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
         homeFragment = new HomeFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.f_container, homeFragment, TAG_HOME).commit();
         currentFragment = homeFragment;
+
+
+        // ViewPager for MusicFragment
+        tabLayout = findViewById(R.id.tab_layout);
+        tabLayout.setVisibility(View.GONE);
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        FragmentManager fm = getSupportFragmentManager();
         switch (item.getItemId()) {
             case R.id.nav_home:
-                fm.beginTransaction().hide(currentFragment).show(homeFragment).commit();
+                getSupportFragmentManager().beginTransaction().hide(currentFragment).show(homeFragment).commit();
                 currentFragment = homeFragment;
+                toolbar.setTitle(titles[0]);
+                tabLayout.setVisibility(View.GONE);
                 return true;
             case R.id.nav_music:
                 if (musicFragment == null)
                     musicFragment = new MusicFragment();
 
                 if (musicFragment.isAdded()) {
-                    fm.beginTransaction().hide(currentFragment).show(musicFragment).commit();
+                    getSupportFragmentManager().beginTransaction().hide(currentFragment).show(musicFragment).commit();
                 } else {
-                    fm.beginTransaction().hide(currentFragment).add(R.id.f_container, musicFragment, TAG_MUSIC).commit();
+                    getSupportFragmentManager().beginTransaction().hide(currentFragment).add(R.id.f_container, musicFragment, TAG_MUSIC).commit();
                 }
                 currentFragment = musicFragment;
+                tabLayout.setVisibility(View.VISIBLE);
                 return true;
             case R.id.nav_favorites:
                 if (favoritesFragment == null)
                     favoritesFragment = new FavoritesFragment();
 
                 if (favoritesFragment.isAdded()) {
-                    fm.beginTransaction().hide(currentFragment).show(favoritesFragment).commit();
+                    getSupportFragmentManager().beginTransaction().hide(currentFragment).show(favoritesFragment).commit();
                 } else {
-                    fm.beginTransaction().hide(currentFragment).add(R.id.f_container, favoritesFragment, TAG_FAVORITES).commit();
+                    getSupportFragmentManager().beginTransaction().hide(currentFragment).add(R.id.f_container, favoritesFragment, TAG_FAVORITES).commit();
                 }
                 currentFragment = favoritesFragment;
+                toolbar.setTitle(titles[2]);
+                tabLayout.setVisibility(View.GONE);
                 return true;
         }
         return false;
+    }
+
+    @Override
+    public Toolbar getToolbar() {
+        return toolbar;
+    }
+
+    @Override
+    public TabLayout getTabLayout() {
+        return tabLayout;
+    }
+
+    @Override
+    public ActionBar getMyActionBar() {
+        return getSupportActionBar();
     }
 }

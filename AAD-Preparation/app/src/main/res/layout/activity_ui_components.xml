@@ -16,7 +16,16 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
+            app:layout_collapseMode="pin"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        <!--app:layout_scrollFlags="scroll|enterAlways"-->
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:tabMode="scrollable" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

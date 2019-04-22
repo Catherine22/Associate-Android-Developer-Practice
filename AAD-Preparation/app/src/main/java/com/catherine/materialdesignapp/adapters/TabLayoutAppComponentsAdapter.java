@@ -13,13 +13,15 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-public class TabLayoutActivityFSPAdapter extends FragmentStatePagerAdapter {
+public class TabLayoutAppComponentsAdapter extends FragmentStatePagerAdapter {
     private String TABS[];
 
-    public TabLayoutActivityFSPAdapter(FragmentManager fm) {
+    public TabLayoutAppComponentsAdapter(FragmentManager fm) {
         super(fm);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             TABS = MyApplication.INSTANCE.getResources().getStringArray(R.array.app_component_array_O);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            TABS = MyApplication.INSTANCE.getResources().getStringArray(R.array.app_component_array_lollipop);
         } else {
             TABS = MyApplication.INSTANCE.getResources().getStringArray(R.array.app_component_array);
         }
@@ -37,11 +39,8 @@ public class TabLayoutActivityFSPAdapter extends FragmentStatePagerAdapter {
                     return new BroadcastReceiverFragment();
                 case 3:
                     return new ContentProviderFragment();
-                default:
-                    return null;
-
             }
-        } else {
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             switch (position) {
                 case 0:
                     return new BackgroundServiceFragment();
@@ -49,11 +48,17 @@ public class TabLayoutActivityFSPAdapter extends FragmentStatePagerAdapter {
                     return new BroadcastReceiverFragment();
                 case 2:
                     return new ContentProviderFragment();
-                default:
-                    return null;
+            }
+        } else {
+            switch (position) {
+                case 0:
+                    return new BroadcastReceiverFragment();
+                case 1:
+                    return new ContentProviderFragment();
 
             }
         }
+        return null;
     }
 
     @Override

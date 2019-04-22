@@ -74,6 +74,11 @@
         <item>Content Provider</item>
     </string-array>
 
+    <string-array name="app_component_array_lollipop">
+        <item>Broadcast Receiver</item>
+        <item>Content Provider</item>
+    </string-array>
+
     <string-array name="app_component_array_O">
         <item>Foreground service</item>
         <item>Background service</item>
@@ -85,6 +90,12 @@
         <item>Home</item>
         <item>Music</item>
         <item>Favorites</item>
+    </string-array>
+
+    <string-array name="music_array">
+        <item>ALBUMS</item>
+        <item>ARTISTS</item>
+        <item>PLAYLISTS</item>
     </string-array>
 
     <plurals name="second">

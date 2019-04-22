@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/album_item_height"
+    android:clickable="true"
+    android:focusable="true">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/sdv_photo"
+        android:layout_width="@dimen/album_width"
+        android:layout_height="@dimen/album_height"
+        android:layout_marginTop="@dimen/safe_area_margin"
+        android:layout_marginBottom="@dimen/safe_area_margin"
+        android:scaleType="centerCrop"
+        app:fadeDuration="300"
+        app:failureImage="@color/gray"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:placeholderImage="@color/colorPrimary"
+        app:retryImage="@drawable/ic_refresh_black_24dp"
+        app:retryImageScaleType="centerInside" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/album_photo_margin_end"
+        android:layout_marginTop="@dimen/safe_area_margin"
+        android:layout_marginEnd="@dimen/safe_area_margin"
+        android:singleLine="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/sdv_photo"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_subtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/album_photo_margin_end"
+        android:layout_marginEnd="@dimen/safe_area_margin"
+        android:maxLines="2"
+        android:singleLine="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/sdv_photo"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

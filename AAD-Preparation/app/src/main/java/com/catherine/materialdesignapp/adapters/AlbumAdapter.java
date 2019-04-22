@@ -9,36 +9,27 @@ import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.listeners.OnItemClickListener;
 import com.catherine.materialdesignapp.models.CardItem;
-import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.drawee.backends.pipeline.PipelineDraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.facebook.imagepipeline.request.ImageRequest;
-import com.facebook.imagepipeline.request.ImageRequestBuilder;
-import com.facebook.imagepipeline.request.Postprocessor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import jp.wasabeef.fresco.processors.BlurPostprocessor;
 
-public class CardRVAdapter extends RecyclerView.Adapter<CardRVAdapter.MainRvHolder> {
-    private final String TAG = CardRVAdapter.class.getSimpleName();
+public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.MainRvHolder> {
+    private final String TAG = AlbumAdapter.class.getSimpleName();
     private Context ctx;
     private List<CardItem> entities;
     private OnItemClickListener listener;
     private boolean fromHtml = false;
-    private OnItemClickListener lBListener, rBListener;
 
-    public CardRVAdapter(Context ctx, List<CardItem> entities, OnItemClickListener listener) {
+    public AlbumAdapter(Context ctx, List<CardItem> entities, OnItemClickListener listener) {
         this.ctx = ctx;
         if (entities == null)
             this.entities = new ArrayList<>();
@@ -68,29 +59,18 @@ public class CardRVAdapter extends RecyclerView.Adapter<CardRVAdapter.MainRvHold
 
         CardItem cardItem = entities.get(position);
         if (!TextUtils.isEmpty(cardItem.getImage())) {
-            mainRvHolder.sdv_main.setVisibility(View.VISIBLE);
+            mainRvHolder.sdv_photo.setVisibility(View.VISIBLE);
             Uri uri = Uri.parse(cardItem.getImage());
             // show raw images
-//            mainRvHolder.sdv_main.setImageURI(uri);
-
-            // show blur images
-            Postprocessor postprocessor = new BlurPostprocessor(ctx, 30);
-            ImageRequest imageRequest = ImageRequestBuilder.newBuilderWithSource(uri)
-                    .setPostprocessor(postprocessor)
-                    .build();
-            PipelineDraweeController controller = (PipelineDraweeController) Fresco.newDraweeControllerBuilder()
-                    .setImageRequest(imageRequest)
-                    .setOldController(mainRvHolder.sdv_main.getController())
-                    .build();
-            mainRvHolder.sdv_main.setController(controller);
+            mainRvHolder.sdv_photo.setImageURI(uri);
         } else
-            mainRvHolder.sdv_main.setVisibility(View.GONE);
+            mainRvHolder.sdv_photo.setVisibility(View.GONE);
 
         if (!TextUtils.isEmpty(cardItem.getTitle())) {
             mainRvHolder.tv_title.setVisibility(View.VISIBLE);
             mainRvHolder.tv_title.setText(cardItem.getTitle());
 
-            if (mainRvHolder.sdv_main.getVisibility() == View.GONE)
+            if (mainRvHolder.sdv_photo.getVisibility() == View.GONE)
                 mainRvHolder.tv_title.setTextColor(ctx.getResources().getColor(android.R.color.black));
             else
                 mainRvHolder.tv_title.setTextColor(ctx.getResources().getColor(android.R.color.white));
@@ -113,34 +93,6 @@ public class CardRVAdapter extends RecyclerView.Adapter<CardRVAdapter.MainRvHold
         } else {
             mainRvHolder.tv_subtitle.setVisibility(View.GONE);
         }
-
-
-        if (!TextUtils.isEmpty(cardItem.getLButton())) {
-            mainRvHolder.bt_left.setVisibility(View.VISIBLE);
-            mainRvHolder.bt_left.setText(cardItem.getLButton());
-            if (lBListener != null) {
-                mainRvHolder.bt_left.setOnClickListener(v -> lBListener.onItemClick(mainRvHolder.itemView, position));
-                mainRvHolder.bt_left.setOnLongClickListener(v -> {
-                    lBListener.onItemLongClick(mainRvHolder.itemView, position);
-                    return false;
-                });
-            }
-        } else
-            mainRvHolder.bt_left.setVisibility(View.GONE);
-
-
-        if (!TextUtils.isEmpty(cardItem.getRButton())) {
-            mainRvHolder.bt_right.setVisibility(View.VISIBLE);
-            mainRvHolder.bt_right.setText(cardItem.getRButton());
-            if (rBListener != null) {
-                mainRvHolder.bt_right.setOnClickListener(v -> rBListener.onItemClick(mainRvHolder.itemView, position));
-                mainRvHolder.bt_right.setOnLongClickListener(v -> {
-                    rBListener.onItemLongClick(mainRvHolder.itemView, position);
-                    return false;
-                });
-            }
-        } else
-            mainRvHolder.bt_right.setVisibility(View.GONE);
     }
 
     @Override
@@ -156,34 +108,18 @@ public class CardRVAdapter extends RecyclerView.Adapter<CardRVAdapter.MainRvHold
         this.entities = entities;
     }
 
-    public void setOnLeftButtonClickListener(OnItemClickListener listener) {
-        lBListener = listener;
-    }
-
-    public void setOnRightButtonClickListener(OnItemClickListener listener) {
-        rBListener = listener;
-    }
-
     class MainRvHolder extends RecyclerView.ViewHolder {
         TextView tv_title;
         TextView tv_subtitle;
-        SimpleDraweeView sdv_main;
-        Button bt_left;
-        Button bt_right;
-        RelativeLayout rv_card_bg;
+        SimpleDraweeView sdv_photo;
         View itemView;
 
         MainRvHolder(View itemView) {
             super(itemView);
             this.itemView = itemView;
-            rv_card_bg = itemView.findViewById(R.id.rv_card_bg);
             tv_title = itemView.findViewById(R.id.tv_title);
             tv_subtitle = itemView.findViewById(R.id.tv_subtitle);
-            bt_left = itemView.findViewById(R.id.bt_left);
-            bt_right = itemView.findViewById(R.id.bt_right);
-            sdv_main = itemView.findViewById(R.id.sdv_main);
-            //fixed aspect ratio = 1334*750 = 16:9;
-            sdv_main.setAspectRatio(1.78f);
+            sdv_photo = itemView.findViewById(R.id.sdv_main);
         }
     }
 }

@@ -10,7 +10,7 @@
     tools:showIn="@layout/app_bar_main">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_features"
+        android:id="@+id/rv_albums"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

@@ -1,11 +1,10 @@
 package com.catherine.materialdesignapp.activities;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.catherine.materialdesignapp.R;
-import com.catherine.materialdesignapp.adapters.TabLayoutActivityFSPAdapter;
+import com.catherine.materialdesignapp.adapters.TabLayoutAppComponentsAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.appcompat.widget.Toolbar;
@@ -14,7 +13,7 @@ import androidx.viewpager.widget.ViewPager;
 public class AppComponentsActivity extends BaseActivity {
     private final static String TAG = AppComponentsActivity.class.getSimpleName();
     private Toolbar toolbar;
-    private TabLayoutActivityFSPAdapter adapter;
+    private TabLayoutAppComponentsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +31,7 @@ public class AppComponentsActivity extends BaseActivity {
         }
         ViewPager viewpager = findViewById(R.id.viewpager);
         TabLayout tabLayout = findViewById(R.id.tab_layout);
-        adapter = new TabLayoutActivityFSPAdapter(getSupportFragmentManager());
+        adapter = new TabLayoutAppComponentsAdapter(getSupportFragmentManager());
         viewpager.setAdapter(adapter);
         viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -43,27 +42,6 @@ public class AppComponentsActivity extends BaseActivity {
             @Override
             public void onPageSelected(int position) {
                 Log.i(TAG, String.format("onPageSelected:%d", position));
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    switch (position) {
-                        case 0:
-                            break;
-                        case 1:
-                            break;
-                        case 2:
-                            break;
-                        case 3:
-                            break;
-                    }
-                } else {
-                    switch (position) {
-                        case 0:
-                            break;
-                        case 1:
-                            break;
-                        case 2:
-                            break;
-                    }
-                }
             }
 
             @Override

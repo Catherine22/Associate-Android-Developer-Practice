@@ -11,17 +11,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c352c017-7cf2-473d-b283-bb66e6960277" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/listeners/UIComponentsListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/rv_album_item.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/SettingsActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/AppComponentsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/AppComponentsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/UIComponentsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/UIComponentsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/adapters/CardRVAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/adapters/CardRVAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/adapters/TabLayoutActivityFSPAdapter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/MusicFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/MusicFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_ui_components.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_ui_components.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_background.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_background.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_music.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_music.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values-ar/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-ar/strings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values-zh-rCN/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-zh-rCN/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,79 +44,59 @@
     <session id="1244217869">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.25" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="class" value="1" />
           <entry key="gradle" value="13" />
-          <entry key="java" value="221" />
+          <entry key="java" value="242" />
           <entry key="properties" value="2" />
-          <entry key="xml" value="221" />
+          <entry key="xml" value="239" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="1" />
           <entry key="Groovy" value="13" />
-          <entry key="JAVA" value="221" />
+          <entry key="JAVA" value="242" />
           <entry key="Properties" value="2" />
-          <entry key="XML" value="221" />
+          <entry key="XML" value="239" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="dummy" value="31" />
+          <entry key="dummy" value="44" />
           <entry key="gradle" value="149" />
-          <entry key="java" value="13843" />
+          <entry key="java" value="14662" />
           <entry key="properties" value="7" />
-          <entry key="txt" value="83" />
-          <entry key="xml" value="6393" />
+          <entry key="txt" value="86" />
+          <entry key="xml" value="6962" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="149" />
-          <entry key="JAVA" value="13843" />
-          <entry key="PLAIN_TEXT" value="114" />
+          <entry key="JAVA" value="14662" />
+          <entry key="PLAIN_TEXT" value="130" />
           <entry key="Properties" value="7" />
-          <entry key="XML" value="6393" />
+          <entry key="XML" value="6962" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/UIComponentsActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="82" column="20" selection-start-line="82" selection-start-column="20" selection-end-line="82" selection-end-column="20" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.fragment/fragment/1.1.0-alpha02/b81436c82dc8e5481dcadfef7f5747942218f6f6/fragment-1.1.0-alpha02-sources.jar!/androidx/fragment/app/FragmentTransaction.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/MusicFragment.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="166">
-              <caret line="123" column="40" selection-start-line="123" selection-start-column="40" selection-end-line="123" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/BackgroundServiceFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="51" column="71" selection-start-line="51" selection-start-column="68" selection-end-line="51" selection-end-column="85" />
+              <caret line="39" column="38" selection-start-line="39" selection-start-column="38" selection-end-line="39" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -121,10 +105,63 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/ContentProviderFragment.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/UIComponentsActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
-              <caret line="62" column="81" selection-start-line="62" selection-start-column="81" selection-end-line="62" selection-end-column="81" />
+            <state relative-caret-position="184">
+              <caret line="78" lean-forward="true" selection-start-line="78" selection-end-line="78" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#4417#4418#0" expanded="true" />
+                <element signature="e#4444#4445#0" expanded="true" />
+                <element signature="e#4496#4497#0" expanded="true" />
+                <element signature="e#4526#4527#0" expanded="true" />
+                <element signature="e#4585#4586#0" expanded="true" />
+                <element signature="e#4617#4618#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/adapters/TabLayoutMusicAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="220">
+              <caret line="23" column="35" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#717#718#0" expanded="true" />
+                <element signature="e#742#743#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/BackgroundActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="31" column="34" lean-forward="true" selection-start-line="30" selection-start-column="4" selection-end-line="31" selection-end-column="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/AlbumsFragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="22" column="49" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/adapters/AlbumAdapter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="24" column="25" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -133,11 +170,32 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_ui_components.xml">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/rv_album_item.xml">
           <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
-              <caret line="23" column="33" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="34" />
+            <state relative-caret-position="135">
+              <caret line="9" column="34" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="34" />
+              <folding>
+                <element signature="e#271#297#0" expanded="true" />
+                <element signature="e#471#491#0" expanded="true" />
+                <element signature="e#522#543#0" expanded="true" />
+                <element signature="e#577#602#0" expanded="true" />
+                <element signature="e#639#664#0" expanded="true" />
+                <element signature="e#1257#1288#0" expanded="true" />
+                <element signature="e#1322#1347#0" expanded="true" />
+                <element signature="e#1381#1406#0" expanded="true" />
+                <element signature="e#1771#1802#0" expanded="true" />
+                <element signature="e#1836#1861#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
             </state>
           </provider>
         </entry>
@@ -147,28 +205,15 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="layoutResourceFile" />
         <option value="layoutResourceFile_vertical" />
         <option value="resourceFile" />
+        <option value="layoutResourceFile" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>frameLayout</find>
-      <find>setVisibility</find>
-      <find>btn_stop_service</find>
-      <find>switch_require_network</find>
-      <find>rb_network</find>
-      <find>c_progress_desc</find>
-      <find>slider_title</find>
-      <find>c_title</find>
-      <find>radio_cellular</find>
-      <find>c_icon</find>
-      <find>tv_latency</find>
-      <find>deadline</find>
-      <find>ContentDescription</find>
       <find>layout_background</find>
       <find>action_lifecycle</find>
       <find>c_name</find>
@@ -185,7 +230,20 @@
       <find>Mars</find>
       <find>&lt;string-array name=&quot;app_component_array_O&quot;&gt;</find>
       <find>HOME</find>
+      <find>TabLayoutActivityFSPAdapter</find>
+      <find>&lt;string-array name=&quot;app_component_array&quot;&gt;</find>
+      <find>app_component_array_lollipop</find>
       <find>MUSIC</find>
+      <find>&lt;string-array name=&quot;ui_component_bottom_navigation&quot;&gt;</find>
+      <find>bottom</find>
+      <find>toolbar</find>
+      <find>setNavigationOnClickListener</find>
+      <find>bottom_navigation</find>
+      <find>adapter</find>
+      <find>tabLayout</find>
+      <find>getSuppo</find>
+      <find>rv_features</find>
+      <find>Recycler</find>
     </findStrings>
     <replaceStrings>
       <replace>this</replace>
@@ -199,8 +257,8 @@
       <replace>slider_progress_desc</replace>
       <replace>c_title</replace>
       <replace>c_slider_title</replace>
-      <replace>R.drawable.ic_restaurant_black_24dp</replace>
       <replace>TAG_HOME</replace>
+      <replace>R.drawable.ic_restaurant_black_24dp</replace>
       <replace>TAG_MUSIC</replace>
     </replaceStrings>
     <dirStrings>
@@ -213,26 +271,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values-zh-rCN/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values-ar/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/listeners/OnMusicPlayerListener.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/listeners/OnActivityEventListener.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/BaseActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/services/MusicPlayerJobScheduler.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/tasks/MusicPlayer.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/aaa.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/listeners/LogCatListener.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/utils/LogCatHelper.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_background_service1.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/BackgroundServiceFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_background_service.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/slider.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/components/BottomSheetItem.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_notification.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/LifecycleActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/AppComponentsActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/BackgroundActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/NotificationActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/SettingsActivity.java" />
@@ -252,22 +295,37 @@
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/color/bottom_navigation_colors.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/ui_components_menu.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_ui_components.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/HomeFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/MusicFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/FavoritesFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_ui_components.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_favorites.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_home.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/content_background.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_background.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_music.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/adapters/TabLayoutAppComponentsAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_playlists.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/PlaylistsFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/ArtistsFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/adapters/TabLayoutMusicAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_ui_components.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/AppComponentsActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/listeners/UIComponentsListener.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/UIComponentsActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/MusicFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_albums.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/rv_album_item.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/adapters/AlbumAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/adapters/CardRVAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/AlbumsFragment.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="877" />
@@ -280,7 +338,6 @@
     <panes>
       <pane id="Scope" />
       <pane id="ProjectPane" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -304,14 +361,7 @@
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="materialdesignapp" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="activities" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AAD-Preparation" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="materialdesignapp" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="adapters" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="AAD-Preparation" type="1abcf292:AndroidViewProjectNode" />
@@ -325,18 +375,12 @@
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="materialdesignapp" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="listeners" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="AAD-Preparation" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="res" type="d4f16f75:AndroidResFolderNode" />
-            </path>
-            <path>
-              <item name="AAD-Preparation" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="drawable" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
             <path>
               <item name="AAD-Preparation" type="1abcf292:AndroidViewProjectNode" />
@@ -346,52 +390,35 @@
             </path>
             <path>
               <item name="AAD-Preparation" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="menu" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-            <path>
-              <item name="AAD-Preparation" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="values" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-            <path>
-              <item name="AAD-Preparation" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="values" type="ddeffd01:AndroidResFolderTypeNode" />
-              <item name="styles" type="c431d0b8:AndroidResGroupNode" />
-            </path>
-            <path>
-              <item name="AAD-Preparation" type="1abcf292:AndroidViewProjectNode" />
               <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="activity_&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/layout/activity_ui_components.xml&#10;strings&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/values/strings.xml&#10;styl&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/values/styles.xml&#10;main&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/layout/app_bar_main.xml&#10;a&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/layout/activity_main.xml&#10;con&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/layout/content_main.xml&#10;slider&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/components/Slider.java&#10;contentPro&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/ContentProviderFragment.java&#10;fragment_con&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/layout/fragment_content_provider.xml&#10;mainac&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/MainActivity.java&#10;attrs&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/values/attrs.xml&#10;content&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/layout/content_main.xml&#10;mani&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/AndroidManifest.xml&#10;back&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/BackgroundServiceFragment.java&#10;background&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/BackgroundServiceFragment.java&#10;Lif&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/LifecycleActivity.java&#10;lifecyc&#9;PSI&#9;JAVA://com.catherine.materialdesignapp.activities.LifecycleActivity&#10;jobs&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/services/MusicPlayerJobScheduler.java&#10;Base&#9;PSI&#9;JAVA://com.catherine.materialdesignapp.activities.BaseActivity&#10;Main&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/MainActivity.java&#10;backgroundAc&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/BackgroundActivity.java&#10;base&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/BaseActivity.java&#10;MusicPlayerService&#9;PSI&#9;JAVA://com.catherine.materialdesignapp.services.MusicPlayerService&#10;occ&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/utils/OccupiedActions.java&#10;no&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/utils/NotificationUtils.java&#10;notificationU&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/utils/NotificationUtils.java&#10;notificat&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/utils/NotificationUtils.java&#10;string&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/values/strings.xml&#10;notification&#9;PSI&#9;JAVA://com.catherine.materialdesignapp.utils.NotificationUtils&#10;di&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/values/dimens.xml&#10;dimens&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/values/dimens.xml&#10;String&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/values/strings.xml&#10;myapp&#9;PSI&#9;JAVA://com.catherine.materialdesignapp.MyApplication" />
+    <property name="SearchEverywhereHistoryKey" value="background&#9;PSI&#9;JAVA://com.catherine.materialdesignapp.fragments.BackgroundServiceFragment&#10;dim&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/values/dimens.xml&#10;uic&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/UIComponentsActivity.java&#10;activity_ui&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/layout/activity_ui_components.xml&#10;activity_&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/layout/activity_ui_components.xml&#10;strings&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/values/strings.xml&#10;styl&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/values/styles.xml&#10;main&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/layout/app_bar_main.xml&#10;a&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/layout/activity_main.xml&#10;con&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/layout/content_main.xml&#10;slider&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/components/Slider.java&#10;contentPro&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/ContentProviderFragment.java&#10;fragment_con&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/layout/fragment_content_provider.xml&#10;mainac&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/MainActivity.java&#10;attrs&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/values/attrs.xml&#10;content&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/layout/content_main.xml&#10;mani&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/AndroidManifest.xml&#10;back&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/BackgroundServiceFragment.java&#10;Lif&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/LifecycleActivity.java&#10;lifecyc&#9;PSI&#9;JAVA://com.catherine.materialdesignapp.activities.LifecycleActivity&#10;jobs&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/services/MusicPlayerJobScheduler.java&#10;Base&#9;PSI&#9;JAVA://com.catherine.materialdesignapp.activities.BaseActivity&#10;Main&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/MainActivity.java&#10;backgroundAc&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/BackgroundActivity.java&#10;base&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/BaseActivity.java&#10;MusicPlayerService&#9;PSI&#9;JAVA://com.catherine.materialdesignapp.services.MusicPlayerService&#10;occ&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/utils/OccupiedActions.java&#10;no&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/utils/NotificationUtils.java&#10;notificationU&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/utils/NotificationUtils.java&#10;notificat&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/utils/NotificationUtils.java&#10;string&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/values/strings.xml&#10;notification&#9;PSI&#9;JAVA://com.catherine.materialdesignapp.utils.NotificationUtils&#10;di&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/values/dimens.xml&#10;dimens&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/values/dimens.xml&#10;String&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/values/strings.xml&#10;myapp&#9;PSI&#9;JAVA://com.catherine.materialdesignapp.MyApplication" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="device.picker.selection" value="Nexus_5X_API_27" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/src/main/res/drawable-mdpi" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/color" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.catherine.materialdesignapp.adapters" />
       <recent name="com.catherine.materialdesignapp.fragments" />
       <recent name="com.catherine.materialdesignapp.activities" />
       <recent name="com.catherine.materialdesignapp" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable-mdpi" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/color" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -552,11 +579,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="24" width="1440" height="877" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.25965664" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.22532189" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -564,22 +591,22 @@
       <window_info id="Designer" order="6" />
       <window_info id="Capture Tool" order="7" />
       <window_info anchor="bottom" id="Run" order="0" />
-      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.49713877" visible="true" weight="0.3312102" />
+      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.49713877" visible="true" weight="0.1044586" />
       <window_info anchor="bottom" id="TODO" order="2" sideWeight="0.4985694" weight="0.3299363" />
       <window_info anchor="bottom" id="Debug" order="3" />
       <window_info anchor="bottom" id="Terminal" order="4" weight="0.3299363" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5028612" side_tool="true" weight="0.2356688" />
       <window_info anchor="bottom" id="Version Control" order="6" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.4985694" weight="0.25732484" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.4985694" weight="0.1477707" />
       <window_info anchor="bottom" id="Find" order="8" weight="0.2267516" />
       <window_info anchor="bottom" id="Android Profiler" order="9" />
-      <window_info anchor="right" id="Assistant" weight="0.3297568" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Gradle" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info anchor="right" id="Preview" order="4" />
       <window_info anchor="right" id="Palette&#9;" order="5" />
+      <window_info anchor="right" id="Assistant" order="6" weight="0.3297568" />
     </layout>
     <layout-to-restore>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
@@ -613,173 +640,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_background_service.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="154" column="24" selection-start-line="154" selection-start-column="24" selection-end-line="154" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/AppComponentsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="27" column="37" selection-start-line="27" selection-start-column="37" selection-end-line="27" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/BackgroundActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="46" column="37" lean-forward="true" selection-start-line="46" selection-start-column="37" selection-end-line="50" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/LifecycleActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="227">
-          <caret line="29" column="37" selection-start-line="29" selection-start-column="37" selection-end-line="33" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_notification.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="55" selection-start-line="24" selection-start-column="55" selection-end-line="24" selection-end-column="55" />
-          <folding>
-            <element signature="e#3581#3596#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_notification.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="44" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/nav_header_main.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_lifecycle.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="41" lean-forward="true" selection-start-line="22" selection-start-column="41" selection-end-line="22" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_lifecycle.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="34" column="50" selection-start-line="34" selection-start-column="50" selection-end-line="34" selection-end-column="50" />
-          <folding>
-            <element signature="e#1214#1239#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/NotificationActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3586#3587#0" expanded="true" />
-            <element signature="e#3619#3620#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_foreground_service.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="54" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/material-1.0.0.aar/8ffb678aa02c629797d3a9a66408d639/res/values/values.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="861" column="71" selection-start-line="861" selection-start-column="71" selection-end-line="861" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-v21/ic_menu_camera.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="40" column="66" selection-start-line="40" selection-start-column="66" selection-end-line="40" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-v21/ic_menu_send.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/ForegroundServiceFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="24" column="59" selection-start-line="24" selection-start-column="59" selection-end-line="24" selection-end-column="59" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_content_provider.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/attrs.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="55" selection-start-line="12" selection-start-column="55" selection-end-line="12" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/bottom_sheet_item.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="17" lean-forward="true" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/components/BottomSheetItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="40" column="57" selection-start-line="40" selection-start-column="57" selection-end-line="40" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/bottom_sheet_app_components.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="58" selection-start-line="22" selection-start-column="58" selection-end-line="22" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_email_white_24dp.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -829,6 +689,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="20" column="51" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="51" />
@@ -837,21 +698,11 @@
           </folding>
         </state>
       </provider>
-      <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/utils/Storage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="350">
           <caret line="24" column="60" lean-forward="true" selection-start-line="24" selection-start-column="60" selection-end-line="24" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#528#529#0" expanded="true" />
-            <element signature="e#598#599#0" expanded="true" />
-            <element signature="e#699#700#0" expanded="true" />
-            <element signature="e#766#767#0" expanded="true" />
-            <element signature="e#811#812#0" expanded="true" />
-            <element signature="e#867#868#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -874,13 +725,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-mdpi/bottom_navigation_colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="11" lean-forward="true" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-mdpi/bottom_navigation_colors.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
@@ -893,22 +738,11 @@
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="83" column="54" selection-start-line="83" selection-start-column="24" selection-end-line="83" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/main.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="52" selection-start-line="9" selection-start-column="52" selection-end-line="9" selection-end-column="52" />
-          <folding>
-            <element signature="e#218#244#0" expanded="true" />
-            <element signature="e#362#389#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -917,34 +751,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="32" lean-forward="true" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_ui_components.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="22" column="54" lean-forward="true" selection-start-line="22" selection-start-column="54" selection-end-line="22" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/BroadcastReceiverFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="38" lean-forward="true" selection-start-line="11" selection-start-column="38" selection-end-line="20" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/BackgroundServiceFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="51" column="71" selection-start-line="51" selection-start-column="68" selection-end-line="51" selection-end-column="85" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -972,24 +778,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="21" column="1" lean-forward="true" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/MusicFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="19" column="55" selection-start-line="19" selection-start-column="55" selection-end-line="19" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_music.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="27" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="27" />
         </state>
       </provider>
     </entry>
@@ -1009,14 +797,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_ui_components.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="23" column="33" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/ContentProviderFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="359">
@@ -1027,6 +807,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_background.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_background.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="11" column="54" lean-forward="true" selection-start-line="11" selection-start-column="54" selection-end-line="20" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.fragment/fragment/1.1.0-alpha02/b81436c82dc8e5481dcadfef7f5747942218f6f6/fragment-1.1.0-alpha02-sources.jar!/androidx/fragment/app/FragmentTransaction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="166">
@@ -1034,13 +830,258 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/UIComponentsActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_app_components.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="82" column="20" selection-start-line="82" selection-start-column="20" selection-end-line="82" selection-end-column="20" />
+        <state>
+          <caret column="38" lean-forward="true" selection-start-column="38" selection-end-line="6" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_app_components.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="30" column="40" selection-start-line="30" selection-start-column="40" selection-end-line="30" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="94" column="35" selection-start-line="94" selection-start-column="24" selection-end-line="94" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/BroadcastReceiverFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_artists.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_playlists.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/PlaylistsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="18" column="59" selection-start-line="18" selection-start-column="59" selection-end-line="18" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/ArtistsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="18" column="57" selection-start-line="18" selection-start-column="57" selection-end-line="18" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_ui_components.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="42" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/adapters/TabLayoutAppComponentsAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="885">
+          <caret line="59" column="9" lean-forward="true" selection-start-line="59" selection-start-column="9" selection-end-line="59" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/AppComponentsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="12" column="56" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.appcompat/appcompat/1.1.0-alpha01/7d1adf1f577b2c9c6ee06d1797a9d1a1169f14a9/appcompat-1.1.0-alpha01-sources.jar!/androidx/appcompat/app/AppCompatActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="108" column="21" selection-start-line="108" selection-start-column="21" selection-end-line="108" selection-end-column="21" />
+          <folding>
+            <element signature="e#4066#4067#0" expanded="true" />
+            <element signature="e#4124#4125#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_ui_components.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/listeners/UIComponentsListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="28" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/adapters/TabLayoutMusicAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="23" column="35" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#717#718#0" expanded="true" />
+            <element signature="e#742#743#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_music.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
+          <folding>
+            <element signature="e#328#368#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/UIComponentsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="78" lean-forward="true" selection-start-line="78" selection-end-line="78" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4417#4418#0" expanded="true" />
+            <element signature="e#4444#4445#0" expanded="true" />
+            <element signature="e#4496#4497#0" expanded="true" />
+            <element signature="e#4526#4527#0" expanded="true" />
+            <element signature="e#4585#4586#0" expanded="true" />
+            <element signature="e#4617#4618#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/MusicFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="39" column="38" selection-start-line="39" selection-start-column="38" selection-end-line="39" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/rv_album_item.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="34" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="34" />
+          <folding>
+            <element signature="e#271#297#0" expanded="true" />
+            <element signature="e#471#491#0" expanded="true" />
+            <element signature="e#522#543#0" expanded="true" />
+            <element signature="e#577#602#0" expanded="true" />
+            <element signature="e#639#664#0" expanded="true" />
+            <element signature="e#1257#1288#0" expanded="true" />
+            <element signature="e#1322#1347#0" expanded="true" />
+            <element signature="e#1381#1406#0" expanded="true" />
+            <element signature="e#1771#1802#0" expanded="true" />
+            <element signature="e#1836#1861#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/adapters/CardRVAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-334">
+          <caret line="123" column="4" lean-forward="true" selection-start-line="123" selection-start-column="4" selection-end-line="123" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/rv_card_item.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="537">
+          <caret line="68" column="52" lean-forward="true" selection-start-line="68" selection-start-column="52" selection-end-line="68" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/adapters/AlbumAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="25" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_albums.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="34" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="34" />
+          <folding>
+            <element signature="e#391#431#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/BackgroundServiceFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1954">
+          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/BackgroundActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="31" column="34" lean-forward="true" selection-start-line="30" selection-start-column="4" selection-end-line="31" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/AlbumsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="22" column="49" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
         </state>
       </provider>
     </entry>
