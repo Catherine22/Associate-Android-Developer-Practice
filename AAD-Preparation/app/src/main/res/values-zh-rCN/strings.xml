@@ -45,7 +45,7 @@
         <item>应用组件</item>
         <item>背景运行</item>
         <item>消息推送服务</item>
-        <item>Mars</item>
+        <item>视图组建</item>
     </string-array>
 
 
@@ -79,6 +79,12 @@
         <item>Background service</item>
         <item>Broadcast Receiver</item>
         <item>Content Provider</item>
+    </string-array>
+
+    <string-array name="ui_component_bottom_navigation">
+        <item>首页</item>
+        <item>音乐</item>
+        <item>最爱</item>
     </string-array>
 
     <plurals name="second">

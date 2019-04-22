@@ -10,6 +10,10 @@ https://developers.google.com/training/certification/associate-android-developer
 - [Lifecycle](https://github.com/Catherine22/lifecycle#)       
 - [App components](https://github.com/Catherine22/app-components#)      
 - [Working in the background](https://github.com/Catherine22/working-in-the-background#)      
+- [Notification](https://github.com/Catherine22/notification#)      
+- [Accessibility Features](https://github.com/Catherine22/accessibility-features#)        
+- [Day/Night Mode](https://github.com/Catherine22/day/night-mode#)      
+- [Styles](https://github.com/Catherine22/styles#)        
 - [Jetpack](https://github.com/Catherine22/Jetpack#)       
 - [Kotlin](https://github.com/Catherine22/Kotlin#)
 
@@ -51,9 +55,9 @@ implementation 'com.google.android.material:material:1.0.0'
 
 ## Custom Layouts
 Build a custom view from scratch:       
-1. [Slider](https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/components/Slider.java)        
-2. [attrs](https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/res/values/attrs.xml)      
-3. [BackgroundServiceFragment], [fragment_background_service](https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/res/layout/fragment_background_service.xml)         
+1. [Slider](https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/components/Slider.java)        
+2. [attrs](https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/res/values/attrs.xml)      
+3. [BackgroundServiceFragment], [fragment_background_service](https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/res/layout/fragment_background_service.xml)         
 
 
 # Localisation
@@ -298,13 +302,70 @@ In Manifest, update the theme
 android:theme="@style/AppTheme.NoActionBar"
 ```
 
-3. Switch style programmatically
+3. Initialise night mode programmatically if you want
 ```Java
-
+public class MainActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        initNightMode();
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+    
+    // We set the theme, immediately in the Activity’s onCreate()
+    private void initNightMode() {
+        Storage storage = new Storage(this);
+        int nightMode = storage.retrieveInt(Storage.NIGHT_MODE);
+        if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+    }
+}
 ```
 
- 
+4. Switch day/night mode programmatically if you want
+```Java
+SharedPreferences sharedPreferences = getSharedPreferences("main", Context.MODE_PRIVATE);
+button.setOnClickListener(
+    v -> {
+        int nightMode = AppCompatDelegate.getDefaultNightMode();
+        if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            button.setTitle(getString(R.string.action_night_mode));
+            sharedPreferences.edit().putInt("night_mode", AppCompatDelegate.MODE_NIGHT_NO).apply();
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            item.setTitle(getString(R.string.action_day_mode));
+            sharedPreferences.edit().putInt("night_mode", AppCompatDelegate.MODE_NIGHT_YES).apply();
+        }
+        // Recreate the activity for the theme change to take effect.
+        recreate();
+    }
+);
+```
+
+Code: [MainActivity]
 [Read more](https://www.youtube.com/watch?v=1by5J7c5Vz4)       
+
+# Styles
+
+To inherit styles from Android support library by using ```parent```
+```xml
+<style name="GreenText" parent="TextAppearance.AppCompat">
+    <item name="android:textColor">#00FF00</item>
+</style>
+```
+
+And to inherit user-defined styles, you could use a dot notation
+```xml
+<style name="GreenText.Large">
+    <item name="android:textSize">22dp</item>
+</style>
+```
+
+Code: [styles](https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/res/values/styles.xml)      
 
 # Jetpack
 
@@ -461,30 +522,30 @@ The exam is only available in Java at this time (4/1/2019)
 
 
 
-[Material design]:<<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#material-design>
+[Material design]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#material-design>
 [Localisation]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#Localisation>
 [Device compatibility]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#device-compatibility>
-[res]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/res/
-[Lifecycle]:<<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#lifecycle>
-[Jetpack]:<<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#jetpack>
+[res]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/res/
+[Lifecycle]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#lifecycle>
+[Jetpack]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#jetpack>
 
-[BaseActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/BaseActivity.java>
-[MainActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/MainActivity.java>
-[LifecycleActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/LifecycleActivity.java>
-[LifecycleObserverImpl]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/LifecycleObserverImpl.java>
-[AppComponentsActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/AppComponentsActivity.java>
-[MusicPlayerService]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/MusicPlayerService.java>
-[MusicPlayerJobScheduler]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/MusicPlayerJobScheduler.java>
-[AndroidManifest]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/AndroidManifest.xml>
-[InternetConnectivityReceiver]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/receivers/InternetConnectivityReceiver.java>
-[NetworkHealthService]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/NetworkHealthService.java>
-[NetworkHealthJobScheduler]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/NetworkHealthJobScheduler.java>
-[BackgroundActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/BackgroundActivity.java>
-[SleepTask]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/tasks/SleepTask.java>
-[SleepTaskLoader]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/tasks/SleepTaskLoader.java>
-[NotificationActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/activities/NotificationActivity.java>
-[ContentProviderFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/fragments/ContentProviderFragment.java>
-[BackgroundServiceFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/app/src/main/java/com/catherine/materialdesignapp/fragments/BackgroundServiceFragment.java>
+[BaseActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/BaseActivity.java>
+[MainActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/MainActivity.java>
+[LifecycleActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/LifecycleActivity.java>
+[LifecycleObserverImpl]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/LifecycleObserverImpl.java>
+[AppComponentsActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/AppComponentsActivity.java>
+[MusicPlayerService]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/MusicPlayerService.java>
+[MusicPlayerJobScheduler]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/MusicPlayerJobScheduler.java>
+[AndroidManifest]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/AndroidManifest.xml>
+[InternetConnectivityReceiver]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/receivers/InternetConnectivityReceiver.java>
+[NetworkHealthService]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/NetworkHealthService.java>
+[NetworkHealthJobScheduler]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/NetworkHealthJobScheduler.java>
+[BackgroundActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/BackgroundActivity.java>
+[SleepTask]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/tasks/SleepTask.java>
+[SleepTaskLoader]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/tasks/SleepTaskLoader.java>
+[NotificationActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/NotificationActivity.java>
+[ContentProviderFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/ContentProviderFragment.java>
+[BackgroundServiceFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/BackgroundServiceFragment.java>
 
 [Basic Types]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/BasicTypes.kt>
 [Control Flow]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/ControlFlow.kt>

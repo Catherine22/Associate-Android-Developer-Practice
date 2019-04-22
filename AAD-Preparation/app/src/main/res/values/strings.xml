@@ -45,7 +45,7 @@
         <item>App components</item>
         <item>Working in the background</item>
         <item>Notification</item>
-        <item>Mars</item>
+        <item>UI components</item>
     </string-array>
 
 
@@ -79,6 +79,12 @@
         <item>Background service</item>
         <item>Broadcast Receiver</item>
         <item>Content Provider</item>
+    </string-array>
+
+    <string-array name="ui_component_bottom_navigation">
+        <item>Home</item>
+        <item>Music</item>
+        <item>Favorites</item>
     </string-array>
 
 

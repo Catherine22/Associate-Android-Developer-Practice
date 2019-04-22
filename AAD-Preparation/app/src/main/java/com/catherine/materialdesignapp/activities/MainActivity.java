@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -129,19 +128,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 startActivity(lifecycleIntent);
                 return true;
             case R.id.action_night_mode:
-                Storage storage = new Storage(this);
-                int nightMode = AppCompatDelegate.getDefaultNightMode();
-                if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    item.setTitle(getString(R.string.action_night_mode));
-                    storage.save(Storage.NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_NO);
-                } else {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    item.setTitle(getString(R.string.action_day_mode));
-                    storage.save(Storage.NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_YES);
-                }
-                // Recreate the activity for the theme change to take effect.
-                recreate();
+
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -153,20 +140,20 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public boolean onNavigationItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_app_components:
-                Intent cameraIntent = new Intent(this, AppComponentsActivity.class);
-                startActivityForResult(cameraIntent, 12345);
+                Intent appComponentsIntent = new Intent(this, AppComponentsActivity.class);
+                startActivityForResult(appComponentsIntent, 12345);
                 break;
             case R.id.nav_background:
                 Intent backgroundIntent = new Intent(this, BackgroundActivity.class);
                 startActivity(backgroundIntent);
                 break;
             case R.id.nav_notification:
-                Intent notificationActivity = new Intent(this, NotificationActivity.class);
-                startActivity(notificationActivity);
+                Intent notificationIntent = new Intent(this, NotificationActivity.class);
+                startActivity(notificationIntent);
                 break;
             case R.id.nav_manage:
-                Intent aboutIntent = new Intent(this, SettingsActivity.class);
-                startActivity(aboutIntent);
+                Intent uiComponentsIntent = new Intent(this, UIComponentsActivity.class);
+                startActivity(uiComponentsIntent);
                 break;
             case R.id.nav_share:
                 break;
