@@ -9,4 +9,5 @@
     <color name="dark_gray">#252525</color>
     <color name="red">#E53935</color>
 
+    <color name="mask">#C3252525</color>
 </resources>

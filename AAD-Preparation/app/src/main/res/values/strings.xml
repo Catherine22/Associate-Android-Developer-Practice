@@ -22,6 +22,7 @@
     <string name="local_hands_up_notification">Hands-up notification</string>
     <string name="local_replying_notification">Replying Notification</string>
     <string name="title">Title</string>
+    <string name="cover">Cover</string>
     <string name="subtitle">Subtitle</string>
     <string name="channel">Channel</string>
     <string name="default_string">Default</string>
@@ -34,6 +35,8 @@
     <string name="require_device_idle">Require device idle</string>
     <string name="deadline">Deadline</string>
     <string name="latency">Latency</string>
+    <string name="empty_in_playlist">Empty in playlist</string>
+    <string name="empty_in_playlist_desc">Add music and it will show up here.</string>
 
     <!--radio group-->
     <string name="require_network">Require Network</string>

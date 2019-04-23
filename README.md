@@ -42,7 +42,7 @@ implementation 'com.google.android.material:material:1.0.0'
 - AppBarLayout -> [Any activity in this app      
 - BottomSheet -> [ContentProviderFragment]      
 - Chip -> [NotificationActivity]      
-- ConstraintLayout -> [BackgroundServiceFragment]      
+- ConstraintLayout -> [rv_album_item], [empty_list_page]      
 - FloatingActionButton -> [MainActivity]      
 - MaterialButton -> [BackgroundServiceFragment]      
 - MaterialCardView -> [BackgroundActivity]      
@@ -546,6 +546,9 @@ The exam is only available in Java at this time (4/1/2019)
 [NotificationActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/NotificationActivity.java>
 [ContentProviderFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/ContentProviderFragment.java>
 [BackgroundServiceFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/BackgroundServiceFragment.java>
+[empty_list_page]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/res/layout/empty_list_page.xml>
+[rv_album_item]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/res/layout/rv_album_item.xml>
+
 
 [Basic Types]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/BasicTypes.kt>
 [Control Flow]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/ControlFlow.kt>

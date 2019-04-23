@@ -47,4 +47,13 @@
         app:layout_constraintStart_toEndOf="@id/sdv_photo"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/gray"
+        android:layout_marginStart="@dimen/album_photo_margin_end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/sdv_photo" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

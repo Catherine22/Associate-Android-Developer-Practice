@@ -4,7 +4,7 @@ import com.catherine.materialdesignapp.MyApplication;
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.fragments.AlbumsFragment;
 import com.catherine.materialdesignapp.fragments.ArtistsFragment;
-import com.catherine.materialdesignapp.fragments.PlaylistsFragment;
+import com.catherine.materialdesignapp.fragments.PlaylistFragment;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -25,7 +25,7 @@ public class TabLayoutMusicAdapter extends FragmentStatePagerAdapter {
             case 1:
                 return new ArtistsFragment();
             case 2:
-                return new PlaylistsFragment();
+                return new PlaylistFragment();
         }
         return null;
     }

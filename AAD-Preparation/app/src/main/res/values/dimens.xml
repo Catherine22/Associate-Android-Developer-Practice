@@ -27,4 +27,12 @@
     <dimen name="album_photo_margin_end">20dp</dimen>
     <dimen name="album_height">56dp</dimen>
     <dimen name="album_width">100dp</dimen>
+
+
+    <dimen name="artist_round_shape">16dp</dimen>
+    <dimen name="grid_margin">2dp</dimen>
+    <dimen name="title_margin">12dp</dimen>
+    <dimen name="artist_title_mask_height">48dp</dimen>
+
+    <dimen name="empty_page_center_image_size">160dp</dimen>
 </resources>

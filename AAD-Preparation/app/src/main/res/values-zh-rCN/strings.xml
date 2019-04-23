@@ -22,6 +22,7 @@
     <string name="local_hands_up_notification">含确认取消键的本地推送</string>
     <string name="local_replying_notification">可回覆信息的本地推送</string>
     <string name="title">标题</string>
+    <string name="cover">封面</string>
     <string name="subtitle">副标题</string>
     <string name="channel">渠道</string>
     <string name="default_string">预设</string>
@@ -34,6 +35,8 @@
     <string name="require_device_idle">需要手机空闲状态</string>
     <string name="deadline">最长保留时间</string>
     <string name="latency">延迟启动时间</string>
+    <string name="empty_in_playlist">没有播放清单</string>
+    <string name="empty_in_playlist_desc">添加音乐后将于此显示</string>
 
     <!--radio group-->
     <string name="require_network">网络限制</string>

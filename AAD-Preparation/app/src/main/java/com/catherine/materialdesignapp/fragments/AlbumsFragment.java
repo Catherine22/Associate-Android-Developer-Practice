@@ -55,7 +55,7 @@ public class AlbumsFragment extends Fragment {
             fillInData();
             swipeRefreshLayout.setRefreshing(false);
         });
-        RecyclerView recyclerView = view.findViewById(R.id.rv_albums);
+        RecyclerView recyclerView = view.findViewById(R.id.rv_artist);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         albums = new ArrayList<>();
@@ -99,7 +99,5 @@ public class AlbumsFragment extends Fragment {
                 getActivity().runOnUiThread(() -> adapter.notifyDataSetChanged());
             }
         });
-
-
     }
 }

@@ -6,11 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".activities.BackgroundActivity"
+    tools:context=".activities.UIComponentsActivity"
     tools:showIn="@layout/app_bar_main">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_albums"
+        android:id="@+id/rv_artist"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
