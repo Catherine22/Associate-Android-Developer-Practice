@@ -89,11 +89,6 @@ public class CardRVAdapter extends RecyclerView.Adapter<CardRVAdapter.MainRvHold
         if (!TextUtils.isEmpty(cardItem.getTitle())) {
             mainRvHolder.tv_title.setVisibility(View.VISIBLE);
             mainRvHolder.tv_title.setText(cardItem.getTitle());
-
-            if (mainRvHolder.sdv_main.getVisibility() == View.GONE)
-                mainRvHolder.tv_title.setTextColor(ctx.getResources().getColor(android.R.color.black));
-            else
-                mainRvHolder.tv_title.setTextColor(ctx.getResources().getColor(android.R.color.white));
         } else
             mainRvHolder.tv_title.setVisibility(View.GONE);
 

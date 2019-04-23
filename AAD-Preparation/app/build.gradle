@@ -49,4 +49,7 @@ dependencies {
     implementation project(path: ':messagecenter')
     implementation 'com.facebook.fresco:fresco:1.13.0'
     implementation 'jp.wasabeef:fresco-processors:2.1.0'
+
+    implementation 'com.squareup.okhttp3:okhttp:3.14.1'
+    implementation 'com.google.code.gson:gson:2.8.5'
 }
