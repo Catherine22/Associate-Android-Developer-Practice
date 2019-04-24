@@ -37,6 +37,7 @@
     <string name="latency">延迟启动时间</string>
     <string name="empty_in_playlist">没有播放清单</string>
     <string name="empty_in_playlist_desc">添加音乐后将于此显示</string>
+    <string name="purchase">购买</string>
 
     <!--radio group-->
     <string name="require_network">网络限制</string>

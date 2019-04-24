@@ -37,6 +37,7 @@
     <string name="latency">Latency</string>
     <string name="empty_in_playlist">Empty in playlist</string>
     <string name="empty_in_playlist_desc">Add music and it will show up here.</string>
+    <string name="purchase">Purchase</string>
 
     <!--radio group-->
     <string name="require_network">Require Network</string>

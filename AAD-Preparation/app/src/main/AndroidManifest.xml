@@ -94,6 +94,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainActivity" />
         </activity>
+        <activity
+            android:name=".activities.AlbumDetailsActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:label="@string/app_name"
+            android:parentActivityName=".activities.UIComponentsActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.UIComponentsActivity" />
+        </activity>
 
         <!--Services-->
         <service android:name=".services.MusicPlayerService">

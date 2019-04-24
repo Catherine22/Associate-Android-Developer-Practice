@@ -13,6 +13,7 @@
         android:layout_marginTop="@dimen/safe_area_margin"
         android:layout_marginBottom="@dimen/safe_area_margin"
         android:scaleType="centerCrop"
+        android:transitionName="@string/album_image_transition"
         app:fadeDuration="300"
         app:failureImage="@color/gray"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -30,6 +31,7 @@
         android:layout_marginTop="@dimen/safe_area_margin"
         android:layout_marginEnd="@dimen/safe_area_margin"
         android:singleLine="true"
+        android:transitionName="@string/album_name_transition"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/sdv_photo"
         app:layout_constraintTop_toTopOf="parent" />
@@ -42,6 +44,7 @@
         android:layout_marginEnd="@dimen/safe_area_margin"
         android:maxLines="2"
         android:singleLine="true"
+        android:transitionName="@string/album_artist_transition"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/sdv_photo"

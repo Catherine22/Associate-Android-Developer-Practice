@@ -37,6 +37,7 @@
     <string name="latency">Latency</string>
     <string name="empty_in_playlist">Empty in playlist</string>
     <string name="empty_in_playlist_desc">Add music and it will show up here.</string>
+    <string name="purchase">Purchase</string>
 
     <!--radio group-->
     <string name="require_network">Require Network</string>
@@ -107,6 +108,9 @@
     <string name="background_service" translatable="false">Background service</string>
     <string name="job_scheduler" translatable="false">Job scheduler</string>
     <string name="fcm" translatable="false">Firebase</string>
+    <string name="album_image_transition" translatable="false">album_image_transition</string>
+    <string name="album_name_transition" translatable="false">album_name_transition</string>
+    <string name="album_artist_transition" translatable="false">album_artist_transition</string>
 
     <string name="countdown" translatable="false"><xliff:g example="5 days" id="time">%1$s</xliff:g>until holiday</string>
     <!-- Example placeholder for a special unicode symbol -->

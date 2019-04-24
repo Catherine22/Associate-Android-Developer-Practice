@@ -103,6 +103,10 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.MainRvHolder
         this.entities = entities;
     }
 
+    public String getImageUrl(int position) {
+        return entities.get(position).getImage();
+    }
+
     class MainRvHolder extends RecyclerView.ViewHolder {
         TextView tv_title;
         TextView tv_subtitle;
