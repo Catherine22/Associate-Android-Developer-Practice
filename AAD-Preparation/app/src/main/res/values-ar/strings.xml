@@ -38,6 +38,7 @@
     <string name="empty_in_playlist">Empty in playlist</string>
     <string name="empty_in_playlist_desc">Add music and it will show up here.</string>
     <string name="purchase">Purchase</string>
+    <string name="add_icon">Add</string>
 
     <!--radio group-->
     <string name="require_network">Require Network</string>
@@ -108,5 +109,14 @@
         <item quantity="two">ثانيتين</item>
         <item quantity="few">ثوان ع d%</item>
         <item quantity="many">ثوان ع d%</item>
+    </plurals>
+
+
+    <plurals name="songs">
+        <item quantity="zero">%d song</item>
+        <item quantity="one">%d song</item>
+        <item quantity="two">%d songs</item>
+        <item quantity="few">%d songs</item>
+        <item quantity="many">%d songs</item>
     </plurals>
 </resources>

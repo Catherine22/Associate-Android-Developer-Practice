@@ -38,6 +38,7 @@
     <string name="empty_in_playlist">Empty in playlist</string>
     <string name="empty_in_playlist_desc">Add music and it will show up here.</string>
     <string name="purchase">Purchase</string>
+    <string name="add_icon">Add</string>
 
     <!--radio group-->
     <string name="require_network">Require Network</string>
@@ -137,6 +138,12 @@
         <item quantity="zero">%d second</item>
         <item quantity="one">%d second</item>
         <item quantity="other">%d seconds</item>
+    </plurals>
+
+    <plurals name="songs">
+        <item quantity="zero">%d song</item>
+        <item quantity="one">%d song</item>
+        <item quantity="other">%d songs</item>
     </plurals>
 
 </resources>
