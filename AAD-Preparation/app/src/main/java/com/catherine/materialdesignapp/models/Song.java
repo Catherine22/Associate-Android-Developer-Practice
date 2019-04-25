@@ -1,6 +1,8 @@
-package com.catherine.materialdesignapp.pojos;
+package com.catherine.materialdesignapp.models;
 
-public class Album {
+import com.catherine.materialdesignapp.listeners.ProguardIgnored;
+
+public class Song implements ProguardIgnored {
     private String image;
 
     private String artist;
@@ -56,4 +58,3 @@ public class Album {
         return "ClassPojo [image = " + image + ", artist = " + artist + ", title = " + title + ", url = " + url + ", thumbnail_image = " + thumbnail_image + "]";
     }
 }
-

@@ -23,10 +23,8 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,7 +35,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.transition.TransitionInflater;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -140,7 +137,11 @@ public class AlbumsFragment extends Fragment {
                 }.getType();
                 albums = gson.fromJson(response.body().string(), listType);
                 adapter.setEntities(albums);
-                getActivity().runOnUiThread(() -> adapter.notifyDataSetChanged());
+                try {
+                    getActivity().runOnUiThread(() -> adapter.notifyDataSetChanged());
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
