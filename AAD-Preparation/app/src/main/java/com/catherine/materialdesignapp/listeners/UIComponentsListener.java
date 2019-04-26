@@ -1,13 +1,7 @@
 package com.catherine.materialdesignapp.listeners;
 
-import com.google.android.material.tabs.TabLayout;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager.widget.ViewPager;
 
 public interface UIComponentsListener {
-    Toolbar getToolbar();
-
-    TabLayout getTabLayout();
-
-    ActionBar getMyActionBar();
+    void addViewPagerManager(ViewPager viewpager, String[] titles);
 }

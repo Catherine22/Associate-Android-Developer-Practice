@@ -11,7 +11,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 public class TabLayoutMusicAdapter extends FragmentStatePagerAdapter {
-    private String TABS[] = MyApplication.INSTANCE.getResources().getStringArray(R.array.music_array);
+    public String TABS[] = MyApplication.INSTANCE.getResources().getStringArray(R.array.music_array);
 
     public TabLayoutMusicAdapter(FragmentManager fm) {
         super(fm);

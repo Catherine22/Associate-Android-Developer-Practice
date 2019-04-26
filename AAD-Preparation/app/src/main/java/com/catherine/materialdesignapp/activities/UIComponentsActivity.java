@@ -1,6 +1,7 @@
 package com.catherine.materialdesignapp.activities;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,15 +10,13 @@ import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.fragments.FavoritesFragment;
 import com.catherine.materialdesignapp.fragments.HomeFragment;
 import com.catherine.materialdesignapp.fragments.MusicFragment;
-import com.catherine.materialdesignapp.fragments.PlaylistFragment;
 import com.catherine.materialdesignapp.listeners.UIComponentsListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 public class UIComponentsActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener, UIComponentsListener {
     public final static String TAG = UIComponentsActivity.class.getSimpleName();
@@ -25,11 +24,11 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
     private final String TAG_MUSIC = "MUSIC";
     private final String TAG_FAVORITES = "FAVORITES";
 
-    private Fragment homeFragment, musicFragment, favoritesFragment;
-    private Fragment currentFragment;
+    private BottomNavigationView navigationView;
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private String[] titles;
+    private int currentTab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +45,7 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
             getSupportActionBar().setTitle(TAG);
         }
 
-        BottomNavigationView navigationView = findViewById(R.id.bottom_navigation);
+        navigationView = findViewById(R.id.bottom_navigation);
         Menu menu = navigationView.getMenu();
         titles = getResources().getStringArray(R.array.ui_component_bottom_navigation);
         for (int i = 0; i < titles.length; i++) {
@@ -54,67 +53,84 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
         }
         navigationView.setOnNavigationItemSelectedListener(this);
 
-        // initialise home fragment
-        homeFragment = new HomeFragment();
-        getSupportFragmentManager().beginTransaction().add(R.id.f_container, homeFragment, TAG_HOME).commit();
-        currentFragment = homeFragment;
-
 
         // ViewPager for MusicFragment
         tabLayout = findViewById(R.id.tab_layout);
         tabLayout.setVisibility(View.GONE);
+
+        // initialise home fragment
+        currentTab = R.id.nav_music;
+        navigationView.setSelectedItemId(currentTab);
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
+        return switchTab(item.getItemId());
+    }
+
+    private boolean switchTab(int menuItemId) {
+        currentTab = menuItemId;
+        switch (menuItemId) {
             case R.id.nav_home:
-                getSupportFragmentManager().beginTransaction().hide(currentFragment).show(homeFragment).commit();
-                currentFragment = homeFragment;
+                getSupportFragmentManager().beginTransaction().replace(R.id.f_container, new HomeFragment(), TAG_HOME).commit();
                 toolbar.setTitle(titles[0]);
                 tabLayout.setVisibility(View.GONE);
                 return true;
             case R.id.nav_music:
-                if (musicFragment == null)
-                    musicFragment = new MusicFragment();
-
-                if (musicFragment.isAdded()) {
-                    getSupportFragmentManager().beginTransaction().hide(currentFragment).show(musicFragment).commit();
-                } else {
-                    getSupportFragmentManager().beginTransaction().hide(currentFragment).add(R.id.f_container, musicFragment, TAG_MUSIC).commit();
-                }
-                currentFragment = musicFragment;
+                getSupportFragmentManager().beginTransaction().replace(R.id.f_container, new MusicFragment(), TAG_MUSIC).commit();
                 tabLayout.setVisibility(View.VISIBLE);
                 return true;
             case R.id.nav_favorite:
-                if (favoritesFragment == null)
-                    favoritesFragment = new FavoritesFragment();
-
-                if (favoritesFragment.isAdded()) {
-                    getSupportFragmentManager().beginTransaction().hide(currentFragment).show(favoritesFragment).commit();
-                } else {
-                    getSupportFragmentManager().beginTransaction().hide(currentFragment).add(R.id.f_container, favoritesFragment, TAG_FAVORITES).commit();
-                }
-                currentFragment = favoritesFragment;
+                getSupportFragmentManager().beginTransaction().replace(R.id.f_container, new FavoritesFragment(), TAG_FAVORITES).commit();
                 toolbar.setTitle(titles[2]);
                 tabLayout.setVisibility(View.GONE);
                 return true;
         }
+        currentTab = R.id.nav_home;
         return false;
     }
 
-    @Override
-    public Toolbar getToolbar() {
-        return toolbar;
-    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        navigationView.setSelectedItemId(currentTab);
+//    }
 
     @Override
-    public TabLayout getTabLayout() {
-        return tabLayout;
-    }
+    public void addViewPagerManager(ViewPager viewpager, String[] titles) {
+        tabLayout.setVisibility(View.VISIBLE);
+        tabLayout.setupWithViewPager(viewpager);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                getSupportActionBar().setTitle(titles[tab.getPosition()]);
+                toolbar.setTitle(titles[tab.getPosition()]);
+            }
 
-    @Override
-    public ActionBar getMyActionBar() {
-        return getSupportActionBar();
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
+        viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                //left<0.5, right>0.5
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                Log.i(TAG, String.format("onPageSelected:%d", position));
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
+        getSupportActionBar().setTitle(titles[0]);
+        toolbar.setTitle(titles[0]);
     }
 }

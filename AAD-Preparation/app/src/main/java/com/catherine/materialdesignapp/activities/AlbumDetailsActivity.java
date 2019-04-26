@@ -43,7 +43,6 @@ public class AlbumDetailsActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         ActivityCompat.finishAfterTransition(this);
     }
 }
