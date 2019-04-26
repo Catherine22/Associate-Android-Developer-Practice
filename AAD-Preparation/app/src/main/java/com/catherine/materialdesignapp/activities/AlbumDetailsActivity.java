@@ -2,7 +2,6 @@ package com.catherine.materialdesignapp.activities;
 
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.catherine.materialdesignapp.R;

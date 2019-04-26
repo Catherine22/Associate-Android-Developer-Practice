@@ -14,7 +14,6 @@ import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.activities.AlbumDetailsActivity;
 import com.catherine.materialdesignapp.adapters.AlbumAdapter;
 import com.catherine.materialdesignapp.listeners.OnItemClickListener;
-import com.catherine.materialdesignapp.listeners.UIComponentsListener;
 import com.catherine.materialdesignapp.models.Album;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.Gson;
@@ -46,8 +45,6 @@ public class AlbumsFragment extends Fragment {
     private AlbumAdapter adapter;
     private OkHttpClient okHttpClient;
     private List<Album> albums;
-    private final String TAG_ALBUM_DETAIL = "ALBUM_DETAIL";
-    private UIComponentsListener listener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,7 +57,6 @@ public class AlbumsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        listener = (UIComponentsListener) getActivity();
         SwipeRefreshLayout swipeRefreshLayout = view.findViewById(R.id.srl);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary, R.color.colorAccent, R.color.colorPrimaryDark, R.color.colorAccentDark);
         swipeRefreshLayout.setOnRefreshListener(() -> {
@@ -75,12 +71,6 @@ public class AlbumsFragment extends Fragment {
             @Override
             public void onItemClick(View view, int position) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//                    setSharedElementReturnTransition(TransitionInflater.from(getActivity()).inflateTransition(R.transition.change_image_trans));
-//                    setExitTransition(TransitionInflater.from(getActivity()).inflateTransition(android.R.transition.fade));
-//
-//                    albumDetails.setSharedElementEnterTransition(TransitionInflater.from(getActivity()).inflateTransition(R.transition.change_image_trans));
-//                    albumDetails.setEnterTransition(TransitionInflater.from(getActivity()).inflateTransition(android.R.transition.fade));
-
 
                     //Shared Elements Transitions
                     SimpleDraweeView sdv_photo = view.findViewById(R.id.sdv_photo);
@@ -99,8 +89,7 @@ public class AlbumsFragment extends Fragment {
                     Pair<View, String> p1 = Pair.create(sdv_photo, imageTransitionName);
                     Pair<View, String> p2 = Pair.create(tv_name, nameTransitionName);
                     Pair<View, String> p3 = Pair.create(tv_artist, artistTransitionName);
-                    ActivityOptionsCompat options = ActivityOptionsCompat.
-                            makeSceneTransitionAnimation(getActivity(), p1, p2, p3);
+                    ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), p1, p2, p3);
                     ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
                 }
             }

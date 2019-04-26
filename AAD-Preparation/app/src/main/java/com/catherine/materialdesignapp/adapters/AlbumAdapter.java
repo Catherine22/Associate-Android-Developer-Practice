@@ -111,11 +111,9 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.MainRvHolder
         TextView tv_title;
         TextView tv_subtitle;
         SimpleDraweeView sdv_photo;
-        View itemView;
 
         MainRvHolder(View itemView) {
             super(itemView);
-            this.itemView = itemView;
             tv_title = itemView.findViewById(R.id.tv_title);
             tv_subtitle = itemView.findViewById(R.id.tv_subtitle);
             sdv_photo = itemView.findViewById(R.id.sdv_photo);
