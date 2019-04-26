@@ -10,7 +10,7 @@
         android:title="Music" />
 
     <item
-        android:id="@+id/nav_playlists"
+        android:id="@+id/nav_favorite"
         android:icon="@drawable/ic_favorite_white_24dp"
         android:title="Favorites" />
 </menu>

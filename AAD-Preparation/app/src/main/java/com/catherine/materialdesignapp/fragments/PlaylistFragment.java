@@ -25,10 +25,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class PlaylistFragment extends Fragment {
-    private final static String TAG = ArtistsFragment.class.getSimpleName();
+    private final static String TAG = PlaylistFragment.class.getSimpleName();
     private PlaylistAdapter adapter;
     private List<Playlist> playlists;
     private ConstraintLayout empty_page;
@@ -45,12 +44,6 @@ public class PlaylistFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        SwipeRefreshLayout swipeRefreshLayout = view.findViewById(R.id.srl);
-        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary, R.color.colorAccent, R.color.colorPrimaryDark, R.color.colorAccentDark);
-        swipeRefreshLayout.setOnRefreshListener(() -> {
-            fillInData();
-            swipeRefreshLayout.setRefreshing(false);
-        });
         empty_page = view.findViewById(R.id.empty_page);
         recyclerView = view.findViewById(R.id.rv_playlists);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -70,11 +63,13 @@ public class PlaylistFragment extends Fragment {
             @Override
             public void onDragged(int oldPosition, int newPosition) {
                 Log.d(TAG, "onDragged:" + newPosition);
+                playlists = adapter.getEntities();
             }
 
             @Override
             public void onSwiped(int position) {
                 Log.d(TAG, "onSwiped:" + position);
+                playlists = adapter.getEntities();
             }
         });
         recyclerView.setAdapter(adapter);

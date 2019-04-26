@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.catherine.materialdesignapp.R;
+import com.catherine.materialdesignapp.fragments.FavoritesFragment;
 import com.catherine.materialdesignapp.fragments.HomeFragment;
 import com.catherine.materialdesignapp.fragments.MusicFragment;
 import com.catherine.materialdesignapp.fragments.PlaylistFragment;
@@ -22,9 +23,9 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
     public final static String TAG = UIComponentsActivity.class.getSimpleName();
     private final String TAG_HOME = "HOME";
     private final String TAG_MUSIC = "MUSIC";
-    private final String TAG_PLAYLISTS = "PLAYLISTS";
+    private final String TAG_FAVORITES = "FAVORITES";
 
-    private Fragment homeFragment, musicFragment, playlistsFragment;
+    private Fragment homeFragment, musicFragment, favoritesFragment;
     private Fragment currentFragment;
     private Toolbar toolbar;
     private TabLayout tabLayout;
@@ -85,16 +86,16 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
                 currentFragment = musicFragment;
                 tabLayout.setVisibility(View.VISIBLE);
                 return true;
-            case R.id.nav_playlists:
-                if (playlistsFragment == null)
-                    playlistsFragment = new PlaylistFragment();
+            case R.id.nav_favorite:
+                if (favoritesFragment == null)
+                    favoritesFragment = new FavoritesFragment();
 
-                if (playlistsFragment.isAdded()) {
-                    getSupportFragmentManager().beginTransaction().hide(currentFragment).show(playlistsFragment).commit();
+                if (favoritesFragment.isAdded()) {
+                    getSupportFragmentManager().beginTransaction().hide(currentFragment).show(favoritesFragment).commit();
                 } else {
-                    getSupportFragmentManager().beginTransaction().hide(currentFragment).add(R.id.f_container, playlistsFragment, TAG_PLAYLISTS).commit();
+                    getSupportFragmentManager().beginTransaction().hide(currentFragment).add(R.id.f_container, favoritesFragment, TAG_FAVORITES).commit();
                 }
-                currentFragment = playlistsFragment;
+                currentFragment = favoritesFragment;
                 toolbar.setTitle(titles[2]);
                 tabLayout.setVisibility(View.GONE);
                 return true;

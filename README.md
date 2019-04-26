@@ -51,6 +51,9 @@ implementation 'com.google.android.material:material:1.0.0'
 - Seekbar (sliders) -> [BackgroundActivity]      
 - TabLayout -> [AppComponentsActivity]      
 - TextInputLayout, TextInputEditText -> [NotificationActivity]      
+- RecyclerView (grid) -> [ArtistsFragment]   
+- RecyclerView (linear) -> [AlbumsFragment]   
+- RecyclerView (drag + swipe) -> [PlaylistFragment], [PlaylistAdapter], [RecyclerViewItemTouchHelper]    
 
 
 ## Custom Layouts
@@ -296,7 +299,7 @@ or
 </style>
 ```
 
-2. 
+2.
 In Manifest, update the theme
 ```xml
 android:theme="@style/AppTheme.NoActionBar"
@@ -311,7 +314,7 @@ public class MainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-    
+
     // We set the theme, immediately in the Activity’s onCreate()
     private void initNightMode() {
         Storage storage = new Storage(this);
@@ -548,6 +551,11 @@ The exam is only available in Java at this time (4/1/2019)
 [BackgroundServiceFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/BackgroundServiceFragment.java>
 [empty_list_page]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/res/layout/empty_list_page.xml>
 [rv_album_item]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/res/layout/rv_album_item.xml>
+[PlaylistAdapter]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/adapters/PlaylistAdapter.java>
+[PlaylistFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/PlaylistFragment.java>
+[AlbumsFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/AlbumsFragment.java>
+[ArtistsFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/ArtistsFragment.java>
+[RecyclerViewItemTouchHelper]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/components/RecyclerViewItemTouchHelper.java>
 
 
 [Basic Types]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/BasicTypes.kt>

@@ -76,9 +76,14 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.MainRv
         this.entities = entities;
     }
 
+    public List<Playlist> getEntities() {
+        return entities;
+    }
+
     @Override
     public void onDragged(int oldPosition, int newPosition) {
         Collections.swap(entities, oldPosition, newPosition);
+
         //非常重要，调用后Adapter才能知道发生了改变。
         notifyItemMoved(oldPosition, newPosition);
         listener.onDragged(oldPosition, newPosition);
@@ -86,10 +91,11 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.MainRv
 
     @Override
     public void onSwiped(int position) {
-        listener.onSwiped(position);
         entities.remove(position);
+
         //非常重要，调用后Adapter才能知道发生了改变。
-        notifyItemRemoved(position);
+        notifyDataSetChanged();
+        listener.onSwiped(position);
     }
 
     class MainRvHolder extends RecyclerView.ViewHolder {

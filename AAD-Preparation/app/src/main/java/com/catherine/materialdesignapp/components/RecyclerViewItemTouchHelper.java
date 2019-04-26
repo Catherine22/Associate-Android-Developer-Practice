@@ -29,7 +29,7 @@ public class RecyclerViewItemTouchHelper extends ItemTouchHelper.Callback {
     @Override
     public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
         int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
-        int swipeFlags = ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
+        int swipeFlags = ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT;
         return makeMovementFlags(dragFlags, swipeFlags);
     }
 
@@ -41,7 +41,10 @@ public class RecyclerViewItemTouchHelper extends ItemTouchHelper.Callback {
 
 
     @Override
-    public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-        adapter.onSwiped(direction);
+    public void onSwiped(@NonNull RecyclerView.ViewHolder target, int direction) {
+        if (ItemTouchHelper.LEFT == direction) {
+            // swipe to remove items
+            adapter.onSwiped(target.getAdapterPosition());
+        }
     }
 }
