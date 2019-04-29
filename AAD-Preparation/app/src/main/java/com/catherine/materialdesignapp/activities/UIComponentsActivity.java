@@ -16,19 +16,19 @@ import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
-public class UIComponentsActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener, UIComponentsListener {
+public class UIComponentsActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener, UIComponentsListener, FragmentManager.OnBackStackChangedListener {
     public final static String TAG = UIComponentsActivity.class.getSimpleName();
     private final String TAG_HOME = "HOME";
     private final String TAG_MUSIC = "MUSIC";
     private final String TAG_FAVORITES = "FAVORITES";
 
-    private BottomNavigationView navigationView;
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private String[] titles;
-    private int currentTab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +45,7 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
             getSupportActionBar().setTitle(TAG);
         }
 
-        navigationView = findViewById(R.id.bottom_navigation);
+        BottomNavigationView navigationView = findViewById(R.id.bottom_navigation);
         Menu menu = navigationView.getMenu();
         titles = getResources().getStringArray(R.array.ui_component_bottom_navigation);
         for (int i = 0; i < titles.length; i++) {
@@ -58,9 +58,9 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
         tabLayout = findViewById(R.id.tab_layout);
         tabLayout.setVisibility(View.GONE);
 
+        getSupportFragmentManager().addOnBackStackChangedListener(this);
         // initialise home fragment
-        currentTab = R.id.nav_music;
-        navigationView.setSelectedItemId(currentTab);
+        navigationView.setSelectedItemId(R.id.nav_home);
     }
 
     @Override
@@ -69,32 +69,35 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
     }
 
     private boolean switchTab(int menuItemId) {
-        currentTab = menuItemId;
+        String tag;
+        Fragment f;
         switch (menuItemId) {
             case R.id.nav_home:
-                getSupportFragmentManager().beginTransaction().replace(R.id.f_container, new HomeFragment(), TAG_HOME).commit();
+                tag = TAG_HOME;
+                f = new HomeFragment();
                 toolbar.setTitle(titles[0]);
                 tabLayout.setVisibility(View.GONE);
-                return true;
+                break;
             case R.id.nav_music:
-                getSupportFragmentManager().beginTransaction().replace(R.id.f_container, new MusicFragment(), TAG_MUSIC).commit();
+                tag = TAG_MUSIC;
+                f = new MusicFragment();
                 tabLayout.setVisibility(View.VISIBLE);
-                return true;
+                break;
             case R.id.nav_favorite:
-                getSupportFragmentManager().beginTransaction().replace(R.id.f_container, new FavoritesFragment(), TAG_FAVORITES).commit();
+                tag = TAG_FAVORITES;
+                f = new FavoritesFragment();
                 toolbar.setTitle(titles[2]);
                 tabLayout.setVisibility(View.GONE);
-                return true;
+                break;
+            default:
+                return false;
         }
-        currentTab = R.id.nav_home;
-        return false;
+        Log.e(TAG, String.format("onSwitch:%s", tag));
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.f_container, f, tag)
+                .commit();
+        return true;
     }
-
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        navigationView.setSelectedItemId(currentTab);
-//    }
 
     @Override
     public void addViewPagerManager(ViewPager viewpager, String[] titles) {
@@ -132,5 +135,10 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
         });
         getSupportActionBar().setTitle(titles[0]);
         toolbar.setTitle(titles[0]);
+    }
+
+    @Override
+    public void onBackStackChanged() {
+        Log.e(TAG, "count:" + getSupportFragmentManager().getBackStackEntryCount());
     }
 }

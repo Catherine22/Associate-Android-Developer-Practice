@@ -175,6 +175,16 @@ There are four different types of app components:
 
 > Activity vs Fragment
 
+## Fragment
+1. To build a multi-pane UI   
+2. To reuse fragments in multiple activities.   
+3. A fragment must always be hosted in an activity and the fragment's lifecycle is directly affected by the host activity's lifecycle.    
+
+
+
+
+[Read more](https://developer.android.com/guide/components/fragments)
+
 ## Services
 - Two services in Android - background service and foreground service     
 - Background services are no longer working since Android Oreo, you are suppose to use ```JobScheduler``` instead.      
