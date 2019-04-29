@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.catherine.materialdesignapp.R;
+import com.catherine.materialdesignapp.activities.UIComponentsActivity;
 import com.catherine.materialdesignapp.adapters.TabLayoutMusicAdapter;
 import com.catherine.materialdesignapp.listeners.UIComponentsListener;
 
@@ -30,13 +31,16 @@ public class MusicFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         listener = (UIComponentsListener) getActivity();
-        initView(view);
-    }
 
-    private void initView(View view) {
+        int restoreTab = 0;
+        if (getArguments() != null) {
+            restoreTab = getArguments().getInt(UIComponentsActivity.STATE_SELECTED_TAB);
+        }
+
         ViewPager viewpager = view.findViewById(R.id.viewpager);
         TabLayoutMusicAdapter adapter = new TabLayoutMusicAdapter(getChildFragmentManager());
         viewpager.setAdapter(adapter);
+        viewpager.setCurrentItem(restoreTab, false);
         listener.addViewPagerManager(viewpager, adapter.TABS);
     }
 }

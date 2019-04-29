@@ -26,9 +26,17 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
     private final String TAG_MUSIC = "MUSIC";
     private final String TAG_FAVORITES = "FAVORITES";
 
+
+    private final static String STATE_SELECTED_BOTTOM_NAVIGATION = "STATE_SELECTED_BOTTOM_NAVIGATION";
+    public final static String STATE_SELECTED_TAB = "STATE_SELECTED_TAB"; // this works while having MusicFragment selected
+    private int selectedTab = 0; // this works while having MusicFragment selected
+
+    private BottomNavigationView navigationView;
     private Toolbar toolbar;
     private TabLayout tabLayout;
+    private ViewPager viewpager;
     private String[] titles;
+    private Fragment[] fragments = new Fragment[3];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +53,7 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
             getSupportActionBar().setTitle(TAG);
         }
 
-        BottomNavigationView navigationView = findViewById(R.id.bottom_navigation);
+        navigationView = findViewById(R.id.bottom_navigation);
         Menu menu = navigationView.getMenu();
         titles = getResources().getStringArray(R.array.ui_component_bottom_navigation);
         for (int i = 0; i < titles.length; i++) {
@@ -71,29 +79,48 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
     private boolean switchTab(int menuItemId) {
         String tag;
         Fragment f;
+        int index;
         switch (menuItemId) {
             case R.id.nav_home:
                 tag = TAG_HOME;
-                f = new HomeFragment();
-                toolbar.setTitle(titles[0]);
+                index = 0;
+                if (fragments[index] == null)
+                    fragments[index] = new HomeFragment();
+                f = fragments[index];
+                toolbar.setTitle(titles[index]);
                 tabLayout.setVisibility(View.GONE);
                 break;
             case R.id.nav_music:
                 tag = TAG_MUSIC;
-                f = new MusicFragment();
+                index = 1;
+                if (fragments[index] == null) {
+                    fragments[index] = new MusicFragment();
+
+                    Bundle b = new Bundle();
+                    b.putInt(STATE_SELECTED_TAB, selectedTab);
+                    fragments[index].setArguments(b);
+                }
+                f = fragments[index];
                 tabLayout.setVisibility(View.VISIBLE);
                 break;
             case R.id.nav_favorite:
                 tag = TAG_FAVORITES;
-                f = new FavoritesFragment();
-                toolbar.setTitle(titles[2]);
+                index = 2;
+                if (fragments[index] == null)
+                    fragments[index] = new FavoritesFragment();
+                f = fragments[index];
+                toolbar.setTitle(titles[index]);
                 tabLayout.setVisibility(View.GONE);
                 break;
             default:
                 return false;
         }
-        Log.e(TAG, String.format("onSwitch:%s", tag));
+        Log.e(TAG, String.format("onTabSwitch:%s", tag));
+
+        // keep only one fragment in the back stack
+        clearBackStack();
         getSupportFragmentManager().beginTransaction()
+                .addToBackStack(tag)
                 .replace(R.id.f_container, f, tag)
                 .commit();
         return true;
@@ -101,6 +128,7 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
 
     @Override
     public void addViewPagerManager(ViewPager viewpager, String[] titles) {
+        this.viewpager = viewpager;
         tabLayout.setVisibility(View.VISIBLE);
         tabLayout.setupWithViewPager(viewpager);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -138,7 +166,38 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
     }
 
     @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() <= 1)
+            finish();
+        else {
+            getSupportFragmentManager().popBackStack();
+        }
+    }
+
+    @Override
     public void onBackStackChanged() {
-        Log.e(TAG, "count:" + getSupportFragmentManager().getBackStackEntryCount());
+        Log.w(TAG, String.format("Back stack counts: %d", getSupportFragmentManager().getBackStackEntryCount()));
+    }
+
+    private void clearBackStack() {
+        for (int i = 0; i < getSupportFragmentManager().getBackStackEntryCount(); i++) {
+            getSupportFragmentManager().popBackStack();
+        }
+    }
+
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putInt(STATE_SELECTED_BOTTOM_NAVIGATION, navigationView.getSelectedItemId());
+        savedInstanceState.putInt(STATE_SELECTED_TAB, viewpager.getCurrentItem());
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        int nav = savedInstanceState.getInt(STATE_SELECTED_BOTTOM_NAVIGATION);
+        selectedTab = savedInstanceState.getInt(STATE_SELECTED_TAB);
+        navigationView.setSelectedItemId(nav);
     }
 }

@@ -11,7 +11,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 public class TabLayoutMusicAdapter extends FragmentStatePagerAdapter {
-    public String TABS[] = MyApplication.INSTANCE.getResources().getStringArray(R.array.music_array);
+    public String[] TABS = MyApplication.INSTANCE.getResources().getStringArray(R.array.music_array);
+    public Fragment[] fragments = new Fragment[3];
 
     public TabLayoutMusicAdapter(FragmentManager fm) {
         super(fm);
@@ -19,15 +20,20 @@ public class TabLayoutMusicAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        switch (position) {
-            case 0:
-                return new AlbumsFragment();
-            case 1:
-                return new ArtistsFragment();
-            case 2:
-                return new PlaylistFragment();
+        if (fragments[position] == null) {
+            switch (position) {
+                case 0:
+                    fragments[position] = new AlbumsFragment();
+                    break;
+                case 1:
+                    fragments[position] = new ArtistsFragment();
+                    break;
+                case 2:
+                    fragments[position] = new PlaylistFragment();
+                    break;
+            }
         }
-        return null;
+        return fragments[position];
     }
 
     @Override
