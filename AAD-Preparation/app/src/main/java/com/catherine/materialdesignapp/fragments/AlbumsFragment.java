@@ -15,7 +15,16 @@ import com.catherine.materialdesignapp.activities.AlbumDetailsActivity;
 import com.catherine.materialdesignapp.adapters.AlbumAdapter;
 import com.catherine.materialdesignapp.listeners.OnItemClickListener;
 import com.catherine.materialdesignapp.models.Album;
+import com.catherine.materialdesignapp.utils.PrefetchSubscriber;
+import com.facebook.binaryresource.BinaryResource;
+import com.facebook.cache.common.CacheKey;
+import com.facebook.datasource.DataSource;
+import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.cache.DefaultCacheKeyFactory;
+import com.facebook.imagepipeline.core.DefaultExecutorSupplier;
+import com.facebook.imagepipeline.core.ImagePipelineFactory;
+import com.facebook.imagepipeline.request.ImageRequest;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -34,6 +43,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -45,6 +55,7 @@ public class AlbumsFragment extends Fragment {
     private AlbumAdapter adapter;
     private OkHttpClient okHttpClient;
     private List<Album> albums;
+    private PrefetchSubscriber subscriber;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -101,6 +112,7 @@ public class AlbumsFragment extends Fragment {
         });
         recyclerView.setAdapter(adapter);
         okHttpClient = new OkHttpClient.Builder().build();
+        subscriber = new PrefetchSubscriber();
         fillInData();
     }
 
@@ -131,7 +143,27 @@ public class AlbumsFragment extends Fragment {
                 } catch (NullPointerException e) {
                     e.printStackTrace();
                 }
+
+                cacheItems();
             }
         });
+    }
+
+    private void cacheItems() {
+        try {
+            for (int i = 0; i < albums.size(); i++) {
+//                                    File file = new File(Constants.ROOT_PATH + Constants.FRESCO_DIR + "/");
+                String url = albums.get(i).getUrl();
+                ImageRequest imageRequest = ImageRequest.fromUri(url);
+                CacheKey cacheKey = DefaultCacheKeyFactory.getInstance().getEncodedCacheKey(imageRequest, null);
+                BinaryResource resource = ImagePipelineFactory.getInstance().getMainFileCache().getResource(cacheKey);
+                if (resource == null || resource.size() == 0) {
+                    DataSource<Void> ds = Fresco.getImagePipeline().prefetchToDiskCache(ImageRequest.fromUri(url), null);
+                    ds.subscribe(subscriber, new DefaultExecutorSupplier(3).forBackgroundTasks());
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

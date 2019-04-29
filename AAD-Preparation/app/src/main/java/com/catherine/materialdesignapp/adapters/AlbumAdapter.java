@@ -1,6 +1,8 @@
 package com.catherine.materialdesignapp.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.text.Html;
@@ -14,8 +16,15 @@ import android.widget.TextView;
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.listeners.OnItemClickListener;
 import com.catherine.materialdesignapp.models.Album;
+import com.facebook.binaryresource.BinaryResource;
+import com.facebook.binaryresource.FileBinaryResource;
+import com.facebook.cache.common.CacheKey;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.cache.DefaultCacheKeyFactory;
+import com.facebook.imagepipeline.core.ImagePipelineFactory;
+import com.facebook.imagepipeline.request.ImageRequest;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,9 +69,14 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.MainRvHolder
         Album album = entities.get(position);
         if (!TextUtils.isEmpty(album.getImage())) {
             mainRvHolder.sdv_photo.setVisibility(View.VISIBLE);
-            Uri uri = Uri.parse(album.getImage());
             // show raw images
-            mainRvHolder.sdv_photo.setImageURI(uri);
+            Bitmap b = getBitmapFromCache(album.getImage());
+            if (b != null) {
+                mainRvHolder.sdv_photo.setImageBitmap(b);
+            } else {
+                Uri uri = Uri.parse(album.getImage());
+                mainRvHolder.sdv_photo.setImageURI(uri);
+            }
         } else
             mainRvHolder.sdv_photo.setVisibility(View.GONE);
 
@@ -105,6 +119,20 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.MainRvHolder
 
     public String getImageUrl(int position) {
         return entities.get(position).getImage();
+    }
+
+    public Bitmap getBitmapFromCache(String url) {
+        Bitmap bitmap = null;
+        try {
+            ImageRequest imageRequest = ImageRequest.fromUri(url);
+            CacheKey cacheKey = DefaultCacheKeyFactory.getInstance().getEncodedCacheKey(imageRequest, null);
+            BinaryResource resource = ImagePipelineFactory.getInstance().getMainFileCache().getResource(cacheKey);
+            File file = ((FileBinaryResource) resource).getFile();
+            bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bitmap;
     }
 
     class MainRvHolder extends RecyclerView.ViewHolder {

@@ -1,5 +1,6 @@
 package com.catherine.materialdesignapp.activities;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
@@ -8,7 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.catherine.materialdesignapp.MyApplication;
 import com.catherine.materialdesignapp.R;
+import com.catherine.materialdesignapp.listeners.OnRequestPermissionsListener;
 import com.catherine.materialdesignapp.receivers.NotificationReceiver;
 import com.catherine.materialdesignapp.utils.LocationHelper;
 import com.catherine.materialdesignapp.utils.OccupiedActions;
@@ -16,17 +19,20 @@ import com.catherine.materialdesignapp.utils.Storage;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
+import java.util.List;
 import java.util.Locale;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, OnRequestPermissionsListener {
     private final static String TAG = MainActivity.class.getSimpleName();
     private NotificationReceiver notificationReceiver;
+    private String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         initComponents();
         handleAppLinks();
         registerReceivers();
+        getPermissions(permissions, this);
     }
 
     // We set the theme, immediately in the Activity’s onCreate()
@@ -172,5 +179,20 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     protected void onDestroy() {
         unregisterReceivers();
         super.onDestroy();
+    }
+
+    @Override
+    public void onGranted() {
+        MyApplication.INSTANCE.init(true);
+    }
+
+    @Override
+    public void onDenied(@Nullable List<String> deniedPermissions) {
+        MyApplication.INSTANCE.init(false);
+    }
+
+    @Override
+    public void onRetry() {
+        getPermissions(permissions, this);
     }
 }
