@@ -54,6 +54,10 @@ implementation 'com.google.android.material:material:1.0.0'
 - RecyclerView (grid) -> [ArtistsFragment]   
 - RecyclerView (linear) -> [AlbumsFragment]   
 - RecyclerView (drag + swipe) -> [PlaylistFragment], [PlaylistAdapter], [RecyclerViewItemTouchHelper]    
+- RecyclerView (SelectionTracker) -> [ArtistsFragment], [ArtistAdapter], [ArtistItemKeyProvider], [ArtistItemDetailsLookup]    
+  ```SelectionTracker``` is another to do ```setOnClickListener```, which is more powerful while multiple items need selecting   
+- BottomNavigationView -> [UIComponentsActivity]    
+- TabLayout + ViewPager -> [MusicFragment], [UIComponentsActivity]    
 
 
 ## Custom Layouts
@@ -173,16 +177,14 @@ There are four different types of app components:
 
 ## Activity
 
-> Activity vs Fragment
-
 ## Fragment
 1. To build a multi-pane UI   
 2. To reuse fragments in multiple activities.   
 3. A fragment must always be hosted in an activity and the fragment's lifecycle is directly affected by the host activity's lifecycle.    
 
 
-
-
+Code (Activity + Fragment): [UIComponentsActivity]   
+Code (ViewPager + Fragment): [MusicFragment]    
 [Read more](https://developer.android.com/guide/components/fragments)
 
 ## Services
@@ -538,7 +540,7 @@ The exam is only available in Java at this time (4/1/2019)
 [Material design]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#material-design>
 [Localisation]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#Localisation>
 [Device compatibility]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#device-compatibility>
-[res]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/res/
+[res]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/res/>
 [Lifecycle]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#lifecycle>
 [Jetpack]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#jetpack>
 
@@ -565,7 +567,12 @@ The exam is only available in Java at this time (4/1/2019)
 [PlaylistFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/PlaylistFragment.java>
 [AlbumsFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/AlbumsFragment.java>
 [ArtistsFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/ArtistsFragment.java>
+[ArtistAdapter]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/adapters/ArtistAdapter.java>
+[ArtistItemKeyProvider]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/components/ArtistItemKeyProvider.java>
+[ArtistItemDetailsLookup]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/components/ArtistItemDetailsLookup.java>
 [RecyclerViewItemTouchHelper]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/components/RecyclerViewItemTouchHelper.java>
+[MusicFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/MusicFragment.java>
+[UIComponentsActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/UIComponentsActivity.java>
 
 
 [Basic Types]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/BasicTypes.kt>
