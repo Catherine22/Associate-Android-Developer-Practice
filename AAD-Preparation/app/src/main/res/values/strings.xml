@@ -5,9 +5,9 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_lifecycle">Lifecycle</string>
     <string name="action_night_mode">Night Mode</string>
     <string name="action_day_mode">Day Mode</string>
+    <string name="action_search">Search</string>
     <string name="alert_icon">alert icon</string>
     <string name="undo">undo</string>
     <string name="hello_world">Hello World!</string>
@@ -51,6 +51,7 @@
         <item>Working in the background</item>
         <item>Notification</item>
         <item>UI components</item>
+        <item>Lifecycle</item>
     </string-array>
 
 

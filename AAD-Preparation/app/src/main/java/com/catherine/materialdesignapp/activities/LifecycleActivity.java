@@ -45,8 +45,7 @@ public class LifecycleActivity extends BaseActivity implements LifecycleOwner, L
                 getString(R.string.promo_message), getResources().getQuantityString(R.plurals.numberOfSongsAvailable, 3)));
 
         LogCatHelper logCatHelper = new LogCatHelper();
-        logCatHelper.setLogCatListener(this);
-        logCatHelper.startRecording();
+        logCatHelper.startRecording(tv_log);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.catherine.materialdesignapp.adapters;
 
+import android.os.Parcelable;
+
 import com.catherine.materialdesignapp.MyApplication;
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.fragments.AlbumsFragment;
@@ -39,6 +41,11 @@ public class TabLayoutMusicAdapter extends FragmentStatePagerAdapter {
     @Override
     public int getCount() {
         return TABS.length;
+    }
+
+    @Override
+    public Parcelable saveState() {
+        return null;
     }
 
     @Override

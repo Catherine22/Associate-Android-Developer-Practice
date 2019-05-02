@@ -75,7 +75,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         Menu menu = navigationView.getMenu();
         String[] menuTitles = getResources().getStringArray(R.array.drawer_array);
 
-        int[] ids = {R.id.nav_app_components, R.id.nav_background, R.id.nav_notification, R.id.nav_manage};
+        int[] ids = {R.id.nav_app_components, R.id.nav_background, R.id.nav_notification, R.id.nav_manage, R.id.nav_lifecycle};
         for (int i = 0; i < ids.length; i++) {
             MenuItem nav = menu.findItem(ids[i]);
             nav.setTitle(menuTitles[i]);
@@ -130,12 +130,21 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_lifecycle:
-                Intent lifecycleIntent = new Intent(this, LifecycleActivity.class);
-                startActivity(lifecycleIntent);
+            case R.id.action_search:
                 return true;
             case R.id.action_night_mode:
-
+                Storage storage = new Storage(this);
+                int nightMode = AppCompatDelegate.getDefaultNightMode();
+                if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    storage.save(Storage.NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_NO);
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    item.setTitle(getString(R.string.action_day_mode));
+                    storage.save(Storage.NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_YES);
+                }
+                // Recreate the activity for the theme change to take effect.
+                recreate();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -162,7 +171,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 Intent uiComponentsIntent = new Intent(this, UIComponentsActivity.class);
                 startActivity(uiComponentsIntent);
                 break;
-            case R.id.nav_share:
+            case R.id.nav_lifecycle:
+                Intent lifecycleIntent = new Intent(this, LifecycleActivity.class);
+                startActivity(lifecycleIntent);
                 break;
             case R.id.nav_send:
                 break;

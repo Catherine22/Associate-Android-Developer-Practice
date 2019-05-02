@@ -5,9 +5,9 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">侧边栏顶部</string>
-    <string name="action_lifecycle">生命周期</string>
     <string name="action_night_mode">夜间模式</string>
     <string name="action_day_mode">日间模式</string>
+    <string name="action_search">搜寻</string>
     <string name="alert_icon">提醒图标</string>
     <string name="undo">还原</string>
     <string name="hello_world">你好啊！</string>
@@ -51,6 +51,7 @@
         <item>背景运行</item>
         <item>消息推送服务</item>
         <item>视图组建</item>
+        <item>生命周期</item>
     </string-array>
 
 
