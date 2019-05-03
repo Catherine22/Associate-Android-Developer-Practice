@@ -14,8 +14,11 @@ import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.activities.AlbumDetailsActivity;
 import com.catherine.materialdesignapp.adapters.AlbumAdapter;
 import com.catherine.materialdesignapp.listeners.OnItemClickListener;
+import com.catherine.materialdesignapp.listeners.OnSearchViewListener;
+import com.catherine.materialdesignapp.listeners.UIComponentsListener;
 import com.catherine.materialdesignapp.models.Album;
 import com.catherine.materialdesignapp.utils.PrefetchSubscriber;
+import com.catherine.materialdesignapp.utils.TextHelper;
 import com.facebook.binaryresource.BinaryResource;
 import com.facebook.cache.common.CacheKey;
 import com.facebook.datasource.DataSource;
@@ -30,9 +33,12 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -50,12 +56,14 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class AlbumsFragment extends Fragment {
+public class AlbumsFragment extends Fragment implements OnSearchViewListener {
     private final static String TAG = AlbumsFragment.class.getSimpleName();
     private AlbumAdapter adapter;
     private OkHttpClient okHttpClient;
     private List<Album> albums;
+    private List<Album> filteredAlbums;
     private PrefetchSubscriber subscriber;
+    private UIComponentsListener listener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -78,7 +86,8 @@ public class AlbumsFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         albums = new ArrayList<>();
-        adapter = new AlbumAdapter(getActivity(), albums, new OnItemClickListener() {
+        filteredAlbums = new ArrayList<>();
+        adapter = new AlbumAdapter(getActivity(), filteredAlbums, new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -113,6 +122,8 @@ public class AlbumsFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         okHttpClient = new OkHttpClient.Builder().build();
         subscriber = new PrefetchSubscriber();
+        listener = (UIComponentsListener) getActivity();
+        listener.addOnSearchListener(this);
         fillInData();
     }
 
@@ -124,8 +135,8 @@ public class AlbumsFragment extends Fragment {
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                getActivity().runOnUiThread(() -> adapter.notifyDataSetChanged());
-
+                e.printStackTrace();
+                updateList();
             }
 
             @Override
@@ -137,13 +148,9 @@ public class AlbumsFragment extends Fragment {
                 Type listType = new TypeToken<List<Album>>() {
                 }.getType();
                 albums = gson.fromJson(response.body().string(), listType);
-                adapter.setEntities(albums);
-                try {
-                    getActivity().runOnUiThread(() -> adapter.notifyDataSetChanged());
-                } catch (NullPointerException e) {
-                    e.printStackTrace();
-                }
-
+                filteredAlbums.addAll(albums);
+                adapter.setEntities(filteredAlbums);
+                updateList();
                 cacheItems();
             }
         });
@@ -152,7 +159,7 @@ public class AlbumsFragment extends Fragment {
     private void cacheItems() {
         try {
             for (int i = 0; i < albums.size(); i++) {
-//                                    File file = new File(Constants.ROOT_PATH + Constants.FRESCO_DIR + "/");
+//                File file = new File(Constants.ROOT_PATH + Constants.FRESCO_DIR + "/");
                 String url = albums.get(i).getUrl();
                 ImageRequest imageRequest = ImageRequest.fromUri(url);
                 CacheKey cacheKey = DefaultCacheKeyFactory.getInstance().getEncodedCacheKey(imageRequest, null);
@@ -163,6 +170,31 @@ public class AlbumsFragment extends Fragment {
                 }
             }
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        filteredAlbums.clear();
+        for (Album album : albums) {
+            if (TextHelper.matcher(album.getArtist(), newText) || TextHelper.matcher(album.getTitle(), newText)) {
+                filteredAlbums.add(album);
+            }
+        }
+        updateList();
+        return false;
+    }
+
+    private void updateList() {
+        try {
+            getActivity().runOnUiThread(() -> adapter.notifyDataSetChanged());
+        } catch (NullPointerException e) {
             e.printStackTrace();
         }
     }

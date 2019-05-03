@@ -17,7 +17,6 @@ import androidx.viewpager.widget.ViewPager;
 
 public class MusicFragment extends Fragment {
     private final static String TAG = MusicFragment.class.getSimpleName();
-    private UIComponentsListener listener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,7 +29,7 @@ public class MusicFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        listener = (UIComponentsListener) getActivity();
+        UIComponentsListener listener = (UIComponentsListener) getActivity();
 
         int restoreTab = 0;
         if (getArguments() != null) {

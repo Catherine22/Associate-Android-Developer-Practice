@@ -40,7 +40,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initComponents();
-        handleAppLinks();
+        handleAppLinks(getIntent());
         registerReceivers();
         getPermissions(permissions, this);
     }
@@ -86,9 +86,15 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         tv_location.setText(String.format(Locale.US, "Preferred language: %s", locationHelper.getPreferredLanguage()));
     }
 
-    private void handleAppLinks() {
+    @Override
+    protected void onNewIntent(Intent intent) {
+        handleAppLinks(intent);
+    }
+
+    private void handleAppLinks(Intent appLinkIntent) {
         // ATTENTION: This was auto-generated to handle app links.
-        Intent appLinkIntent = getIntent();
+        if (appLinkIntent == null)
+            return;
         String appLinkAction = appLinkIntent.getAction();
         Uri appLinkData = appLinkIntent.getData();
     }
@@ -115,14 +121,14 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.main_menu, menu);
 
         Storage storage = new Storage(this);
         int nightMode = storage.retrieveInt(Storage.NIGHT_MODE);
         if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {
-            menu.getItem(1).setTitle(getString(R.string.action_day_mode));
+            menu.getItem(0).setTitle(getString(R.string.action_day_mode));
         } else {
-            menu.getItem(1).setTitle(getString(R.string.action_night_mode));
+            menu.getItem(0).setTitle(getString(R.string.action_night_mode));
         }
         return true;
     }
@@ -130,8 +136,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_search:
-                return true;
             case R.id.action_night_mode:
                 Storage storage = new Storage(this);
                 int nightMode = AppCompatDelegate.getDefaultNightMode();

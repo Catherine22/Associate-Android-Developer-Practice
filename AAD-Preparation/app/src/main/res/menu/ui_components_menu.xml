@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/nav_home"
-        android:icon="@drawable/ic_home_white_24dp"
-        android:title="Home" />
-    <item
-        android:id="@+id/nav_music"
-        android:icon="@drawable/ic_music_note_white_24dp"
-        android:title="Music" />
-
-    <item
-        android:id="@+id/nav_favorite"
-        android:icon="@drawable/ic_favorite_white_24dp"
-        android:title="Favorites" />
+        android:id="@+id/action_search"
+        android:actionLayout="@layout/searchview_layout"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="@string/action_search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView" />
 </menu>

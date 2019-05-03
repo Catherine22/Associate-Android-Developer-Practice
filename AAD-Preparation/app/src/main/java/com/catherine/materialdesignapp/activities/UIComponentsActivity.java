@@ -1,5 +1,8 @@
 package com.catherine.materialdesignapp.activities;
 
+import android.app.SearchManager;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -10,17 +13,20 @@ import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.fragments.FavoritesFragment;
 import com.catherine.materialdesignapp.fragments.HomeFragment;
 import com.catherine.materialdesignapp.fragments.MusicFragment;
+import com.catherine.materialdesignapp.listeners.OnSearchViewListener;
 import com.catherine.materialdesignapp.listeners.UIComponentsListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
-public class UIComponentsActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener, UIComponentsListener, FragmentManager.OnBackStackChangedListener {
+public class UIComponentsActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener,
+        UIComponentsListener, FragmentManager.OnBackStackChangedListener, SearchView.OnQueryTextListener {
     public final static String TAG = UIComponentsActivity.class.getSimpleName();
     private final String TAG_HOME = "HOME";
     private final String TAG_MUSIC = "MUSIC";
@@ -37,12 +43,34 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
     private ViewPager viewpager;
     private String[] titles;
     private Fragment[] fragments = new Fragment[3];
+    private OnSearchViewListener onSearchViewListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ui_components);
         initComponent();
+
+        handleIntent(getIntent());
+    }
+
+
+    /**
+     * If your searchable activity launches in single top mode (android:launchMode="singleTop"),
+     * also handle the ACTION_SEARCH intent in the onNewIntent() method
+     *
+     * @param intent
+     */
+    @Override
+    protected void onNewIntent(Intent intent) {
+        handleIntent(intent);
+    }
+
+    private void handleIntent(Intent intent) {
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            //use the query to search your data somehow
+        }
     }
 
     private void initComponent() {
@@ -69,6 +97,28 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
         getSupportFragmentManager().addOnBackStackChangedListener(this);
         // initialise home fragment
         navigationView.setSelectedItemId(R.id.nav_home);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.ui_components_menu, menu);
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setOnQueryTextListener(this);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_search:
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
@@ -166,6 +216,11 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
     }
 
     @Override
+    public void addOnSearchListener(OnSearchViewListener listener) {
+        this.onSearchViewListener = listener;
+    }
+
+    @Override
     public void onBackPressed() {
         if (getSupportFragmentManager().getBackStackEntryCount() <= 1)
             finish();
@@ -185,7 +240,6 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
         }
     }
 
-
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putInt(STATE_SELECTED_BOTTOM_NAVIGATION, navigationView.getSelectedItemId());
@@ -199,5 +253,19 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
         int nav = savedInstanceState.getInt(STATE_SELECTED_BOTTOM_NAVIGATION);
         selectedTab = savedInstanceState.getInt(STATE_SELECTED_TAB);
         navigationView.setSelectedItemId(nav);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        if (onSearchViewListener != null)
+            onSearchViewListener.onQueryTextSubmit(query);
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        if (onSearchViewListener != null)
+            onSearchViewListener.onQueryTextChange(newText);
+        return false;
     }
 }
