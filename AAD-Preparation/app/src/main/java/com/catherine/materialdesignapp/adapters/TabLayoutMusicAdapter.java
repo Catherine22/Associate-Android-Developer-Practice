@@ -2,15 +2,15 @@ package com.catherine.materialdesignapp.adapters;
 
 import android.os.Parcelable;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+
 import com.catherine.materialdesignapp.MyApplication;
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.fragments.AlbumsFragment;
 import com.catherine.materialdesignapp.fragments.ArtistsFragment;
 import com.catherine.materialdesignapp.fragments.PlaylistFragment;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
 
 public class TabLayoutMusicAdapter extends FragmentStatePagerAdapter {
     public String[] TABS = MyApplication.INSTANCE.getResources().getStringArray(R.array.music_array);

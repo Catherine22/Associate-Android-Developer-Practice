@@ -2,16 +2,16 @@ package com.catherine.materialdesignapp.adapters;
 
 import android.os.Build;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+
 import com.catherine.materialdesignapp.MyApplication;
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.fragments.BackgroundServiceFragment;
 import com.catherine.materialdesignapp.fragments.BroadcastReceiverFragment;
 import com.catherine.materialdesignapp.fragments.ContentProviderFragment;
 import com.catherine.materialdesignapp.fragments.ForegroundServiceFragment;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
 
 public class TabLayoutAppComponentsAdapter extends FragmentStatePagerAdapter {
     private String TABS[];

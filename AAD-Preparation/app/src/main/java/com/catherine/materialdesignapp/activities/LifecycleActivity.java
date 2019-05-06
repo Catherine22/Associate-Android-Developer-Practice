@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.LifecycleOwner;
+
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.listeners.LogCatListener;
 import com.catherine.materialdesignapp.utils.LifecycleObserverImpl;
@@ -12,9 +15,6 @@ import com.catherine.materialdesignapp.utils.LogCatHelper;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-
-import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.LifecycleOwner;
 
 public class LifecycleActivity extends BaseActivity implements LifecycleOwner, LogCatListener {
     private final static String TAG = LifecycleActivity.class.getSimpleName();

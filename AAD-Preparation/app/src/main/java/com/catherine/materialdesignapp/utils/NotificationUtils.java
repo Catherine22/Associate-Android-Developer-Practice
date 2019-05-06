@@ -12,13 +12,13 @@ import android.graphics.Color;
 import android.os.Build;
 import android.widget.RemoteViews;
 
-import com.catherine.materialdesignapp.R;
-import com.catherine.materialdesignapp.activities.MainActivity;
-import com.catherine.materialdesignapp.models.ChannelInfo;
-
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.RemoteInput;
+
+import com.catherine.materialdesignapp.R;
+import com.catherine.materialdesignapp.activities.MainActivity;
+import com.catherine.materialdesignapp.models.ChannelInfo;
 
 public class NotificationUtils extends ContextWrapper {
     private ChannelInfo channelInfo;

@@ -8,6 +8,9 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.CompoundButton;
 
+import androidx.appcompat.widget.Toolbar;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.models.ChannelInfo;
 import com.catherine.materialdesignapp.utils.NotificationUtils;
@@ -20,9 +23,6 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
-
-import androidx.appcompat.widget.Toolbar;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class NotificationActivity extends BaseActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
     public final static String TAG = NotificationActivity.class.getSimpleName();

@@ -6,11 +6,11 @@ import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
 
+import androidx.annotation.Nullable;
+
 import com.catherine.materialdesignapp.models.NotificationChannelsGroup;
 import com.catherine.materialdesignapp.tasks.MusicPlayer;
 import com.catherine.materialdesignapp.utils.NotificationUtils;
-
-import androidx.annotation.Nullable;
 
 public class MusicPlayerService extends Service {
     private static final String TAG = MusicPlayerService.class.getSimpleName();

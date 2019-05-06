@@ -2,7 +2,7 @@ package com.catherine.materialdesignapp.models;
 
 import com.catherine.materialdesignapp.listeners.ProguardIgnored;
 
-public class Song implements ProguardIgnored {
+public class Song implements Cloneable, ProguardIgnored {
     private String album;
 
     private String artist;
@@ -42,6 +42,15 @@ public class Song implements ProguardIgnored {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public Song clone() throws CloneNotSupportedException {
+        Song clone = (Song) super.clone();
+        clone.album = album;
+        clone.artist = artist;
+        clone.title = title;
+        clone.url = url;
+        return clone;
     }
 
     @Override

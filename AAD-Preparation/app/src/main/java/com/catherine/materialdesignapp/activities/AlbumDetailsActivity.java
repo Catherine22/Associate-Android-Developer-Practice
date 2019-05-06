@@ -4,11 +4,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.catherine.materialdesignapp.R;
-import com.facebook.drawee.view.SimpleDraweeView;
-
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+
+import com.catherine.materialdesignapp.R;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 public class AlbumDetailsActivity extends BaseActivity {
     private final static String TAG = AlbumDetailsActivity.class.getSimpleName();

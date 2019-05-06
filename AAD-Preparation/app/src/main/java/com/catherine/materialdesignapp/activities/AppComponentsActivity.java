@@ -3,12 +3,12 @@ package com.catherine.materialdesignapp.activities;
 import android.os.Bundle;
 import android.util.Log;
 
+import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager.widget.ViewPager;
+
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.adapters.TabLayoutAppComponentsAdapter;
 import com.google.android.material.tabs.TabLayout;
-
-import androidx.appcompat.widget.Toolbar;
-import androidx.viewpager.widget.ViewPager;
 
 public class AppComponentsActivity extends BaseActivity {
     private final static String TAG = AppComponentsActivity.class.getSimpleName();

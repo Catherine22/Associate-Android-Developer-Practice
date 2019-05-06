@@ -1,6 +1,8 @@
 package com.catherine.materialdesignapp.models;
 
-public class Artist {
+import com.catherine.materialdesignapp.listeners.ProguardIgnored;
+
+public class Artist implements ProguardIgnored {
     private String image;
 
     private String artist;

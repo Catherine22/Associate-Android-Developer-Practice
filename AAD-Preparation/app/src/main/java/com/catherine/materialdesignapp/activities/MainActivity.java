@@ -9,6 +9,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import com.catherine.materialdesignapp.MyApplication;
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.listeners.OnRequestPermissionsListener;
@@ -21,13 +28,6 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
 import java.util.Locale;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, OnRequestPermissionsListener {
     private final static String TAG = MainActivity.class.getSimpleName();

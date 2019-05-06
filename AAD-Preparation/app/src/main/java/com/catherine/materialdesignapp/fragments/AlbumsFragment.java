@@ -9,10 +9,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.util.Pair;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.catherine.materialdesignapp.Constants;
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.activities.AlbumDetailsActivity;
 import com.catherine.materialdesignapp.adapters.AlbumAdapter;
+import com.catherine.materialdesignapp.listeners.FragmentLifecycle;
 import com.catherine.materialdesignapp.listeners.OnItemClickListener;
 import com.catherine.materialdesignapp.listeners.OnSearchViewListener;
 import com.catherine.materialdesignapp.listeners.UIComponentsListener;
@@ -33,22 +44,9 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.core.app.ActivityOptionsCompat;
-import androidx.core.util.Pair;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -56,7 +54,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class AlbumsFragment extends Fragment implements OnSearchViewListener {
+public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchViewListener {
     private final static String TAG = AlbumsFragment.class.getSimpleName();
     private AlbumAdapter adapter;
     private OkHttpClient okHttpClient;
@@ -123,7 +121,6 @@ public class AlbumsFragment extends Fragment implements OnSearchViewListener {
         okHttpClient = new OkHttpClient.Builder().build();
         subscriber = new PrefetchSubscriber();
         listener = (UIComponentsListener) getActivity();
-        listener.addOnSearchListener(this);
         fillInData();
     }
 
@@ -148,6 +145,7 @@ public class AlbumsFragment extends Fragment implements OnSearchViewListener {
                 Type listType = new TypeToken<List<Album>>() {
                 }.getType();
                 albums = gson.fromJson(response.body().string(), listType);
+                filteredAlbums.clear();
                 filteredAlbums.addAll(albums);
                 adapter.setEntities(filteredAlbums);
                 updateList();
@@ -197,5 +195,15 @@ public class AlbumsFragment extends Fragment implements OnSearchViewListener {
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onFragmentShow() {
+        listener.addOnSearchListener(this);
+    }
+
+    @Override
+    public void onFragmentHide() {
+
     }
 }

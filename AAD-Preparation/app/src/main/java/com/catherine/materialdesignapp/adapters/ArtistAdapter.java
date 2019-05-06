@@ -9,6 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.selection.ItemDetailsLookup;
+import androidx.recyclerview.selection.SelectionTracker;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.models.Artist;
 import com.catherine.materialdesignapp.utils.DisplayHelper;
@@ -16,13 +23,6 @@ import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.recyclerview.selection.ItemDetailsLookup;
-import androidx.recyclerview.selection.SelectionTracker;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.MainRvHolder> {
     private final String TAG = ArtistAdapter.class.getSimpleName();

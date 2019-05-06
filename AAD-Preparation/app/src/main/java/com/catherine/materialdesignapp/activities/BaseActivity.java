@@ -18,6 +18,11 @@ import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.app.ActivityCompat;
+
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.listeners.OnActivityEventListener;
 import com.catherine.materialdesignapp.listeners.OnRequestPermissionsListener;
@@ -26,11 +31,6 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.app.ActivityCompat;
 
 public class BaseActivity extends AppCompatActivity implements OnActivityEventListener {
     private final static String TAG = BaseActivity.class.getSimpleName();

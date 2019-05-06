@@ -8,12 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.catherine.materialdesignapp.R;
-import com.catherine.materialdesignapp.services.MusicPlayerService;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.catherine.materialdesignapp.R;
+import com.catherine.materialdesignapp.services.MusicPlayerService;
 
 public class ForegroundServiceFragment extends Fragment implements View.OnClickListener {
     private final static String TAG = ForegroundServiceFragment.class.getSimpleName();

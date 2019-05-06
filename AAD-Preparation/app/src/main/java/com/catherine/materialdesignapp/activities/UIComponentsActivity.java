@@ -9,6 +9,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.viewpager.widget.ViewPager;
+
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.fragments.FavoritesFragment;
 import com.catherine.materialdesignapp.fragments.HomeFragment;
@@ -18,19 +25,30 @@ import com.catherine.materialdesignapp.listeners.UIComponentsListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.viewpager.widget.ViewPager;
-
 public class UIComponentsActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener,
         UIComponentsListener, FragmentManager.OnBackStackChangedListener, SearchView.OnQueryTextListener {
     public final static String TAG = UIComponentsActivity.class.getSimpleName();
-    private final String TAG_HOME = "HOME";
-    private final String TAG_MUSIC = "MUSIC";
-    private final String TAG_FAVORITES = "FAVORITES";
+
+    private enum Tag {
+        HOME("HOME"),
+        MUSIC("MUSIC"),
+        FAVORITES("FAVORITES");
+
+        private final String name;
+
+        Tag(String s) {
+            name = s;
+        }
+
+        int index() {
+            Tag[] tagArray = values();
+            for (int i = 0; i < tagArray.length; i++) {
+                if (tagArray[i] == this)
+                    return i;
+            }
+            return 0;
+        }
+    }
 
 
     private final static String STATE_SELECTED_BOTTOM_NAVIGATION = "STATE_SELECTED_BOTTOM_NAVIGATION";
@@ -43,14 +61,13 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
     private ViewPager viewpager;
     private String[] titles;
     private Fragment[] fragments = new Fragment[3];
-    private OnSearchViewListener onSearchViewListener;
+    private OnSearchViewListener[] onSearchViewListeners = new OnSearchViewListener[3];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ui_components);
         initComponent();
-
         handleIntent(getIntent());
     }
 
@@ -132,8 +149,8 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
         int index;
         switch (menuItemId) {
             case R.id.nav_home:
-                tag = TAG_HOME;
-                index = 0;
+                tag = Tag.HOME.name();
+                index = Tag.HOME.index();
                 if (fragments[index] == null)
                     fragments[index] = new HomeFragment();
                 f = fragments[index];
@@ -141,8 +158,8 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
                 tabLayout.setVisibility(View.GONE);
                 break;
             case R.id.nav_music:
-                tag = TAG_MUSIC;
-                index = 1;
+                tag = Tag.MUSIC.name();
+                index = Tag.MUSIC.index();
                 if (fragments[index] == null) {
                     fragments[index] = new MusicFragment();
 
@@ -154,8 +171,8 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
                 tabLayout.setVisibility(View.VISIBLE);
                 break;
             case R.id.nav_favorite:
-                tag = TAG_FAVORITES;
-                index = 2;
+                tag = Tag.FAVORITES.name();
+                index = Tag.FAVORITES.index();
                 if (fragments[index] == null)
                     fragments[index] = new FavoritesFragment();
                 f = fragments[index];
@@ -217,7 +234,7 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
 
     @Override
     public void addOnSearchListener(OnSearchViewListener listener) {
-        this.onSearchViewListener = listener;
+        onSearchViewListeners[viewpager.getCurrentItem()] = listener;
     }
 
     @Override
@@ -243,7 +260,8 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putInt(STATE_SELECTED_BOTTOM_NAVIGATION, navigationView.getSelectedItemId());
-        savedInstanceState.putInt(STATE_SELECTED_TAB, viewpager.getCurrentItem());
+        if (navigationView.getSelectedItemId() == R.id.nav_music)
+            savedInstanceState.putInt(STATE_SELECTED_TAB, viewpager.getCurrentItem());
         super.onSaveInstanceState(savedInstanceState);
     }
 
@@ -251,21 +269,26 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         int nav = savedInstanceState.getInt(STATE_SELECTED_BOTTOM_NAVIGATION);
-        selectedTab = savedInstanceState.getInt(STATE_SELECTED_TAB);
         navigationView.setSelectedItemId(nav);
+        if (nav == R.id.nav_music) {
+            savedInstanceState.putInt(STATE_SELECTED_TAB, viewpager.getCurrentItem());
+            selectedTab = savedInstanceState.getInt(STATE_SELECTED_TAB);
+        }
     }
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-        if (onSearchViewListener != null)
-            onSearchViewListener.onQueryTextSubmit(query);
+        OnSearchViewListener listener = onSearchViewListeners[viewpager.getCurrentItem()];
+        if (listener != null)
+            listener.onQueryTextSubmit(query);
         return false;
     }
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        if (onSearchViewListener != null)
-            onSearchViewListener.onQueryTextChange(newText);
+        OnSearchViewListener listener = onSearchViewListeners[viewpager.getCurrentItem()];
+        if (listener != null)
+            listener.onQueryTextChange(newText);
         return false;
     }
 }

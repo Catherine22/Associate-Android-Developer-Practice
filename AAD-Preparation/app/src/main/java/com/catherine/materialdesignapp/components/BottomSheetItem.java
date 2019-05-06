@@ -8,9 +8,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.catherine.materialdesignapp.R;
-
 import androidx.annotation.RequiresApi;
+
+import com.catherine.materialdesignapp.R;
 
 public class BottomSheetItem extends RelativeLayout {
     private ImageView iv_icon;

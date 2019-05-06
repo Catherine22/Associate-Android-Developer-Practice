@@ -13,6 +13,9 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.listeners.OnItemClickListener;
 import com.catherine.materialdesignapp.models.CardItem;
@@ -26,8 +29,6 @@ import com.facebook.imagepipeline.request.Postprocessor;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import jp.wasabeef.fresco.processors.BlurPostprocessor;
 
 public class CardRVAdapter extends RecyclerView.Adapter<CardRVAdapter.MainRvHolder> {

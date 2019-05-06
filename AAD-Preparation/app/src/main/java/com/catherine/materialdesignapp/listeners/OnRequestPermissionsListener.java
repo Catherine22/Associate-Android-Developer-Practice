@@ -1,8 +1,8 @@
 package com.catherine.materialdesignapp.listeners;
 
-import java.util.List;
-
 import androidx.annotation.Nullable;
+
+import java.util.List;
 
 public interface OnRequestPermissionsListener {
     /**

@@ -20,7 +20,7 @@ public class TextHelper {
 
 
         StringBuffer sb = new StringBuffer();
-        String a = removeAccents(input.trim());
+        String a = removeAccents(input.replaceAll("\\s", ""));
 
 
         // (?i) ignore cases

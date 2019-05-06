@@ -6,10 +6,10 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.net.Uri;
 
-import com.catherine.materialdesignapp.MyApplication;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.catherine.materialdesignapp.MyApplication;
 
 public class UserProfileProvider extends ContentProvider {
     private final static String TAG = UserProfileProvider.class.getSimpleName();

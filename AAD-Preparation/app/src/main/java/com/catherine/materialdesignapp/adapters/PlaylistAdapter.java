@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.listeners.OnItemMoveListener;
 import com.catherine.materialdesignapp.listeners.OnPlaylistItemClickListener;
@@ -17,16 +20,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.MainRvHolder> implements OnItemMoveListener {
     private final String TAG = PlaylistAdapter.class.getSimpleName();
     private Context ctx;
     private List<Playlist> entities;
-    private OnPlaylistItemClickListener listener;
+    private OnPlaylistItemClickListener<Playlist> listener;
 
-    public PlaylistAdapter(Context ctx, List<Playlist> entities, OnPlaylistItemClickListener listener) {
+    public PlaylistAdapter(Context ctx, List<Playlist> entities, OnPlaylistItemClickListener<Playlist> listener) {
         this.ctx = ctx;
         if (entities == null)
             this.entities = new ArrayList<>();
@@ -77,13 +77,12 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.MainRv
     }
 
     public List<Playlist> getEntities() {
-        return entities;
+        return this.entities;
     }
 
     @Override
     public void onDragged(int oldPosition, int newPosition) {
         Collections.swap(entities, oldPosition, newPosition);
-
         //非常重要，调用后Adapter才能知道发生了改变。
         notifyItemMoved(oldPosition, newPosition);
         listener.onDragged(oldPosition, newPosition);
@@ -91,11 +90,16 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.MainRv
 
     @Override
     public void onSwiped(int position) {
+        Playlist clone = null;
+        try {
+            clone = entities.get(position).clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
         entities.remove(position);
-
         //非常重要，调用后Adapter才能知道发生了改变。
         notifyDataSetChanged();
-        listener.onSwiped(position);
+        listener.onSwiped(clone);
     }
 
     class MainRvHolder extends RecyclerView.ViewHolder {

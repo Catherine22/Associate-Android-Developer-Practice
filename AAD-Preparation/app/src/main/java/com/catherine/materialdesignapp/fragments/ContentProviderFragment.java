@@ -8,6 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.components.BottomSheetItem;
 import com.catherine.materialdesignapp.content_providers.CallLogDao;
@@ -16,10 +20,6 @@ import com.catherine.materialdesignapp.listeners.OnRequestPermissionsListener;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 public class ContentProviderFragment extends Fragment implements View.OnClickListener {
     private final static String TAG = ContentProviderFragment.class.getSimpleName();

@@ -6,18 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.catherine.materialdesignapp.R;
-import com.catherine.materialdesignapp.adapters.ArtistAdapter;
-import com.catherine.materialdesignapp.components.ArtistItemDetailsLookup;
-import com.catherine.materialdesignapp.components.ArtistItemKeyProvider;
-import com.catherine.materialdesignapp.models.Artist;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -27,13 +15,30 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-public class ArtistsFragment extends Fragment {
+import com.catherine.materialdesignapp.R;
+import com.catherine.materialdesignapp.adapters.ArtistAdapter;
+import com.catherine.materialdesignapp.components.ArtistItemDetailsLookup;
+import com.catherine.materialdesignapp.components.ArtistItemKeyProvider;
+import com.catherine.materialdesignapp.listeners.OnSearchViewListener;
+import com.catherine.materialdesignapp.listeners.UIComponentsListener;
+import com.catherine.materialdesignapp.models.Artist;
+import com.catherine.materialdesignapp.utils.TextHelper;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+
+public class ArtistsFragment extends ChildOfMusicFragment implements OnSearchViewListener {
     private final static String TAG = ArtistsFragment.class.getSimpleName();
     private ArtistAdapter adapter;
     private List<Artist> artists;
+    private List<Artist> filteredArtists;
     private RecyclerView recyclerView;
     private ArtistItemKeyProvider artistItemKeyProvider;
     private SelectionTracker<String> tracker;
+    private UIComponentsListener listener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -56,6 +61,7 @@ public class ArtistsFragment extends Fragment {
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), ArtistAdapter.MAX_COLUMNS));
 
         artists = new ArrayList<>();
+        filteredArtists = new ArrayList<>();
         adapter = new ArtistAdapter(getActivity(), artists);
         recyclerView.setAdapter(adapter);
         artistItemKeyProvider = new ArtistItemKeyProvider(artists);
@@ -71,6 +77,7 @@ public class ArtistsFragment extends Fragment {
 
         adapter.setSelectionTracker(tracker);
         tracker.addObserver(new SelectionObserver());
+        listener = (UIComponentsListener) getActivity();
         fillInData();
     }
 
@@ -102,13 +109,50 @@ public class ArtistsFragment extends Fragment {
         Type listType = new TypeToken<List<Artist>>() {
         }.getType();
         artists = gson.fromJson(mockData, listType);
-        adapter.setEntities(artists);
-        tracker.clearSelection();
-        artistItemKeyProvider.updateList(artists);
-        adapter.notifyDataSetChanged();
+        filteredArtists.clear();
+        filteredArtists.addAll(artists);
+        updateList();
     }
 
-    class SelectionObserver extends SelectionTracker.SelectionObserver<String> {
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        filteredArtists.clear();
+        for (Artist artist : artists) {
+            if (TextHelper.matcher(artist.getArtist(), newText)) {
+                filteredArtists.add(artist);
+            }
+        }
+        updateList();
+        return false;
+    }
+
+    private void updateList() {
+        tracker.clearSelection();
+        adapter.setEntities(filteredArtists);
+        artistItemKeyProvider.updateList(filteredArtists);
+        try {
+            getActivity().runOnUiThread(() -> adapter.notifyDataSetChanged());
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onFragmentShow() {
+        listener.addOnSearchListener(this);
+    }
+
+    @Override
+    public void onFragmentHide() {
+
+    }
+
+    private class SelectionObserver extends SelectionTracker.SelectionObserver<String> {
         @Override
         public void onItemStateChanged(@NonNull String key, boolean selected) {
             Log.d(TAG, String.format("onItemStateChanged: %s, isSelected: %b", key, selected));

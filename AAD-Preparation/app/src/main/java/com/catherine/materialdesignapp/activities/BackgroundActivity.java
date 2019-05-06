@@ -8,6 +8,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.adapters.CardRVAdapter;
 import com.catherine.materialdesignapp.listeners.OnItemClickListener;
@@ -19,11 +24,6 @@ import com.catherine.materialdesignapp.tasks.SleepTaskLoader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class BackgroundActivity extends BaseActivity {
     public final static String TAG = BackgroundActivity.class.getSimpleName();

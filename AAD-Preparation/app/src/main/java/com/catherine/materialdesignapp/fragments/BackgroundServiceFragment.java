@@ -15,17 +15,17 @@ import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Switch;
 
-import com.catherine.materialdesignapp.R;
-import com.catherine.materialdesignapp.components.Slider;
-import com.catherine.materialdesignapp.listeners.OnActivityEventListener;
-import com.catherine.materialdesignapp.services.MusicPlayerJobScheduler;
-import com.catherine.materialdesignapp.services.MusicPlayerService;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+
+import com.catherine.materialdesignapp.R;
+import com.catherine.materialdesignapp.components.Slider;
+import com.catherine.materialdesignapp.listeners.OnActivityEventListener;
+import com.catherine.materialdesignapp.services.MusicPlayerJobScheduler;
+import com.catherine.materialdesignapp.services.MusicPlayerService;
 
 import static com.catherine.materialdesignapp.services.BusyJobs.JOB_MUSIC_PLAYER;
 
