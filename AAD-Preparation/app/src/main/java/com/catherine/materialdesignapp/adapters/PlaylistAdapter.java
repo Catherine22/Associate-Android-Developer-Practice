@@ -59,12 +59,13 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.MainRv
             mainRvHolder.tv_title.setVisibility(View.GONE);
 
 
+        // default string: 0 songs
+        String songs = String.format(ctx.getResources().getQuantityString(R.plurals.songs, 0), 0);
         if (playlist.getSongs() != null) {
-            String songs = String.format(ctx.getResources().getQuantityString(R.plurals.songs, playlist.getSongs().length), playlist.getSongs().length);
-            mainRvHolder.tv_song_numbers.setVisibility(View.VISIBLE);
-            mainRvHolder.tv_song_numbers.setText(songs);
-        } else
-            mainRvHolder.tv_song_numbers.setVisibility(View.GONE);
+            songs = String.format(ctx.getResources().getQuantityString(R.plurals.songs, playlist.getSongs().size()), playlist.getSongs().size());
+        }
+        mainRvHolder.tv_song_numbers.setVisibility(View.VISIBLE);
+        mainRvHolder.tv_song_numbers.setText(songs);
     }
 
     @Override

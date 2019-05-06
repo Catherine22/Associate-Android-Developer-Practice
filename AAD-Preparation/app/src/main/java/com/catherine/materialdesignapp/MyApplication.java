@@ -17,6 +17,7 @@ import com.facebook.cache.disk.DiskCacheConfig;
 import com.facebook.common.util.ByteConstants;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
+import com.google.firebase.FirebaseApp;
 
 import java.io.File;
 import java.util.Map;
@@ -82,6 +83,7 @@ public class MyApplication extends Application {
         } else {
             startService(intent);
         }
+        FirebaseApp.initializeApp(this);
     }
 
     /**

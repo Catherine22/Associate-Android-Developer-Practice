@@ -21,10 +21,12 @@ import com.catherine.materialdesignapp.listeners.OnSearchViewListener;
 import com.catherine.materialdesignapp.listeners.UIComponentsListener;
 import com.catherine.materialdesignapp.models.Playlist;
 import com.catherine.materialdesignapp.utils.TextHelper;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -64,6 +66,8 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
             @Override
             public void onAddButtonClicked(View view, int position) {
                 Log.d(TAG, "onAddButtonClicked:" + position);
+
+                // add a new playlist
             }
 
             @Override
@@ -123,102 +127,34 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
     }
 
     private void fillInData() {
-        String mockData = "[\n" +
-                "  {\n" +
-                "    \"index\": 0,\n" +
-                "    \"name\": \"Pop\",\n" +
-                "    \"songs\": [\n" +
-                "      {\n" +
-                "        \"artist\": \"Taylor Swift\",\n" +
-                "        \"url\": \"https://en.wikipedia.org/wiki/Taylor_Swift\",\n" +
-                "        \"album\": \"Fearless\",\n" +
-                "        \"title\": \"Love Story\"\n" +
-                "      },\n" +
-                "      {\n" +
-                "        \"artist\": \"Taylor Swift\",\n" +
-                "        \"url\": \"https://en.wikipedia.org/wiki/Taylor_Swift\",\n" +
-                "        \"album\": \"Fearless\",\n" +
-                "        \"title\": \"White Horse\"\n" +
-                "      },\n" +
-                "      {\n" +
-                "        \"artist\": \"Taylor Swift\",\n" +
-                "        \"url\": \"https://en.wikipedia.org/wiki/Taylor_Swift\",\n" +
-                "        \"album\": \"Fearless\",\n" +
-                "        \"title\": \"White Horse\"\n" +
-                "      },\n" +
-                "      {\n" +
-                "        \"artist\": \"Taylor Swift\",\n" +
-                "        \"url\": \"https://en.wikipedia.org/wiki/Taylor_Swift\",\n" +
-                "        \"album\": \"Fearless\",\n" +
-                "        \"title\": \"You Belong with Me\"\n" +
-                "      }\n" +
-                "    ]\n" +
-                "  },\n" +
-                "  {\n" +
-                "    \"index\": 2,\n" +
-                "    \"name\": \"K-Pop\",\n" +
-                "    \"songs\": [\n" +
-                "    ]\n" +
-                "  },\n" +
-                "  {\n" +
-                "    \"index\": 1,\n" +
-                "    \"name\": \"Country Music\",\n" +
-                "    \"songs\": [\n" +
-                "      {\n" +
-                "        \"artist\": \"Taylor Swift\",\n" +
-                "        \"url\": \"https://en.wikipedia.org/wiki/Taylor_Swift\",\n" +
-                "        \"album\": \"Fearless\",\n" +
-                "        \"title\": \"Love Story\"\n" +
-                "      },\n" +
-                "      {\n" +
-                "        \"artist\": \"Taylor Swift\",\n" +
-                "        \"url\": \"https://en.wikipedia.org/wiki/Taylor_Swift\",\n" +
-                "        \"album\": \"Fearless\",\n" +
-                "        \"title\": \"White Horse\"\n" +
-                "      },\n" +
-                "      {\n" +
-                "        \"artist\": \"Taylor Swift\",\n" +
-                "        \"url\": \"https://en.wikipedia.org/wiki/Taylor_Swift\",\n" +
-                "        \"album\": \"Fearless\",\n" +
-                "        \"title\": \"White Horse\"\n" +
-                "      },\n" +
-                "      {\n" +
-                "        \"artist\": \"Taylor Swift\",\n" +
-                "        \"url\": \"https://en.wikipedia.org/wiki/Taylor_Swift\",\n" +
-                "        \"album\": \"Fearless\",\n" +
-                "        \"title\": \"You Belong with Me\"\n" +
-                "      }\n" +
-                "    ]\n" +
-                "  },\n" +
-                "  {\n" +
-                "    \"index\": 5,\n" +
-                "    \"name\": \"Rap\",\n" +
-                "    \"songs\": [\n" +
-                "    ]\n" +
-                "  },\n" +
-                "  {\n" +
-                "    \"index\": 6,\n" +
-                "    \"name\": \"R&B\",\n" +
-                "    \"songs\": [\n" +
-                "    ]\n" +
-                "  },\n" +
-                "  {\n" +
-                "    \"index\": 4,\n" +
-                "    \"name\": \"Trap\",\n" +
-                "    \"songs\": [\n" +
-                "    ]\n" +
-                "  }\n" +
-                "]";
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("playlists");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                Log.d(TAG, String.format("size: %d", dataSnapshot.getChildrenCount()));
+                playlists.clear();
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    Playlist playlist = child.getValue(Playlist.class);
+                    Log.i(TAG, String.format("%s: %s", child.getKey(), playlist));
 
-        Gson gson = new Gson();
-        Type listType = new TypeToken<List<Playlist>>() {
-        }.getType();
-        playlists = gson.fromJson(mockData, listType);
-        Collections.sort(playlists);
-        filteredPlaylists.clear();
-        filteredPlaylists.addAll(playlists);
-        adapter.setEntities(filteredPlaylists);
-        updateList();
+                    playlists.add(playlist);
+                }
+                Collections.sort(playlists);
+                filteredPlaylists.clear();
+                filteredPlaylists.addAll(playlists);
+                adapter.setEntities(filteredPlaylists);
+                updateList();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
     }
 
     @Override

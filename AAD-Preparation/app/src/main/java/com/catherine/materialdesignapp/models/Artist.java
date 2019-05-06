@@ -35,6 +35,6 @@ public class Artist implements ProguardIgnored {
 
     @Override
     public String toString() {
-        return "ClassPojo [image = " + image + ", artist = " + artist + ", url = " + url + "]";
+        return "{image = " + image + ", artist = " + artist + ", url = " + url + "}";
     }
 }

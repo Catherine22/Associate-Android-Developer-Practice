@@ -8,13 +8,13 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.selection.SelectionTracker;
 import androidx.recyclerview.selection.StorageStrategy;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.catherine.materialdesignapp.Constants;
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.adapters.ArtistAdapter;
 import com.catherine.materialdesignapp.components.ArtistItemDetailsLookup;
@@ -23,11 +23,17 @@ import com.catherine.materialdesignapp.listeners.OnSearchViewListener;
 import com.catherine.materialdesignapp.listeners.UIComponentsListener;
 import com.catherine.materialdesignapp.models.Artist;
 import com.catherine.materialdesignapp.utils.TextHelper;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class ArtistsFragment extends ChildOfMusicFragment implements OnSearchViewListener {
@@ -82,36 +88,63 @@ public class ArtistsFragment extends ChildOfMusicFragment implements OnSearchVie
     }
 
     private void fillInData() {
-        String mockData = "[\n" +
-                "  {\n" +
-                "    \"artist\": \"Taylor Swift\",\n" +
-                "    \"url\": \"https://en.wikipedia.org/wiki/Taylor_Swift\",\n" +
-                "    \"image\": \"https://images-na.ssl-images-amazon.com/images/I/71YCfdyMXsL.jpg\"\n" +
-                "  },\n" +
-                "  {\n" +
-                "    \"artist\": \"Kanye West\",\n" +
-                "    \"url\": \"https://en.wikipedia.org/wiki/Kanye_West\",\n" +
-                "    \"image\": \"https://images-na.ssl-images-amazon.com/images/I/71w7GAs8SeL.jpg\"\n" +
-                "  },\n" +
-                "  {\n" +
-                "    \"artist\": \"Beyoncé\",\n" +
-                "    \"url\": \"https://en.wikipedia.org/wiki/Beyonc%C3%A9\",\n" +
-                "    \"image\": \"https://images-na.ssl-images-amazon.com/images/I/51T6RpubiVL.jpg\"\n" +
-                "  },\n" +
-                "  {\n" +
-                "    \"artist\": \"Ariana Grande\",\n" +
-                "    \"url\": \"https://en.wikipedia.org/wiki/Ariana_Grande\",\n" +
-                "    \"image\": \"https://images-na.ssl-images-amazon.com/images/I/7192dgpkzTL.jpg\"\n" +
-                "  }\n" +
-                "]";
+//        String mockData = "[\n" +
+//                "  {\n" +
+//                "    \"artist\": \"Taylor Swift\",\n" +
+//                "    \"url\": \"https://en.wikipedia.org/wiki/Taylor_Swift\",\n" +
+//                "    \"image\": \"https://images-na.ssl-images-amazon.com/images/I/71YCfdyMXsL.jpg\"\n" +
+//                "  },\n" +
+//                "  {\n" +
+//                "    \"artist\": \"Kanye West\",\n" +
+//                "    \"url\": \"https://en.wikipedia.org/wiki/Kanye_West\",\n" +
+//                "    \"image\": \"https://images-na.ssl-images-amazon.com/images/I/71w7GAs8SeL.jpg\"\n" +
+//                "  },\n" +
+//                "  {\n" +
+//                "    \"artist\": \"Beyoncé\",\n" +
+//                "    \"url\": \"https://en.wikipedia.org/wiki/Beyonc%C3%A9\",\n" +
+//                "    \"image\": \"https://images-na.ssl-images-amazon.com/images/I/51T6RpubiVL.jpg\"\n" +
+//                "  },\n" +
+//                "  {\n" +
+//                "    \"artist\": \"Ariana Grande\",\n" +
+//                "    \"url\": \"https://en.wikipedia.org/wiki/Ariana_Grande\",\n" +
+//                "    \"image\": \"https://images-na.ssl-images-amazon.com/images/I/7192dgpkzTL.jpg\"\n" +
+//                "  }\n" +
+//                "]";
+//
+//        Gson gson = new Gson();
+//        Type listType = new TypeToken<List<Artist>>() {
+//        }.getType();
+//        artists = gson.fromJson(mockData, listType);
+//
+//        filteredArtists.clear();
+//        filteredArtists.addAll(artists);
+//        updateList();
 
-        Gson gson = new Gson();
-        Type listType = new TypeToken<List<Artist>>() {
-        }.getType();
-        artists = gson.fromJson(mockData, listType);
-        filteredArtists.clear();
-        filteredArtists.addAll(artists);
-        updateList();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("artists");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                Log.d(TAG, String.format("size: %d", dataSnapshot.getChildrenCount()));
+                artists.clear();
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    Artist artist = child.getValue(Artist.class);
+                    Log.i(TAG, String.format("%s: %s", child.getKey(), artist));
+                    artists.add(artist);
+                }
+                filteredArtists.clear();
+                filteredArtists.addAll(artists);
+                updateList();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
     }
 
     @Override

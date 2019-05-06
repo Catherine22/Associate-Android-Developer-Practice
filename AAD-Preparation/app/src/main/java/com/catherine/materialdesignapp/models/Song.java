@@ -5,8 +5,6 @@ import com.catherine.materialdesignapp.listeners.ProguardIgnored;
 public class Song implements Cloneable, ProguardIgnored {
     private String album;
 
-    private String artist;
-
     private String title;
 
     private String url;
@@ -18,14 +16,6 @@ public class Song implements Cloneable, ProguardIgnored {
 
     public void setAlbum(String album) {
         this.album = album;
-    }
-
-    public String getArtist() {
-        return artist;
-    }
-
-    public void setArtist(String artist) {
-        this.artist = artist;
     }
 
     public String getTitle() {
@@ -47,14 +37,27 @@ public class Song implements Cloneable, ProguardIgnored {
     public Song clone() throws CloneNotSupportedException {
         Song clone = (Song) super.clone();
         clone.album = album;
-        clone.artist = artist;
         clone.title = title;
         clone.url = url;
         return clone;
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Song song = (Song) o;
+        return album == song.getAlbum() &&
+                title == song.getTitle() &&
+                url == song.getUrl();
+    }
+
+    @Override
     public String toString() {
-        return "ClassPojo [album = " + album + ", artist = " + artist + ", title = " + title + ", url = " + url + "]";
+        return "{album = " + album + ", title = " + title + ", url = " + url + "}";
     }
 }

@@ -2,13 +2,13 @@ package com.catherine.materialdesignapp.models;
 
 import com.catherine.materialdesignapp.listeners.ProguardIgnored;
 
-import java.util.Arrays;
+import java.util.Map;
 
 public class Playlist implements Comparable<Playlist>, Cloneable, ProguardIgnored {
 
     private int index;
 
-    private Song[] songs;
+    private Map<String, Song> songs;
 
     private String name;
 
@@ -20,11 +20,11 @@ public class Playlist implements Comparable<Playlist>, Cloneable, ProguardIgnore
         this.index = index;
     }
 
-    public Song[] getSongs() {
+    public Map<String, Song> getSongs() {
         return songs;
     }
 
-    public void setSongs(Song[] songs) {
+    public void setSongs(Map<String, Song> songs) {
         this.songs = songs;
     }
 
@@ -40,7 +40,7 @@ public class Playlist implements Comparable<Playlist>, Cloneable, ProguardIgnore
         Playlist clone = (Playlist) super.clone();
         clone.index = index;
         clone.name = name;
-        clone.songs = Arrays.copyOf(songs, songs.length);
+        clone.songs.putAll(songs);
         return clone;
     }
 
@@ -65,11 +65,11 @@ public class Playlist implements Comparable<Playlist>, Cloneable, ProguardIgnore
         Playlist playlist = (Playlist) o;
         return index == playlist.getIndex() &&
                 name == playlist.getName() &&
-                Arrays.equals(songs, playlist.getSongs());
+                songs.equals(playlist.getSongs());
     }
 
     @Override
     public String toString() {
-        return "ClassPojo [songs = " + songs + ", name = " + name + "]";
+        return "{index = " + index + ", songs = " + songs + ", name = " + name + "}";
     }
 }

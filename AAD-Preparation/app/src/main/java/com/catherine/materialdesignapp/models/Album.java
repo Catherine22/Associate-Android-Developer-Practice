@@ -55,6 +55,6 @@ public class Album implements ProguardIgnored {
 
     @Override
     public String toString() {
-        return "ClassPojo [image = " + image + ", artist = " + artist + ", title = " + title + ", url = " + url + ", thumbnail_image = " + thumbnail_image + "]";
+        return "{image = " + image + ", artist = " + artist + ", title = " + title + ", url = " + url + ", thumbnail_image = " + thumbnail_image + "}";
     }
 }
