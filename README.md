@@ -58,7 +58,116 @@ implementation 'com.google.android.material:material:1.0.0'
   ```SelectionTracker``` is another to do ```setOnClickListener```, which is more powerful while multiple items need selecting   
 - BottomNavigationView -> [UIComponentsActivity]    
 - TabLayout + ViewPager -> [MusicFragment], [UIComponentsActivity]    
+- SearchView -> [MusicFragment], [UIComponentsActivity]    
 
+### SearchView
+Believe if or not, a SearchView could be far more complicated than you've expected.   
+
+1. (Optional) If you are going to start a new activity as your search result, you need:   
+
+- Add tags in AndroidManifest.xml
+```Xml
+<activity
+    android:name=".activities.UIComponentsActivity">
+    <meta-data
+        android:name="android.app.searchable"
+        android:resource="@xml/searchable" />
+
+    <intent-filter>
+        <action android:name="android.intent.action.SEARCH" />
+    </intent-filter>
+</activity>
+```
+
+- Create searchable.xml
+```Xml
+<?xml version="1.0" encoding="utf-8"?>
+<searchable xmlns:android="http://schemas.android.com/apk/res/android"
+    android:label="@string/app_name"
+    android:voiceSearchMode="showVoiceSearchButton|launchRecognizer" />
+```
+
+- Handle intents in your activity
+```java
+public class UIComponentsActivity extends AppCompatActivity {
+  /**
+   * If your searchable activity launches in single top mode (android:launchMode="singleTop"),
+   * also handle the ACTION_SEARCH intent in the onNewIntent() method
+   *
+   * @param intent
+   */
+  @Override
+  protected void onNewIntent(Intent intent) {
+      handleIntent(intent);
+  }
+
+  private void handleIntent(Intent intent) {
+      if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+          String query = intent.getStringExtra(SearchManager.QUERY);
+          //use the query to search your data somehow
+      }
+  }
+}
+```
+
+I skip this step. Because in my case, my SearchView only works on the current page, needn't jump to another activities.   
+
+2. (Optional) You could store some keywords to improve UX if you want, those words will be hints on the top of users' soft keyboard area.   
+[Create your very own dictionary here](https://developer.android.com/training/search/search)    
+
+3. Create your SearchView inside NavigationView in an activity    
+
+- In Activity
+```java
+public class UIComponentsActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
+  @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.ui_components_menu, menu);
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setOnQueryTextListener(this);
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        //use the query to search your data somehow
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        //use the query to search your data somehow
+        return false;
+    }
+}
+```
+
+- menu/ui_components_menu.xml
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_search"
+        android:actionLayout="@layout/searchview_layout"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="@string/action_search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView" />
+</menu>
+```
+
+_ searchview_layout.xml
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.SearchView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+```
 
 ## Custom Layouts
 Build a custom view from scratch:       
@@ -118,7 +227,7 @@ Pixel density is how many pixels within a physical area of the screen, ```dpi```
 > anydpi: These bitmaps in anydpi have priority when no bitmaps are found in other drawable directories. For instance, we have ```drawable-hdpi/banner.9.png``` and ```drawable-anydpi/banner.xml```, ```banner.9.png``` will be used on hdpi devices and ```banner.xml``` will be seen on other devices.       
 
 To see more details by automatically importing icons with Android Studio Image Asset tools and have a look at [Grid and keyline shapes]        
-![screenshot](https://raw.githubusercontent.com/Catherine22/AAD-Preparation/master/screenshots/image-asset.png)  
+![screenshot](https://raw.githubusercontent.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/screenshots/image-asset.png)  
 
 ```res``` directory example: [res]     
 
