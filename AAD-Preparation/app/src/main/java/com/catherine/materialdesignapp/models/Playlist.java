@@ -1,16 +1,20 @@
 package com.catherine.materialdesignapp.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.catherine.materialdesignapp.listeners.ProguardIgnored;
 
+import java.util.HashMap;
 import java.util.Map;
 
-public class Playlist implements Comparable<Playlist>, Cloneable, ProguardIgnored {
+public class Playlist implements Comparable<Playlist>, Cloneable, Parcelable, ProguardIgnored {
 
     private int index;
 
-    private Map<String, Song> songs;
-
     private String name;
+
+    private Map<String, Song> songs = new HashMap<>();
 
     public int getIndex() {
         return index;
@@ -36,6 +40,38 @@ public class Playlist implements Comparable<Playlist>, Cloneable, ProguardIgnore
         this.name = name;
     }
 
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public Playlist createFromParcel(Parcel in) {
+            return new Playlist(in);
+        }
+
+        public Playlist[] newArray(int size) {
+            return new Playlist[size];
+        }
+    };
+
+    public Playlist() {
+
+    }
+
+    public Playlist(Parcel in) {
+        index = in.readInt();
+        name = in.readString();
+        in.readMap(songs, Song.class.getClassLoader());
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(index);
+        dest.writeString(name);
+        dest.writeMap(songs);
+    }
+
     public Playlist clone() throws CloneNotSupportedException {
         Playlist clone = (Playlist) super.clone();
         clone.index = index;
@@ -50,7 +86,6 @@ public class Playlist implements Comparable<Playlist>, Cloneable, ProguardIgnore
         // return 0 , if first object is equal to the second.
         // return NEGATIVE , if first object is less than the second one.
 //        return this.name.compareTo(o.getName());
-
         return Integer.compare(this.index, o.getIndex());
     }
 

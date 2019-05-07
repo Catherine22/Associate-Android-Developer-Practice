@@ -62,13 +62,22 @@ implementation 'com.google.android.material:material:1.0.0'
 
 ### SearchView
 Believe if or not, a SearchView could be far more complicated than you've expected.   
+Before we get started, let's take a look at some features of SearchView:   
+- Search Interface    
+- Query suggestion (either recent searches or custom suggestions)    
+- Query history   
+- Searchable configuration (E.g. voice search)    
 
-1. (Optional) If you are going to start a new activity as your search result, you need:   
+[Read more](https://developer.android.com/guide/topics/search)    
 
-- Add tags in AndroidManifest.xml
-```Xml
+First thing first, you need to create either Search Dialog (a SearchView inside NavigationView) or Search Widget (your custom search view, which could be an EditText placed anywhere in your layout).     
+
+Secondly, think about how you handle the search view. If you want to start another activity to handle searches, you need the following:      
+
+1. Add tags to your result activity in AndroidManifest.xml
+```xml
 <activity
-    android:name=".activities.UIComponentsActivity">
+    android:name=".activities.SearchableActivity">
     <meta-data
         android:name="android.app.searchable"
         android:resource="@xml/searchable" />
@@ -79,17 +88,54 @@ Believe if or not, a SearchView could be far more complicated than you've expect
 </activity>
 ```
 
-- Create searchable.xml
-```Xml
+2. In xml/searchable.xml
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <searchable xmlns:android="http://schemas.android.com/apk/res/android"
+    android:hint="@string/search_hint"
     android:label="@string/app_name"
+    android:searchSuggestAuthority="com.catherine.materialdesignapp.providers.SearchSuggestionProvider"
+    android:searchSuggestSelection=" ?"
     android:voiceSearchMode="showVoiceSearchButton|launchRecognizer" />
 ```
 
-- Handle intents in your activity
+> ```android:searchSuggestAuthority"```: (Optional) Refer to your search content provider     
+> ```android:searchSuggestSelection"```: (Optional) Pop up search suggestions, " ?" means query    
+> ```android:voiceSearchMode"```: (Optional) To enable voice search    
+> Read more search configuration here: https://developer.android.com/guide/topics/search/searchable-config       
+
+
+(Optional) Create your search suggestion content provider       
 ```java
-public class UIComponentsActivity extends AppCompatActivity {
+public class SearchSuggestionProvider extends SearchRecentSuggestionsProvider {
+    public final static String AUTHORITY = "com.catherine.materialdesignapp.providers.SearchSuggestionProvider";
+    public final static int MODE = DATABASE_MODE_QUERIES | DATABASE_MODE_2LINES;
+
+    public SearchSuggestionProvider() {
+        setupSuggestions(AUTHORITY, MODE);
+    }
+}
+```
+
+And register your content provider in AndroidManifest.xml
+```xml
+<provider
+    android:name=".providers.SearchSuggestionProvider"
+    android:authorities="com.catherine.materialdesignapp.providers.SearchSuggestionProvider" />
+```
+
+Save queries in your SearchableActivity
+```java
+private void saveQueries(String text) {
+    SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
+       MySuggestionProvider.AUTHORITY, MySuggestionProvider.MODE);
+       suggestions.saveRecentQuery(text, null);
+}
+```
+
+3. Handle intents and create a search icon in your activity
+```java
+public class SearchableActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
   /**
    * If your searchable activity launches in single top mode (android:launchMode="singleTop"),
    * also handle the ACTION_SEARCH intent in the onNewIntent() method
@@ -104,27 +150,15 @@ public class UIComponentsActivity extends AppCompatActivity {
   private void handleIntent(Intent intent) {
       if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
           String query = intent.getStringExtra(SearchManager.QUERY);
-          //use the query to search your data somehow
+          query(query);
+          saveQueries(query);
       }
   }
-}
-```
 
-I skip this step. Because in my case, my SearchView only works on the current page, needn't jump to another activities.   
-
-2. (Optional) You could store some keywords to improve UX if you want, those words will be hints on the top of users' soft keyboard area.   
-[Create your very own dictionary here](https://developer.android.com/training/search/search)    
-
-3. Create your SearchView inside NavigationView in an activity    
-
-- In Activity
-```java
-public class UIComponentsActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
   @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.ui_components_menu, menu);
-
+        getMenuInflater().inflate(R.menu.searchable_menu, menu);
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
@@ -132,21 +166,42 @@ public class UIComponentsActivity extends AppCompatActivity implements SearchVie
         return true;
     }
 
+    // query while user types enter
     @Override
     public boolean onQueryTextSubmit(String query) {
-        //use the query to search your data somehow
+        query(query);
+        saveQueries(query);
         return false;
     }
 
+    // real-time query
     @Override
     public boolean onQueryTextChange(String newText) {
-        //use the query to search your data somehow
+        query(newText);
         return false;
+    }
+
+    private void query(String text) {
+        // do something
+    }
+
+    // save queries while you've defined a search content provider.
+    private void saveQueries(String text) {
+        SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
+                SearchSuggestionProvider.AUTHORITY, SearchSuggestionProvider.MODE);
+        suggestions.saveRecentQuery(text, null);
     }
 }
 ```
 
-- menu/ui_components_menu.xml
+If your app will save users' query history, you must provide a way for users to clear the recent search suggestions
+```java
+SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
+    SearchSuggestionProvider.AUTHORITY, SearchSuggestionProvider.MODE);
+suggestions.clearHistory();
+```
+
+4. In menu/ui_components_menu.xml    
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
@@ -160,14 +215,11 @@ public class UIComponentsActivity extends AppCompatActivity implements SearchVie
         app:showAsAction="ifRoom|collapseActionView" />
 </menu>
 ```
+> ```app:showAsAction="collapseActionView"```: Click the search icon and stretch the view   
 
-_ searchview_layout.xml
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.SearchView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
-```
+
+
+
 
 ## Custom Layouts
 Build a custom view from scratch:       
@@ -265,7 +317,7 @@ Code: [LifecycleActivity], [LifecycleObserverImpl]
 ```
 
 2. In activities        
-```Java
+```java
  @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
@@ -285,6 +337,33 @@ There are four different types of app components:
 [Read more](https://developer.android.com/guide/components/fundamentals)
 
 ## Activity
+
+### 4 Launch Modes
+```xml
+<activity
+    android:name=".SingleTaskActivity"
+    android:launchMode="singleTask">
+```
+
+Let's say we have 4 activities: A, B, C and D       
+
+1. standard     
+- Default mode, it pushes new activities on the top of the stack     
+- Example (how activities work in the stack): (bottom) A-B-B-D-A-C-C (top)      
+
+2. singleTop        
+- No duplicate activities on the top, but there could be same activities in the stack     
+- Example (how activities work in the stack): (bottom) A-B-A-C-D-C (top)        
+- Let's say C is the top activity, and you try to launch C again. Then this C won't be created, instead, ```onNewIntent()``` will be called in existed C.       
+
+3. singleTask
+- No duplicate activities in the stack      
+- Example (how activities work in the stack): (bottom) A-B-C-D (top)        
+- Let's say C is in the stack, and you try to launch C again. Then this C won't be created, instead, ```onNewIntent()``` will be called in existed C.       
+- taskAffinity
+
+
+NOTICE: You might need to handle both ```onCreate()``` and ```onNewIntent()``` lifecycle events in ```singleTop```
 
 ## Fragment
 1. To build a multi-pane UI   
@@ -427,7 +506,7 @@ android:theme="@style/AppTheme.NoActionBar"
 ```
 
 3. Initialise night mode programmatically if you want
-```Java
+```java
 public class MainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -450,7 +529,7 @@ public class MainActivity {
 ```
 
 4. Switch day/night mode programmatically if you want
-```Java
+```java
 SharedPreferences sharedPreferences = getSharedPreferences("main", Context.MODE_PRIVATE);
 button.setOnClickListener(
     v -> {

@@ -7,6 +7,7 @@
     <string name="nav_header_desc">侧边栏顶部</string>
     <string name="action_night_mode">夜间模式</string>
     <string name="action_day_mode">日间模式</string>
+    <string name="action_clear_history">清理搜寻记录</string>
     <string name="action_search">搜寻</string>
     <string name="alert_icon">提醒图标</string>
     <string name="undo">还原</string>
@@ -39,6 +40,7 @@
     <string name="empty_in_playlist_desc">添加音乐后将于此显示</string>
     <string name="purchase">购买</string>
     <string name="add_icon">添加</string>
+    <string name="search_hint">Search</string>
 
     <!--radio group-->
     <string name="require_network">网络限制</string>

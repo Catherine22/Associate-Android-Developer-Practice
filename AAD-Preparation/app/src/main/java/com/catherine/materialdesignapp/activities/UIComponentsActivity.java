@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.SearchRecentSuggestions;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -68,27 +69,8 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ui_components);
         initComponent();
-        handleIntent(getIntent());
     }
 
-
-    /**
-     * If your searchable activity launches in single top mode (android:launchMode="singleTop"),
-     * also handle the ACTION_SEARCH intent in the onNewIntent() method
-     *
-     * @param intent
-     */
-    @Override
-    protected void onNewIntent(Intent intent) {
-        handleIntent(intent);
-    }
-
-    private void handleIntent(Intent intent) {
-        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String query = intent.getStringExtra(SearchManager.QUERY);
-            //use the query to search your data somehow
-        }
-    }
 
     private void initComponent() {
         toolbar = findViewById(R.id.toolbar);

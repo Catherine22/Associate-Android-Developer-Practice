@@ -1,5 +1,6 @@
 package com.catherine.materialdesignapp.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.catherine.materialdesignapp.R;
+import com.catherine.materialdesignapp.activities.SearchableActivity;
 import com.catherine.materialdesignapp.adapters.PlaylistAdapter;
 import com.catherine.materialdesignapp.components.RecyclerViewItemTouchHelper;
 import com.catherine.materialdesignapp.listeners.OnPlaylistItemClickListener;
@@ -40,6 +42,11 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
     private RecyclerView recyclerView;
     private UIComponentsListener listener;
 
+    // firebase
+    private DatabaseReference myRef;
+    private ValueEventListener firebaseValueEventListener;
+    private String DB_PATH = "test_playlist"; // TODO playlists
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,6 +58,9 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        myRef = database.getReference(DB_PATH);
+
         empty_page = view.findViewById(R.id.empty_page);
         recyclerView = view.findViewById(R.id.rv_playlists);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -67,7 +77,16 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
             public void onAddButtonClicked(View view, int position) {
                 Log.d(TAG, "onAddButtonClicked:" + position);
 
-                // add a new playlist
+                // add new songs
+                Playlist playlist = filteredPlaylists.get(position);
+                Intent searchableActivity = new Intent(getActivity(), SearchableActivity.class);
+                searchableActivity.putExtra("playlist", playlist);
+                startActivity(searchableActivity);
+
+                // grab available songs from db/songs/
+                // add songs to playlist.getSongs()
+                // update to firebase ->  myRef.child(playlist.getName()).setValue(playlist);
+
             }
 
             @Override
@@ -127,9 +146,10 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
     }
 
     private void fillInData() {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("playlists");
-        myRef.addValueEventListener(new ValueEventListener() {
+        if (firebaseValueEventListener != null)
+            return;
+
+        firebaseValueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
@@ -154,7 +174,8 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
                 // Failed to read value
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
-        });
+        };
+        myRef.addValueEventListener(firebaseValueEventListener);
     }
 
     @Override

@@ -1,12 +1,13 @@
 package com.catherine.materialdesignapp.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.catherine.materialdesignapp.listeners.ProguardIgnored;
 
-public class Song implements Cloneable, ProguardIgnored {
+public class Song implements Cloneable, Parcelable, ProguardIgnored {
+    private String artist;
     private String album;
-
-    private String title;
-
     private String url;
 
 
@@ -18,12 +19,12 @@ public class Song implements Cloneable, ProguardIgnored {
         this.album = album;
     }
 
-    public String getTitle() {
-        return title;
+    public String getArtist() {
+        return artist;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setArtist(String artist) {
+        this.artist = artist;
     }
 
     public String getUrl() {
@@ -34,10 +35,42 @@ public class Song implements Cloneable, ProguardIgnored {
         this.url = url;
     }
 
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public Song createFromParcel(Parcel in) {
+            return new Song(in);
+        }
+
+        public Song[] newArray(int size) {
+            return new Song[size];
+        }
+    };
+
+    public Song() {
+
+    }
+
+    public Song(Parcel in) {
+        artist = in.readString();
+        album = in.readString();
+        url = in.readString();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(artist);
+        dest.writeString(album);
+        dest.writeString(url);
+    }
+
     public Song clone() throws CloneNotSupportedException {
         Song clone = (Song) super.clone();
+        clone.artist = artist;
         clone.album = album;
-        clone.title = title;
         clone.url = url;
         return clone;
     }
@@ -51,13 +84,13 @@ public class Song implements Cloneable, ProguardIgnored {
             return false;
         }
         Song song = (Song) o;
-        return album == song.getAlbum() &&
-                title == song.getTitle() &&
+        return artist == song.getArtist() &&
+                album == song.getAlbum() &&
                 url == song.getUrl();
     }
 
     @Override
     public String toString() {
-        return "{album = " + album + ", title = " + title + ", url = " + url + "}";
+        return "{artist = " + artist + ", album = " + album + ", url = " + url + "}";
     }
 }

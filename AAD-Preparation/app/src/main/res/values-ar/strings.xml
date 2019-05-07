@@ -7,6 +7,7 @@
     <string name="nav_header_desc">رأس الملاحة</string>
     <string name="action_night_mode">Night Mode</string>
     <string name="action_day_mode">Day Mode</string>
+    <string name="action_clear_history">Clear history</string>
     <string name="action_search">Search</string>
     <string name="alert_icon">أيقونة التنبيه</string>
     <string name="undo">فك</string>
@@ -39,6 +40,7 @@
     <string name="empty_in_playlist_desc">Add music and it will show up here.</string>
     <string name="purchase">Purchase</string>
     <string name="add_icon">Add</string>
+    <string name="search_hint">Search</string>
 
     <!--radio group-->
     <string name="require_network">Require Network</string>

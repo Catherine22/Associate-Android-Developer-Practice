@@ -51,15 +51,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainActivity" />
-
-            <!--Start this activity anywhere if needed-->
-            <!--<meta-data-->
-                <!--android:name="android.app.searchable"-->
-                <!--android:resource="@xml/searchable" />-->
-
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.SEARCH" />-->
-            <!--</intent-filter>-->
         </activity>
         <activity
             android:name=".activities.LifecycleActivity"
@@ -106,6 +97,36 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.UIComponentsActivity" />
         </activity>
+
+        <!-- this is the searchable activity, it performs searches -->
+        <activity
+            android:name=".activities.SearchableActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:launchMode="singleTop"
+            android:parentActivityName=".activities.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+
+        <!-- this activity enables the search dialog to initiate searches
+         in the SearchableActivity -->
+        <activity
+            android:name=".activities.SongsActivity"
+            android:launchMode="singleTop">
+            <!-- enable the search dialog to send searches to SearchableActivity -->
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".activities.SearchableActivity" />
+        </activity>
+
+        <provider
+            android:name=".providers.SearchSuggestionProvider"
+            android:authorities="com.catherine.materialdesignapp.providers.SearchSuggestionProvider" />
+
 
         <!--Services-->
         <service android:name=".services.MusicPlayerService">
