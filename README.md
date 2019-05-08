@@ -58,7 +58,7 @@ implementation 'com.google.android.material:material:1.0.0'
   ```SelectionTracker``` is another to do ```setOnClickListener```, which is more powerful while multiple items need selecting   
 - BottomNavigationView -> [UIComponentsActivity]    
 - TabLayout + ViewPager -> [MusicFragment], [UIComponentsActivity]    
-- SearchView -> [MusicFragment], [UIComponentsActivity]    
+- SearchView -> [SearchableActivity], [AndroidManifest]     
 
 ### SearchView
 Believe if or not, a SearchView could be far more complicated than you've expected.   
@@ -72,19 +72,34 @@ Before we get started, let's take a look at some features of SearchView:
 
 First thing first, you need to create either Search Dialog (a SearchView inside NavigationView) or Search Widget (your custom search view, which could be an EditText placed anywhere in your layout).     
 
-Secondly, think about how you handle the search view. If you want to start another activity to handle searches, you need the following:      
+Secondly, think about how you handle the search view. Here is my workflow:        
+Start the ```SearchableActivity``` ->       
+User types something in ```SearchView``` and press enter ->     
+Start the ```SearchableActivity``` again ->       
+Handle searches in ```onNewIntent()```      
 
+You need the following:      
 1. Add tags to your result activity in AndroidManifest.xml
 ```xml
 <activity
-    android:name=".activities.SearchableActivity">
-    <meta-data
-        android:name="android.app.searchable"
-        android:resource="@xml/searchable" />
+    android:name=".activities.SearchableActivity"
+    android:launchMode="singleTop">
 
     <intent-filter>
         <action android:name="android.intent.action.SEARCH" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
     </intent-filter>
+
+    <intent-filter>
+        <action android:name="com.google.android.gms.actions.SEARCH_ACTION" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+    </intent-filter>
+
+     <meta-data
+        android:name="android.app.searchable"
+        android:resource="@xml/searchable" />
 </activity>
 ```
 
@@ -124,61 +139,70 @@ And register your content provider in AndroidManifest.xml
     android:authorities="com.catherine.materialdesignapp.providers.SearchSuggestionProvider" />
 ```
 
-Save queries in your SearchableActivity
-```java
-private void saveQueries(String text) {
-    SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
-       MySuggestionProvider.AUTHORITY, MySuggestionProvider.MODE);
-       suggestions.saveRecentQuery(text, null);
-}
-```
-
 3. Handle intents and create a search icon in your activity
 ```java
-public class SearchableActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
+public class SearchableActivity extends AppCompatActivity {  
+    private final static String TAG = SearchableActivity.class.getSimpleName();  
+    private SearchManager searchManager;
+    private SearchView searchView;
+
   /**
-   * If your searchable activity launches in single top mode (android:launchMode="singleTop"),
-   * also handle the ACTION_SEARCH intent in the onNewIntent() method
-   *
-   * @param intent
-   */
-  @Override
-  protected void onNewIntent(Intent intent) {
-      handleIntent(intent);
-  }
+     * In this case, this onNewIntent will be called while
+     * user finishes searching, this activity will be relaunch.
+     * <p>
+     * Because
+     * 1. this activity launches in single top/task/instance mode
+     * 2. ACTION_SEARCH is defined in intent-filter
+     *
+     * @param intent
+     */
+    @Override
+    protected void onNewIntent(Intent intent) {
+        handleIntent(intent);
+    }
 
-  private void handleIntent(Intent intent) {
-      if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-          String query = intent.getStringExtra(SearchManager.QUERY);
-          query(query);
-          saveQueries(query);
-      }
-  }
+    private void handleIntent(Intent intent) {
+        if (intent == null)
+            return;
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
 
-  @Override
+            // Handle the scenario that user submitted searches:
+            // 1. Fill in what user just typed in SearchView automatically
+            // 2. Dismiss search suggestions
+            // 3. Query
+            // 4. Save queries
+            searchView.setQuery(query, false);
+            searchView.clearFocus();
+            query(query);
+            saveQueries(query);
+        }
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.searchable_menu, menu);
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+
+        searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        searchView.setOnQueryTextListener(this);
         return true;
     }
 
-    // query while user types enter
     @Override
-    public boolean onQueryTextSubmit(String query) {
-        query(query);
-        saveQueries(query);
-        return false;
-    }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_clear:
 
-    // real-time query
-    @Override
-    public boolean onQueryTextChange(String newText) {
-        query(newText);
-        return false;
+                // clear query history
+                SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
+                        SearchSuggestionProvider.AUTHORITY, SearchSuggestionProvider.MODE);
+                suggestions.clearHistory();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void query(String text) {
@@ -192,13 +216,6 @@ public class SearchableActivity extends AppCompatActivity implements SearchView.
         suggestions.saveRecentQuery(text, null);
     }
 }
-```
-
-If your app will save users' query history, you must provide a way for users to clear the recent search suggestions
-```java
-SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
-    SearchSuggestionProvider.AUTHORITY, SearchSuggestionProvider.MODE);
-suggestions.clearHistory();
 ```
 
 4. In menu/ui_components_menu.xml    
@@ -216,9 +233,7 @@ suggestions.clearHistory();
 </menu>
 ```
 > ```app:showAsAction="collapseActionView"```: Click the search icon and stretch the view   
-
-
-
+> ```setIconifiedByDefault(false)```: Always show the search field       
 
 
 ## Custom Layouts
@@ -768,6 +783,8 @@ The exam is only available in Java at this time (4/1/2019)
 [RecyclerViewItemTouchHelper]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/components/RecyclerViewItemTouchHelper.java>
 [MusicFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/MusicFragment.java>
 [UIComponentsActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/UIComponentsActivity.java>
+[SearchableActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/SearchableActivity.java>
+[AndroidManifest]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/AndroidManifest.xml>
 
 
 [Basic Types]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/BasicTypes.kt>

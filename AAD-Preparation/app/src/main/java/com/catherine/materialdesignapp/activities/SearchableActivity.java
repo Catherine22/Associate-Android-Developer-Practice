@@ -16,8 +16,11 @@ import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.models.Playlist;
 import com.catherine.materialdesignapp.providers.SearchSuggestionProvider;
 
-public class SearchableActivity extends BaseActivity implements SearchView.OnQueryTextListener {
+public class SearchableActivity extends BaseActivity /*implements SearchView.OnQueryTextListener*/ {
     private final static String TAG = SearchableActivity.class.getSimpleName();
+    private SearchManager searchManager;
+    private SearchView searchView;
+    private Playlist playlist;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +36,12 @@ public class SearchableActivity extends BaseActivity implements SearchView.OnQue
     }
 
     /**
-     * If your searchable activity launches in single top/task/instance mode
-     * also handle the ACTION_SEARCH intent in the onNewIntent() method
+     * In this case, this onNewIntent will be called while
+     * user finishes searching, this activity will be relaunch.
+     * <p>
+     * Because
+     * 1. this activity launches in single top/task/instance mode
+     * 2. ACTION_SEARCH is defined in intent-filter
      *
      * @param intent
      */
@@ -43,15 +50,26 @@ public class SearchableActivity extends BaseActivity implements SearchView.OnQue
         handleIntent(intent);
     }
 
+
     private void handleIntent(Intent intent) {
+        if (intent == null)
+            return;
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
+
+            // Handle the scenario that user submitted searches:
+            // 1. Fill in what user just typed in SearchView automatically
+            // 2. Dismiss search suggestions
+            // 3. Query
+            // 4. Save queries
+            searchView.setQuery(query, false);
+            searchView.clearFocus();
             query(query);
             saveQueries(query);
         }
 
-        Playlist playlist = intent.getParcelableExtra("playlist");
-        if (playlist != null) {
+        if (intent.getParcelableExtra("playlist") != null) {
+            playlist = intent.getParcelableExtra("playlist");
             Log.d(TAG, playlist.toString());
         }
     }
@@ -61,10 +79,10 @@ public class SearchableActivity extends BaseActivity implements SearchView.OnQue
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.searchable_menu, menu);
 
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        searchView.setOnQueryTextListener(this);
+//        searchView.setOnQueryTextListener(this);
         return true;
     }
 
@@ -81,18 +99,19 @@ public class SearchableActivity extends BaseActivity implements SearchView.OnQue
         }
     }
 
-    @Override
-    public boolean onQueryTextSubmit(String query) {
-        query(query);
-        saveQueries(query);
-        return false;
-    }
-
-    @Override
-    public boolean onQueryTextChange(String newText) {
-        query(newText);
-        return false;
-    }
+//    @Override
+//    public boolean onQueryTextSubmit(String query) {
+//        return false; // Start activity with "SEARCH_ACTION" intent-filter
+//    }
+//
+//    /**
+//     * @param newText
+//     * @return return true to hide search suggestions.
+//     */
+//    @Override
+//    public boolean onQueryTextChange(String newText) {
+//        return false;
+//    }
 
     private void query(String text) {
         // do something
