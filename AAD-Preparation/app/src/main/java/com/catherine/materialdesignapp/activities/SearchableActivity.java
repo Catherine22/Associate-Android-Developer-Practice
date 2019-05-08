@@ -33,7 +33,7 @@ public class SearchableActivity extends BaseActivity implements SearchView.OnQue
     }
 
     /**
-     * If your searchable activity launches in single top mode (android:launchMode="singleTop"),
+     * If your searchable activity launches in single top/task/instance mode
      * also handle the ACTION_SEARCH intent in the onNewIntent() method
      *
      * @param intent

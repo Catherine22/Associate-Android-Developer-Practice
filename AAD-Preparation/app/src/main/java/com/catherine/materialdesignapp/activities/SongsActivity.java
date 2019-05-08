@@ -1,5 +1,6 @@
 package com.catherine.materialdesignapp.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
@@ -19,5 +20,21 @@ public class SongsActivity extends BaseActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true); // enable back arrow on the top left area
             getSupportActionBar().setTitle(TAG);
         }
+
+        handleIntent(getIntent());
+    }
+
+    /**
+     * If your searchable activity launches in single top/task/instance mode
+     * also handle the ACTION_SEARCH intent in the onNewIntent() method
+     *
+     * @param intent
+     */
+    @Override
+    protected void onNewIntent(Intent intent) {
+        handleIntent(intent);
+    }
+
+    private void handleIntent(Intent intent) {
     }
 }

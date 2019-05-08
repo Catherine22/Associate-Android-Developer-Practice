@@ -279,7 +279,7 @@ Pixel density is how many pixels within a physical area of the screen, ```dpi```
 > anydpi: These bitmaps in anydpi have priority when no bitmaps are found in other drawable directories. For instance, we have ```drawable-hdpi/banner.9.png``` and ```drawable-anydpi/banner.xml```, ```banner.9.png``` will be used on hdpi devices and ```banner.xml``` will be seen on other devices.       
 
 To see more details by automatically importing icons with Android Studio Image Asset tools and have a look at [Grid and keyline shapes]        
-![screenshot](https://raw.githubusercontent.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/screenshots/image-asset.png)  
+![screenshot](https://raw.githubusercontent.com/Catherine22/AAD-Preparation/master/AAD-Preparation/screenshots/image-asset.png)  
 
 ```res``` directory example: [res]     
 
@@ -348,19 +348,26 @@ There are four different types of app components:
 Let's say we have 4 activities: A, B, C and D       
 
 1. standard     
-- Default mode, it pushes new activities on the top of the stack     
+- Default mode, it pushes new activities on the top of the stack.     
 - Example (how activities work in the stack): (bottom) A-B-B-D-A-C-C (top)      
 
 2. singleTop        
-- No duplicate activities on the top, but there could be same activities in the stack     
+- No duplicate activities on the top, but there could be same activities in the stack.     
 - Example (how activities work in the stack): (bottom) A-B-A-C-D-C (top)        
 - Let's say C is the top activity, and you try to launch C again. Then this C won't be created, instead, ```onNewIntent()``` will be called in existed C.       
 
 3. singleTask
-- No duplicate activities in the stack      
+- No duplicate activities in the stack.      
 - Example (how activities work in the stack): (bottom) A-B-C-D (top)        
 - Let's say C is in the stack, and you try to launch C again. Then this C won't be created, instead, ```onNewIntent()``` will be called in existed C.       
-- taskAffinity
+- Don't forget to set taskAffinity (```android:taskAffinity="your packageName"```) to map the activity to app.
+
+4. singleInstance
+- ```singleTask``` + ```taskAffinity``` is more recommended.
+- No duplicate activities in the system, which means if there is A running in App1, then we lunch A in App2, this running A in App1 will be killed.       
+- Example (how activities work in the stack): (bottom) A-B-C-D (top)        
+- Let's say C is in the stack, and you try to launch C again. Then this C won't be created, instead, ```onNewIntent()``` will be called in existed C.       
+- You could set taskAffinity (```android:taskAffinity="your packageName"```) as well
 
 
 NOTICE: You might need to handle both ```onCreate()``` and ```onNewIntent()``` lifecycle events in ```singleTop```

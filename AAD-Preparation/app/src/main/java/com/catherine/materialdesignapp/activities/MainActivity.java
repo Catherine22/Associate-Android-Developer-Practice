@@ -22,6 +22,7 @@ import com.catherine.materialdesignapp.listeners.OnRequestPermissionsListener;
 import com.catherine.materialdesignapp.receivers.NotificationReceiver;
 import com.catherine.materialdesignapp.utils.LocationHelper;
 import com.catherine.materialdesignapp.utils.OccupiedActions;
+import com.catherine.materialdesignapp.utils.SafetyUtils;
 import com.catherine.materialdesignapp.utils.Storage;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -81,9 +82,24 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             nav.setTitle(menuTitles[i]);
         }
 
+        //This keypair stores in your keystore. You can also see the same information by "keytool -list -v -keystore xxx.keystore  -alias xxx  -storepass xxx -keypass xxx" command
+        //keytool -list -v -keystore debug.keystore -alias androiddebugkey -storepass android -keypass android
+
         LocationHelper locationHelper = new LocationHelper();
         TextView tv_location = findViewById(R.id.tv_location);
-        tv_location.setText(String.format(Locale.US, "Preferred language: %s", locationHelper.getPreferredLanguage()));
+        String sb = "Package name:" +
+                getPackageName() +
+                "\nMD5:" +
+                SafetyUtils.getSigningKeyFingerprint(this, "md5") +
+                "\nFingerprint:\n{\nSHA1:" +
+                SafetyUtils.getSigningKeyFingerprint(this, "sha1") +
+                "\nSHA256:" +
+                SafetyUtils.getSigningKeyFingerprint(this, "sha256") +
+                "\n}\nApkCertificateDigestSha256:" +
+                SafetyUtils.calcApkCertificateDigests(MainActivity.this, MainActivity.this.getPackageName()) +
+                "\nApkDigest:" +
+                SafetyUtils.calcApkDigest(MainActivity.this);
+        tv_location.setText(String.format(Locale.US, "%s\nPreferred language: %s", sb, locationHelper.getPreferredLanguage()));
     }
 
     @Override
