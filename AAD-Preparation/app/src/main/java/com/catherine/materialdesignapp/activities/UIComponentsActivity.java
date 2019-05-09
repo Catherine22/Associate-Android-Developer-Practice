@@ -2,9 +2,7 @@ package com.catherine.materialdesignapp.activities;
 
 import android.app.SearchManager;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.provider.SearchRecentSuggestions;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -53,8 +51,6 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
 
 
     private final static String STATE_SELECTED_BOTTOM_NAVIGATION = "STATE_SELECTED_BOTTOM_NAVIGATION";
-    public final static String STATE_SELECTED_TAB = "STATE_SELECTED_TAB"; // this works while having MusicFragment selected
-    private int selectedTab = 0; // this works while having MusicFragment selected
 
     private BottomNavigationView navigationView;
     private Toolbar toolbar;
@@ -68,11 +64,11 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ui_components);
-        initComponent();
+        initComponent(savedInstanceState);
     }
 
 
-    private void initComponent() {
+    private void initComponent(Bundle savedInstanceState) {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
@@ -94,8 +90,11 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
         tabLayout.setVisibility(View.GONE);
 
         getSupportFragmentManager().addOnBackStackChangedListener(this);
-        // initialise home fragment
-        navigationView.setSelectedItemId(R.id.nav_home);
+
+        if (savedInstanceState == null) {
+            // initialise home fragment
+            navigationView.setSelectedItemId(R.id.nav_home);
+        }
     }
 
     @Override
@@ -122,6 +121,7 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        Log.d(TAG, "onNavigationItemSelected:" + item.getTitle());
         return switchTab(item.getItemId());
     }
 
@@ -144,10 +144,6 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
                 index = Tag.MUSIC.index();
                 if (fragments[index] == null) {
                     fragments[index] = new MusicFragment();
-
-                    Bundle b = new Bundle();
-                    b.putInt(STATE_SELECTED_TAB, selectedTab);
-                    fragments[index].setArguments(b);
                 }
                 f = fragments[index];
                 tabLayout.setVisibility(View.VISIBLE);
@@ -165,6 +161,14 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
                 return false;
         }
         Log.e(TAG, String.format("onTabSwitch:%s", tag));
+
+        // check fragments in back stack, if the fragment exists, do not replace it.
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            FragmentManager.BackStackEntry backStackEntry = getSupportFragmentManager().getBackStackEntryAt(getSupportFragmentManager().getBackStackEntryCount() - 1);
+            String name = backStackEntry.getName();
+            if (tag.equals(name))
+                return true;
+        }
 
         // keep only one fragment in the back stack
         clearBackStack();
@@ -210,8 +214,8 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
             public void onPageScrollStateChanged(int state) {
             }
         });
-        getSupportActionBar().setTitle(titles[0]);
-        toolbar.setTitle(titles[0]);
+        getSupportActionBar().setTitle(titles[viewpager.getCurrentItem()]);
+        toolbar.setTitle(titles[viewpager.getCurrentItem()]);
     }
 
     @Override
@@ -242,20 +246,16 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         savedInstanceState.putInt(STATE_SELECTED_BOTTOM_NAVIGATION, navigationView.getSelectedItemId());
-        if (navigationView.getSelectedItemId() == R.id.nav_music)
-            savedInstanceState.putInt(STATE_SELECTED_TAB, viewpager.getCurrentItem());
         super.onSaveInstanceState(savedInstanceState);
     }
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+        if (savedInstanceState == null)
+            return;
         int nav = savedInstanceState.getInt(STATE_SELECTED_BOTTOM_NAVIGATION);
         navigationView.setSelectedItemId(nav);
-        if (nav == R.id.nav_music) {
-            savedInstanceState.putInt(STATE_SELECTED_TAB, viewpager.getCurrentItem());
-            selectedTab = savedInstanceState.getInt(STATE_SELECTED_TAB);
-        }
     }
 
     @Override

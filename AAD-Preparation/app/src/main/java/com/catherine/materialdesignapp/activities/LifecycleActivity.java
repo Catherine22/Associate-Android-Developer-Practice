@@ -58,6 +58,8 @@ public class LifecycleActivity extends BaseActivity implements LifecycleOwner, L
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+        if (savedInstanceState == null)
+            return;
         savedTimestamp = savedInstanceState.getLong(STATE_TIMESTAMP);
         Log.e(TAG, String.format("restored saved instance state: %s", stampToDate(savedTimestamp)));
     }

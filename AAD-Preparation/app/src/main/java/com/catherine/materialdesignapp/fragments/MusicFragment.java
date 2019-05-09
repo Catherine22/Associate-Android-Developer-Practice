@@ -12,14 +12,16 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.catherine.materialdesignapp.R;
-import com.catherine.materialdesignapp.activities.UIComponentsActivity;
 import com.catherine.materialdesignapp.adapters.TabLayoutMusicAdapter;
 import com.catherine.materialdesignapp.listeners.FragmentLifecycle;
 import com.catherine.materialdesignapp.listeners.UIComponentsListener;
 
 public class MusicFragment extends Fragment {
     private final static String TAG = MusicFragment.class.getSimpleName();
+    public final static String STATE_SELECTED_TAB = "STATE_SELECTED_TAB"; // this works while having MusicFragment selected
     private int oldPosition = 0;
+    private ViewPager viewpager;
+    private MyOnPageChangeListener onPageChangeListener;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,22 +36,37 @@ public class MusicFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         UIComponentsListener listener = (UIComponentsListener) getActivity();
 
-        ViewPager viewpager = view.findViewById(R.id.viewpager);
+        viewpager = view.findViewById(R.id.viewpager);
         TabLayoutMusicAdapter adapter = new TabLayoutMusicAdapter(getChildFragmentManager());
         viewpager.setAdapter(adapter);
-        MyOnPageChangeListener onPageChangeListener = new MyOnPageChangeListener(adapter);
+        onPageChangeListener = new MyOnPageChangeListener(adapter);
         viewpager.addOnPageChangeListener(onPageChangeListener);
         listener.addViewPagerManager(viewpager, adapter.TABS);
+        Log.e(TAG, "onViewCreated");
+    }
 
-        // initialise the index page
-        int restoreTab = (getArguments() != null) ? getArguments().getInt(UIComponentsActivity.STATE_SELECTED_TAB) : 0;
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
+        savedInstanceState.putInt(STATE_SELECTED_TAB, viewpager.getCurrentItem());
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Override
+    public void onViewStateRestored(Bundle savedInstanceState) {
+        Log.e(TAG, "onViewStateRestored");
+        super.onViewStateRestored(savedInstanceState);
+        if (savedInstanceState == null)
+            return;
+
         // Do not call setCurrentItem directly, because onPageSelected() won't be triggered
         // viewpager.setCurrentItem(restoreTab, false);
+        oldPosition = savedInstanceState.getInt(STATE_SELECTED_TAB);
+        Log.e(TAG, "oldPosition：" + oldPosition);
         viewpager.post(() -> {
             // tap the tab, the state will be: SETTING -> onPageSelected() -> IDLE
             // scroll the tab, the state will be: DRAGGING -> SETTING -> onPageSelected() -> IDLE
             onPageChangeListener.onPageScrollStateChanged(ViewPager.SCROLL_STATE_SETTLING);
-            onPageChangeListener.onPageSelected(restoreTab);
+            onPageChangeListener.onPageSelected(oldPosition);
             onPageChangeListener.onPageScrollStateChanged(ViewPager.SCROLL_STATE_IDLE);
         });
     }

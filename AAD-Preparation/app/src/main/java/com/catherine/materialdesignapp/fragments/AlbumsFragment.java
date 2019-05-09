@@ -197,7 +197,8 @@ public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchView
 
     @Override
     public void onFragmentShow() {
-        listener.addOnSearchListener(this);
+        if (listener != null)
+            listener.addOnSearchListener(this);
     }
 
     @Override

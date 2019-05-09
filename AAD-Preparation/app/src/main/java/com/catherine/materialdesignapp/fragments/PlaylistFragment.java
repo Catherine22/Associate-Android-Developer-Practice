@@ -209,7 +209,8 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
 
     @Override
     public void onFragmentShow() {
-        listener.addOnSearchListener(this);
+        if (listener != null)
+            listener.addOnSearchListener(this);
     }
 
     @Override

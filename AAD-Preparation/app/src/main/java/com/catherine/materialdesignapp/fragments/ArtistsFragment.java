@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.catherine.materialdesignapp.Constants;
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.adapters.ArtistAdapter;
 import com.catherine.materialdesignapp.components.ArtistItemDetailsLookup;
@@ -28,12 +27,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class ArtistsFragment extends ChildOfMusicFragment implements OnSearchViewListener {
@@ -177,7 +172,8 @@ public class ArtistsFragment extends ChildOfMusicFragment implements OnSearchVie
 
     @Override
     public void onFragmentShow() {
-        listener.addOnSearchListener(this);
+        if (listener != null)
+            listener.addOnSearchListener(this);
     }
 
     @Override

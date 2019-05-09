@@ -233,7 +233,7 @@ public class SearchableActivity extends AppCompatActivity {
 </menu>
 ```
 > ```app:showAsAction="collapseActionView"```: Click the search icon and stretch the view   
-> ```setIconifiedByDefault(false)```: Always show the search field       
+> ```setIconified(false)```: Always show the search field       
 
 
 ## Custom Layouts
