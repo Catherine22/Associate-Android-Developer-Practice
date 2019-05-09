@@ -59,6 +59,7 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
+        // firebase
         myRef = database.getReference(DB_PATH);
 
         empty_page = view.findViewById(R.id.empty_page);
@@ -147,8 +148,11 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
 
     private void fillInData() {
         if (firebaseValueEventListener != null)
-            return;
+            myRef.removeEventListener(firebaseValueEventListener);
 
+        // This method is called once with the initial value and again
+        // whenever data at this location is updated.
+        // Failed to read value
         firebaseValueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

@@ -42,7 +42,6 @@ public class MusicFragment extends Fragment {
         onPageChangeListener = new MyOnPageChangeListener(adapter);
         viewpager.addOnPageChangeListener(onPageChangeListener);
         listener.addViewPagerManager(viewpager, adapter.TABS);
-        Log.e(TAG, "onViewCreated");
     }
 
     @Override
