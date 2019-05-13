@@ -11,12 +11,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.activities.SearchableActivity;
+import com.catherine.materialdesignapp.activities.UIComponentsActivity;
 import com.catherine.materialdesignapp.adapters.PlaylistAdapter;
 import com.catherine.materialdesignapp.components.RecyclerViewItemTouchHelper;
 import com.catherine.materialdesignapp.listeners.OnPlaylistItemClickListener;
@@ -60,7 +60,6 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        // firebase
         myRef = database.getReference(DB_PATH);
 
         SwipeRefreshLayout swipeRefreshLayout = view.findViewById(R.id.srl);
@@ -72,7 +71,6 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
 
         empty_page = view.findViewById(R.id.empty_page);
         recyclerView = view.findViewById(R.id.rv_playlists);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         playlists = new ArrayList<>();
         filteredPlaylists = new ArrayList<>();
@@ -150,7 +148,9 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
 
         recyclerView.setVisibility(View.VISIBLE);
         empty_page.setVisibility(View.GONE);
-        listener = (UIComponentsListener) getActivity();
+
+        if (UIComponentsActivity.TAG.equals(getActivity().getClass().getSimpleName()))
+            listener = (UIComponentsListener) getActivity();
         fillInData();
     }
 

@@ -22,8 +22,8 @@ public class SongAdapter extends RecyclerView.Adapter<SongAdapter.MainRvHolder> 
 
     public SongAdapter(Context ctx, String[] entities, OnItemClickListener listener) {
         this.ctx = ctx;
-        this.entities = entities;
         this.listener = listener;
+        this.entities = entities;
     }
 
     @NonNull

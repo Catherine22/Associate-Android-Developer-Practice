@@ -40,7 +40,8 @@
     <string name="empty_in_playlist_desc">添加音乐后将于此显示</string>
     <string name="purchase">购买</string>
     <string name="add_icon">添加</string>
-    <string name="search_hint">Search</string>
+    <string name="search_hint">搜寻</string>
+    <string name="add_new_playlist">创建新播放清单</string>
 
     <!--radio group-->
     <string name="require_network">网络限制</string>

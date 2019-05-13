@@ -41,6 +41,7 @@
     <string name="purchase">Purchase</string>
     <string name="add_icon">Add</string>
     <string name="search_hint">Search</string>
+    <string name="add_new_playlist">add new playlist</string>
 
     <!--radio group-->
     <string name="require_network">Require Network</string>
