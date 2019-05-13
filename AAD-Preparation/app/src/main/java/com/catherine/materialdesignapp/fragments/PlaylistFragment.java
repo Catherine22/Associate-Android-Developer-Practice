@@ -13,6 +13,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.activities.SearchableActivity;
@@ -61,6 +62,13 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         // firebase
         myRef = database.getReference(DB_PATH);
+
+        SwipeRefreshLayout swipeRefreshLayout = view.findViewById(R.id.srl);
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary, R.color.colorAccent, R.color.colorPrimaryDark, R.color.colorAccentDark);
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            fillInData();
+            swipeRefreshLayout.setRefreshing(false);
+        });
 
         empty_page = view.findViewById(R.id.empty_page);
         recyclerView = view.findViewById(R.id.rv_playlists);

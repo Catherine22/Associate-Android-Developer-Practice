@@ -2,6 +2,8 @@ package com.catherine.materialdesignapp.models;
 
 import com.catherine.materialdesignapp.listeners.ProguardIgnored;
 
+import java.util.List;
+
 public class Album implements ProguardIgnored {
     private String image;
 
@@ -12,6 +14,8 @@ public class Album implements ProguardIgnored {
     private String url;
 
     private String thumbnail_image;
+
+    private List<String> songs;
 
     public String getImage() {
         return image;
@@ -53,8 +57,16 @@ public class Album implements ProguardIgnored {
         this.thumbnail_image = thumbnail_image;
     }
 
+    public List<String> getSongs() {
+        return songs;
+    }
+
+    public void setSongs(List<String> songs) {
+        this.songs = songs;
+    }
+
     @Override
     public String toString() {
-        return "{image = " + image + ", artist = " + artist + ", title = " + title + ", url = " + url + ", thumbnail_image = " + thumbnail_image + "}";
+        return "{image = " + image + ", artist = " + artist + ", songs = " + songs + ", title = " + title + ", url = " + url + ", thumbnail_image = " + thumbnail_image + "}";
     }
 }

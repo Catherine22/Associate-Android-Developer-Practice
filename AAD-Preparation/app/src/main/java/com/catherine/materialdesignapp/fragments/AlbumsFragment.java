@@ -37,6 +37,11 @@ import com.facebook.imagepipeline.cache.DefaultCacheKeyFactory;
 import com.facebook.imagepipeline.core.DefaultExecutorSupplier;
 import com.facebook.imagepipeline.core.ImagePipelineFactory;
 import com.facebook.imagepipeline.request.ImageRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -61,6 +66,11 @@ public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchView
     private PrefetchSubscriber subscriber;
     private UIComponentsListener listener;
 
+    // firebase
+    private DatabaseReference myRef;
+    private ValueEventListener firebaseValueEventListener;
+    private String DB_PATH = "albums";
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -72,6 +82,11 @@ public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchView
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        // firebase
+        myRef = database.getReference(DB_PATH);
+
         SwipeRefreshLayout swipeRefreshLayout = view.findViewById(R.id.srl);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary, R.color.colorAccent, R.color.colorPrimaryDark, R.color.colorAccentDark);
         swipeRefreshLayout.setOnRefreshListener(() -> {
@@ -102,6 +117,12 @@ public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchView
                     intent.putExtra("album", tv_name.getText().toString());
                     intent.putExtra("artist", tv_artist.getText().toString());
 
+                    List<String> songList = filteredAlbums.get(position).getSongs();
+                    if (songList != null && songList.size() != 0) {
+                        String[] songs = new String[songList.size()];
+                        intent.putExtra("songs", songList.toArray(songs));
+                    }
+
                     Pair<View, String> p1 = Pair.create(sdv_photo, imageTransitionName);
                     Pair<View, String> p2 = Pair.create(tv_name, nameTransitionName);
                     Pair<View, String> p3 = Pair.create(tv_artist, artistTransitionName);
@@ -123,33 +144,69 @@ public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchView
     }
 
     private void fillInData() {
-        Request request = new Request.Builder()
-                .url(Constants.ALBUM_URL)
-                .build();
+//        // Retrieve data from https://rallycoding.herokuapp.com/api/music_albums
+//        Request request = new Request.Builder()
+//                .url(Constants.ALBUM_URL)
+//                .build();
+//
+//        okHttpClient.newCall(request).enqueue(new Callback() {
+//            @Override
+//            public void onFailure(Call call, IOException e) {
+//                e.printStackTrace();
+//                updateList();
+//            }
+//
+//            @Override
+//            public void onResponse(Call call, Response response) throws IOException {
+//                String returnMsg = String.format(Locale.ENGLISH, "connectSuccess code:%s\nisSuccessful:%b\nisRedirect:%b\ncache control:%s",
+//                        response.code(), response.isSuccessful(), response.isRedirect(), response.cacheControl().toString());
+//                Log.i(TAG, returnMsg);
+//                Gson gson = new Gson();
+//                Type listType = new TypeToken<List<Album>>() {
+//                }.getType();
+//                albums = gson.fromJson(response.body().string(), listType);
+//                filteredAlbums.clear();
+//                filteredAlbums.addAll(albums);
+//                adapter.setEntities(filteredAlbums);
+//                updateList();
+//                cacheItems();
+//            }
+//        });
 
-        okHttpClient.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-                updateList();
-            }
+        // Retrieve data from firebase realtime database
+        if (firebaseValueEventListener != null)
+            myRef.removeEventListener(firebaseValueEventListener);
 
+        // This method is called once with the initial value and again
+        // whenever data at this location is updated.
+        // Failed to read value
+        firebaseValueEventListener = new ValueEventListener() {
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                String returnMsg = String.format(Locale.ENGLISH, "connectSuccess code:%s\nisSuccessful:%b\nisRedirect:%b\ncache control:%s",
-                        response.code(), response.isSuccessful(), response.isRedirect(), response.cacheControl().toString());
-                Log.i(TAG, returnMsg);
-                Gson gson = new Gson();
-                Type listType = new TypeToken<List<Album>>() {
-                }.getType();
-                albums = gson.fromJson(response.body().string(), listType);
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                Log.d(TAG, String.format("size: %d", dataSnapshot.getChildrenCount()));
+
+                albums.clear();
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    Album album = child.getValue(Album.class);
+                    Log.i(TAG, String.format("%s: %s", child.getKey(), album));
+                    albums.add(album);
+                }
                 filteredAlbums.clear();
                 filteredAlbums.addAll(albums);
                 adapter.setEntities(filteredAlbums);
                 updateList();
                 cacheItems();
             }
-        });
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        };
+        myRef.addValueEventListener(firebaseValueEventListener);
     }
 
     private void cacheItems() {

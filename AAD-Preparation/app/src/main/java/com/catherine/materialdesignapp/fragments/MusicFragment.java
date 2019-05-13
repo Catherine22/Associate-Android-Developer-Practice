@@ -52,7 +52,6 @@ public class MusicFragment extends Fragment {
 
     @Override
     public void onViewStateRestored(Bundle savedInstanceState) {
-        Log.e(TAG, "onViewStateRestored");
         super.onViewStateRestored(savedInstanceState);
         if (savedInstanceState == null)
             return;
