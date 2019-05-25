@@ -21,3 +21,7 @@
 #-renamesourcefileattribute SourceFile
 
 -keep com.catherine.materialdesignapp.listeners.ProguardIgnored
+-keepattributes Signature
+-keepclassmembers class com.yourcompany.models.** {
+  *;
+}

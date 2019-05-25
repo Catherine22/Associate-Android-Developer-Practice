@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -71,6 +72,7 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
 
         empty_page = view.findViewById(R.id.empty_page);
         recyclerView = view.findViewById(R.id.rv_playlists);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         playlists = new ArrayList<>();
         filteredPlaylists = new ArrayList<>();
@@ -185,6 +187,7 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
                 Log.w(TAG, "Failed to read value.", error.toException());
+                updateList();
             }
         };
         myRef.addValueEventListener(firebaseValueEventListener);
@@ -209,13 +212,15 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
 
 
     private void updateList() {
-        adapter.notifyDataSetChanged();
-
         // Empty playlist
         if (playlists.isEmpty()) {
             recyclerView.setVisibility(View.GONE);
             empty_page.setVisibility(View.VISIBLE);
+        } else {
+            recyclerView.setVisibility(View.VISIBLE);
+            empty_page.setVisibility(View.GONE);
         }
+        adapter.notifyDataSetChanged();
     }
 
 
