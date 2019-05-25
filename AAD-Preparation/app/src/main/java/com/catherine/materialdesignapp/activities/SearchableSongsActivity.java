@@ -8,24 +8,47 @@ import android.provider.SearchRecentSuggestions;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.catherine.materialdesignapp.R;
+import com.catherine.materialdesignapp.adapters.AddSongsAdapter;
+import com.catherine.materialdesignapp.listeners.OnItemClickListener;
 import com.catherine.materialdesignapp.models.Playlist;
+import com.catherine.materialdesignapp.models.Song;
 import com.catherine.materialdesignapp.providers.SearchSuggestionProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class SearchableActivity extends BaseActivity /*implements SearchView.OnQueryTextListener*/ {
-    private final static String TAG = SearchableActivity.class.getSimpleName();
+import java.util.HashMap;
+import java.util.Map;
+
+public class SearchableSongsActivity extends BaseActivity /*implements SearchView.OnQueryTextListener*/ {
+    private final static String TAG = SearchableSongsActivity.class.getSimpleName();
     private SearchManager searchManager;
     private SearchView searchView;
     private Playlist playlist;
+    private Map<String, Song> songs;
+    private RecyclerView recyclerView;
+    private AddSongsAdapter adapter;
+
+    // firebase
+    private DatabaseReference myRef;
+    private ValueEventListener firebaseValueEventListener;
+    private String DB_PATH = "songs";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_searchable);
+        setContentView(R.layout.activity_searchable_songs);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
@@ -33,6 +56,36 @@ public class SearchableActivity extends BaseActivity /*implements SearchView.OnQ
             getSupportActionBar().setTitle(TAG);
         }
         handleIntent(getIntent());
+    }
+
+    private void initView() {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        myRef = database.getReference(DB_PATH);
+
+        SwipeRefreshLayout swipeRefreshLayout = findViewById(R.id.srl);
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary, R.color.colorAccent, R.color.colorPrimaryDark, R.color.colorAccentDark);
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            fillInData();
+            swipeRefreshLayout.setRefreshing(false);
+        });
+
+        recyclerView = findViewById(R.id.rv_songs);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        songs = new HashMap<>();
+        adapter = new AddSongsAdapter(this, songs, new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Log.d(TAG, "onItemClicked:" + position);
+                //TODO add to firebase
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position) {
+
+            }
+        });
+        recyclerView.setAdapter(adapter);
     }
 
     /**
@@ -47,6 +100,7 @@ public class SearchableActivity extends BaseActivity /*implements SearchView.OnQ
      */
     @Override
     protected void onNewIntent(Intent intent) {
+        Log.d(TAG, "onNewIntent");
         handleIntent(intent);
     }
 
@@ -64,6 +118,7 @@ public class SearchableActivity extends BaseActivity /*implements SearchView.OnQ
             // 4. Save queries
             searchView.setQuery(query, false);
             searchView.clearFocus();
+            initView();
             query(query);
             saveQueries(query);
         }
@@ -115,6 +170,8 @@ public class SearchableActivity extends BaseActivity /*implements SearchView.OnQ
 
     private void query(String text) {
         // do something
+        Log.d(TAG, "query");
+        fillInData();
     }
 
     private void saveQueries(String text) {
@@ -122,5 +179,36 @@ public class SearchableActivity extends BaseActivity /*implements SearchView.OnQ
         SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
                 SearchSuggestionProvider.AUTHORITY, SearchSuggestionProvider.MODE);
         suggestions.saveRecentQuery(text, null);
+    }
+
+
+    private void fillInData() {
+        if (firebaseValueEventListener != null)
+            myRef.removeEventListener(firebaseValueEventListener);
+
+        firebaseValueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                Log.d(TAG, String.format("size: %d", dataSnapshot.getChildrenCount()));
+                songs.clear();
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    Song song = child.getValue(Song.class);
+                    Log.i(TAG, String.format("%s: %s", child.getKey(), song));
+                    songs.put(child.getKey(), song);
+                }
+                adapter.setEntities(songs);
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+                adapter.notifyDataSetChanged();
+            }
+        };
+        myRef.addValueEventListener(firebaseValueEventListener);
     }
 }

@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.catherine.materialdesignapp.R;
-import com.catherine.materialdesignapp.activities.SearchableActivity;
+import com.catherine.materialdesignapp.activities.SearchableSongsActivity;
 import com.catherine.materialdesignapp.activities.UIComponentsActivity;
 import com.catherine.materialdesignapp.adapters.PlaylistAdapter;
 import com.catherine.materialdesignapp.components.RecyclerViewItemTouchHelper;
@@ -88,7 +88,7 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
 
                 // add new songs
                 Playlist playlist = filteredPlaylists.get(position);
-                Intent searchableActivity = new Intent(getActivity(), SearchableActivity.class);
+                Intent searchableActivity = new Intent(getActivity(), SearchableSongsActivity.class);
                 searchableActivity.putExtra("playlist", playlist);
                 startActivity(searchableActivity);
 
@@ -147,9 +147,6 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
         recyclerView.setAdapter(adapter);
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new RecyclerViewItemTouchHelper(adapter));
         itemTouchHelper.attachToRecyclerView(recyclerView);
-
-        recyclerView.setVisibility(View.VISIBLE);
-        empty_page.setVisibility(View.GONE);
 
         if (UIComponentsActivity.TAG.equals(getActivity().getClass().getSimpleName()))
             listener = (UIComponentsListener) getActivity();
