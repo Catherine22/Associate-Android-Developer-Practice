@@ -231,4 +231,11 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
     public void onFragmentHide() {
 
     }
+
+
+    @Override
+    public void onDestroy() {
+        myRef.removeEventListener(firebaseValueEventListener);
+        super.onDestroy();
+    }
 }

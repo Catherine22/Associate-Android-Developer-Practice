@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.SearchRecentSuggestions;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,7 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SearchableSongsActivity extends BaseActivity /*implements SearchView.OnQueryTextListener*/ {
+public class SearchableSongsActivity extends BaseActivity implements SearchView.OnQueryTextListener {
     private final static String TAG = SearchableSongsActivity.class.getSimpleName();
     private SearchManager searchManager;
     private SearchView searchView;
@@ -116,6 +117,7 @@ public class SearchableSongsActivity extends BaseActivity /*implements SearchVie
             // 2. Dismiss search suggestions
             // 3. Query
             // 4. Save queries
+            searchView.setOnQueryTextListener(this);
             searchView.setQuery(query, false);
             searchView.clearFocus();
             initView();
@@ -137,36 +139,37 @@ public class SearchableSongsActivity extends BaseActivity /*implements SearchVie
         searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-//        searchView.setOnQueryTextListener(this);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_clear:
-                SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
-                        SearchSuggestionProvider.AUTHORITY, SearchSuggestionProvider.MODE);
-                suggestions.clearHistory();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.action_clear) {
+            SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
+                    SearchSuggestionProvider.AUTHORITY, SearchSuggestionProvider.MODE);
+            suggestions.clearHistory();
+            onBackPressed();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
-//    @Override
-//    public boolean onQueryTextSubmit(String query) {
-//        return false; // Start activity with "SEARCH_ACTION" intent-filter
-//    }
-//
-//    /**
-//     * @param newText
-//     * @return return true to hide search suggestions.
-//     */
-//    @Override
-//    public boolean onQueryTextChange(String newText) {
-//        return false;
-//    }
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false; // Start activity with "SEARCH_ACTION" intent-filter
+    }
+
+    /**
+     * @param newText
+     * @return return true to hide search suggestions.
+     */
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        if (TextUtils.isEmpty(newText)) {
+            // TODO: reset data
+        }
+        return true;
+    }
 
     private void query(String text) {
         // do something
@@ -210,5 +213,11 @@ public class SearchableSongsActivity extends BaseActivity /*implements SearchVie
             }
         };
         myRef.addValueEventListener(firebaseValueEventListener);
+    }
+
+    @Override
+    protected void onDestroy() {
+        myRef.removeEventListener(firebaseValueEventListener);
+        super.onDestroy();
     }
 }
