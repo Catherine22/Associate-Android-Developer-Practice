@@ -592,7 +592,29 @@ And to inherit user-defined styles, you could use a dot notation
 
 Code: [styles](https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/res/values/styles.xml)      
 
+
 # Jetpack
+[Video](https://www.youtube.com/watch?v=7p22cSzniBM)        
+[Guide](https://developer.android.com/jetpack/docs/guide)
+
+## Room
+A robust SQLite object mapping library. 
+
+## WorkManager
+WorkManager providers APIs for deferrable, one-off and recurring background tasks that need guaranteed execution 
+
+## ViewModel
+ViewModel is constructed when app configuration changes such as screen rotation
+
+## LiveData
+LiveData is an observable data holder for the data is meant to be shown on screens.
+
+## Paging
+Paging library integrates directly with endless data
+
+## Navigation
+Navigation library simplifies implementation of complex but common navigation requirements.
+
 
 ## Migrate to AndroidX
 1. In order to activate AndroidX, add two flags in gradle.properties    
