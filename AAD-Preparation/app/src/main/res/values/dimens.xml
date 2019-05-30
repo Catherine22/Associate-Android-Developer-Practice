@@ -7,7 +7,6 @@
     <dimen name="fab_margin">16dp</dimen>
 
 
-
     <dimen name="safe_area_margin_width">16dp</dimen>
     <dimen name="safe_area_margin_height">16dp</dimen>
     <dimen name="safe_area_margin">16dp</dimen>

@@ -19,9 +19,9 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.adapters.AddSongsAdapter;
+import com.catherine.materialdesignapp.jetpack.entities.Playlist;
+import com.catherine.materialdesignapp.jetpack.entities.Song;
 import com.catherine.materialdesignapp.listeners.OnItemClickListener;
-import com.catherine.materialdesignapp.models.Playlist;
-import com.catherine.materialdesignapp.models.Song;
 import com.catherine.materialdesignapp.providers.SearchSuggestionProvider;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -217,7 +217,8 @@ public class SearchableSongsActivity extends BaseActivity implements SearchView.
 
     @Override
     protected void onDestroy() {
-        myRef.removeEventListener(firebaseValueEventListener);
+        if (firebaseValueEventListener != null)
+            myRef.removeEventListener(firebaseValueEventListener);
         super.onDestroy();
     }
 }

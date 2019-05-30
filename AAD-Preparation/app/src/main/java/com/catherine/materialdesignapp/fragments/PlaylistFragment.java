@@ -23,7 +23,7 @@ import com.catherine.materialdesignapp.components.RecyclerViewItemTouchHelper;
 import com.catherine.materialdesignapp.listeners.OnPlaylistItemClickListener;
 import com.catherine.materialdesignapp.listeners.OnSearchViewListener;
 import com.catherine.materialdesignapp.listeners.UIComponentsListener;
-import com.catherine.materialdesignapp.models.Playlist;
+import com.catherine.materialdesignapp.jetpack.entities.Playlist;
 import com.catherine.materialdesignapp.utils.TextHelper;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -235,6 +235,7 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
 
     @Override
     public void onDestroy() {
+        if (firebaseValueEventListener != null)
         myRef.removeEventListener(firebaseValueEventListener);
         super.onDestroy();
     }

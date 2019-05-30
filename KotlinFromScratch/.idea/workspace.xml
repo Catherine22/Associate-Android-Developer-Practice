@@ -2,24 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ead4a42c-220e-4a08-87e1-404b838f1035" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../AAD-Preparation/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_extensions_2_0_0_rc01_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AAD-Preparation/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_process_2_0_0_rc01_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AAD-Preparation/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_service_2_0_0_rc01_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AAD-Preparation/.idea/libraries/Gradle__androidx_room_room_common_2_0_0_rc01_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AAD-Preparation/.idea/libraries/Gradle__androidx_room_room_migration_2_0_0_rc01_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AAD-Preparation/.idea/libraries/Gradle__androidx_room_room_runtime_2_0_0_rc01_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AAD-Preparation/.idea/libraries/Gradle__androidx_room_room_testing_2_0_0_rc01_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AAD-Preparation/.idea/libraries/Gradle__androidx_sqlite_sqlite_2_0_0_rc01_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AAD-Preparation/.idea/libraries/Gradle__androidx_sqlite_sqlite_framework_2_0_0_rc01_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AAD-Preparation/.idea/libraries/Gradle__org_jetbrains_annotations_13_0_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AAD-Preparation/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_2_50_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../AAD-Preparation/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_2_50_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/components/PlaylistHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/jetpack/MapConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/jetpack/daos/PlaylistDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/jetpack/databases/PlaylistRoomDatabase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/jetpack/repositories/PlaylistRepositry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/jetpack/view_models/PlaylistViewModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../AAD-Preparation/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/../AAD-Preparation/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../AAD-Preparation/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/../AAD-Preparation/.idea/caches/gradle_models.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../AAD-Preparation/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AAD-Preparation/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../AAD-Preparation/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../AAD-Preparation/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/AlbumDetailsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/AlbumDetailsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/SearchableSongsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/SearchableSongsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/UIComponentsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/UIComponentsActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/adapters/AddSongsAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/adapters/AddSongsAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/adapters/PlaylistAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/adapters/PlaylistAdapter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/PlaylistFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/PlaylistFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/models/Album.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/models/Album.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AAD-Preparation/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../AAD-Preparation/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/models/Playlist.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/jetpack/entities/Playlist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/models/Song.java" beforeDir="false" afterPath="$PROJECT_DIR$/../AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/jetpack/entities/Song.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AAD-Preparation/app/src/main/res/layout/content_ui_components.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AAD-Preparation/app/src/main/res/layout/content_ui_components.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AAD-Preparation/app/src/main/res/values/dimens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../AAD-Preparation/app/src/main/res/values/dimens.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
     </list>
@@ -35,11 +38,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/EnumClasses.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="29" selection-start-line="29" selection-end-line="29" />
+            <state relative-caret-position="645">
+              <caret line="43" column="73" selection-start-line="43" selection-start-column="69" selection-end-line="43" selection-end-column="73" />
             </state>
           </provider>
         </entry>
@@ -57,7 +60,16 @@
         <entry file="file://$PROJECT_DIR$/src/package1/BaseClassExtensions.kt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="270">
-              <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+              <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/SealedClass.kt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="17" selection-start-column="6" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -89,7 +101,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Delegation.kt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="237">
@@ -146,6 +158,7 @@
       <find>KotlinButton</find>
       <find>by</find>
       <find>DelegatedProperties</find>
+      <find>thank you for delegating</find>
     </findStrings>
     <replaceStrings>
       <replace>enum1</replace>
@@ -215,7 +228,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="877" />
@@ -307,7 +320,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="877" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20028612" />
@@ -417,13 +430,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SealedClass.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="47" column="1" selection-start-line="47" selection-start-column="1" selection-end-line="47" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Generics.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="552">
@@ -442,13 +448,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/package1/BaseClassExtensions.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -540,13 +539,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/EnumClasses.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/singleton_java/SingletonTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -614,6 +606,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="237">
           <caret line="29" column="40" lean-forward="true" selection-start-line="29" selection-start-column="40" selection-end-line="29" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/package1/BaseClassExtensions.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="1" lean-forward="true" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SealedClass.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="17" selection-start-column="6" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EnumClasses.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="645">
+          <caret line="43" column="73" selection-start-line="43" selection-start-column="69" selection-end-line="43" selection-end-column="73" />
         </state>
       </provider>
     </entry>

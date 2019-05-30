@@ -255,6 +255,7 @@ public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchView
 
     @Override
     public void onDestroy() {
+        if (firebaseValueEventListener != null)
         myRef.removeEventListener(firebaseValueEventListener);
         super.onDestroy();
     }

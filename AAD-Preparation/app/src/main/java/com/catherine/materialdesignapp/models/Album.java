@@ -1,14 +1,17 @@
 package com.catherine.materialdesignapp.models;
 
 import com.catherine.materialdesignapp.listeners.ProguardIgnored;
+import com.google.firebase.database.annotations.NotNull;
 
 import java.util.List;
 
 public class Album implements ProguardIgnored {
     private String image;
 
+    @NotNull
     private String artist;
 
+    @NotNull
     private String title;
 
     private String url;

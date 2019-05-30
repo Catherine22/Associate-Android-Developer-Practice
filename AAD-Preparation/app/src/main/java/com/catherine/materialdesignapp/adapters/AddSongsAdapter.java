@@ -1,9 +1,6 @@
 package com.catherine.materialdesignapp.adapters;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Build;
 import android.text.Html;
 import android.text.TextUtils;
@@ -18,23 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.listeners.OnItemClickListener;
-import com.catherine.materialdesignapp.models.Album;
-import com.catherine.materialdesignapp.models.Song;
-import com.facebook.binaryresource.BinaryResource;
-import com.facebook.binaryresource.FileBinaryResource;
-import com.facebook.cache.common.CacheKey;
-import com.facebook.drawee.view.SimpleDraweeView;
-import com.facebook.imagepipeline.cache.DefaultCacheKeyFactory;
-import com.facebook.imagepipeline.core.ImagePipelineFactory;
-import com.facebook.imagepipeline.request.ImageRequest;
+import com.catherine.materialdesignapp.jetpack.entities.Song;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class AddSongsAdapter extends RecyclerView.Adapter<AddSongsAdapter.MainRvHolder> {
     private final String TAG = AddSongsAdapter.class.getSimpleName();

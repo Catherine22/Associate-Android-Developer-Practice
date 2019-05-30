@@ -16,12 +16,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.catherine.materialdesignapp.R;
+import com.catherine.materialdesignapp.components.PlaylistHelper;
 import com.catherine.materialdesignapp.fragments.FavoritesFragment;
 import com.catherine.materialdesignapp.fragments.HomeFragment;
 import com.catherine.materialdesignapp.fragments.MusicFragment;
 import com.catherine.materialdesignapp.listeners.OnSearchViewListener;
 import com.catherine.materialdesignapp.listeners.UIComponentsListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 public class UIComponentsActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener,
@@ -53,6 +55,7 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
     private final static String STATE_SELECTED_BOTTOM_NAVIGATION = "STATE_SELECTED_BOTTOM_NAVIGATION";
 
     private BottomNavigationView navigationView;
+    private FloatingActionButton fab_addToPlaylist;
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewpager;
@@ -84,6 +87,14 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
         }
         navigationView.setOnNavigationItemSelectedListener(this);
 
+        PlaylistHelper playlistHelper = new PlaylistHelper(this);
+        playlistHelper.prepare();
+        fab_addToPlaylist = findViewById(R.id.fab_addToPlaylist);
+        fab_addToPlaylist.setOnClickListener(v -> {
+
+
+        });
+
 
         // ViewPager for MusicFragment
         tabLayout = findViewById(R.id.tab_layout);
@@ -111,12 +122,10 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_search:
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.action_search) {
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

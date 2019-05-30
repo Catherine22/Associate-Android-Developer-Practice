@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.listeners.OnItemMoveListener;
 import com.catherine.materialdesignapp.listeners.OnPlaylistItemClickListener;
-import com.catherine.materialdesignapp.models.Playlist;
+import com.catherine.materialdesignapp.jetpack.entities.Playlist;
 
 import java.util.ArrayList;
 import java.util.Collections;

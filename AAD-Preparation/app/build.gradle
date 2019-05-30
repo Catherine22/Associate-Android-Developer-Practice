@@ -8,7 +8,7 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         // get it 17 or higher to support right-to-left layout features
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode  rootProject.ext.versionCode
+        versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
@@ -64,5 +64,6 @@ dependencies {
 
     // Lifecycle components
     implementation "androidx.lifecycle:lifecycle-extensions:${rootProject.ext.archLifecycleVersion}"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:${rootProject.ext.archLifecycleVersion}"
     annotationProcessor "androidx.lifecycle:lifecycle-common-java8:${rootProject.ext.archLifecycleVersion}"
 }

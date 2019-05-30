@@ -1,17 +1,25 @@
-package com.catherine.materialdesignapp.models;
+package com.catherine.materialdesignapp.jetpack.entities;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import com.catherine.materialdesignapp.listeners.ProguardIgnored;
 
 import java.util.HashMap;
 import java.util.Map;
 
+
+@Entity(tableName = "playlist_table")
 public class Playlist implements Comparable<Playlist>, Cloneable, Parcelable, ProguardIgnored {
 
     private int index;
 
+    @NonNull
+    @PrimaryKey
     private String name;
 
     private Map<String, Song> songs = new HashMap<>();
@@ -24,16 +32,16 @@ public class Playlist implements Comparable<Playlist>, Cloneable, Parcelable, Pr
         this.index = index;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public Map<String, Song> getSongs() {
         return songs;
     }
 
     public void setSongs(Map<String, Song> songs) {
         this.songs = songs;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void setName(String name) {

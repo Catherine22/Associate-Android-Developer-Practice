@@ -4,19 +4,18 @@ Associate Android Developer Study Guide
 https://developers.google.com/training/certification/associate-android-developer/study-guide/   
 
 # Navigation
-- [Material design](https://github.com/Catherine22/material-design#)         
-- [Localisation](https://github.com/Catherine22/localisation#)      
-- [Device compatibility](https://github.com/Catherine22/device-compativility#)        
-- [Lifecycle](https://github.com/Catherine22/lifecycle#)       
-- [App components](https://github.com/Catherine22/app-components#)      
-- [Working in the background](https://github.com/Catherine22/working-in-the-background#)      
-- [Notification](https://github.com/Catherine22/notification#)      
-- [Accessibility Features](https://github.com/Catherine22/accessibility-features#)        
-- [Day/Night Mode](https://github.com/Catherine22/day/night-mode#)      
-- [Styles](https://github.com/Catherine22/styles#)        
-- [Jetpack](https://github.com/Catherine22/Jetpack#)       
-- [Kotlin](https://github.com/Catherine22/Kotlin#)
-
+- [Material design]         
+- [Localisation]      
+- [Device compatibility]        
+- [Lifecycle]       
+- [App components]      
+- [Working in the background]      
+- [Notification]      
+- [Accessibility Features]        
+- [Day/Night Mode]      
+- [Styles]       
+- [Jetpack]      
+- [Kotlin]
 
 # Material design
 Add the material dependency in build.gradle
@@ -42,7 +41,7 @@ implementation 'com.google.android.material:material:1.0.0'
 - AppBarLayout -> [Any activity in this app      
 - BottomSheet -> [ContentProviderFragment]      
 - Chip -> [NotificationActivity]      
-- ConstraintLayout -> [rv_album_item], [empty_list_page]      
+- ConstraintLayout -> [rv_album_item]      
 - FloatingActionButton -> [MainActivity]      
 - MaterialButton -> [BackgroundServiceFragment]      
 - MaterialCardView -> [BackgroundActivity]      
@@ -58,7 +57,7 @@ implementation 'com.google.android.material:material:1.0.0'
   ```SelectionTracker``` is another to do ```setOnClickListener```, which is more powerful while multiple items need selecting   
 - BottomNavigationView -> [UIComponentsActivity]    
 - TabLayout + ViewPager -> [MusicFragment], [UIComponentsActivity]    
-- SearchView -> [SearchableActivity], [AndroidManifest]     
+- SearchView -> [SearchSongsActivity], [AndroidManifest]     
 
 ### SearchView
 Believe if or not, a SearchView could be far more complicated than you've expected.   
@@ -73,16 +72,16 @@ Before we get started, let's take a look at some features of SearchView:
 First thing first, you need to create either Search Dialog (a SearchView inside NavigationView) or Search Widget (your custom search view, which could be an EditText placed anywhere in your layout).     
 
 Secondly, think about how you handle the search view. Here is my workflow:        
-Start the ```SearchableActivity``` ->       
-User types something in ```SearchView``` and press enter ->     
-Start the ```SearchableActivity``` again ->       
-Handle searches in ```onNewIntent()```      
+1. Start the ```SearchSongsActivity```       
+2. User types something in ```SearchView``` and press enter        
+3. Start the ```SearchSongsActivity``` again        
+4. Handle searches in ```onNewIntent()```      
 
 You need the following:      
 1. Add tags to your result activity in AndroidManifest.xml
 ```xml
 <activity
-    android:name=".activities.SearchableActivity"
+    android:name=".activities.SearchSongsActivity"
     android:launchMode="singleTop">
 
     <intent-filter>
@@ -141,8 +140,8 @@ And register your content provider in AndroidManifest.xml
 
 3. Handle intents and create a search icon in your activity
 ```java
-public class SearchableActivity extends AppCompatActivity {  
-    private final static String TAG = SearchableActivity.class.getSimpleName();  
+public class SearchSongsActivity extends AppCompatActivity {  
+    private final static String TAG = SearchSongsActivity.class.getSimpleName();  
     private SearchManager searchManager;
     private SearchView searchView;
 
@@ -597,6 +596,8 @@ Code: [styles](https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Pr
 [Video](https://www.youtube.com/watch?v=7p22cSzniBM)        
 [Guide](https://developer.android.com/jetpack/docs/guide)
 
+Go to [google tutorial](https://codelabs.developers.google.com/codelabs/android-training-livedata-viewmodel/index.html?index=..%2F..android-training#0) to see how ```Room``` + ```ViewModel``` + ```LiveData``` works.     
+
 ## Room
 A robust SQLite object mapping library. 
 
@@ -605,6 +606,9 @@ WorkManager providers APIs for deferrable, one-off and recurring background task
 
 ## ViewModel
 ViewModel is constructed when app configuration changes such as screen rotation
+
+[code]()
+[Documentation](https://developer.android.com/training/data-storage/room/defining-data.html)
 
 ## LiveData
 LiveData is an observable data holder for the data is meant to be shown on screens.
@@ -692,7 +696,7 @@ The exam is only available in Java at this time (4/1/2019)
     - Properties declared in the primary constructor or class body      
     - Copying    
     - E.g. [User], [Employee]      
-9. [enum and sealed class]             
+9. [Sealed Class], [Enum Classes]             
     - enum vs sealed class      
 10. [Generics]      
     - Declaration-site variance     
@@ -774,26 +778,32 @@ The exam is only available in Java at this time (4/1/2019)
 [Device compatibility]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#device-compatibility>
 [res]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/res/>
 [Lifecycle]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#lifecycle>
+[App components]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#app-components>
+[Working in the background]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#working-in-the-background>
+[Notification]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#notification>
+[Accessibility Features]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#accessibility-features>
+[Day/Night Mode]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#daynight-mode>
+[Styles]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#styles>
 [Jetpack]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#jetpack>
+[Kotlin]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#kotlin>
 
 [BaseActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/BaseActivity.java>
 [MainActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/MainActivity.java>
 [LifecycleActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/LifecycleActivity.java>
-[LifecycleObserverImpl]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/LifecycleObserverImpl.java>
+[LifecycleObserverImpl]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/utils/LifecycleObserverImpl.java>
 [AppComponentsActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/AppComponentsActivity.java>
-[MusicPlayerService]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/MusicPlayerService.java>
-[MusicPlayerJobScheduler]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/MusicPlayerJobScheduler.java>
+[MusicPlayerService]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/services/MusicPlayerService.java>
+[MusicPlayerJobScheduler]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/services/MusicPlayerJobScheduler.java>
 [AndroidManifest]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/AndroidManifest.xml>
 [InternetConnectivityReceiver]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/receivers/InternetConnectivityReceiver.java>
-[NetworkHealthService]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/NetworkHealthService.java>
-[NetworkHealthJobScheduler]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/NetworkHealthJobScheduler.java>
+[NetworkHealthService]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/services/NetworkHealthService.java>
+[NetworkHealthJobScheduler]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/services/NetworkHealthJobScheduler.java>
 [BackgroundActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/BackgroundActivity.java>
 [SleepTask]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/tasks/SleepTask.java>
 [SleepTaskLoader]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/tasks/SleepTaskLoader.java>
 [NotificationActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/NotificationActivity.java>
 [ContentProviderFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/ContentProviderFragment.java>
 [BackgroundServiceFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/BackgroundServiceFragment.java>
-[empty_list_page]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/res/layout/empty_list_page.xml>
 [rv_album_item]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/res/layout/rv_album_item.xml>
 [PlaylistAdapter]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/adapters/PlaylistAdapter.java>
 [PlaylistFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/PlaylistFragment.java>
@@ -805,7 +815,7 @@ The exam is only available in Java at this time (4/1/2019)
 [RecyclerViewItemTouchHelper]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/components/RecyclerViewItemTouchHelper.java>
 [MusicFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/MusicFragment.java>
 [UIComponentsActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/UIComponentsActivity.java>
-[SearchableActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/SearchableActivity.java>
+[SearchSongsActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/SearchSongsActivity.java>
 [AndroidManifest]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/AndroidManifest.xml>
 
 
@@ -816,12 +826,12 @@ The exam is only available in Java at this time (4/1/2019)
 [Properties and Fields]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/PropertiesAndFields.kt>
 [Visibility Modifiers]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/package1/VisibilityModifiers.kt>
 [BaseClass]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/BaseClass.kt>
-[BaseClassExtensions]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/BaseClassExtensions.kt>
+[BaseClassExtensions]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/package1/BaseClassExtensions.kt>
 [Data Class]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/DataClass.kt>
 [User]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/User.kt>
 [Employee]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/Employee.kt>
-[enum and sealed class]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/SealedClass.kt>
 [Nested and Inner Classes]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/InnerClassExample.kt>
+[Sealed Class]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/SealedClass.kt>
 [Enum Classes]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/EnumClasses.kt>
 [Objects]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/Objects.kt>
 [Type aliases]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/TypeAliases.kt>

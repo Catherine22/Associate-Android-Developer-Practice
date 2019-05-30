@@ -1,15 +1,29 @@
-package com.catherine.materialdesignapp.models;
+package com.catherine.materialdesignapp.jetpack.entities;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.catherine.materialdesignapp.listeners.ProguardIgnored;
 
+@Entity(tableName = "songs")
 public class Song implements Cloneable, Parcelable, ProguardIgnored {
+    @PrimaryKey(autoGenerate = true)
+    private int id;
     private String artist;
     private String album;
     private String url;
 
+
+    public int getID() {
+        return id;
+    }
+
+    public void setID(int id) {
+        this.id = id;
+    }
 
     public String getAlbum() {
         return album;
@@ -50,6 +64,7 @@ public class Song implements Cloneable, Parcelable, ProguardIgnored {
     }
 
     public Song(Parcel in) {
+        id = in.readInt();
         artist = in.readString();
         album = in.readString();
         url = in.readString();
@@ -62,6 +77,7 @@ public class Song implements Cloneable, Parcelable, ProguardIgnored {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
         dest.writeString(artist);
         dest.writeString(album);
         dest.writeString(url);
@@ -69,6 +85,7 @@ public class Song implements Cloneable, Parcelable, ProguardIgnored {
 
     public Song clone() throws CloneNotSupportedException {
         Song clone = (Song) super.clone();
+        clone.id = id;
         clone.artist = artist;
         clone.album = album;
         clone.url = url;
@@ -84,13 +101,14 @@ public class Song implements Cloneable, Parcelable, ProguardIgnored {
             return false;
         }
         Song song = (Song) o;
-        return artist == song.getArtist() &&
+        return id == song.getID() &&
+                artist == song.getArtist() &&
                 album == song.getAlbum() &&
                 url == song.getUrl();
     }
 
     @Override
     public String toString() {
-        return "{artist = " + artist + ", album = " + album + ", url = " + url + "}";
+        return "{id = " + id + ", artist = " + artist + ", album = " + album + ", url = " + url + "}";
     }
 }
