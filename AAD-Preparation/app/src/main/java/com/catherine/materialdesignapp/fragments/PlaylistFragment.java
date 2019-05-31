@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.catherine.materialdesignapp.FirebaseDB;
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.activities.SearchableSongsActivity;
 import com.catherine.materialdesignapp.activities.UIComponentsActivity;
@@ -47,7 +48,6 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
     // firebase
     private DatabaseReference myRef;
     private ValueEventListener firebaseValueEventListener;
-    private String DB_PATH = "test_playlist"; // TODO playlists
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,6 +61,7 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
+        String DB_PATH = FirebaseDB.PLAYLIST;
         myRef = database.getReference(DB_PATH);
 
         SwipeRefreshLayout swipeRefreshLayout = view.findViewById(R.id.srl);

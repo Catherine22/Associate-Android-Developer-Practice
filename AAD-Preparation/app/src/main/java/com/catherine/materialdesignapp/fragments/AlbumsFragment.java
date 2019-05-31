@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.catherine.materialdesignapp.FirebaseDB;
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.activities.AlbumDetailsActivity;
 import com.catherine.materialdesignapp.adapters.AlbumAdapter;
@@ -59,7 +60,7 @@ public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchView
     // firebase
     private DatabaseReference myRef;
     private ValueEventListener firebaseValueEventListener;
-    private String DB_PATH = "albums";
+    private String DB_PATH = FirebaseDB.ALBUMS;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

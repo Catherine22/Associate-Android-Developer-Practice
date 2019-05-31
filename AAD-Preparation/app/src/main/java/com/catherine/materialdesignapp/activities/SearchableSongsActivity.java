@@ -17,11 +17,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.catherine.materialdesignapp.FirebaseDB;
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.adapters.AddSongsAdapter;
+import com.catherine.materialdesignapp.components.PlaylistHelper;
 import com.catherine.materialdesignapp.jetpack.entities.Playlist;
 import com.catherine.materialdesignapp.jetpack.entities.Song;
 import com.catherine.materialdesignapp.listeners.OnItemClickListener;
+import com.catherine.materialdesignapp.listeners.PlaylistHelperListener;
 import com.catherine.materialdesignapp.providers.SearchSuggestionProvider;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,19 +35,22 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SearchableSongsActivity extends BaseActivity implements SearchView.OnQueryTextListener {
+public class SearchableSongsActivity extends BaseActivity implements SearchView.OnQueryTextListener, PlaylistHelperListener {
     private final static String TAG = SearchableSongsActivity.class.getSimpleName();
     private SearchManager searchManager;
     private SearchView searchView;
     private Playlist playlist;
     private Map<String, Song> songs;
     private RecyclerView recyclerView;
+    private SwipeRefreshLayout swipeRefreshLayout;
     private AddSongsAdapter adapter;
+    private PlaylistHelper playlistHelper;
+    private boolean sentAddToPlaylistEvent;
 
     // firebase
     private DatabaseReference myRef;
     private ValueEventListener firebaseValueEventListener;
-    private String DB_PATH = "songs";
+    private String DB_PATH = FirebaseDB.SONGS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +69,7 @@ public class SearchableSongsActivity extends BaseActivity implements SearchView.
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         myRef = database.getReference(DB_PATH);
 
-        SwipeRefreshLayout swipeRefreshLayout = findViewById(R.id.srl);
+        swipeRefreshLayout = findViewById(R.id.srl);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary, R.color.colorAccent, R.color.colorPrimaryDark, R.color.colorAccentDark);
         swipeRefreshLayout.setOnRefreshListener(() -> {
             fillInData();
@@ -77,8 +83,9 @@ public class SearchableSongsActivity extends BaseActivity implements SearchView.
         adapter = new AddSongsAdapter(this, songs, new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Log.d(TAG, "onItemClicked:" + position);
-                //TODO add to firebase
+                Log.d(TAG, "onItemClicked:" + adapter.getSongName(position));
+                sentAddToPlaylistEvent = true;
+                playlistHelper.addToPlaylist(playlist, adapter.getSongName(position), adapter.getSong(position));
             }
 
             @Override
@@ -87,6 +94,9 @@ public class SearchableSongsActivity extends BaseActivity implements SearchView.
             }
         });
         recyclerView.setAdapter(adapter);
+
+        playlistHelper = new PlaylistHelper(this, this);
+        playlistHelper.prepare();
     }
 
     /**
@@ -220,5 +230,21 @@ public class SearchableSongsActivity extends BaseActivity implements SearchView.
         if (firebaseValueEventListener != null)
             myRef.removeEventListener(firebaseValueEventListener);
         super.onDestroy();
+    }
+
+    @Override
+    public void onDataChanged() {
+        if (sentAddToPlaylistEvent) {
+            showSnackbar(swipeRefreshLayout, "saved");
+            sentAddToPlaylistEvent = false;
+        }
+    }
+
+    @Override
+    public void onCancelled() {
+        if (sentAddToPlaylistEvent) {
+            showSnackbar(swipeRefreshLayout, "failed");
+            sentAddToPlaylistEvent = false;
+        }
     }
 }

@@ -201,10 +201,8 @@ public class NotificationActivity extends BaseActivity implements View.OnClickLi
 
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            switch (id) {
-                case R.id.tiet_title:
-                    til_title.setErrorEnabled(false);
-                    break;
+            if (id == R.id.tiet_title) {
+                til_title.setErrorEnabled(false);
             }
         }
 

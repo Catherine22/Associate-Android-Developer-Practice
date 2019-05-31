@@ -16,7 +16,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.catherine.materialdesignapp.R;
-import com.catherine.materialdesignapp.components.PlaylistHelper;
 import com.catherine.materialdesignapp.fragments.FavoritesFragment;
 import com.catherine.materialdesignapp.fragments.HomeFragment;
 import com.catherine.materialdesignapp.fragments.MusicFragment;
@@ -87,8 +86,6 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
         }
         navigationView.setOnNavigationItemSelectedListener(this);
 
-        PlaylistHelper playlistHelper = new PlaylistHelper(this);
-        playlistHelper.prepare();
         fab_addToPlaylist = findViewById(R.id.fab_addToPlaylist);
         fab_addToPlaylist.setOnClickListener(v -> {
 

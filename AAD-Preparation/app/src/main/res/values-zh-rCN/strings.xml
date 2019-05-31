@@ -42,6 +42,7 @@
     <string name="add_icon">添加</string>
     <string name="search_hint">搜寻</string>
     <string name="add_new_playlist">创建新播放清单</string>
+    <string name="submit">注册</string>
 
     <!--radio group-->
     <string name="require_network">网络限制</string>

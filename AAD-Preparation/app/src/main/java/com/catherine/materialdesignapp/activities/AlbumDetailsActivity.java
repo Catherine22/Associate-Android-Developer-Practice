@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,13 +16,16 @@ import com.catherine.materialdesignapp.adapters.SongAdapter;
 import com.catherine.materialdesignapp.components.PlaylistHelper;
 import com.catherine.materialdesignapp.jetpack.entities.Song;
 import com.catherine.materialdesignapp.listeners.OnItemClickListener;
+import com.catherine.materialdesignapp.listeners.PlaylistHelperListener;
 import com.facebook.drawee.view.SimpleDraweeView;
 
-public class AlbumDetailsActivity extends BaseActivity {
+public class AlbumDetailsActivity extends BaseActivity implements PlaylistHelperListener {
     private final static String TAG = AlbumDetailsActivity.class.getSimpleName();
     private String album, artist;
+    private NestedScrollView container;
     private Uri coverUri;
     private PlaylistHelper playlistHelper;
+    private boolean sentAddToPlaylistEvent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,7 @@ public class AlbumDetailsActivity extends BaseActivity {
         artist = bundle.getString("artist");
         String[] songs = bundle.getStringArray("songs");
 
+        container = findViewById(R.id.container);
         SimpleDraweeView sdv_cover = findViewById(R.id.sdv_cover);
         sdv_cover.setImageURI(coverUri);
         TextView tv_album_name = findViewById(R.id.tv_album_name);
@@ -66,8 +71,8 @@ public class AlbumDetailsActivity extends BaseActivity {
                 song.setAlbum(album);
                 song.setArtist(artist);
                 song.setUrl(coverUri.toString());
+                sentAddToPlaylistEvent = true;
                 playlistHelper.popUpAddToPlaylist(songs[position], song);
-
             }
 
             @Override
@@ -76,7 +81,24 @@ public class AlbumDetailsActivity extends BaseActivity {
             }
         });
         recyclerView.setAdapter(adapter);
-        playlistHelper = new PlaylistHelper(this);
+        playlistHelper = new PlaylistHelper(this, this);
         playlistHelper.prepare();
+    }
+
+
+    @Override
+    public void onDataChanged() {
+        if (sentAddToPlaylistEvent) {
+            showSnackbar(container, "saved");
+            sentAddToPlaylistEvent = false;
+        }
+    }
+
+    @Override
+    public void onCancelled() {
+        if (sentAddToPlaylistEvent) {
+            showSnackbar(container, "failed");
+            sentAddToPlaylistEvent = false;
+        }
     }
 }

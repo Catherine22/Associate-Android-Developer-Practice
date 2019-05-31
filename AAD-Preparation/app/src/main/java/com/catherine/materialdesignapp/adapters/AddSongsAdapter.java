@@ -14,8 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.catherine.materialdesignapp.R;
-import com.catherine.materialdesignapp.listeners.OnItemClickListener;
 import com.catherine.materialdesignapp.jetpack.entities.Song;
+import com.catherine.materialdesignapp.listeners.OnItemClickListener;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -108,6 +108,14 @@ public class AddSongsAdapter extends RecyclerView.Adapter<AddSongsAdapter.MainRv
     public void setEntities(Map<String, Song> entities) {
         this.entities = entities;
         formatEntities();
+    }
+
+    public String getSongName(int position) {
+        return songTitles[position];
+    }
+
+    public Song getSong(int position) {
+        return songs[position];
     }
 
     class MainRvHolder extends RecyclerView.ViewHolder {
