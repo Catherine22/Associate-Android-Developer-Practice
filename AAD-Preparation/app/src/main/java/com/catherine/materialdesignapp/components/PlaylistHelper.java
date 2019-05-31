@@ -124,7 +124,6 @@ public class PlaylistHelper implements View.OnClickListener {
                     Log.i(TAG, String.format("%s: %s", child.getKey(), playlist));
                     playlists.add(playlist);
                 }
-                Collections.sort(playlists);
                 addToPlaylistAdapter.setEntities(fillInTitles(playlists));
                 addToPlaylistAdapter.notifyDataSetChanged();
                 listener.onDataChanged();

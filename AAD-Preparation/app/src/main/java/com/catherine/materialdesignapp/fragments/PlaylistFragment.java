@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,10 +22,13 @@ import com.catherine.materialdesignapp.activities.SearchableSongsActivity;
 import com.catherine.materialdesignapp.activities.UIComponentsActivity;
 import com.catherine.materialdesignapp.adapters.PlaylistAdapter;
 import com.catherine.materialdesignapp.components.RecyclerViewItemTouchHelper;
+import com.catherine.materialdesignapp.jetpack.daos.PlaylistDao;
+import com.catherine.materialdesignapp.jetpack.databases.PlaylistRoomDatabase;
+import com.catherine.materialdesignapp.jetpack.entities.Playlist;
+import com.catherine.materialdesignapp.jetpack.view_models.PlaylistViewModel;
 import com.catherine.materialdesignapp.listeners.OnPlaylistItemClickListener;
 import com.catherine.materialdesignapp.listeners.OnSearchViewListener;
 import com.catherine.materialdesignapp.listeners.UIComponentsListener;
-import com.catherine.materialdesignapp.jetpack.entities.Playlist;
 import com.catherine.materialdesignapp.utils.TextHelper;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,7 +37,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchViewListener {
@@ -48,6 +51,10 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
     // firebase
     private DatabaseReference myRef;
     private ValueEventListener firebaseValueEventListener;
+
+    // JetPack
+    private PlaylistViewModel playlistViewModel;
+    private PlaylistDao playlistDao;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -151,6 +158,17 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
 
         if (UIComponentsActivity.TAG.equals(getActivity().getClass().getSimpleName()))
             listener = (UIComponentsListener) getActivity();
+
+        // JetPack
+        PlaylistRoomDatabase db = PlaylistRoomDatabase.getDatabase(getActivity());
+        playlistDao = db.playlistDao();
+        playlistViewModel = ViewModelProviders.of(this).get(PlaylistViewModel.class);
+        playlistViewModel.getAllPlaylists().observe(this, playlists -> {
+            filteredPlaylists.clear();
+            filteredPlaylists.addAll(playlists);
+            adapter.setEntities(filteredPlaylists);
+            updateList();
+        });
         fillInData();
     }
 
@@ -173,11 +191,8 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
                     Log.i(TAG, String.format("%s: %s", child.getKey(), playlist));
 
                     playlists.add(playlist);
+                    playlistViewModel.insert(playlist);
                 }
-                Collections.sort(playlists);
-                filteredPlaylists.clear();
-                filteredPlaylists.addAll(playlists);
-                adapter.setEntities(filteredPlaylists);
                 updateList();
             }
 
@@ -237,7 +252,7 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
     @Override
     public void onDestroy() {
         if (firebaseValueEventListener != null)
-        myRef.removeEventListener(firebaseValueEventListener);
+            myRef.removeEventListener(firebaseValueEventListener);
         super.onDestroy();
     }
 }

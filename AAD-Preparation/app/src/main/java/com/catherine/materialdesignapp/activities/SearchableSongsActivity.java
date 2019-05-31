@@ -41,7 +41,6 @@ public class SearchableSongsActivity extends BaseActivity implements SearchView.
     private SearchView searchView;
     private Playlist playlist;
     private Map<String, Song> songs;
-    private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefreshLayout;
     private AddSongsAdapter adapter;
     private PlaylistHelper playlistHelper;
@@ -76,7 +75,7 @@ public class SearchableSongsActivity extends BaseActivity implements SearchView.
             swipeRefreshLayout.setRefreshing(false);
         });
 
-        recyclerView = findViewById(R.id.rv_songs);
+        RecyclerView recyclerView = findViewById(R.id.rv_songs);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         songs = new HashMap<>();
@@ -235,8 +234,8 @@ public class SearchableSongsActivity extends BaseActivity implements SearchView.
     @Override
     public void onDataChanged() {
         if (sentAddToPlaylistEvent) {
-            showSnackbar(swipeRefreshLayout, "saved");
             sentAddToPlaylistEvent = false;
+            finish();
         }
     }
 

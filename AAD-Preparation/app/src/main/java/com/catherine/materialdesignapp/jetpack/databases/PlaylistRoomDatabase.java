@@ -19,7 +19,8 @@ import com.catherine.materialdesignapp.jetpack.entities.Playlist;
 @Database(entities = {Playlist.class}, version = 1, exportSchema = false)
 @TypeConverters(MapConverter.class)
 public abstract class PlaylistRoomDatabase extends RoomDatabase {
-    public PlaylistDao playlistDao;
+    public abstract PlaylistDao playlistDao();
+
     private static PlaylistRoomDatabase INSTANCE;
 
     public static PlaylistRoomDatabase getDatabase(final Context context) {

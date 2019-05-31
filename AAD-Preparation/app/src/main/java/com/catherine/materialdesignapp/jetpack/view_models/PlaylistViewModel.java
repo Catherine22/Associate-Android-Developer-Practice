@@ -6,7 +6,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.catherine.materialdesignapp.jetpack.entities.Playlist;
-import com.catherine.materialdesignapp.jetpack.repositories.PlaylistRepositry;
+import com.catherine.materialdesignapp.jetpack.repositories.PlaylistRepository;
 
 import java.util.List;
 
@@ -17,22 +17,22 @@ import java.util.List;
  */
 public class PlaylistViewModel extends AndroidViewModel {
 
-    private PlaylistRepositry mPlaylistRepositry;
-    private LiveData<List<Playlist>> mAllPlaylists;
+    private PlaylistRepository mPlaylistRepository;
+    private LiveData<List<Playlist>> playlistLiveData;
 
 
     public PlaylistViewModel(Application application) {
         super(application);
-        mPlaylistRepositry = new PlaylistRepositry(application);
-        mAllPlaylists = mPlaylistRepositry.getAllPlaylists();
+        mPlaylistRepository = new PlaylistRepository(application);
+        playlistLiveData = mPlaylistRepository.getAllPlaylists();
     }
 
-    LiveData<List<Playlist>> getAllPlaylists() {
-        return mAllPlaylists;
+    public LiveData<List<Playlist>> getAllPlaylists() {
+        return playlistLiveData;
     }
 
     public void insert(Playlist playlist) {
-        mPlaylistRepositry.insert(playlist);
+        mPlaylistRepository.insert(playlist);
     }
 
 }

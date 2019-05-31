@@ -16,18 +16,18 @@ import java.util.List;
  * Trend Micro
  * catherine_chen@trendmicro.com
  */
-public class PlaylistRepositry {
+public class PlaylistRepository {
     private PlaylistDao mPlaylistDao;
-    private LiveData<List<Playlist>> mAllPlaylists;
+    private LiveData<List<Playlist>> playlistLiveData;
 
-    public PlaylistRepositry(Application application) {
+    public PlaylistRepository(Application application) {
         PlaylistRoomDatabase db = PlaylistRoomDatabase.getDatabase(application);
-        mPlaylistDao = db.playlistDao;
-        mAllPlaylists = mPlaylistDao.getAllPlaylists();
+        mPlaylistDao = db.playlistDao();
+        playlistLiveData = mPlaylistDao.getAllPlaylists();
     }
 
     public LiveData<List<Playlist>> getAllPlaylists() {
-        return mAllPlaylists;
+        return playlistLiveData;
     }
 
     public void insert(Playlist playlist) {
