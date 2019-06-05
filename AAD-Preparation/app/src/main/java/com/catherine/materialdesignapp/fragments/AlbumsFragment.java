@@ -61,6 +61,7 @@ public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchView
     private ValueEventListener firebaseValueEventListener;
     private String DB_PATH = FirebaseDB.ALBUMS;
 
+    // RoomDatabase
     private AlbumViewModel albumViewModel;
 
     @Override
@@ -143,7 +144,6 @@ public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchView
     }
 
     private void fillInData() {
-
         // Retrieve data from firebase realtime database
         if (firebaseValueEventListener != null)
             myRef.removeEventListener(firebaseValueEventListener);

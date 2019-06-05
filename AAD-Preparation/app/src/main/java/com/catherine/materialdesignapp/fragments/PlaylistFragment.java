@@ -50,7 +50,7 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
     private DatabaseReference myRef;
     private ValueEventListener firebaseValueEventListener;
 
-    // JetPack
+    // RoomDatabase
     private PlaylistViewModel playlistViewModel;
 
     @Override
@@ -156,7 +156,6 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
         if (UIComponentsActivity.TAG.equals(getActivity().getClass().getSimpleName()))
             listener = (UIComponentsListener) getActivity();
 
-        // JetPack
         playlistViewModel = ViewModelProviders.of(this).get(PlaylistViewModel.class);
         playlistViewModel.getAllPlaylists().observe(this, playlists -> {
             filteredPlaylists.clear();
@@ -188,7 +187,6 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
                     playlists.add(playlist);
                     playlistViewModel.insert(playlist);
                 }
-                updateList();
             }
 
             @Override
@@ -221,7 +219,7 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
 
     private void updateList() {
         // Empty playlist
-        if (playlists.isEmpty()) {
+        if (playlists.isEmpty() && filteredPlaylists.isEmpty()) {
             recyclerView.setVisibility(View.GONE);
             empty_page.setVisibility(View.VISIBLE);
         } else {

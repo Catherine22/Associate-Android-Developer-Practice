@@ -42,6 +42,7 @@ public class ArtistsFragment extends ChildOfMusicFragment implements OnSearchVie
     private SelectionTracker<String> tracker;
     private UIComponentsListener listener;
 
+    // RoomDatabase
     private ArtistViewModel artistViewModel;
 
     @Override
@@ -84,7 +85,7 @@ public class ArtistsFragment extends ChildOfMusicFragment implements OnSearchVie
         listener = (UIComponentsListener) getActivity();
 
         artistViewModel = ViewModelProviders.of(this).get(ArtistViewModel.class);
-        artistViewModel.getArtistLiveData().observe(this, artists1 -> {
+        artistViewModel.getArtistLiveData().observe(this, artists -> {
             filteredArtists.clear();
             filteredArtists.addAll(artists);
             updateList();
