@@ -27,7 +27,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -45,6 +44,7 @@ public class PlaylistHelper implements View.OnClickListener {
     private Activity activity;
     private Song song;
     private String songName;
+    private Playlist removedPlaylist;
 
     public PlaylistHelper(Activity activity, PlaylistHelperListener listener) {
         this.activity = activity;
@@ -65,6 +65,32 @@ public class PlaylistHelper implements View.OnClickListener {
             if (databaseError != null)
                 Log.e(TAG, databaseError.getMessage());
             playlistsDialog.dismiss();
+        });
+    }
+
+    public void updatePlaylist(List<Playlist> newPlaylists) {
+        Map<String, Object> playlistChild = new HashMap<>();
+        for (int i = 0; i < newPlaylists.size(); i++) {
+            Playlist p = newPlaylists.get(i);
+            playlistChild.put(p.getName(), p);
+        }
+
+        myRef.updateChildren(playlistChild, (databaseError, databaseReference) -> {
+            if (databaseError != null)
+                Log.e(TAG, databaseError.getMessage());
+        });
+    }
+
+    public void removePlaylist(Playlist playlist) {
+        this.removedPlaylist = playlist;
+        myRef.child(playlist.getName()).removeValue((databaseError, databaseReference) -> {
+            if (databaseError != null) {
+                Log.e(TAG, databaseError.getMessage());
+                return;
+            }
+
+            if (listener != null)
+                listener.onDataChanged();
         });
     }
 

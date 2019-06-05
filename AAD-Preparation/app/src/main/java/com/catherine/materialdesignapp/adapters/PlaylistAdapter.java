@@ -12,9 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.catherine.materialdesignapp.R;
+import com.catherine.materialdesignapp.jetpack.entities.Playlist;
 import com.catherine.materialdesignapp.listeners.OnItemMoveListener;
 import com.catherine.materialdesignapp.listeners.OnPlaylistItemClickListener;
-import com.catherine.materialdesignapp.jetpack.entities.Playlist;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -75,6 +75,8 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.MainRv
 
     public void setEntities(List<Playlist> entities) {
         this.entities = entities;
+        if (this.entities != null)
+            Collections.sort(this.entities);
     }
 
     public List<Playlist> getEntities() {

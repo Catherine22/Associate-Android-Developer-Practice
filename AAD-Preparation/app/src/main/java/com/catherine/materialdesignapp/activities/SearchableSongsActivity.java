@@ -242,7 +242,7 @@ public class SearchableSongsActivity extends BaseActivity implements SearchView.
     @Override
     public void onCancelled() {
         if (sentAddToPlaylistEvent) {
-            showSnackbar(swipeRefreshLayout, "failed");
+            showSnackbar(swipeRefreshLayout, "Failed");
             sentAddToPlaylistEvent = false;
         }
     }

@@ -96,57 +96,16 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
                 Intent searchableActivity = new Intent(getActivity(), SearchableSongsActivity.class);
                 searchableActivity.putExtra("playlist", playlist);
                 startActivity(searchableActivity);
-
-                // grab available songs from db/songs/
-                // add songs to playlist.getSongs()
-                // update to firebase ->  myRef.child(playlist.getName()).setValue(playlist);
-
             }
 
             @Override
             public void onDragged(int oldPosition, int newPosition) {
                 Log.d(TAG, "onDragged:" + newPosition);
-
-                // update raw data
-                int header = 0;
-                while (header < playlists.size()) {
-                    if (playlists.get(header).getIndex() == oldPosition) {
-                        playlists.get(header).setIndex(newPosition);
-                    }
-                    if (playlists.get(header).getIndex() == newPosition) {
-                        playlists.get(header).setIndex(oldPosition);
-                    }
-                    header++;
-                }
-
-                // update filtered data
-                int temp = filteredPlaylists.get(oldPosition).getIndex();
-                filteredPlaylists.get(oldPosition).setIndex(newPosition);
-                filteredPlaylists.get(newPosition).setIndex(temp);
-
-
-                // Put the latest playlists to the server
             }
 
             @Override
             public void onSwiped(Playlist swipedPlaylist) {
                 Log.d(TAG, "onSwiped:" + swipedPlaylist);
-
-                // update raw data
-                int header = 0;
-                while (header < playlists.size()) {
-                    if (playlists.get(header).equals(swipedPlaylist)) {
-                        playlists.remove(header);
-                        break;
-                    }
-                    header++;
-                }
-
-                // update filtered data
-                filteredPlaylists = adapter.getEntities();
-
-
-                // Put the latest playlists to the server
             }
         });
         recyclerView.setAdapter(adapter);
@@ -179,6 +138,7 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 Log.d(TAG, String.format("size: %d", dataSnapshot.getChildrenCount()));
+
                 playlists.clear();
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     Playlist playlist = child.getValue(Playlist.class);
