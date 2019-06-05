@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.selection.ItemKeyProvider;
 
-import com.catherine.materialdesignapp.models.Artist;
+import com.catherine.materialdesignapp.jetpack.entities.Artist;
 
 import java.util.List;
 

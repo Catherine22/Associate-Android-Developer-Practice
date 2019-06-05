@@ -33,11 +33,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-/**
- * Created by catherine_chen on 2019-05-29.
- * Trend Micro
- * catherine_chen@trendmicro.com
- */
 public class PlaylistHelper implements View.OnClickListener {
     private String TAG = "PlaylistHelper";
     private AddToPlaylistAdapter addToPlaylistAdapter;

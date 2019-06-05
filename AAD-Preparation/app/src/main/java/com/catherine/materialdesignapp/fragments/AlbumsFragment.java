@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -22,10 +23,11 @@ import com.catherine.materialdesignapp.FirebaseDB;
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.activities.AlbumDetailsActivity;
 import com.catherine.materialdesignapp.adapters.AlbumAdapter;
+import com.catherine.materialdesignapp.jetpack.entities.Album;
+import com.catherine.materialdesignapp.jetpack.view_models.AlbumViewModel;
 import com.catherine.materialdesignapp.listeners.OnItemClickListener;
 import com.catherine.materialdesignapp.listeners.OnSearchViewListener;
 import com.catherine.materialdesignapp.listeners.UIComponentsListener;
-import com.catherine.materialdesignapp.models.Album;
 import com.catherine.materialdesignapp.utils.PrefetchSubscriber;
 import com.catherine.materialdesignapp.utils.TextHelper;
 import com.facebook.binaryresource.BinaryResource;
@@ -46,12 +48,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import okhttp3.OkHttpClient;
-
 public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchViewListener {
     private final static String TAG = AlbumsFragment.class.getSimpleName();
     private AlbumAdapter adapter;
-    private OkHttpClient okHttpClient;
     private List<Album> albums;
     private List<Album> filteredAlbums;
     private PrefetchSubscriber subscriber;
@@ -61,6 +60,8 @@ public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchView
     private DatabaseReference myRef;
     private ValueEventListener firebaseValueEventListener;
     private String DB_PATH = FirebaseDB.ALBUMS;
+
+    private AlbumViewModel albumViewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -128,41 +129,20 @@ public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchView
             }
         });
         recyclerView.setAdapter(adapter);
-        okHttpClient = new OkHttpClient.Builder().build();
         subscriber = new PrefetchSubscriber();
         listener = (UIComponentsListener) getActivity();
+
+        albumViewModel = ViewModelProviders.of(this).get(AlbumViewModel.class);
+        albumViewModel.getAlbumLiveData().observe(this, albums -> {
+            filteredAlbums.clear();
+            filteredAlbums.addAll(albums);
+            adapter.setEntities(filteredAlbums);
+            updateList();
+        });
         fillInData();
     }
 
     private void fillInData() {
-//        // Retrieve data from https://rallycoding.herokuapp.com/api/music_albums
-//        Request request = new Request.Builder()
-//                .url(Constants.ALBUM_URL)
-//                .build();
-//
-//        okHttpClient.newCall(request).enqueue(new Callback() {
-//            @Override
-//            public void onFailure(Call call, IOException e) {
-//                e.printStackTrace();
-//                updateList();
-//            }
-//
-//            @Override
-//            public void onResponse(Call call, Response response) throws IOException {
-//                String returnMsg = String.format(Locale.ENGLISH, "connectSuccess code:%s\nisSuccessful:%b\nisRedirect:%b\ncache control:%s",
-//                        response.code(), response.isSuccessful(), response.isRedirect(), response.cacheControl().toString());
-//                Log.i(TAG, returnMsg);
-//                Gson gson = new Gson();
-//                Type listType = new TypeToken<List<Album>>() {
-//                }.getType();
-//                albums = gson.fromJson(response.body().string(), listType);
-//                filteredAlbums.clear();
-//                filteredAlbums.addAll(albums);
-//                adapter.setEntities(filteredAlbums);
-//                updateList();
-//                cacheItems();
-//            }
-//        });
 
         // Retrieve data from firebase realtime database
         if (firebaseValueEventListener != null)
@@ -183,11 +163,8 @@ public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchView
                     Album album = child.getValue(Album.class);
                     Log.i(TAG, String.format("%s: %s", child.getKey(), album));
                     albums.add(album);
+                    albumViewModel.insert(album);
                 }
-                filteredAlbums.clear();
-                filteredAlbums.addAll(albums);
-                adapter.setEntities(filteredAlbums);
-                updateList();
                 cacheItems();
             }
 
@@ -257,7 +234,7 @@ public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchView
     @Override
     public void onDestroy() {
         if (firebaseValueEventListener != null)
-        myRef.removeEventListener(firebaseValueEventListener);
+            myRef.removeEventListener(firebaseValueEventListener);
         super.onDestroy();
     }
 }

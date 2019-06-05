@@ -17,7 +17,7 @@ import androidx.recyclerview.selection.SelectionTracker;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.catherine.materialdesignapp.R;
-import com.catherine.materialdesignapp.models.Artist;
+import com.catherine.materialdesignapp.jetpack.entities.Artist;
 import com.catherine.materialdesignapp.utils.DisplayHelper;
 import com.facebook.drawee.view.SimpleDraweeView;
 

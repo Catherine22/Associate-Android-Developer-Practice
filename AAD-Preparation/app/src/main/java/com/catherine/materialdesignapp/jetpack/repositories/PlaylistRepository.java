@@ -11,11 +11,6 @@ import com.catherine.materialdesignapp.jetpack.entities.Playlist;
 
 import java.util.List;
 
-/**
- * Created by catherine_chen on 2019-05-29.
- * Trend Micro
- * catherine_chen@trendmicro.com
- */
 public class PlaylistRepository {
     private PlaylistDao mPlaylistDao;
     private LiveData<List<Playlist>> playlistLiveData;
@@ -26,7 +21,7 @@ public class PlaylistRepository {
         playlistLiveData = mPlaylistDao.getAllPlaylists();
     }
 
-    public LiveData<List<Playlist>> getAllPlaylists() {
+    public LiveData<List<Playlist>> getPlaylistLiveData() {
         return playlistLiveData;
     }
 

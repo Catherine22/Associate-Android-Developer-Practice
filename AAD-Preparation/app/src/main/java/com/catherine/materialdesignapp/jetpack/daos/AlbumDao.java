@@ -6,19 +6,18 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.catherine.materialdesignapp.jetpack.entities.Playlist;
+import com.catherine.materialdesignapp.jetpack.entities.Album;
 
 import java.util.List;
 
 @Dao
-public interface PlaylistDao {
-
+public interface AlbumDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(Playlist playlist);
+    void insert(Album album);
 
-    @Query("DELETE FROM playlist_table")
+    @Query("DELETE FROM album_table")
     void deleteAll();
 
-    @Query("SELECT * from playlist_table ORDER BY `index` ASC")
-    LiveData<List<Playlist>> getAllPlaylists();
+    @Query("SELECT * from album_table ORDER BY `title` ASC")
+    LiveData<List<Album>> getAllAlbums();
 }

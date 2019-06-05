@@ -11,12 +11,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-/**
- * Created by catherine_chen on 2019-05-29.
- * Trend Micro
- * catherine_chen@trendmicro.com
- */
-public class MapConverter {
+public class SongMapConverter {
     @TypeConverter
     public static Map<String, Song> fromString(String value) {
         try {
@@ -42,6 +37,9 @@ public class MapConverter {
 
     @TypeConverter
     public static String fromStringMap(Map<String, Song> value) {
+        if (value == null || value.size() == 0) {
+            return new JSONObject().toString();
+        }
         try {
             Iterator<String> keys = value.keySet().iterator();
             JSONObject jo = new JSONObject(value);

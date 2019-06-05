@@ -10,11 +10,6 @@ import com.catherine.materialdesignapp.jetpack.repositories.PlaylistRepository;
 
 import java.util.List;
 
-/**
- * Created by catherine_chen on 2019-05-29.
- * Trend Micro
- * catherine_chen@trendmicro.com
- */
 public class PlaylistViewModel extends AndroidViewModel {
 
     private PlaylistRepository mPlaylistRepository;
@@ -24,7 +19,7 @@ public class PlaylistViewModel extends AndroidViewModel {
     public PlaylistViewModel(Application application) {
         super(application);
         mPlaylistRepository = new PlaylistRepository(application);
-        playlistLiveData = mPlaylistRepository.getAllPlaylists();
+        playlistLiveData = mPlaylistRepository.getPlaylistLiveData();
     }
 
     public LiveData<List<Playlist>> getAllPlaylists() {

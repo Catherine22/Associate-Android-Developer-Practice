@@ -22,8 +22,6 @@ import com.catherine.materialdesignapp.activities.SearchableSongsActivity;
 import com.catherine.materialdesignapp.activities.UIComponentsActivity;
 import com.catherine.materialdesignapp.adapters.PlaylistAdapter;
 import com.catherine.materialdesignapp.components.RecyclerViewItemTouchHelper;
-import com.catherine.materialdesignapp.jetpack.daos.PlaylistDao;
-import com.catherine.materialdesignapp.jetpack.databases.PlaylistRoomDatabase;
 import com.catherine.materialdesignapp.jetpack.entities.Playlist;
 import com.catherine.materialdesignapp.jetpack.view_models.PlaylistViewModel;
 import com.catherine.materialdesignapp.listeners.OnPlaylistItemClickListener;
@@ -54,7 +52,6 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
 
     // JetPack
     private PlaylistViewModel playlistViewModel;
-    private PlaylistDao playlistDao;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -160,8 +157,6 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
             listener = (UIComponentsListener) getActivity();
 
         // JetPack
-        PlaylistRoomDatabase db = PlaylistRoomDatabase.getDatabase(getActivity());
-        playlistDao = db.playlistDao();
         playlistViewModel = ViewModelProviders.of(this).get(PlaylistViewModel.class);
         playlistViewModel.getAllPlaylists().observe(this, playlists -> {
             filteredPlaylists.clear();

@@ -1,10 +1,17 @@
-package com.catherine.materialdesignapp.models;
+package com.catherine.materialdesignapp.jetpack.entities;
+
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import com.catherine.materialdesignapp.listeners.ProguardIgnored;
 
+@Entity(tableName = "artist_table")
 public class Artist implements ProguardIgnored {
     private String image;
 
+    @NonNull
+    @PrimaryKey
     private String artist;
 
     private String url;

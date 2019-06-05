@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.selection.SelectionTracker;
 import androidx.recyclerview.selection.StorageStrategy;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -18,9 +19,10 @@ import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.adapters.ArtistAdapter;
 import com.catherine.materialdesignapp.components.ArtistItemDetailsLookup;
 import com.catherine.materialdesignapp.components.ArtistItemKeyProvider;
+import com.catherine.materialdesignapp.jetpack.entities.Artist;
+import com.catherine.materialdesignapp.jetpack.view_models.ArtistViewModel;
 import com.catherine.materialdesignapp.listeners.OnSearchViewListener;
 import com.catherine.materialdesignapp.listeners.UIComponentsListener;
-import com.catherine.materialdesignapp.models.Artist;
 import com.catherine.materialdesignapp.utils.TextHelper;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,10 +38,11 @@ public class ArtistsFragment extends ChildOfMusicFragment implements OnSearchVie
     private ArtistAdapter adapter;
     private List<Artist> artists;
     private List<Artist> filteredArtists;
-    private RecyclerView recyclerView;
     private ArtistItemKeyProvider artistItemKeyProvider;
     private SelectionTracker<String> tracker;
     private UIComponentsListener listener;
+
+    private ArtistViewModel artistViewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,7 +61,7 @@ public class ArtistsFragment extends ChildOfMusicFragment implements OnSearchVie
             fillInData();
             swipeRefreshLayout.setRefreshing(false);
         });
-        recyclerView = view.findViewById(R.id.rv_artist);
+        RecyclerView recyclerView = view.findViewById(R.id.rv_artist);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), ArtistAdapter.MAX_COLUMNS));
 
         artists = new ArrayList<>();
@@ -79,42 +82,17 @@ public class ArtistsFragment extends ChildOfMusicFragment implements OnSearchVie
         adapter.setSelectionTracker(tracker);
         tracker.addObserver(new SelectionObserver());
         listener = (UIComponentsListener) getActivity();
+
+        artistViewModel = ViewModelProviders.of(this).get(ArtistViewModel.class);
+        artistViewModel.getArtistLiveData().observe(this, artists1 -> {
+            filteredArtists.clear();
+            filteredArtists.addAll(artists);
+            updateList();
+        });
         fillInData();
     }
 
     private void fillInData() {
-//        String mockData = "[\n" +
-//                "  {\n" +
-//                "    \"artist\": \"Taylor Swift\",\n" +
-//                "    \"url\": \"https://en.wikipedia.org/wiki/Taylor_Swift\",\n" +
-//                "    \"image\": \"https://images-na.ssl-images-amazon.com/images/I/71YCfdyMXsL.jpg\"\n" +
-//                "  },\n" +
-//                "  {\n" +
-//                "    \"artist\": \"Kanye West\",\n" +
-//                "    \"url\": \"https://en.wikipedia.org/wiki/Kanye_West\",\n" +
-//                "    \"image\": \"https://images-na.ssl-images-amazon.com/images/I/71w7GAs8SeL.jpg\"\n" +
-//                "  },\n" +
-//                "  {\n" +
-//                "    \"artist\": \"Beyoncé\",\n" +
-//                "    \"url\": \"https://en.wikipedia.org/wiki/Beyonc%C3%A9\",\n" +
-//                "    \"image\": \"https://images-na.ssl-images-amazon.com/images/I/51T6RpubiVL.jpg\"\n" +
-//                "  },\n" +
-//                "  {\n" +
-//                "    \"artist\": \"Ariana Grande\",\n" +
-//                "    \"url\": \"https://en.wikipedia.org/wiki/Ariana_Grande\",\n" +
-//                "    \"image\": \"https://images-na.ssl-images-amazon.com/images/I/7192dgpkzTL.jpg\"\n" +
-//                "  }\n" +
-//                "]";
-//
-//        Gson gson = new Gson();
-//        Type listType = new TypeToken<List<Artist>>() {
-//        }.getType();
-//        artists = gson.fromJson(mockData, listType);
-//
-//        filteredArtists.clear();
-//        filteredArtists.addAll(artists);
-//        updateList();
-
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("artists");
         myRef.addValueEventListener(new ValueEventListener() {
@@ -128,10 +106,8 @@ public class ArtistsFragment extends ChildOfMusicFragment implements OnSearchVie
                     Artist artist = child.getValue(Artist.class);
                     Log.i(TAG, String.format("%s: %s", child.getKey(), artist));
                     artists.add(artist);
+                    artistViewModel.insert(artist);
                 }
-                filteredArtists.clear();
-                filteredArtists.addAll(artists);
-                updateList();
             }
 
             @Override

@@ -574,7 +574,6 @@ Code: [MainActivity]
 [Read more](https://www.youtube.com/watch?v=1by5J7c5Vz4)       
 
 # Styles
-
 To inherit styles from Android support library by using ```parent```
 ```xml
 <style name="GreenText" parent="TextAppearance.AppCompat">
@@ -596,8 +595,6 @@ Code: [styles](https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Pr
 [Video](https://www.youtube.com/watch?v=7p22cSzniBM)        
 [Guide](https://developer.android.com/jetpack/docs/guide)
 
-Go to [google tutorial](https://codelabs.developers.google.com/codelabs/android-training-livedata-viewmodel/index.html?index=..%2F..android-training#0) to see how ```Room``` + ```ViewModel``` + ```LiveData``` works.     
-
 ## Room
 A robust SQLite object mapping library. 
 
@@ -607,9 +604,6 @@ WorkManager providers APIs for deferrable, one-off and recurring background task
 ## ViewModel
 ViewModel is constructed when app configuration changes such as screen rotation
 
-[code]()
-[Documentation](https://developer.android.com/training/data-storage/room/defining-data.html)
-
 ## LiveData
 LiveData is an observable data holder for the data is meant to be shown on screens.
 
@@ -618,6 +612,11 @@ Paging library integrates directly with endless data
 
 ## Navigation
 Navigation library simplifies implementation of complex but common navigation requirements.
+
+
+Go to [google tutorial](https://codelabs.developers.google.com/codelabs/android-training-livedata-viewmodel/index.html?index=..%2F..android-training#0) to see how ```Room``` + ```ViewModel``` + ```LiveData``` works.     
+
+Code(Room + ViewModel + LiveData): [PlaylistFragment], [AlbumsFragment], [ArtistsFragment] and [jetpack](https://github.com/Catherine22/AAD-Preparation/tree/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/jetpack)      
 
 
 ## Migrate to AndroidX

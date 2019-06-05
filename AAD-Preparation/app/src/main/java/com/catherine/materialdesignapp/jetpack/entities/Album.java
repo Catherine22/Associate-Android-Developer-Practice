@@ -1,17 +1,22 @@
-package com.catherine.materialdesignapp.models;
+package com.catherine.materialdesignapp.jetpack.entities;
+
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import com.catherine.materialdesignapp.listeners.ProguardIgnored;
-import com.google.firebase.database.annotations.NotNull;
+import androidx.annotation.NonNull;
 
 import java.util.List;
 
+@Entity(tableName = "album_table")
 public class Album implements ProguardIgnored {
     private String image;
 
-    @NotNull
+    @NonNull
     private String artist;
 
-    @NotNull
+    @NonNull
+    @PrimaryKey
     private String title;
 
     private String url;
