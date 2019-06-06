@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name">Material Design 应用</string>
     <string name="navigation_drawer_open">开启侧边栏菜单</string>
     <string name="navigation_drawer_close">关闭侧边栏菜单</string>
@@ -7,6 +7,7 @@
     <string name="nav_header_desc">侧边栏顶部</string>
     <string name="action_night_mode">夜间模式</string>
     <string name="action_day_mode">日间模式</string>
+    <string name="action_settings">设置</string>
     <string name="action_clear_history">清理搜寻记录</string>
     <string name="action_search">搜寻</string>
     <string name="alert_icon">提醒图标</string>
@@ -56,6 +57,10 @@
         <item>消息推送服务</item>
         <item>视图组建</item>
         <item>生命周期</item>
+    </string-array>
+
+    <string-array name="main_fragment_titles">
+        <item>Material Design</item>
     </string-array>
 
 

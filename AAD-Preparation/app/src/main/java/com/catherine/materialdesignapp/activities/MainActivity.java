@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -15,25 +14,38 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 import com.catherine.materialdesignapp.MyApplication;
 import com.catherine.materialdesignapp.R;
+import com.catherine.materialdesignapp.fragments.MainFragment;
 import com.catherine.materialdesignapp.listeners.OnRequestPermissionsListener;
 import com.catherine.materialdesignapp.receivers.NotificationReceiver;
-import com.catherine.materialdesignapp.utils.LocationHelper;
 import com.catherine.materialdesignapp.utils.OccupiedActions;
-import com.catherine.materialdesignapp.utils.SafetyUtils;
 import com.catherine.materialdesignapp.utils.Storage;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
-import java.util.Locale;
+import java.util.Stack;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, OnRequestPermissionsListener {
     private final static String TAG = MainActivity.class.getSimpleName();
     private NotificationReceiver notificationReceiver;
     private String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
+    private Fragment[] fragments;
+    private String[] titles;
+    private Stack<String> titleStack;
+
+    private enum Content {
+        Default(0);
+
+        private int index;
+
+        Content(int index) {
+            this.index = index;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,9 +79,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(view -> showSnackbar(drawer, "sent"));
-
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
@@ -82,24 +91,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             nav.setTitle(menuTitles[i]);
         }
 
-        //This keypair stores in your keystore. You can also see the same information by "keytool -list -v -keystore xxx.keystore  -alias xxx  -storepass xxx -keypass xxx" command
-        //keytool -list -v -keystore debug.keystore -alias androiddebugkey -storepass android -keypass android
-
-        LocationHelper locationHelper = new LocationHelper();
-        TextView tv_location = findViewById(R.id.tv_location);
-        String sb = "Package name:" +
-                getPackageName() +
-                "\nMD5:" +
-                SafetyUtils.getSigningKeyFingerprint(this, "md5") +
-                "\nFingerprint:\n{\nSHA1:" +
-                SafetyUtils.getSigningKeyFingerprint(this, "sha1") +
-                "\nSHA256:" +
-                SafetyUtils.getSigningKeyFingerprint(this, "sha256") +
-                "\n}\nApkCertificateDigestSha256:" +
-                SafetyUtils.calcApkCertificateDigests(MainActivity.this, MainActivity.this.getPackageName()) +
-                "\nApkDigest:" +
-                SafetyUtils.calcApkDigest(MainActivity.this);
-        tv_location.setText(String.format(Locale.US, "%s\nPreferred language: %s", sb, locationHelper.getPreferredLanguage()));
+        fragments = new Fragment[1]; // refer to how many items in Content
+        titles = getResources().getStringArray(R.array.main_fragment_titles);
+        titleStack = new Stack<>();
+        popUpFragment(Content.Default);
     }
 
     @Override
@@ -130,7 +125,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            if (getSupportFragmentManager().getBackStackEntryCount() == 1)
+                finish();
+            else {
+                super.onBackPressed();
+                titleStack.pop();
+                getSupportActionBar().setTitle(titleStack.peek());
+            }
         }
     }
 
@@ -171,7 +172,27 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         }
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
+    private void popUpFragment(Content content) {
+        String title = titles[content.index];
+        Fragment f = null;
+        switch (content) {
+            case Default:
+                if (fragments[content.index] == null) {
+                    f = new MainFragment();
+                    fragments[content.index] = f;
+                } else {
+                    f = fragments[content.index];
+                }
+                break;
+        }
+        getSupportFragmentManager().beginTransaction()
+                .addToBackStack(title)
+                .replace(R.id.f_container, f, title)
+                .commit();
+        titleStack.push(title);
+        getSupportActionBar().setTitle(title);
+    }
+
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         switch (item.getItemId()) {

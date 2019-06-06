@@ -45,6 +45,7 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:${rootProject.ext.constraintlayout}"
     implementation "androidx.recyclerview:recyclerview-selection:${rootProject.ext.recyclerviewSelection}"
 
+
     testImplementation "junit:junit:${rootProject.ext.junit}"
     androidTestImplementation "androidx.test:runner:${rootProject.ext.androidx_test}"
     androidTestUtil "androidx.test:orchestrator:${rootProject.ext.androidx_test}"
