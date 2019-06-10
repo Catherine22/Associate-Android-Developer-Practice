@@ -11,4 +11,6 @@ public class CBridge {
     }
 
     public native String stringFromJNI();
+
+    public native int plus(int x, int y);
 }

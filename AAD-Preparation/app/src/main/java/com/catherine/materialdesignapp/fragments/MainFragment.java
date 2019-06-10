@@ -37,9 +37,11 @@ public class MainFragment extends Fragment {
 
         LocationHelper locationHelper = new LocationHelper();
         TextView tv_location = view.findViewById(R.id.tv_location);
+        CBridge cBridge = new CBridge();
         String sb =
                 "From NDK:" +
-                        new CBridge().stringFromJNI() +
+                        cBridge.stringFromJNI() +
+                        cBridge.plus(45, 55) +
                         "\nPackage name:" +
                         MyApplication.INSTANCE.getPackageName() +
                         "\nMD5:" +

@@ -15,238 +15,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c352c017-7cf2-473d-b283-bb66e6960277" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.cxx/attribution/ninja_build_log_1560156506464.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cxx/attribution/ninja_build_log_1560156959440.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.cxx/attribution/ninja_build_log_1560157930519.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_room_room_common_2_1_0_rc01_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_room_room_migration_2_1_0_rc01_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_room_room_runtime_2_1_0_rc01_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_room_room_testing_2_1_0_rc01_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_3_31_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_3_31_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/arm64-v8a/CMakeCache.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/arm64-v8a/CMakeFiles/3.10.2/CMakeCCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/arm64-v8a/CMakeFiles/3.10.2/CMakeCXXCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/arm64-v8a/CMakeFiles/3.10.2/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/arm64-v8a/CMakeFiles/3.10.2/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/arm64-v8a/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/arm64-v8a/CMakeFiles/cmake.check_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/arm64-v8a/CMakeFiles/feature_tests.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/arm64-v8a/CMakeFiles/feature_tests.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/arm64-v8a/CMakeFiles/feature_tests.cxx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/arm64-v8a/android_gradle_build.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/arm64-v8a/android_gradle_build_mini.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/arm64-v8a/build.ninja" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/arm64-v8a/build_command.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/arm64-v8a/build_model.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/arm64-v8a/build_output.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/arm64-v8a/cmake_install.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/arm64-v8a/cmake_server_log.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/arm64-v8a/compile_commands.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/arm64-v8a/json_generation_record.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/arm64-v8a/rules.ninja" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi-v7a/.ninja_deps" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi-v7a/.ninja_log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi-v7a/CMakeCache.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/3.10.2/CMakeCCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/3.10.2/CMakeCXXCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/3.10.2/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/3.10.2/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/3.10.2/CMakeSystem.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/cmake.check_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/feature_tests.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/feature_tests.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/feature_tests.cxx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi-v7a/CMakeFiles/native-lib.dir/native-lib.cpp.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi-v7a/android_gradle_build.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi-v7a/android_gradle_build_mini.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi-v7a/android_gradle_build_native-lib_armeabi-v7a.command.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi-v7a/android_gradle_build_native-lib_armeabi-v7a.stderr.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi-v7a/android_gradle_build_native-lib_armeabi-v7a.stdout.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi-v7a/build.ninja" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi-v7a/build_command.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi-v7a/build_model.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi-v7a/build_output.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi-v7a/cmake_install.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi-v7a/cmake_server_log.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi-v7a/compile_commands.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi-v7a/json_generation_record.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi-v7a/rules.ninja" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi/CMakeCache.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi/CMakeFiles/cmake.check_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi/build_model.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi/cmake_server_log.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/armeabi/json_generation_record.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/mips/CMakeCache.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/mips/CMakeFiles/cmake.check_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/mips/build_model.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/mips/cmake_server_log.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/mips/json_generation_record.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/mips64/CMakeCache.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/mips64/CMakeFiles/cmake.check_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/mips64/build_model.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/mips64/cmake_server_log.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/mips64/json_generation_record.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86/CMakeCache.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86/CMakeFiles/3.10.2/CMakeCCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86/CMakeFiles/3.10.2/CMakeCXXCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86/CMakeFiles/3.10.2/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86/CMakeFiles/3.10.2/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86/CMakeFiles/3.10.2/CMakeSystem.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86/CMakeFiles/cmake.check_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86/CMakeFiles/feature_tests.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86/CMakeFiles/feature_tests.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86/CMakeFiles/feature_tests.cxx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86/android_gradle_build.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86/android_gradle_build_mini.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86/build.ninja" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86/build_command.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86/build_model.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86/build_output.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86/cmake_install.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86/cmake_server_log.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86/compile_commands.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86/json_generation_record.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86/rules.ninja" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86_64/CMakeCache.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86_64/CMakeFiles/3.10.2/CMakeCCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86_64/CMakeFiles/3.10.2/CMakeCXXCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86_64/CMakeFiles/3.10.2/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86_64/CMakeFiles/3.10.2/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86_64/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86_64/CMakeFiles/cmake.check_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86_64/CMakeFiles/feature_tests.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86_64/CMakeFiles/feature_tests.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86_64/CMakeFiles/feature_tests.cxx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86_64/android_gradle_build.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86_64/android_gradle_build_mini.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86_64/build.ninja" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86_64/build_command.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86_64/build_model.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86_64/build_output.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86_64/cmake_install.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86_64/cmake_server_log.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86_64/compile_commands.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86_64/json_generation_record.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/debug/x86_64/rules.ninja" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/arm64-v8a/CMakeCache.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/arm64-v8a/CMakeFiles/3.10.2/CMakeCCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/arm64-v8a/CMakeFiles/3.10.2/CMakeCXXCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/arm64-v8a/CMakeFiles/3.10.2/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/arm64-v8a/CMakeFiles/3.10.2/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/arm64-v8a/CMakeFiles/3.10.2/CMakeSystem.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/arm64-v8a/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/arm64-v8a/CMakeFiles/cmake.check_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/arm64-v8a/CMakeFiles/feature_tests.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/arm64-v8a/CMakeFiles/feature_tests.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/arm64-v8a/CMakeFiles/feature_tests.cxx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/arm64-v8a/android_gradle_build.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/arm64-v8a/android_gradle_build_mini.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/arm64-v8a/build.ninja" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/arm64-v8a/build_command.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/arm64-v8a/build_model.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/arm64-v8a/build_output.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/arm64-v8a/cmake_install.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/arm64-v8a/cmake_server_log.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/arm64-v8a/compile_commands.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/arm64-v8a/json_generation_record.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/arm64-v8a/rules.ninja" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/armeabi-v7a/CMakeCache.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/armeabi-v7a/CMakeFiles/3.10.2/CMakeCCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/armeabi-v7a/CMakeFiles/3.10.2/CMakeCXXCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/armeabi-v7a/CMakeFiles/3.10.2/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/armeabi-v7a/CMakeFiles/3.10.2/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/armeabi-v7a/CMakeFiles/3.10.2/CMakeSystem.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/armeabi-v7a/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/armeabi-v7a/CMakeFiles/cmake.check_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/armeabi-v7a/CMakeFiles/feature_tests.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/armeabi-v7a/CMakeFiles/feature_tests.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/armeabi-v7a/CMakeFiles/feature_tests.cxx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/armeabi-v7a/android_gradle_build.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/armeabi-v7a/android_gradle_build_mini.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/armeabi-v7a/build.ninja" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/armeabi-v7a/build_command.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/armeabi-v7a/build_model.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/armeabi-v7a/build_output.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/armeabi-v7a/cmake_install.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/armeabi-v7a/cmake_server_log.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/armeabi-v7a/compile_commands.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/armeabi-v7a/json_generation_record.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/armeabi-v7a/rules.ninja" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/armeabi/CMakeCache.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/armeabi/CMakeFiles/cmake.check_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/armeabi/build_model.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/armeabi/cmake_server_log.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/armeabi/json_generation_record.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/mips/CMakeCache.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/mips/CMakeFiles/cmake.check_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/mips/build_model.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/mips/cmake_server_log.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/mips/json_generation_record.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/mips64/CMakeCache.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/mips64/CMakeFiles/cmake.check_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/mips64/build_model.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/mips64/cmake_server_log.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/mips64/json_generation_record.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86/CMakeCache.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86/CMakeFiles/3.10.2/CMakeCCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86/CMakeFiles/3.10.2/CMakeCXXCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86/CMakeFiles/3.10.2/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86/CMakeFiles/3.10.2/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86/CMakeFiles/3.10.2/CMakeSystem.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86/CMakeFiles/cmake.check_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86/CMakeFiles/feature_tests.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86/CMakeFiles/feature_tests.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86/CMakeFiles/feature_tests.cxx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86/android_gradle_build.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86/android_gradle_build_mini.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86/build.ninja" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86/build_command.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86/build_model.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86/build_output.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86/cmake_install.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86/cmake_server_log.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86/compile_commands.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86/json_generation_record.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86/rules.ninja" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86_64/CMakeCache.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86_64/CMakeFiles/3.10.2/CMakeCCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86_64/CMakeFiles/3.10.2/CMakeCXXCompiler.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86_64/CMakeFiles/3.10.2/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86_64/CMakeFiles/3.10.2/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86_64/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86_64/CMakeFiles/cmake.check_cache" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86_64/CMakeFiles/feature_tests.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86_64/CMakeFiles/feature_tests.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86_64/CMakeFiles/feature_tests.cxx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86_64/android_gradle_build.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86_64/android_gradle_build_mini.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86_64/build.ninja" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86_64/build_command.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86_64/build_model.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86_64/build_output.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86_64/cmake_install.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86_64/cmake_server_log.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86_64/compile_commands.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86_64/json_generation_record.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/cmake/release/x86_64/rules.ninja" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/.cxx/ndk_locator_record.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/cpp/CMakeLists.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/cpp/native-lib.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/utils/CBridge.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/cpp/native-lib.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/cpp/native-lib.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/MainFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/MainFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/utils/CBridge.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/utils/CBridge.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -270,8 +45,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/MainFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
-              <caret line="48" column="37" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="37" />
+            <state relative-caret-position="543">
+              <caret line="41" column="29" selection-start-line="41" selection-start-column="29" selection-end-line="41" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -279,79 +54,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-24/android/content/ContextWrapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1035">
-              <caret line="134" selection-start-line="134" selection-end-line="134" />
-              <folding>
-                <element signature="e#3559#3560#0" expanded="true" />
-                <element signature="e#3604#3605#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/utils/SafetyUtils.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1740">
-              <caret line="135" selection-start-line="135" selection-end-line="135" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-          <provider editor-type-id="android-manifest" />
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="44" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.fragment/fragment/1.1.0-alpha02/b81436c82dc8e5481dcadfef7f5747942218f6f6/fragment-1.1.0-alpha02-sources.jar!/androidx/fragment/app/FragmentManagerImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="12060">
-              <caret line="896" selection-start-line="896" selection-end-line="896" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.fragment/fragment/1.1.0-alpha02/b81436c82dc8e5481dcadfef7f5747942218f6f6/fragment-1.1.0-alpha02-sources.jar!/androidx/fragment/app/Fragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="70">
-              <caret line="2455" selection-start-line="2455" selection-end-line="2455" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="98">
-              <caret line="38" column="5" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/cpp/CMakeLists.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="464">
-              <caret line="39" column="33" lean-forward="true" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/cpp/native-lib.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+            <state relative-caret-position="165">
+              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
               </folding>
@@ -360,10 +67,47 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/c++/v1/string">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1232" selection-start-line="1232" selection-end-line="1232" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/utils/CBridge.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" selection-start-line="14" selection-end-line="14" />
+            <state relative-caret-position="240">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+          <provider editor-type-id="android-manifest" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="35" selection-start-column="35" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="231">
+              <caret line="21" column="40" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/cpp/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="585">
+              <caret line="39" column="33" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -383,7 +127,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>client</find>
       <find>size:</find>
       <find>playlistHelper.</find>
       <find>Collections.</find>
@@ -412,6 +155,7 @@
       <find>.push</find>
       <find>useDeprecatedNdk</find>
       <find>gradle flag contained 'ARMEABI' not targeted by this project.</find>
+      <find>armeabi-v7a</find>
       <find>cppFlags</find>
     </findStrings>
     <replaceStrings>
@@ -494,10 +238,10 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/cpp/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/utils/CBridge.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/MainFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/cpp/native-lib.cpp" />
-        <option value="$PROJECT_DIR$/app/src/main/cpp/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
       </list>
     </option>
@@ -520,6 +264,17 @@
             <path>
               <item name="AAD-Preparation" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
+            </path>
+            <path>
+              <item name="AAD-Preparation" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="AAD-Preparation" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="materialdesignapp" type="cbb59c9e:AndroidPsiDirectoryNode" />
             </path>
             <path>
               <item name="AAD-Preparation" type="1abcf292:AndroidViewProjectNode" />
@@ -836,7 +591,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1440" y="23" width="1680" height="1027" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.1990232" />
@@ -847,14 +601,14 @@
       <window_info id="Designer" order="6" />
       <window_info id="Capture Tool" order="7" />
       <window_info id="Resources Explorer" order="8" weight="0.3297568" />
-      <window_info anchor="bottom" id="Run" order="0" weight="0.3299363" />
-      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.49642345" weight="0.32866243" />
-      <window_info anchor="bottom" id="TODO" order="2" sideWeight="0.4985694" weight="0.3299363" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3299363" />
-      <window_info anchor="bottom" id="Terminal" order="4" weight="0.3299363" />
-      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5035765" side_tool="true" weight="0.355414" />
-      <window_info anchor="bottom" id="Version Control" order="6" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Build" order="7" sideWeight="0.49713877" visible="true" weight="0.25454545" />
+      <window_info anchor="bottom" id="Run" order="0" weight="0.32941177" />
+      <window_info active="true" anchor="bottom" id="Logcat" order="1" sideWeight="0.49642345" visible="true" weight="0.32834226" />
+      <window_info anchor="bottom" id="TODO" order="2" sideWeight="0.4985694" weight="0.32941177" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.32941177" />
+      <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.5035765" side_tool="true" weight="0.355414" />
+      <window_info anchor="bottom" id="Version Control" order="5" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="6" weight="0.32941177" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49713877" weight="0.25454545" />
       <window_info anchor="bottom" id="Find" order="8" sideWeight="0.49928468" weight="0.2267516" />
       <window_info anchor="bottom" id="Android Profiler" order="9" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
@@ -895,16 +649,6 @@
     </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/PlaylistFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="70" column="26" selection-start-line="70" selection-start-column="26" selection-end-line="70" selection-end-column="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/adapters/PlaylistAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="960">
@@ -1167,21 +911,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="44" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/utils/CBridge.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.fragment/fragment/1.1.0-alpha02/b81436c82dc8e5481dcadfef7f5747942218f6f6/fragment-1.1.0-alpha02-sources.jar!/androidx/fragment/app/Fragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="70">
@@ -1191,35 +920,57 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/MainFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="48" column="37" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="37" />
+        <state relative-caret-position="543">
+          <caret line="41" column="29" selection-start-line="41" selection-start-column="29" selection-end-line="41" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/cpp/native-lib.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/cpp/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="39" column="33" lean-forward="true" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
+        <state relative-caret-position="585">
+          <caret line="39" column="33" selection-start-line="39" selection-start-column="33" selection-end-line="39" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="38" column="5" selection-start-line="38" selection-start-column="5" selection-end-line="38" selection-end-column="5" />
+        <state relative-caret-position="231">
+          <caret line="21" column="40" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="35" selection-start-column="35" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/utils/CBridge.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/c++/v1/string">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1232" selection-start-line="1232" selection-end-line="1232" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/cpp/native-lib.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

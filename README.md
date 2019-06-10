@@ -16,6 +16,7 @@ https://developers.google.com/training/certification/associate-android-developer
 - [Styles]       
 - [Jetpack]    
 - [Debugging]  
+- [Test]  
 - [Kotlin]
 
 # Material design
@@ -668,10 +669,15 @@ android {
     - ```step into```: go into the function     
 
 3. Add watchpoints for C/C++ code       
-
+First thing first, install LLDB or LLDB navigator won't appear on Android Studio.       
+Then debug C/C++ code as if debugging Java/Kotlin.     
 
 
 [Read More](https://developer.android.com/studio/debug/)
+
+# Test
+
+[Read More](https://developer.android.com/training/testing/fundamentals)
 
 # Kotlin
 The exam is only available in Java at this time (4/1/2019)      
@@ -810,6 +816,7 @@ The exam is only available in Java at this time (4/1/2019)
 [Styles]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#styles>
 [Jetpack]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#jetpack>
 [Debugging]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#debugging>
+[Test]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#test>
 [Kotlin]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#kotlin>
 
 [BaseActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/BaseActivity.java>
