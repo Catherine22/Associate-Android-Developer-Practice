@@ -14,7 +14,8 @@ https://developers.google.com/training/certification/associate-android-developer
 - [Accessibility Features]        
 - [Day/Night Mode]      
 - [Styles]       
-- [Jetpack]      
+- [Jetpack]    
+- [Debugging]  
 - [Kotlin]
 
 # Material design
@@ -613,7 +614,6 @@ Paging library integrates directly with endless data
 ## Navigation
 Navigation library simplifies implementation of complex but common navigation requirements.
 
-
 Go to [google tutorial](https://codelabs.developers.google.com/codelabs/android-training-livedata-viewmodel/index.html?index=..%2F..android-training#0) to see how ```Room``` + ```ViewModel``` + ```LiveData``` works.     
 
 Code(Room + ViewModel + LiveData): [PlaylistFragment], [AlbumsFragment], [ArtistsFragment] and [jetpack](https://github.com/Catherine22/AAD-Preparation/tree/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/jetpack)      
@@ -647,6 +647,31 @@ dependencies {
 
 
 [Read More](https://developer.android.com/jetpack/androidx/migrate)
+
+# Debugging
+
+1. Set the debuggable variable (Some 3rd party dependencies might use this variable as well)        
+```gradle
+android {
+    buildTypes {
+        debug {
+            debuggable true
+        }
+        release {
+            debuggable false
+        }
+    }
+}
+```
+2. Add breakpoints if needed (Click the Debug button instead of the Run button)        
+    - ```step over```: go to next line of code      
+    - ```step into```: go into the function     
+
+3. Add watchpoints for C/C++ code       
+
+
+
+[Read More](https://developer.android.com/studio/debug/)
 
 # Kotlin
 The exam is only available in Java at this time (4/1/2019)      
@@ -784,6 +809,7 @@ The exam is only available in Java at this time (4/1/2019)
 [Day/Night Mode]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#daynight-mode>
 [Styles]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#styles>
 [Jetpack]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#jetpack>
+[Debugging]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#debugging>
 [Kotlin]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#kotlin>
 
 [BaseActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/BaseActivity.java>

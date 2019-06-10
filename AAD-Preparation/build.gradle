@@ -40,7 +40,7 @@ ext {
     okhttp = '3.14.1'
     gson = '2.8.5'
     firebaseVersion = '17.0.0'
-    roomVersion = '2.1.0-beta01'
+    roomVersion = '2.1.0-rc01'
     archLifecycleVersion = '2.2.0-alpha01'
 }
 

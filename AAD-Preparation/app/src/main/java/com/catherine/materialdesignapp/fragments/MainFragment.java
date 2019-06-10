@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import com.catherine.materialdesignapp.MyApplication;
 import com.catherine.materialdesignapp.R;
+import com.catherine.materialdesignapp.utils.CBridge;
 import com.catherine.materialdesignapp.utils.LocationHelper;
 import com.catherine.materialdesignapp.utils.SafetyUtils;
 
@@ -36,18 +37,21 @@ public class MainFragment extends Fragment {
 
         LocationHelper locationHelper = new LocationHelper();
         TextView tv_location = view.findViewById(R.id.tv_location);
-        String sb = "Package name:" +
-                MyApplication.INSTANCE.getPackageName() +
-                "\nMD5:" +
-                SafetyUtils.getSigningKeyFingerprint(MyApplication.INSTANCE, "md5") +
-                "\nFingerprint:\n{\nSHA1:" +
-                SafetyUtils.getSigningKeyFingerprint(MyApplication.INSTANCE, "sha1") +
-                "\nSHA256:" +
-                SafetyUtils.getSigningKeyFingerprint(MyApplication.INSTANCE, "sha256") +
-                "\n}\nApkCertificateDigestSha256:" +
-                SafetyUtils.calcApkCertificateDigests(MyApplication.INSTANCE, MyApplication.INSTANCE.getPackageName()) +
-                "\nApkDigest:" +
-                SafetyUtils.calcApkDigest(MyApplication.INSTANCE);
+        String sb =
+                "From NDK:" +
+                        new CBridge().stringFromJNI() +
+                        "\nPackage name:" +
+                        MyApplication.INSTANCE.getPackageName() +
+                        "\nMD5:" +
+                        SafetyUtils.getSigningKeyFingerprint(MyApplication.INSTANCE, "md5") +
+                        "\nFingerprint:\n{\nSHA1:" +
+                        SafetyUtils.getSigningKeyFingerprint(MyApplication.INSTANCE, "sha1") +
+                        "\nSHA256:" +
+                        SafetyUtils.getSigningKeyFingerprint(MyApplication.INSTANCE, "sha256") +
+                        "\n}\nApkCertificateDigestSha256:" +
+                        SafetyUtils.calcApkCertificateDigests(MyApplication.INSTANCE, MyApplication.INSTANCE.getPackageName()) +
+                        "\nApkDigest:" +
+                        SafetyUtils.calcApkDigest(MyApplication.INSTANCE);
         tv_location.setText(String.format(Locale.US, "%s\nPreferred language: %s", sb, locationHelper.getPreferredLanguage()));
     }
 }

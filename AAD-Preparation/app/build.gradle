@@ -13,18 +13,34 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         multiDexEnabled true
+        externalNativeBuild {
+            cmake {
+                cppFlags "-std=c++14"
+            }
+            ndk {
+                abiFilters 'arm64-v8a', 'armeabi-v7a', 'x86', 'x86_64' //armeabi, mips, mips64
+            }
+        }
     }
     buildTypes {
         debug {
+            debuggable true
             minifyEnabled false
             pseudoLocalesEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
         release {
+            debuggable false
             minifyEnabled true
             pseudoLocalesEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+            version "3.10.2"
         }
     }
 
@@ -36,35 +52,35 @@ android {
     testOptions {
         execution 'ANDROIDX_TEST_ORCHESTRATOR'
     }
-}
 
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    // To support DayNight style, update to at lease 1.1.0-alpha02
-    implementation "com.google.android.material:material:${rootProject.ext.material}"
-    implementation "androidx.constraintlayout:constraintlayout:${rootProject.ext.constraintlayout}"
-    implementation "androidx.recyclerview:recyclerview-selection:${rootProject.ext.recyclerviewSelection}"
+    dependencies {
+        implementation fileTree(dir: 'libs', include: ['*.jar'])
+        // To support DayNight style, update to at lease 1.1.0-alpha02
+        implementation "com.google.android.material:material:${rootProject.ext.material}"
+        implementation "androidx.constraintlayout:constraintlayout:${rootProject.ext.constraintlayout}"
+        implementation "androidx.recyclerview:recyclerview-selection:${rootProject.ext.recyclerviewSelection}"
 
 
-    testImplementation "junit:junit:${rootProject.ext.junit}"
-    androidTestImplementation "androidx.test:runner:${rootProject.ext.androidx_test}"
-    androidTestUtil "androidx.test:orchestrator:${rootProject.ext.androidx_test}"
+        testImplementation "junit:junit:${rootProject.ext.junit}"
+        androidTestImplementation "androidx.test:runner:${rootProject.ext.androidx_test}"
+        androidTestUtil "androidx.test:orchestrator:${rootProject.ext.androidx_test}"
 
-    implementation project(path: ':messagecenter')
-    implementation "com.facebook.fresco:fresco:${rootProject.ext.fresco}"
-    implementation "jp.wasabeef:fresco-processors:${rootProject.ext.frescoProcessors}"
-    implementation "com.squareup.okhttp3:okhttp:${rootProject.ext.okhttp}"
-    implementation "com.google.code.gson:gson:${rootProject.ext.gson}"
-    implementation "com.google.firebase:firebase-database:${rootProject.ext.firebaseVersion}"
+        implementation project(path: ':messagecenter')
+        implementation "com.facebook.fresco:fresco:${rootProject.ext.fresco}"
+        implementation "jp.wasabeef:fresco-processors:${rootProject.ext.frescoProcessors}"
+        implementation "com.squareup.okhttp3:okhttp:${rootProject.ext.okhttp}"
+        implementation "com.google.code.gson:gson:${rootProject.ext.gson}"
+        implementation "com.google.firebase:firebase-database:${rootProject.ext.firebaseVersion}"
 
-    // JetPack
-    // Room components
-    implementation "androidx.room:room-runtime:${rootProject.ext.roomVersion}"
-    annotationProcessor "androidx.room:room-compiler:${rootProject.ext.roomVersion}"
-    androidTestImplementation "androidx.room:room-testing:${rootProject.ext.roomVersion}"
+        // JetPack
+        // Room components
+        implementation "androidx.room:room-runtime:${rootProject.ext.roomVersion}"
+        annotationProcessor "androidx.room:room-compiler:${rootProject.ext.roomVersion}"
+        androidTestImplementation "androidx.room:room-testing:${rootProject.ext.roomVersion}"
 
-    // Lifecycle components
-    implementation "androidx.lifecycle:lifecycle-extensions:${rootProject.ext.archLifecycleVersion}"
-    implementation "androidx.lifecycle:lifecycle-viewmodel:${rootProject.ext.archLifecycleVersion}"
-    annotationProcessor "androidx.lifecycle:lifecycle-common-java8:${rootProject.ext.archLifecycleVersion}"
+        // Lifecycle components
+        implementation "androidx.lifecycle:lifecycle-extensions:${rootProject.ext.archLifecycleVersion}"
+        implementation "androidx.lifecycle:lifecycle-viewmodel:${rootProject.ext.archLifecycleVersion}"
+        annotationProcessor "androidx.lifecycle:lifecycle-common-java8:${rootProject.ext.archLifecycleVersion}"
+    }
 }
