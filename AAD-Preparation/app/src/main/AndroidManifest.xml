@@ -13,12 +13,14 @@
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
+        android:extractNativeLibs="false"
         android:fullBackupContent="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar">
+        android:theme="@style/AppTheme.NoActionBar"
+        tools:targetApi="m">
         <activity
             android:name=".activities.MainActivity"
             android:configChanges="orientation|keyboardHidden">
@@ -89,6 +91,15 @@
                 android:value=".activities.MainActivity" />
         </activity>
         <activity
+            android:name=".activities.DynamicDeliveryActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:parentActivityName=".activities.MainActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
+        </activity>
+        <activity
             android:name=".activities.AlbumDetailsActivity"
             android:configChanges="orientation|keyboardHidden"
             android:parentActivityName=".activities.UIComponentsActivity">
@@ -127,16 +138,21 @@
 
         <provider
             android:name=".providers.SearchSuggestionProvider"
-            android:authorities="com.catherine.materialdesignapp.providers.SearchSuggestionProvider" />
+            android:authorities="com.catherine.materialdesignapp.providers.SearchSuggestionProvider"
+            android:exported="false" />
 
 
         <!--Services-->
-        <service android:name=".services.MusicPlayerService">
+        <service
+            android:name=".services.MusicPlayerService"
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.catherine.materialdesignapp.startMusicPlayerService" />
             </intent-filter>
         </service>
-        <service android:name=".services.NetworkHealthService">
+        <service
+            android:name=".services.NetworkHealthService"
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.catherine.materialdesignapp.startNetworkHealthService" />
             </intent-filter>
@@ -146,9 +162,11 @@
         <!--JobSchedulers-->
         <service
             android:name=".services.MusicPlayerJobScheduler"
+            android:exported="false"
             android:permission="android.permission.BIND_JOB_SERVICE" />
         <service
             android:name=".services.NetworkHealthJobScheduler"
+            android:exported="false"
             android:permission="android.permission.BIND_JOB_SERVICE" />
         <!--JobSchedulers-->
 

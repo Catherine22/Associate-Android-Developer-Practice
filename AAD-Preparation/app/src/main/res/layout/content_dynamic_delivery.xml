@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fl_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activities.DynamicDeliveryActivity"
+    tools:showIn="@layout/activity_dynamic_delivery">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/steps_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_marginStart="@dimen/safe_area_margin"
+        android:layout_marginEnd="@dimen/safe_area_margin">
+
+        <com.catherine.materialdesignapp.components.StepItem
+            android:id="@+id/step1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:s_is_first_step="true"
+            app:s_title="@string/module1" />
+
+        <com.catherine.materialdesignapp.components.StepItem
+            android:id="@+id/step2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/step1"
+            app:s_title="@string/module2" />
+
+        <com.catherine.materialdesignapp.components.StepItem
+            android:id="@+id/step3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/step2"
+            app:s_title="@string/module3" />
+
+        <com.catherine.materialdesignapp.components.StepItem
+            android:id="@+id/step4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/step3"
+            app:s_is_last_step="true"
+            app:s_title="@string/module4" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

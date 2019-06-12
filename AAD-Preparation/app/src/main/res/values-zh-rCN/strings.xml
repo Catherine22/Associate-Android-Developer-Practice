@@ -44,6 +44,10 @@
     <string name="search_hint">搜寻</string>
     <string name="add_new_playlist">创建新播放清单</string>
     <string name="submit">注册</string>
+    <string name="module1">模块 1</string>
+    <string name="module2">模块 2</string>
+    <string name="module3">模块 3</string>
+    <string name="module4">模块 4</string>
 
     <!--radio group-->
     <string name="require_network">网络限制</string>
@@ -57,6 +61,7 @@
         <item>消息推送服务</item>
         <item>视图组建</item>
         <item>生命周期</item>
+        <item>Dynamic Delivery</item>
     </string-array>
 
     <string-array name="main_fragment_titles">
@@ -72,12 +77,14 @@
     </string-array>
 
     <string-array name="background_task_array">
-        <item>AsyncTask</item>
-        <item>AsyncTaskLoader</item>
-        <item>ViewModels and LiveData</item>
+        <item>AsyncTask1</item>
+        <item>AsyncTask2</item>
+        <item>AsyncTaskLoader1</item>
+        <item>AsyncTaskLoader2</item>
     </string-array>
 
     <string-array name="background_task_info_array">
+        <item>点击并静候5秒</item>
         <item>点击并静候5秒</item>
         <item>点击并静候5秒</item>
         <item>点击并静候5秒</item>

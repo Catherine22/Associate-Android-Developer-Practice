@@ -35,4 +35,9 @@
     <dimen name="artist_title_mask_height">48dp</dimen>
 
     <dimen name="empty_page_center_image_size">160dp</dimen>
+    <dimen name="item_line_margin_left">39dp</dimen> <!--radius + margin - (width/2)-->
+    <dimen name="item_line_height">8dp</dimen> <!--radius + margin-->
+    <dimen name="item_line_width">4dp</dimen> <!--radius + margin-->
+    <dimen name="item_step_circle_diameter">50dp</dimen>
+    <dimen name="bottom_sheet_rounded_corner_radius">16dp</dimen>
 </resources>

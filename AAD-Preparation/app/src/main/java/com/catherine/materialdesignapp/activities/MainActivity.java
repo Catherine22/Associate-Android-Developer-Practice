@@ -85,7 +85,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         Menu menu = navigationView.getMenu();
         String[] menuTitles = getResources().getStringArray(R.array.drawer_array);
 
-        int[] ids = {R.id.nav_app_components, R.id.nav_background, R.id.nav_notification, R.id.nav_manage, R.id.nav_lifecycle};
+        int[] ids = {R.id.nav_app_components, R.id.nav_background, R.id.nav_notification, R.id.nav_manage, R.id.nav_lifecycle, R.id.nav_dynamic_delivery};
         for (int i = 0; i < ids.length; i++) {
             MenuItem nav = menu.findItem(ids[i]);
             nav.setTitle(menuTitles[i]);
@@ -216,7 +216,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 Intent lifecycleIntent = new Intent(this, LifecycleActivity.class);
                 startActivity(lifecycleIntent);
                 break;
-            case R.id.nav_send:
+            case R.id.nav_dynamic_delivery:
+                Intent dynamicDeliveryIntent = new Intent(this, DynamicDeliveryActivity.class);
+                startActivity(dynamicDeliveryIntent);
                 break;
             default:
         }

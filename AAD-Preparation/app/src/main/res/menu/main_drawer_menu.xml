@@ -29,7 +29,7 @@
                 android:icon="@drawable/ic_menu_share"
                 android:title="Share" />
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_dynamic_delivery"
                 android:icon="@drawable/ic_menu_send"
                 android:title="Send" />
         </menu>

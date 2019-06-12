@@ -44,6 +44,10 @@
     <string name="search_hint">Search</string>
     <string name="add_new_playlist">add new playlist</string>
     <string name="submit">submit</string>
+    <string name="module1">Module 1</string>
+    <string name="module2">Module 2</string>
+    <string name="module3">Module 3</string>
+    <string name="module4">Module 4</string>
 
     <!--radio group-->
     <string name="require_network">Require Network</string>
@@ -57,6 +61,7 @@
         <item>Notification</item>
         <item>UI components</item>
         <item>Lifecycle</item>
+        <item>Dynamic Delivery</item>
     </string-array>
 
     <string-array name="main_fragment_titles">
@@ -71,12 +76,14 @@
     </string-array>
 
     <string-array name="background_task_array">
-        <item>AsyncTask</item>
-        <item>AsyncTaskLoader</item>
-        <item>ViewModels and LiveData</item>
+        <item>AsyncTask1</item>
+        <item>AsyncTask2</item>
+        <item>AsyncTaskLoader1</item>
+        <item>AsyncTaskLoader2</item>
     </string-array>
 
     <string-array name="background_task_info_array">
+        <item>Click and wait for 5 seconds</item>
         <item>Click and wait for 5 seconds</item>
         <item>Click and wait for 5 seconds</item>
         <item>Click and wait for 5 seconds</item>

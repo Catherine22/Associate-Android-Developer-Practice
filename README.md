@@ -676,6 +676,26 @@ Then debug C/C++ code as if debugging Java/Kotlin.
 [Read More](https://developer.android.com/studio/debug/)
 
 # Test
+## Android Bundle
+Min SDK version: Android 5.0+ (API level 21)      
+
+**Dynamic delivery**: An android bundle, which contains features that you suppose the user won't use at install, is basically a bunch of code and resources. Users download bundles on demand.     
+
+APKs you will publish:     
+1. ```Base APK``` is where contains basic functionality and must-have resources at first download and install.      
+2. ```Configuration APKs``` are modules for specific screen density, CPU architecture or language. Google Play automatically generates configuration APKs for you.       
+3. (Optional) ```Dynamic feature APKs``` provide modularize features as the user requests
+
+[Read More](https://developer.android.com/studio/projects/dynamic-delivery)
+
+## Getting started
+In AndroidManifest.xml
+```xml
+<application
+    android:extractNativeLibs="false"
+/>
+```
+
 
 [Read More](https://developer.android.com/training/testing/fundamentals)
 

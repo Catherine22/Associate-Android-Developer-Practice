@@ -13,4 +13,11 @@
         <attr name="c_max_progress" format="integer" />
         <attr name="c_progress" format="integer" />
     </declare-styleable>
+
+    <declare-styleable name="StepItem">
+        <attr name="s_title" format="string" />
+        <attr name="s_is_first_step" format="boolean" />
+        <attr name="s_is_last_step" format="boolean" />
+        <attr name="s_is_done" format="boolean" />
+    </declare-styleable>
 </resources>

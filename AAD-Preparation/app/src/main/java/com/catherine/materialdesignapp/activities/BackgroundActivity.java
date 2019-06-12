@@ -35,8 +35,8 @@ public class BackgroundActivity extends BaseActivity {
     private String[] subtitles;
     private TextView[] persistentTextViews;
 
-    private AsyncTask sleepTask;
-    private Loader sleepTaskLoader;
+    private AsyncTask sleepTask1, sleepTask2;
+    private Loader sleepTaskLoader1, sleepTaskLoader2;
 
 
     @Override
@@ -71,11 +71,17 @@ public class BackgroundActivity extends BaseActivity {
         subtitles = getResources().getStringArray(R.array.background_task_info_array);
 
         // stop tasks
-        if (sleepTask != null && !sleepTask.isCancelled()) {
-            sleepTask.cancel(true);
+        if (sleepTask1 != null && !sleepTask1.isCancelled()) {
+            sleepTask1.cancel(true);
         }
-        if (sleepTaskLoader != null && sleepTaskLoader.isStarted()) {
-            sleepTaskLoader.stopLoading();
+        if (sleepTask2 != null && !sleepTask2.isCancelled()) {
+            sleepTask2.cancel(true);
+        }
+        if (sleepTaskLoader1 != null && sleepTaskLoader1.isStarted()) {
+            sleepTaskLoader1.stopLoading();
+        }
+        if (sleepTaskLoader2 != null && sleepTaskLoader2.isStarted()) {
+            sleepTaskLoader2.stopLoading();
         }
 
         // restore data
@@ -108,28 +114,48 @@ public class BackgroundActivity extends BaseActivity {
                     case 0:
                         // AsyncTask
                         persistentTextViews[0] = subtitle;
-                        if (sleepTask != null && !sleepTask.isCancelled()) {
-                            sleepTask.cancel(true);
+                        if (sleepTask1 != null && !sleepTask1.isCancelled()) {
+                            sleepTask1.cancel(true);
                         } else {
-                            sleepTask = new SleepTask(subtitle).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "Hello,", "there!");
+                            sleepTask1 = new SleepTask(subtitle).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "Hello,", "there!");
                         }
                         break;
                     case 1:
-                        // AsyncTaskLoader
+                        // AsyncTask
                         persistentTextViews[1] = subtitle;
-                        Bundle b = new Bundle();
-                        b.putString("message", "Hello, there!");
-                        if (sleepTaskLoader == null) {
-                            sleepTaskLoader = getLoaderManager().initLoader(LoaderIds.SLEEP_TASK.getValue(), b, new LoaderCallbacksImpl());
+                        if (sleepTask2 != null && !sleepTask2.isCancelled()) {
+                            sleepTask2.cancel(true);
                         } else {
-                            if (sleepTaskLoader.isStarted())
-                                sleepTaskLoader.stopLoading();
-                            else
-                                getLoaderManager().restartLoader(LoaderIds.SLEEP_TASK.getValue(), b, new LoaderCallbacksImpl());
+                            sleepTask2 = new SleepTask(subtitle).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "Hello,", "there!");
                         }
                         break;
                     case 2:
-                        // ViewModels and LiveData
+                        // AsyncTaskLoader
+                        persistentTextViews[2] = subtitle;
+                        Bundle b1 = new Bundle();
+                        b1.putString("message", "Hello, there!");
+                        if (sleepTaskLoader1 == null) {
+                            sleepTaskLoader1 = getLoaderManager().initLoader(LoaderIds.SLEEP_TASK1.getValue(), b1, new LoaderCallbacksImpl(2));
+                        } else {
+                            if (sleepTaskLoader1.isStarted())
+                                sleepTaskLoader1.stopLoading();
+                            else
+                                getLoaderManager().restartLoader(LoaderIds.SLEEP_TASK1.getValue(), b1, new LoaderCallbacksImpl(2));
+                        }
+                        break;
+                    case 3:
+                        // AsyncTaskLoader
+                        persistentTextViews[3] = subtitle;
+                        Bundle b2 = new Bundle();
+                        b2.putString("message", "Hello, there!");
+                        if (sleepTaskLoader2 == null) {
+                            sleepTaskLoader2 = getLoaderManager().initLoader(LoaderIds.SLEEP_TASK2.getValue(), b2, new LoaderCallbacksImpl(3));
+                        } else {
+                            if (sleepTaskLoader2.isStarted())
+                                sleepTaskLoader2.stopLoading();
+                            else
+                                getLoaderManager().restartLoader(LoaderIds.SLEEP_TASK2.getValue(), b2, new LoaderCallbacksImpl(3));
+                        }
                         break;
                 }
             }
@@ -154,6 +180,12 @@ public class BackgroundActivity extends BaseActivity {
     }
 
     class LoaderCallbacksImpl implements LoaderManager.LoaderCallbacks<String> {
+        private int index;
+
+        public LoaderCallbacksImpl(int index) {
+            this.index = index;
+        }
+
         @Override
         public Loader<String> onCreateLoader(int id, Bundle args) {
             // this will be called if the id is unique, which has never been used before.
@@ -166,8 +198,8 @@ public class BackgroundActivity extends BaseActivity {
             // finished loading
             Log.i(TAG, "onLoadFinished");
             runOnUiThread(() -> {
-                if (persistentTextViews != null && persistentTextViews[1] != null)
-                    persistentTextViews[1].setText(data);
+                if (persistentTextViews != null && persistentTextViews[index] != null)
+                    persistentTextViews[index].setText(data);
             });
         }
 
@@ -176,15 +208,16 @@ public class BackgroundActivity extends BaseActivity {
             // the created loader is being reset
             Log.i(TAG, "onLoaderReset");
             runOnUiThread(() -> {
-                if (persistentTextViews != null && persistentTextViews[1] != null)
-                    persistentTextViews[1].setText(subtitles[1]);
+                if (persistentTextViews != null && persistentTextViews[index] != null)
+                    persistentTextViews[index].setText(subtitles[index]);
             });
         }
     }
 
     @Override
     protected void onDestroy() {
-        getLoaderManager().destroyLoader(LoaderIds.SLEEP_TASK.getValue());
+        getLoaderManager().destroyLoader(LoaderIds.SLEEP_TASK1.getValue());
+        getLoaderManager().destroyLoader(LoaderIds.SLEEP_TASK2.getValue());
         super.onDestroy();
     }
 }
