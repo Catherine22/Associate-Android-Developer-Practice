@@ -6,11 +6,6 @@ import android.net.NetworkInfo;
 
 import com.catherine.materialdesignapp.MyApplication;
 
-/**
- * Created by catherine_chen on 2019-06-05.
- * Trend Micro
- * catherine_chen@trendmicro.com
- */
 public class NetworkHelper {
     public static boolean getNetworkHealth() {
         try {
