@@ -44,10 +44,14 @@
     <string name="search_hint">Search</string>
     <string name="add_new_playlist">add new playlist</string>
     <string name="submit">submit</string>
-    <string name="module1">Module 1</string>
+    <string name="module1">BBC News</string>
     <string name="module2">Module 2</string>
     <string name="module3">Module 3</string>
     <string name="module4">Module 4</string>
+    <string name="module1_info">Download and launch BBC News via Custom Tabs from another Android bundle</string>
+    <string name="download_the_bundle">Download the bundle</string>
+    <string name="launch">Launch</string>
+    <string name="uninstall">Uninstall</string>
 
     <!--radio group-->
     <string name="require_network">Require Network</string>
@@ -161,4 +165,5 @@
         <item quantity="one">%d song</item>
         <item quantity="other">%d songs</item>
     </plurals>
+    <string name="title_bbc_news">BBC News</string>
 </resources>

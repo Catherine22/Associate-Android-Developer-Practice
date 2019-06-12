@@ -1,1 +1,1 @@
-include ':app', ':messagecenter'
+include ':app', ':messagecenter', ':BBC_News'

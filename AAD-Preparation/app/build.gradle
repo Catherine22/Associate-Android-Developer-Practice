@@ -49,18 +49,12 @@ android {
 
     bundle {
         language {
-            // Specifies that the app bundle should not support
-            // configuration APKs for language resources. These
-            // resources are instead packaged with each base and
-            // dynamic feature APK.
-            enableSplit = false
+            enableSplit = true
         }
         density {
-            // This property is set to true by default.
             enableSplit = true
         }
         abi {
-            // This property is set to true by default.
             enableSplit = true
         }
     }
@@ -103,5 +97,11 @@ android {
         implementation "androidx.lifecycle:lifecycle-extensions:${rootProject.ext.archLifecycleVersion}"
         implementation "androidx.lifecycle:lifecycle-viewmodel:${rootProject.ext.archLifecycleVersion}"
         annotationProcessor "androidx.lifecycle:lifecycle-common-java8:${rootProject.ext.archLifecycleVersion}"
+
+        // dynamic delivery
+        implementation "com.google.android.play:core:${rootProject.ext.playcore}"
     }
+
+    // dynamic delivery
+    dynamicFeatures = [":BBC_News"]
 }

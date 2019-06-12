@@ -8,4 +8,56 @@
     app:behavior_hideable="false"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
     tools:context=".activities.DynamicDeliveryActivity"
-    tools:showIn="@layout/activity_dynamic_delivery" />
+    tools:showIn="@layout/activity_dynamic_delivery">
+
+    <TextView
+        android:id="@+id/tv_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/safe_area_margin"
+        android:layout_marginTop="@dimen/safe_area_margin"
+        android:layout_marginEnd="@dimen/safe_area_margin"
+        android:text="@string/module1_info"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/safe_area_margin"
+        android:layout_marginTop="@dimen/safe_area_margin"
+        android:layout_marginEnd="@dimen/safe_area_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_info" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_launch"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/safe_area_margin"
+        android:layout_marginTop="@dimen/safe_area_margin"
+        android:layout_marginEnd="@dimen/safe_area_margin"
+        android:text="@string/download_the_bundle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/progress_bar" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_uninstall"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/safe_area_margin"
+        android:layout_marginTop="@dimen/safe_area_margin"
+        android:layout_marginEnd="@dimen/safe_area_margin"
+        android:layout_marginBottom="@dimen/safe_area_margin"
+        android:text="@string/uninstall"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_launch" />
+</androidx.constraintlayout.widget.ConstraintLayout>
