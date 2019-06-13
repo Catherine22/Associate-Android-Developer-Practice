@@ -28,6 +28,7 @@ android {
         debug {
             debuggable true
             minifyEnabled false
+//            shrinkResources true // resource shrinker cannot be used for multi-api applications
             pseudoLocalesEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -35,9 +36,15 @@ android {
         release {
             debuggable false
             minifyEnabled true
+//            shrinkResources true // resource shrinker cannot be used for multi-api applications
             pseudoLocalesEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+
+    aaptOptions {
+        cruncherEnabled = false // crunch PNG files
     }
 
     externalNativeBuild {
@@ -100,8 +107,12 @@ android {
 
         // dynamic delivery
         implementation "com.google.android.play:core:${rootProject.ext.playcore}"
+        // bundle's dependencies
+        implementation 'com.android.support:customtabs:28.0.0'
     }
 
     // dynamic delivery
-    dynamicFeatures = [":BBC_News"]
+    dynamicFeatures = [":bbc_news", ":tour_guide"]
+
+
 }

@@ -689,14 +689,93 @@ APKs you will publish:
 [Read More](https://developer.android.com/studio/projects/dynamic-delivery)
 
 ## Getting started
-In AndroidManifest.xml
+1. Install Android Studio Canary 14             
+2. In AndroidManifest.xml
 ```xml
 <application
     android:extractNativeLibs="false"
 />
 ```
 
+3. In build.gradle
+```gradle
+android {
+    bundle {
+        language {
+            enableSplit = true
+        }
+        density {
+            enableSplit = true
+        }
+        abi {
+            enableSplit = true
+        }
+    }
 
+        dependencies {
+        // dynamic delivery
+        implementation "com.google.android.play:core:${rootProject.ext.playcore}"
+        // bundle's dependencies
+        implementation 'com.android.support:customtabs:28.0.0'
+    }
+
+    // bundles
+    dynamicFeatures = [":bbc_news"]
+}
+```
+
+4. Create new Dynamic Feature Module (Edit -> New Module -> Dynamic Feature Module) and Fill in bbc_news as module name      
+5. Create NewsPageActivity in bbc_news module       
+```Java
+public class NewsPageActivity extends AppCompatActivity {
+    private final static String TAG = NewsPageActivity.class.getSimpleName();
+    private final static String BBC_NEWS_URL = "https://www.bbc.com/news";
+    private final static int CUSTOM_TABS_REQUEST_CODE = 100;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_news_page);
+
+        CustomTabsIntent customTabsIntent = new CustomTabsIntent.Builder()
+                .setToolbarColor(getResources().getColor(R.color.colorPrimary))
+                .build();
+        customTabsIntent.intent.setData(Uri.parse(BBC_NEWS_URL));
+        startActivityForResult(customTabsIntent.intent, CUSTOM_TABS_REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CUSTOM_TABS_REQUEST_CODE) {
+            finish();
+        }
+    }
+}
+```
+
+6. Update AndroidManifest.xml in bbc_news module       
+```xml
+<application>
+        <activity android:name=".NewsPageActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+    </application>
+```
+
+7. Install and launch this bbc_news module 
+See [DynamicDeliveryActivity], [bbc_news module]     
+
+8. bundletool       
+```bundletool``` is a command line tools,         
+https://developer.android.com/studio/command-line/bundletool
+
+
+
+Code: [DynamicDeliveryActivity], [bbc_news module]     
+[Google sample code](https://github.com/googlesamples/android-dynamic-features)     
 [Read More](https://developer.android.com/training/testing/fundamentals)
 
 # Kotlin
@@ -868,6 +947,8 @@ The exam is only available in Java at this time (4/1/2019)
 [MusicFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/MusicFragment.java>
 [UIComponentsActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/UIComponentsActivity.java>
 [SearchSongsActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/SearchSongsActivity.java>
+[DynamicDeliveryActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/DynamicDeliveryActivity.java>
+[bbc_news module]:<https://github.com/Catherine22/AAD-Preparation/tree/master/AAD-Preparation/bbc_news>
 [AndroidManifest]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/AndroidManifest.xml>
 
 

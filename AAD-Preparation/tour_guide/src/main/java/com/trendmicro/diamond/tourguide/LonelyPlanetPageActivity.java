@@ -1,14 +1,15 @@
-package com.trendmicro.diamond.bbc_news;
+package com.trendmicro.diamond.tourguide;
 
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.browser.customtabs.CustomTabsIntent;
 
-public class NewsPageActivity extends BaseActivity {
-    private final static String TAG = NewsPageActivity.class.getSimpleName();
-    private final static String BBC_NEWS_URL = "https://www.bbc.com/news";
+public class LonelyPlanetPageActivity extends AppCompatActivity {
+    private final static String TAG = LonelyPlanetPageActivity.class.getSimpleName();
+    private final static String BBC_NEWS_URL = "https://www.lonelyplanet.com/";
     private final static int CUSTOM_TABS_REQUEST_CODE = 100;
 
     @Override

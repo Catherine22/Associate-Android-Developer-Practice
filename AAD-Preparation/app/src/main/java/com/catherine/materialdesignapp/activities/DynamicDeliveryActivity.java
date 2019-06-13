@@ -31,10 +31,8 @@ import com.google.android.play.core.splitinstall.SplitInstallStateUpdatedListene
 import com.google.android.play.core.splitinstall.model.SplitInstallSessionStatus;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 public class DynamicDeliveryActivity extends BaseActivity implements View.OnClickListener, SplitInstallStateUpdatedListener {
     private final static String TAG = DynamicDeliveryActivity.class.getSimpleName();
@@ -48,24 +46,35 @@ public class DynamicDeliveryActivity extends BaseActivity implements View.OnClic
     private MaterialButton btn_launch, btn_uninstall;
     private TextView tv_info;
     private ContentLoadingProgressBar progressBar;
-    private String selectedModule;
-    private StepItem currentStep;
     private int currentStepInt;
 
     private int containerHeight;
     private int stepsAreaHeight;
     private float stepItemHeight;
 
-    private final static String BBC_NEWS_MODULE = "BBC_News";
-    private static Map<String, String> moduleMap = new HashMap<>();
-
-    static {
-        moduleMap.put(BBC_NEWS_MODULE, "com.trendmicro.diamond.bbc_news.NewsPageActivity");
-    }
+    private final DynamicModule[] dynamicModules = {
+            new DynamicModule(stepItem1, "bbc_news", "com.trendmicro.diamond.bbc_news.NewsPageActivity"),
+            new DynamicModule(stepItem2, "tour_guide", "com.trendmicro.diamond.tourguide.LonelyPlanetPageActivity"),
+            new DynamicModule(stepItem3, "bbc_news", "com.trendmicro.diamond.bbc_news.NewsPageActivity"),
+            new DynamicModule(stepItem4, "tour_guide", "com.trendmicro.diamond.tourguide.LonelyPlanetPageActivity")
+    };
 
     private SplitInstallManager splitInstallManager;
     private final static int CONFIRMATION_REQUEST_CODE = 1;
     private final static int NEW_ACTIVITY_REQUEST_CODE = 2;
+
+    class DynamicModule {
+        StepItem stepItem;
+        String moduleName;
+        String launchActivity;
+        boolean isInstalled;
+
+        DynamicModule(StepItem stepItem, String moduleName, String launchActivity) {
+            this.stepItem = stepItem;
+            this.moduleName = moduleName;
+            this.launchActivity = launchActivity;
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,13 +95,17 @@ public class DynamicDeliveryActivity extends BaseActivity implements View.OnClic
         fl_content = findViewById(R.id.fl_content);
         steps_area = findViewById(R.id.steps_area);
         stepItem1 = findViewById(R.id.step1);
-        stepItem1.setOnClickListener(this);
         stepItem2 = findViewById(R.id.step2);
-        stepItem2.setOnClickListener(this);
         stepItem3 = findViewById(R.id.step3);
-        stepItem3.setOnClickListener(this);
         stepItem4 = findViewById(R.id.step4);
+        stepItem1.setOnClickListener(this);
+        stepItem2.setOnClickListener(this);
+        stepItem3.setOnClickListener(this);
         stepItem4.setOnClickListener(this);
+        dynamicModules[0].stepItem = stepItem1;
+        dynamicModules[1].stepItem = stepItem2;
+        dynamicModules[2].stepItem = stepItem3;
+        dynamicModules[3].stepItem = stepItem4;
 
 
         bottomSheet = findViewById(R.id.bottom_sheet);
@@ -124,10 +137,7 @@ public class DynamicDeliveryActivity extends BaseActivity implements View.OnClic
         }
 
         currentStepInt = 1;
-        currentStep = stepItem1;
         updateBottomSheetView(currentStepInt);
-        selectedModule = BBC_NEWS_MODULE;
-        btn_uninstall.setEnabled(false);
     }
 
     @Override
@@ -150,58 +160,55 @@ public class DynamicDeliveryActivity extends BaseActivity implements View.OnClic
 
     @Override
     public void onClick(View v) {
+        DynamicModule module = dynamicModules[currentStepInt - 1];
         switch (v.getId()) {
             case R.id.step1:
                 currentStepInt = 1;
-                currentStep = stepItem1;
                 updateBottomSheetView(currentStepInt);
-                selectedModule = BBC_NEWS_MODULE;
                 break;
             case R.id.step2:
                 currentStepInt = 2;
-                currentStep = stepItem2;
                 updateBottomSheetView(currentStepInt);
-
                 break;
             case R.id.step3:
                 currentStepInt = 3;
-                currentStep = stepItem3;
                 updateBottomSheetView(currentStepInt);
-
                 break;
             case R.id.step4:
                 currentStepInt = 4;
-                currentStep = stepItem4;
                 updateBottomSheetView(currentStepInt);
-
                 break;
             case R.id.btn_launch:
                 // load and launch module
-                if (splitInstallManager.getInstalledModules().contains(selectedModule)) {
+                if (splitInstallManager.getInstalledModules().contains(module.moduleName)) {
                     Log.d(TAG, "loaded successfully");
-                    launchNewModule(selectedModule);
+                    launchNewModule(module.moduleName);
                     progressBar.hide();
                     return;
                 }
-
                 Log.d(TAG, "start to install");
                 progressBar.show();
                 SplitInstallRequest request = SplitInstallRequest.newBuilder()
-                        .addModule(selectedModule)
+                        .addModule(module.moduleName)
                         .build();
                 splitInstallManager.startInstall(request);
                 break;
             case R.id.btn_uninstall:
                 List<String> modules = new ArrayList<>();
-                modules.add(selectedModule);
+                modules.add(module.moduleName);
                 splitInstallManager.deferredUninstall(modules)
                         .addOnSuccessListener(aVoid -> {
-                            Log.d(TAG, "Uninstalling " + selectedModule);
-                            btn_uninstall.setEnabled(false);
-                            currentStep.isFinished(false);
+                            Log.d(TAG, "Uninstalling " + module.moduleName);
+                            module.isInstalled = false;
+                            module.stepItem.isFinished(false);
                             updateBottomSheetView(currentStepInt);
+
+                            if (currentStepInt > 1) {
+                                currentStepInt--;
+                                updateBottomSheetView(currentStepInt);
+                            }
                         })
-                        .addOnFailureListener(e -> Log.e(TAG, "Failed installation of " + selectedModule));
+                        .addOnFailureListener(e -> Log.e(TAG, "Failed installation of " + module.moduleName));
                 break;
         }
     }
@@ -212,8 +219,7 @@ public class DynamicDeliveryActivity extends BaseActivity implements View.OnClic
             steps_area.post(() -> {
                 stepsAreaHeight = steps_area.getHeight();
                 stepItemHeight =
-                        getResources().getDimension(R.dimen.item_line_height) * 2
-                                + getResources().getDimension(R.dimen.item_step_circle_diameter);
+                        getResources().getDimension(R.dimen.item_line_height) * 2 + getResources().getDimension(R.dimen.item_step_circle_diameter);
                 int peekHeight = containerHeight - stepsAreaHeight;
                 float maxBottomSheetHeight = containerHeight - stepItemHeight * step;
                 bottomSheet.getLayoutParams().height = Math.round(maxBottomSheetHeight);
@@ -222,6 +228,7 @@ public class DynamicDeliveryActivity extends BaseActivity implements View.OnClic
                 behavior.setState(BottomSheetBehavior.STATE_EXPANDED);
             });
         });
+        btn_uninstall.setEnabled(dynamicModules[currentStepInt - 1].isInstalled);
     }
 
     @Override
@@ -238,6 +245,7 @@ public class DynamicDeliveryActivity extends BaseActivity implements View.OnClic
 
     @Override
     public void onStateUpdate(SplitInstallSessionState state) {
+        DynamicModule module = dynamicModules[currentStepInt - 1];
         switch (state.status()) {
             case SplitInstallSessionStatus.DOWNLOADING:
                 Log.d(TAG, "displayLoadingState - DOWNLOADING");
@@ -258,9 +266,9 @@ public class DynamicDeliveryActivity extends BaseActivity implements View.OnClic
                 break;
             case SplitInstallSessionStatus.INSTALLED:
                 Log.d(TAG, "displayLoadingState - INSTALLED");
-                if (splitInstallManager.getInstalledModules().contains(selectedModule)) {
+                if (splitInstallManager.getInstalledModules().contains(module.moduleName)) {
                     Log.d(TAG, "loaded successfully");
-                    launchNewModule(selectedModule);
+                    launchNewModule(module.moduleName);
                     progressBar.hide();
                     return;
                 }
@@ -276,7 +284,11 @@ public class DynamicDeliveryActivity extends BaseActivity implements View.OnClic
     }
 
     private void launchNewModule(String module) {
-        String activity = moduleMap.get(module);
+        String activity = null;
+        for (DynamicModule dynamicModule : dynamicModules) {
+            if (module.equals(dynamicModule.moduleName))
+                activity = dynamicModule.launchActivity;
+        }
         Log.d(TAG, "Launch " + activity);
         Intent intent = new Intent();
         intent.setClassName(BuildConfig.APPLICATION_ID, activity);
@@ -292,9 +304,13 @@ public class DynamicDeliveryActivity extends BaseActivity implements View.OnClic
             }
         } else if (requestCode == NEW_ACTIVITY_REQUEST_CODE) {
             btn_uninstall.setEnabled(true);
-            currentStep.isFinished(true);
-            if (currentStepInt < 4) // last step == 4
-                updateBottomSheetView(currentStepInt + 1);
+            DynamicModule module = dynamicModules[currentStepInt - 1];
+            module.stepItem.isFinished(true);
+            module.isInstalled = true;
+            if (currentStepInt < dynamicModules.length) {
+                currentStepInt += 1;
+                updateBottomSheetView(currentStepInt);
+            }
         }
     }
 }

@@ -9,7 +9,6 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="DynamicDeliveryActivity" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
@@ -19,24 +18,97 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c352c017-7cf2-473d-b283-bb66e6960277" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/BBC_News/src/main/java/com/trendmicro/diamond/bbc_news/OnActivityEventListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BBC_News/src/main/java/com/trendmicro/diamond/bbc_news/OnRequestPermissionsListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BBC_News/src/main/res/layout/activity_news_page.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BBC_News/src/main/res/values/colors.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tour_guide/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tour_guide/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tour_guide/src/main/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tour_guide/src/main/java/com/trendmicro/diamond/tourguide/LonelyPlanetPageActivity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tour_guide/src/main/res/layout/activity_news_page.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tour_guide/src/main/res/values/colors.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_activity_activity_1_0_0_alpha02_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_activity_activity_1_0_0_alpha02_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_1_0_alpha01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_appcompat_appcompat_1_1_0_alpha01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_1_0_beta01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_arch_core_core_runtime_2_1_0_beta01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_asynclayoutinflater_asynclayoutinflater_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_asynclayoutinflater_asynclayoutinflater_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cardview_cardview_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cardview_cardview_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_1_1_3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_constraintlayout_constraintlayout_1_1_3_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_1_0_alpha01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_coordinatorlayout_coordinatorlayout_1_1_0_alpha01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_1_0_alpha03_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_1_0_alpha03_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cursoradapter_cursoradapter_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_cursoradapter_cursoradapter_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_customview_customview_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_customview_customview_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_documentfile_documentfile_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_documentfile_documentfile_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_drawerlayout_drawerlayout_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_drawerlayout_drawerlayout_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_1_0_alpha02_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_fragment_fragment_1_1_0_alpha02_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_interpolator_interpolator_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_interpolator_interpolator_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_ui_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_ui_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_utils_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_core_utils_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_v4_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_legacy_legacy_support_v4_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_extensions_2_2_0_alpha01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_extensions_2_2_0_alpha01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_2_0_alpha01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_2_2_0_alpha01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_2_0_alpha01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_livedata_core_2_2_0_alpha01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_process_2_2_0_alpha01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_process_2_2_0_alpha01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_2_0_alpha01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_runtime_2_2_0_alpha01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_service_2_2_0_alpha01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_service_2_2_0_alpha01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_2_0_alpha01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_lifecycle_lifecycle_viewmodel_2_2_0_alpha01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_loader_loader_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_loader_loader_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_localbroadcastmanager_localbroadcastmanager_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_localbroadcastmanager_localbroadcastmanager_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_media_media_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_media_media_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_multidex_multidex_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_multidex_multidex_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_multidex_multidex_instrumentation_2_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_multidex_multidex_instrumentation_2_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_print_print_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_print_print_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_1_0_alpha01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_1_0_alpha01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_selection_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_selection_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_slidingpanelayout_slidingpanelayout_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_sqlite_sqlite_2_0_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_sqlite_sqlite_2_0_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_sqlite_sqlite_framework_2_0_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_sqlite_sqlite_framework_2_0_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_swiperefreshlayout_swiperefreshlayout_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_swiperefreshlayout_swiperefreshlayout_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_monitor_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_monitor_1_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_runner_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_test_runner_1_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_transition_transition_1_0_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_transition_transition_1_0_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_1_1_0_alpha01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_1_1_0_alpha01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_animated_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_animated_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_1_0_alpha01_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_versionedparcelable_versionedparcelable_1_1_0_alpha01_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager_viewpager_1_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_viewpager_viewpager_1_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_drawee_1_13_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_drawee_1_13_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_fbcore_1_13_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_fbcore_1_13_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_fresco_1_13_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_fresco_1_13_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_imagepipeline_1_13_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_imagepipeline_1_13_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_imagepipeline_base_1_13_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_imagepipeline_base_1_13_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_nativeimagefilters_1_13_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_nativeimagefilters_1_13_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_nativeimagetranscoder_1_13_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_facebook_fresco_nativeimagetranscoder_1_13_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_base_16_0_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_base_16_0_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_basement_16_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_basement_16_1_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_tasks_16_0_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_gms_play_services_tasks_16_0_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_1_0_alpha05_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_android_material_material_1_1_0_alpha05_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_auth_interop_17_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_auth_interop_17_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_common_17_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_common_17_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_database_17_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_database_17_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_database_collection_16_0_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_firebase_firebase_database_collection_16_0_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__jp_wasabeef_fresco_processors_2_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__jp_wasabeef_fresco_processors_2_1_0_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BBC_News/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/bbc_news/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BBC_News/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/bbc_news/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BBC_News/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/bbc_news/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BBC_News/src/main/java/com/trendmicro/diamond/bbc_news/BaseActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BBC_News/src/main/java/com/trendmicro/diamond/bbc_news/NewsPageActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/bbc_news/src/main/java/com/trendmicro/diamond/bbc_news/NewsPageActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BBC_News/src/main/java/com/trendmicro/diamond/bbc_news/OnActivityEventListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BBC_News/src/main/java/com/trendmicro/diamond/bbc_news/OnRequestPermissionsListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BBC_News/src/main/res/layout/activity_news_page.xml" beforeDir="false" afterPath="$PROJECT_DIR$/bbc_news/src/main/res/layout/activity_news_page.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BBC_News/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/bbc_news/src/main/res/values/colors.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/DynamicDeliveryActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/DynamicDeliveryActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/bottom_sheet_dark_bg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bottom_sheet_dark_bg.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/bottom_sheet_light_bg.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bottom_sheet_light_bg.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/content_dynamic_delivery_container.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_dynamic_delivery_container.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values-ar/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-ar/strings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values-zh-rCN/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-zh-rCN/strings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,16 +129,54 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/DynamicDeliveryActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="134" column="51" selection-start-line="134" selection-start-column="51" selection-end-line="134" selection-end-column="51" />
+            <state relative-caret-position="2192">
+              <caret line="190" column="49" selection-start-line="190" selection-start-column="49" selection-end-line="190" selection-end-column="49" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#8315#8368#0" expanded="true" />
-                <element signature="e#8407#8469#0" expanded="true" />
+                <element signature="e#9173#9226#0" expanded="true" />
+                <element signature="e#9265#9327#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="293">
+              <caret line="50" column="113" lean-forward="true" selection-start-line="50" selection-start-column="113" selection-end-line="50" selection-end-column="113" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-82">
+              <caret line="9" column="36" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/bbc_news/src/main/AndroidManifest.xml">
+          <provider editor-type-id="android-manifest" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="19" column="18" selection-start-line="13" selection-start-column="3" selection-end-line="19" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tour_guide/src/main/AndroidManifest.xml">
+          <provider editor-type-id="android-manifest" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="57" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="57" />
             </state>
           </provider>
         </entry>
@@ -74,107 +184,44 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/bottom_sheet_dark_bg.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="57" selection-start-line="3" selection-start-column="57" selection-end-line="3" selection-end-column="57" />
+            <state relative-caret-position="75">
+              <caret line="5" column="73" selection-start-line="5" selection-start-column="73" selection-end-line="5" selection-end-column="73" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/bottom_sheet_light_bg.xml">
+        <entry file="file://$PROJECT_DIR$/app/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="8" lean-forward="true" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
+            <state relative-caret-position="245">
+              <caret line="107" column="27" selection-start-line="107" selection-start-column="27" selection-end-line="107" selection-end-column="27" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BBC_News/build.gradle">
+        <entry file="file://$PROJECT_DIR$/bbc_news/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/messagecenter/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="23" column="63" selection-start-line="23" selection-start-column="63" selection-end-line="23" selection-end-column="63" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tour_guide/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="315">
               <caret line="21" selection-start-line="21" selection-end-line="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_dynamic_delivery_container.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="900">
-              <caret line="60" column="53" lean-forward="true" selection-start-line="60" selection-start-column="53" selection-end-line="60" selection-end-column="53" />
-              <folding>
-                <element signature="e#775#800#0" expanded="true" />
-                <element signature="e#834#859#0" expanded="true" />
-                <element signature="e#893#918#0" expanded="true" />
-                <element signature="e#940#962#0" expanded="true" />
-                <element signature="e#1393#1418#0" expanded="true" />
-                <element signature="e#1452#1477#0" expanded="true" />
-                <element signature="e#1511#1536#0" expanded="true" />
-                <element signature="e#1990#2015#0" expanded="true" />
-                <element signature="e#2049#2074#0" expanded="true" />
-                <element signature="e#2108#2133#0" expanded="true" />
-                <element signature="e#2155#2184#0" expanded="true" />
-                <element signature="e#2646#2671#0" expanded="true" />
-                <element signature="e#2705#2730#0" expanded="true" />
-                <element signature="e#2823#2848#0" expanded="true" />
-                <element signature="e#2764#2789#0" expanded="true" />
-                <element signature="e#2870#2889#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="52" column="24" selection-start-line="52" selection-start-column="4" selection-end-line="52" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BBC_News/src/main/java/com/trendmicro/diamond/bbc_news/NewsPageActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="74" lean-forward="true" selection-start-line="10" selection-start-column="74" selection-end-line="11" selection-end-column="60" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BBC_News/src/main/res/layout/activity_news_page.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BBC_News/src/main/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="44" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="44" />
-            </state>
-          </provider>
-          <provider editor-type-id="android-manifest" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/MainActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="202" column="37" selection-start-line="202" selection-start-column="37" selection-end-line="204" selection-end-column="48" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -195,13 +242,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>c_title</find>
-      <find>c_progress_desc</find>
-      <find>BottomSheetBehavior</find>
-      <find>bottom_sheet_light</find>
-      <find>s_is_first_step</find>
-      <find>item_step_circle_diameter</find>
-      <find>setDayNightMode</find>
       <find>@android:color/white</find>
       <find>Created by catherine_chen</find>
       <find>steps_area</find>
@@ -216,15 +256,22 @@
       <find>CONFIRMATION_REQUEST_CODE</find>
       <find>listToSrring</find>
       <find>&lt;string name=&quot;launch</find>
-      <find>btn_launch</find>
       <find>BBC_NEWS_MODULE</find>
       <find>bottomSheet</find>
-      <find>btn_uninstall</find>
-      <find>launchNewModule</find>
       <find>selectedModule</find>
       <find>setState</find>
       <find>currentStep</find>
       <find>builder</find>
+      <find>launchNewModule</find>
+      <find>btn_launch</find>
+      <find>currentStepInt</find>
+      <find>btn_uninstall</find>
+      <find>isFinished</find>
+      <find>closeModule</find>
+      <find>updateBottomSheetView</find>
+      <find>BBC_News</find>
+      <find>TourGuide</find>
+      <find>uninstall</find>
     </findStrings>
     <replaceStrings>
       <replace>this</replace>
@@ -250,8 +297,10 @@
       <replace>Artist</replace>
       <replace>import com.catherine.materialdesignapp.jetpack.entities.Artist;</replace>
       <replace>btn_launch</replace>
-      <replace>listToString</replace>
       <replace>@color/colorPrimary</replace>
+      <replace>listToString</replace>
+      <replace>bbc_news</replace>
+      <replace>tour_guide</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/app</dir>
@@ -263,9 +312,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/settings/DataSyncPreferenceFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/xml/pref_headers.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/xml/pref_general.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/fragments/SettingsFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/AppCompatPreferenceActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/SettingsActivity.java" />
@@ -302,26 +348,28 @@
         <option value="$PROJECT_DIR$/BBC_News/src/main/res/color/colors.xml" />
         <option value="$PROJECT_DIR$/BBC_News/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/BBC_News/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/build.gradle" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/BaseActivity.java" />
-        <option value="$PROJECT_DIR$/BBC_News/src/main/java/com/trendmicro/diamond/bbc_news/NewsPageActivity.java" />
         <option value="$PROJECT_DIR$/BBC_News/src/main/res/layout/activity_news_page.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values-zh-rCN/strings.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/values-ar/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_dynamic_delivery_container.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/bottom_sheet_light_bg.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/bottom_sheet_dark_bg.xml" />
+        <option value="$PROJECT_DIR$/BBC_News/src/main/java/com/trendmicro/diamond/bbc_news/NewsPageActivity.java" />
+        <option value="$PROJECT_DIR$/TourGuide/build.gradle" />
+        <option value="$PROJECT_DIR$/TourGuide/src/main/java/com/trendmicro/diamond/tourguide/LonelyPlanetPageActivity.java" />
+        <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/TourGuide/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/DynamicDeliveryActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values-ar/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values-zh-rCN/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1440" />
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
-    <option name="width" value="1680" />
-    <option name="height" value="1027" />
+    <option name="width" value="1440" />
+    <option name="height" value="877" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -329,17 +377,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <expand>
-            <path>
-              <item name="AAD-Preparation" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="AAD-Preparation" type="1abcf292:AndroidViewProjectNode" />
-              <item name="BBC_News" type="feadf853:AndroidModuleNode" />
-            </path>
             <path>
               <item name="AAD-Preparation" type="1abcf292:AndroidViewProjectNode" />
               <item name="Gradle Scripts" type="ae0cef3a:AndroidBuildScriptsGroupNode" />
@@ -348,7 +389,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -450,7 +490,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -458,41 +498,41 @@
     <property name="DEBUGGABLE_PROCESS" value="com.catherine.materialdesignapp" />
     <property name="DEBUGGER_ID" value="Auto" />
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="520000b2c01a54eb" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2019-06-05T06:49:06.654Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2019-06-13T08:13:27.390Z" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
     <property name="SearchEverywhereHistoryKey" value="strings&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/values/strings.xml&#10;content&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/layout/content_album_detail.xml&#10;styles&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/values-v21/styles.xml&#10;app&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/layout/activity_app_components.xml&#10;UI&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/UIComponentsActivity.java&#10;appcomp&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/AppComponentsActivity.java&#10;activity_ap&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/layout/activity_app_components.xml&#10;fragment&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/layout/fragment_album_detail.xml&#10;fragment_&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/layout/fragment_album_detail.xml&#10;fragment_al&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/layout/fragment_albums.xml&#10;AlbumsFra&#9;PSI&#9;JAVA://com.catherine.materialdesignapp.fragments.AlbumsFragment&#10;strings.&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/values/strings.xml&#10;dim&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/values/dimens.xml&#10;album&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/layout/rv_album_item.xml&#10;uicom&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/UIComponentsActivity.java&#10;fragment_pl&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/layout/fragment_playlist.xml&#10;dimens&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/values/dimens.xml&#10;main&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/layout/activity_main.xml&#10;colors&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/values/colors.xml&#10;background&#9;PSI&#9;JAVA://com.catherine.materialdesignapp.fragments.BackgroundServiceFragment&#10;uic&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/UIComponentsActivity.java&#10;activity_ui&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/layout/activity_ui_components.xml&#10;activity_&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/layout/activity_ui_components.xml&#10;styl&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/values/styles.xml&#10;a&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/layout/activity_main.xml&#10;con&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/layout/content_main.xml&#10;slider&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/components/Slider.java&#10;contentPro&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/ContentProviderFragment.java&#10;fragment_con&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/layout/fragment_content_provider.xml&#10;mainac&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/MainActivity.java&#10;attrs&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/values/attrs.xml&#10;mani&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/AndroidManifest.xml&#10;back&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/BackgroundServiceFragment.java&#10;Lif&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/LifecycleActivity.java&#10;lifecyc&#9;PSI&#9;JAVA://com.catherine.materialdesignapp.activities.LifecycleActivity&#10;jobs&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/services/MusicPlayerJobScheduler.java&#10;Base&#9;PSI&#9;JAVA://com.catherine.materialdesignapp.activities.BaseActivity&#10;Main&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/MainActivity.java&#10;backgroundAc&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/BackgroundActivity.java&#10;base&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/BaseActivity.java&#10;MusicPlayerService&#9;PSI&#9;JAVA://com.catherine.materialdesignapp.services.MusicPlayerService&#10;occ&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/utils/OccupiedActions.java&#10;no&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/utils/NotificationUtils.java&#10;notificationU&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/utils/NotificationUtils.java&#10;notificat&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/utils/NotificationUtils.java&#10;string&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/values/strings.xml&#10;notification&#9;PSI&#9;JAVA://com.catherine.materialdesignapp.utils.NotificationUtils&#10;di&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/values/dimens.xml&#10;String&#9;FILE&#9;file:///Users/catherine_chen/Workspace/AAD-Preparation/AAD-Preparation/app/src/main/res/values/strings.xml" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="device.picker.selection" value="520000b2c01a54eb" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/TourGuide/src/main/res" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="fileTemplates" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="com.catherine.materialdesignapp.jetpack.daos" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
-      <recent name="$PROJECT_DIR$/app/src/main/cpp" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/layout-v21" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/menu" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.trendmicro.diamond.bbc_news" />
-      <recent name="com.catherine.materialdesignapp.components" />
-      <recent name="com.catherine.materialdesignapp.activities" />
-      <recent name="com.catherine.materialdesignapp.fragments.settings" />
-      <recent name="com.catherine.materialdesignapp.fragments" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable-mdpi" />
       <recent name="$PROJECT_DIR$/app/src/main/res/color" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.catherine.materialdesignapp.jetpack.daos" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.trendmicro.diamond.tourguide" />
+      <recent name="com.trendmicro.diamond.bbc_news" />
+      <recent name="com.catherine.materialdesignapp.components" />
+      <recent name="com.catherine.materialdesignapp.activities" />
+      <recent name="com.catherine.materialdesignapp.fragments.settings" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/TourGuide/src/main/res" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/layout" />
+      <recent name="$PROJECT_DIR$/app/src/main/cpp" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/layout-v21" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -654,11 +694,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1440" y="23" width="1680" height="1027" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.1990232" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.24749643" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -667,13 +707,13 @@
       <window_info id="Capture Tool" order="7" />
       <window_info id="Resources Explorer" order="8" weight="0.3297568" />
       <window_info anchor="bottom" id="Run" order="0" weight="0.32941177" />
-      <window_info active="true" anchor="bottom" id="Logcat" order="1" sideWeight="0.49642345" visible="true" weight="0.28235295" />
+      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.49642345" weight="0.28152865" />
       <window_info anchor="bottom" id="TODO" order="2" sideWeight="0.4985694" weight="0.32941177" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.32941177" />
       <window_info anchor="bottom" id="Event Log" order="4" sideWeight="0.5035765" side_tool="true" weight="0.355414" />
       <window_info anchor="bottom" id="Version Control" order="5" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="6" weight="0.32941177" />
-      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49713877" weight="0.25454545" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49713877" visible="true" weight="0.30318472" />
       <window_info anchor="bottom" id="Find" order="8" sideWeight="0.49928468" weight="0.2267516" />
       <window_info anchor="bottom" id="Android Profiler" order="9" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
@@ -714,37 +754,6 @@
     </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.fragment/fragment/1.1.0-alpha02/b81436c82dc8e5481dcadfef7f5747942218f6f6/fragment-1.1.0-alpha02-sources.jar!/androidx/fragment/app/FragmentManagerImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12060">
-          <caret line="896" selection-start-line="896" selection-end-line="896" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.fragment/fragment/1.1.0-alpha02/b81436c82dc8e5481dcadfef7f5747942218f6f6/fragment-1.1.0-alpha02-sources.jar!/androidx/fragment/app/Fragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="70">
-          <caret line="2455" selection-start-line="2455" selection-end-line="2455" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/cpp/native-lib.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Android/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include/c++/v1/string">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18480">
-          <caret line="1232" selection-start-line="1232" selection-end-line="1232" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/utils/CBridge.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -784,9 +793,6 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/messagecenter/build.gradle">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/BackgroundActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="928">
@@ -817,14 +823,6 @@
           <caret line="42" column="48" lean-forward="true" selection-start-line="42" selection-start-column="12" selection-end-line="42" selection-end-column="48" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="100" column="19" selection-start-line="100" selection-start-column="19" selection-end-line="100" selection-end-column="19" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/bottom_sheet_app_components.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -935,13 +933,7 @@
       <provider selected="true" editor-type-id="text-editor" />
       <provider editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/BBC_News/src/main/java/com/trendmicro/diamond/bbc_news/OnActivityEventListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="56" selection-start-line="3" selection-start-column="56" selection-end-line="3" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/BBC_News/src/main/java/com/trendmicro/diamond/bbc_news/OnActivityEventListener.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_dynamic_delivery.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -950,23 +942,7 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/BBC_News/src/main/java/com/trendmicro/diamond/bbc_news/BaseActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BBC_News/src/main/res/color/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" lean-forward="true" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/BBC_News/src/main/res/color/colors.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -974,34 +950,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BBC_News/src/main/res/values/colors.xml">
+    <entry file="file://$PROJECT_DIR$/bbc_news/src/main/res/values/colors.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="29" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="29" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="44" column="21" selection-start-line="44" selection-start-column="21" selection-end-line="44" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BBC_News/src/main/java/com/trendmicro/diamond/bbc_news/OnRequestPermissionsListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="105" column="33" selection-start-line="105" selection-start-column="25" selection-end-line="105" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/BBC_News/src/main/java/com/trendmicro/diamond/bbc_news/OnRequestPermissionsListener.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
@@ -1012,15 +968,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BBC_News/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="44" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="44" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-manifest" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BBC_News/src/main/res/layout/activity_news_page.xml">
+    <entry file="file://$PROJECT_DIR$/bbc_news/src/main/res/layout/activity_news_page.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
@@ -1042,79 +990,128 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="52" column="24" selection-start-line="52" selection-start-column="4" selection-end-line="52" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BBC_News/build.gradle">
+    <entry file="file://$PROJECT_DIR$/BBC_News/src/main/java/com/trendmicro/diamond/bbc_news/BaseActivity.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
+          <caret line="21" column="51" selection-start-line="21" selection-start-column="51" selection-end-line="21" selection-end-column="51" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/bottom_sheet_light_bg.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
-          <caret line="7" column="8" lean-forward="true" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
+          <caret line="7" column="8" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/bottom_sheet_dark_bg.xml">
+    <entry file="file://$PROJECT_DIR$/bbc_news/src/main/java/com/trendmicro/diamond/bbc_news/NewsPageActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="57" selection-start-line="3" selection-start-column="57" selection-end-line="3" selection-end-column="57" />
+        <state relative-caret-position="360">
+          <caret line="24" column="5" selection-start-line="24" selection-start-column="5" selection-end-line="24" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_dynamic_delivery_container.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="60" column="53" lean-forward="true" selection-start-line="60" selection-start-column="53" selection-end-line="60" selection-end-column="53" />
-          <folding>
-            <element signature="e#775#800#0" expanded="true" />
-            <element signature="e#834#859#0" expanded="true" />
-            <element signature="e#893#918#0" expanded="true" />
-            <element signature="e#940#962#0" expanded="true" />
-            <element signature="e#1393#1418#0" expanded="true" />
-            <element signature="e#1452#1477#0" expanded="true" />
-            <element signature="e#1511#1536#0" expanded="true" />
-            <element signature="e#1990#2015#0" expanded="true" />
-            <element signature="e#2049#2074#0" expanded="true" />
-            <element signature="e#2108#2133#0" expanded="true" />
-            <element signature="e#2155#2184#0" expanded="true" />
-            <element signature="e#2646#2671#0" expanded="true" />
-            <element signature="e#2705#2730#0" expanded="true" />
-            <element signature="e#2823#2848#0" expanded="true" />
-            <element signature="e#2764#2789#0" expanded="true" />
-            <element signature="e#2870#2889#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="709">
+          <caret line="60" column="53" selection-start-line="60" selection-start-column="53" selection-end-line="60" selection-end-column="53" />
         </state>
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/BBC_News/src/main/java/com/trendmicro/diamond/bbc_news/NewsPageActivity.java">
+    <entry file="file://$PROJECT_DIR$/tour_guide/src/main/res/layout/activity_news_page.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tour_guide/src/main/java/com/trendmicro/diamond/tourguide/LonelyPlanetPageActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="74" lean-forward="true" selection-start-line="10" selection-start-column="74" selection-end-line="11" selection-end-column="60" />
+        <state relative-caret-position="135">
+          <caret line="9" column="37" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/bottom_sheet_dark_bg.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="73" selection-start-line="5" selection-start-column="73" selection-end-line="5" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/messagecenter/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="63" selection-start-line="23" selection-start-column="63" selection-end-line="23" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tour_guide/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-82">
+          <caret line="9" column="36" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bbc_news/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="18" selection-start-line="13" selection-start-column="3" selection-end-line="19" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tour_guide/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="57" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="107" column="27" selection-start-line="107" selection-start-column="27" selection-end-line="107" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bbc_news/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/catherine/materialdesignapp/activities/DynamicDeliveryActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="134" column="51" selection-start-line="134" selection-start-column="51" selection-end-line="134" selection-end-column="51" />
+        <state relative-caret-position="2192">
+          <caret line="190" column="49" selection-start-line="190" selection-start-column="49" selection-end-line="190" selection-end-column="49" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#8315#8368#0" expanded="true" />
-            <element signature="e#8407#8469#0" expanded="true" />
+            <element signature="e#9173#9226#0" expanded="true" />
+            <element signature="e#9265#9327#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="50" column="113" lean-forward="true" selection-start-line="50" selection-start-column="113" selection-end-line="50" selection-end-column="113" />
         </state>
       </provider>
     </entry>

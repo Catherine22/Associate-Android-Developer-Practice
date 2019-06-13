@@ -3,9 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AAD-Preparation.iml" filepath="$PROJECT_DIR$/AAD-Preparation.iml" />
-      <module fileurl="file://$PROJECT_DIR$/BBC_News/BBC_News.iml" filepath="$PROJECT_DIR$/BBC_News/BBC_News.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bbc_news/bbc_news.iml" filepath="$PROJECT_DIR$/bbc_news/bbc_news.iml" />
       <module fileurl="file://$PROJECT_DIR$/messagecenter/messagecenter.iml" filepath="$PROJECT_DIR$/messagecenter/messagecenter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tour_guide/tour_guide.iml" filepath="$PROJECT_DIR$/tour_guide/tour_guide.iml" />
     </modules>
   </component>
 </project>
