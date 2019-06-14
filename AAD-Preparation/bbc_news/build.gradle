@@ -16,6 +16,4 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':app')
-    implementation "com.google.android.material:material:${rootProject.ext.material}"
-    implementation 'com.android.support:customtabs:28.0.0'
 }

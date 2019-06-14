@@ -43,6 +43,8 @@ ext {
     roomVersion = '2.1.0-rc01'
     archLifecycleVersion = '2.2.0-alpha01'
     playcore = '1.6.1'
+
+    customTabs = '28.0.0'
 }
 
 task clean(type: Delete) {

@@ -768,15 +768,38 @@ public class NewsPageActivity extends AppCompatActivity {
 7. Install and launch this bbc_news module 
 See [DynamicDeliveryActivity], [bbc_news module]     
 
-8. bundletool       
-```bundletool``` is a command line tools,         
-https://developer.android.com/studio/command-line/bundletool
-
-
-
 Code: [DynamicDeliveryActivity], [bbc_news module]     
 [Google sample code](https://github.com/googlesamples/android-dynamic-features)     
-[Read More](https://developer.android.com/training/testing/fundamentals)
+[Read More](https://developer.android.com/training/testing/fundamentals)        
+
+8. bundletool (Generate signed Android bundles)    
+Before you publish your Android bundles and APK to Google Play, you need ```bundletool```, a command line tool, to test those bundles locally.     
+Download [bundletool](https://github.com/google/bundletool/releases) and move to AAD-Preparation/       
+ 
+- In Android Studio, go to Build -> Generate Signed Bundle/APK... -> generate a .aab file
+- Generate a set of APKs         
+```sh
+java -jar ../bundletool-all-0.9.0.jar build-apks --bundle=app/debug/app-debug.aab  --output=app/debug/MaterialDesign.apks
+```
+
+- Deploy APKs to a connected device     
+```sh
+java -jar ../bundletool-all-0.9.0.jar install-apks --apks=app/debug/MaterialDesign.apks
+```
+
+- Unzip and see all APKs     
+```sh
+mkdir app/debug/apks
+unzip app/debug/MaterialDesign.apks -d app/debug/apks
+```
+
+
+
+> Sign APKs: [apksigner](https://developer.android.com/studio/command-line/apksigner)      
+> Sign .jar files, .aar files or Android bundles: [jarsigner](https://docs.oracle.com/javase/8/docs/technotes/tools/windows/jarsigner.html)      
+
+
+[Read more](https://developer.android.com/studio/command-line/bundletool)
 
 # Kotlin
 The exam is only available in Java at this time (4/1/2019)      

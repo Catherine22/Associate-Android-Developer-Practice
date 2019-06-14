@@ -165,6 +165,8 @@
         <item quantity="one">%d song</item>
         <item quantity="other">%d songs</item>
     </plurals>
-    <string name="title_bbc_news">BBC News</string>
-    <string name="title_tourguide">Tour Guide</string>
+
+
+    <string name="title_bbc_news" translatable="false">BBC News</string>
+    <string name="title_tour_guide" translatable="false">Tour Guide</string>
 </resources>

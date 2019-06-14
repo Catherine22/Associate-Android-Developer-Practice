@@ -1,4 +1,4 @@
-package com.trendmicro.diamond.tourguide;
+package com.catherine.materialdesignapp.tourguide;
 
 import android.content.Intent;
 import android.net.Uri;

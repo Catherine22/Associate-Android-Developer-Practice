@@ -53,10 +53,10 @@ public class DynamicDeliveryActivity extends BaseActivity implements View.OnClic
     private float stepItemHeight;
 
     private final DynamicModule[] dynamicModules = {
-            new DynamicModule(stepItem1, "bbc_news", "com.trendmicro.diamond.bbc_news.NewsPageActivity"),
-            new DynamicModule(stepItem2, "tour_guide", "com.trendmicro.diamond.tourguide.LonelyPlanetPageActivity"),
-            new DynamicModule(stepItem3, "bbc_news", "com.trendmicro.diamond.bbc_news.NewsPageActivity"),
-            new DynamicModule(stepItem4, "tour_guide", "com.trendmicro.diamond.tourguide.LonelyPlanetPageActivity")
+            new DynamicModule(stepItem1, "bbc_news", "com.catherine.materialdesignapp.bbc_news.NewsPageActivity"),
+            new DynamicModule(stepItem2, "tour_guide", "com.catherine.materialdesignapp.tourguide.LonelyPlanetPageActivity"),
+            new DynamicModule(stepItem3, "bbc_news", "com.catherine.materialdesignapp.bbc_news.NewsPageActivity"),
+            new DynamicModule(stepItem4, "tour_guide", "com.catherine.materialdesignapp.tourguide.LonelyPlanetPageActivity")
     };
 
     private SplitInstallManager splitInstallManager;

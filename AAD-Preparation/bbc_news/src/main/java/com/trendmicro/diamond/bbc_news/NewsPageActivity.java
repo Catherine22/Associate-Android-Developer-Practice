@@ -1,4 +1,4 @@
-package com.trendmicro.diamond.bbc_news;
+package com.catherine.materialdesignapp.bbc_news;
 
 import android.content.Intent;
 import android.net.Uri;
