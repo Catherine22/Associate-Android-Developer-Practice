@@ -47,7 +47,7 @@
     <string name="module1">BBC News</string>
     <string name="module2">Tour Guide</string>
     <string name="module3">Assets</string>
-    <string name="module4">Module 4</string>
+    <string name="module4">Open Weather</string>
     <string name="download_the_bundle">Download the bundle</string>
     <string name="launch">Launch</string>
     <string name="uninstall">Uninstall</string>
@@ -129,7 +129,7 @@
         <item>Download and launch BBC News via Custom Tabs from another Android bundle</item>
         <item>Download and launch Tour Guide via Custom Tabs from another Android bundle</item>
         <item>Download and load assets via Custom Tabs from another Android bundle</item>
-        <item>Download and launch Tour Guide via Custom Tabs from another Android bundle</item>
+        <item>Download and launch Open Weather via Custom Tabs from another Android bundle</item>
     </string-array>
 
     <plurals name="second">

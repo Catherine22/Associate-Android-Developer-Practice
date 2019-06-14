@@ -676,6 +676,8 @@ Then debug C/C++ code as if debugging Java/Kotlin.
 [Read More](https://developer.android.com/studio/debug/)
 
 # Test
+To create modules in apps and publish which as individual APKs, you need ```Android Bundle```       
+
 ## Android Bundle
 Min SDK version: Android 5.0+ (API level 21)      
 
@@ -787,19 +789,34 @@ java -jar ../bundletool-all-0.9.0.jar build-apks --bundle=app/debug/app-debug.aa
 java -jar ../bundletool-all-0.9.0.jar install-apks --apks=app/debug/MaterialDesign.apks
 ```
 
-- Unzip and see all APKs     
+- Unzip and see all APKs if you like     
 ```sh
 mkdir app/debug/apks
 unzip app/debug/MaterialDesign.apks -d app/debug/apks
 ```
 
-
-
 > Sign APKs: [apksigner](https://developer.android.com/studio/command-line/apksigner)      
 > Sign .jar files, .aar files or Android bundles: [jarsigner](https://docs.oracle.com/javase/8/docs/technotes/tools/windows/jarsigner.html)      
 
+[Read more](https://developer.android.com/studio/command-line/bundletool)       
 
-[Read more](https://developer.android.com/studio/command-line/bundletool)
+## Fundamentals of Tests
+
+### Testing pyramid
+1. (small tests) Unit test      
+    - Run on your own local machine      
+    - fast and focus        
+    - 70%       
+2. (medium tests) Integration test      
+    - Run on real devices or emulators       
+    - 20%       
+3. (large tests) End-to-end test        
+    - Run on real devices or emulators       
+    - 10%       
+
+[Video](https://www.youtube.com/watch?v=pK7W5npkhho) 
+## TDD, Test Driven Development
+
 
 # Kotlin
 The exam is only available in Java at this time (4/1/2019)      

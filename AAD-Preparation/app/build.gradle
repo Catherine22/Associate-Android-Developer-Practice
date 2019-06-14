@@ -80,8 +80,14 @@ android {
 
         // Libraries which can be re-used in other modules should use the `api` keyword.
         // This way they can be shared with dependent feature modules.
-        api "com.google.android.material:material:${rootProject.ext.material}"
+
         // To support DayNight style, update to at lease 1.1.0-alpha02
+        api "com.google.android.material:material:${rootProject.ext.material}"
+
+        api "com.squareup.okhttp3:okhttp:${rootProject.ext.okhttp}"
+        api "com.squareup.okhttp3:logging-interceptor:${rootProject.ext.okhttpLoggingInterceptor}"
+        api "com.google.code.gson:gson:${rootProject.ext.gson}"
+
         implementation "androidx.constraintlayout:constraintlayout:${rootProject.ext.constraintlayout}"
         implementation "androidx.recyclerview:recyclerview-selection:${rootProject.ext.recyclerviewSelection}"
 
@@ -115,7 +121,7 @@ android {
     }
 
     // dynamic delivery
-    dynamicFeatures = [":bbc_news", ":tour_guide", ":assets"]
+    dynamicFeatures = [":bbc_news", ":tour_guide", ":assets", ":open_weather"]
 
 
 }
