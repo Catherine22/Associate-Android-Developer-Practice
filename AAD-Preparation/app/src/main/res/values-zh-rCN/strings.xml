@@ -48,10 +48,11 @@
     <string name="module2">Tour Guide</string>
     <string name="module3">模块 3</string>
     <string name="module4">模块 4</string>
-    <string name="module1_info">Download and launch BBC News via Custom Tabs from another Android bundle</string>
     <string name="download_the_bundle">Download the bundle</string>
     <string name="launch">Launch</string>
     <string name="uninstall">Uninstall</string>
+    <string name="notice">Notice</string>
+    <string name="ok">OK</string>
 
     <!--radio group-->
     <string name="require_network">网络限制</string>
@@ -122,6 +123,13 @@
         <item>专辑</item>
         <item>艺术家</item>
         <item>歌单</item>
+    </string-array>
+
+    <string-array name="bundle_info">
+        <item>Download and launch BBC News via Custom Tabs from another Android bundle</item>
+        <item>Download and launch Tour Guide via Custom Tabs from another Android bundle</item>
+        <item>Download and load assets via Custom Tabs from another Android bundle</item>
+        <item>Download and launch Tour Guide via Custom Tabs from another Android bundle</item>
     </string-array>
 
     <plurals name="second">

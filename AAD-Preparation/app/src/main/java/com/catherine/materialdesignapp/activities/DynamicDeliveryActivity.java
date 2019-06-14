@@ -1,10 +1,14 @@
 package com.catherine.materialdesignapp.activities;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -30,6 +34,9 @@ import com.google.android.play.core.splitinstall.SplitInstallSessionState;
 import com.google.android.play.core.splitinstall.SplitInstallStateUpdatedListener;
 import com.google.android.play.core.splitinstall.model.SplitInstallSessionStatus;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -47,16 +54,17 @@ public class DynamicDeliveryActivity extends BaseActivity implements View.OnClic
     private TextView tv_info;
     private ContentLoadingProgressBar progressBar;
     private int currentStepInt;
+    private String[] bundleInfo;
 
     private int containerHeight;
     private int stepsAreaHeight;
     private float stepItemHeight;
 
     private final DynamicModule[] dynamicModules = {
-            new DynamicModule(stepItem1, "bbc_news", "com.catherine.materialdesignapp.bbc_news.NewsPageActivity"),
-            new DynamicModule(stepItem2, "tour_guide", "com.catherine.materialdesignapp.tourguide.LonelyPlanetPageActivity"),
-            new DynamicModule(stepItem3, "bbc_news", "com.catherine.materialdesignapp.bbc_news.NewsPageActivity"),
-            new DynamicModule(stepItem4, "tour_guide", "com.catherine.materialdesignapp.tourguide.LonelyPlanetPageActivity")
+            new DynamicModule(null, "bbc_news", "com.catherine.materialdesignapp.bbc_news.NewsPageActivity"),
+            new DynamicModule(null, "tour_guide", "com.catherine.materialdesignapp.tourguide.LonelyPlanetPageActivity"),
+            new DynamicModule(null, "assets", "dictionary.txt"),
+            new DynamicModule(null, "tour_guide", "com.catherine.materialdesignapp.tourguide.LonelyPlanetPageActivity")
     };
 
     private SplitInstallManager splitInstallManager;
@@ -66,13 +74,13 @@ public class DynamicDeliveryActivity extends BaseActivity implements View.OnClic
     class DynamicModule {
         StepItem stepItem;
         String moduleName;
-        String launchActivity;
+        String target;
         boolean isInstalled;
 
-        DynamicModule(StepItem stepItem, String moduleName, String launchActivity) {
+        DynamicModule(StepItem stepItem, String moduleName, String target) {
             this.stepItem = stepItem;
             this.moduleName = moduleName;
-            this.launchActivity = launchActivity;
+            this.target = target;
         }
     }
 
@@ -106,6 +114,7 @@ public class DynamicDeliveryActivity extends BaseActivity implements View.OnClic
         dynamicModules[1].stepItem = stepItem2;
         dynamicModules[2].stepItem = stepItem3;
         dynamicModules[3].stepItem = stepItem4;
+        bundleInfo = getResources().getStringArray(R.array.bundle_info);
 
 
         bottomSheet = findViewById(R.id.bottom_sheet);
@@ -182,7 +191,10 @@ public class DynamicDeliveryActivity extends BaseActivity implements View.OnClic
                 // load and launch module
                 if (splitInstallManager.getInstalledModules().contains(module.moduleName)) {
                     Log.d(TAG, "loaded successfully");
-                    launchNewModule(module.moduleName);
+                    if (currentStepInt == 3)
+                        openAssets(module.moduleName);
+                    else
+                        launchNewModule(module.moduleName);
                     progressBar.hide();
                     return;
                 }
@@ -229,6 +241,7 @@ public class DynamicDeliveryActivity extends BaseActivity implements View.OnClic
             });
         });
         btn_uninstall.setEnabled(dynamicModules[currentStepInt - 1].isInstalled);
+        tv_info.setText(bundleInfo[currentStepInt - 1]);
     }
 
     @Override
@@ -268,7 +281,10 @@ public class DynamicDeliveryActivity extends BaseActivity implements View.OnClic
                 Log.d(TAG, "displayLoadingState - INSTALLED");
                 if (splitInstallManager.getInstalledModules().contains(module.moduleName)) {
                     Log.d(TAG, "loaded successfully");
-                    launchNewModule(module.moduleName);
+                    if (currentStepInt == 3)
+                        openAssets(module.moduleName);
+                    else
+                        launchNewModule(module.moduleName);
                     progressBar.hide();
                     return;
                 }
@@ -283,12 +299,58 @@ public class DynamicDeliveryActivity extends BaseActivity implements View.OnClic
         }
     }
 
+    private void openAssets(String module) {
+        String target = null;
+        for (DynamicModule dynamicModule : dynamicModules) {
+            if (module.equals(dynamicModule.moduleName))
+                target = dynamicModule.target;
+        }
+        if (TextUtils.isEmpty(target))
+            return;
+        Log.d(TAG, "Open " + target);
+        BufferedReader reader = null;
+        try {
+            AssetManager assetManager = createPackageContext(getPackageName(), 0).getAssets();
+            reader = new BufferedReader(new InputStreamReader(assetManager.open(target)));
+            String mLine;
+            StringBuilder content = new StringBuilder();
+            while ((mLine = reader.readLine()) != null) {
+                content.append(mLine);
+                content.append("\n");
+            }
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(DynamicDeliveryActivity.this);
+            AlertDialog dialog = builder
+                    .setPositiveButton(R.string.ok, (dialog1, which) -> dialog1.dismiss())
+                    .setTitle("Loaded " + target)
+                    .setMessage(content)
+                    .setCancelable(false)
+                    .create();
+            dialog.show();
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    }
+
     private void launchNewModule(String module) {
         String activity = null;
         for (DynamicModule dynamicModule : dynamicModules) {
             if (module.equals(dynamicModule.moduleName))
-                activity = dynamicModule.launchActivity;
+                activity = dynamicModule.target;
         }
+        if (TextUtils.isEmpty(activity))
+            return;
         Log.d(TAG, "Launch " + activity);
         Intent intent = new Intent();
         intent.setClassName(BuildConfig.APPLICATION_ID, activity);

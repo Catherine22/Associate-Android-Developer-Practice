@@ -1,1 +1,1 @@
-include ':app', ':messagecenter', ':bbc_news', ':tour_guide'
+include ':app', ':messagecenter', ':bbc_news', ':tour_guide', ':assets'

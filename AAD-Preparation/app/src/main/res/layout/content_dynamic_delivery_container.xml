@@ -17,7 +17,6 @@
         android:layout_marginStart="@dimen/safe_area_margin"
         android:layout_marginTop="@dimen/safe_area_margin"
         android:layout_marginEnd="@dimen/safe_area_margin"
-        android:text="@string/module1_info"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

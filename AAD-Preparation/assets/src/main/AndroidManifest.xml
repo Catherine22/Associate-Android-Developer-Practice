@@ -1,0 +1,20 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.catherine.materialdesignapp.assets">
+
+    <dist:module
+        dist:instant="false"
+        dist:title="@string/title_assets">
+        <dist:delivery>
+            <dist:on-demand />
+        </dist:delivery>
+        <dist:fusing dist:include="true" />
+    </dist:module>
+
+
+    <!-- This feature module doesn't contain code. -->
+    <application android:hasCode="false"
+        tools:ignore="GoogleAppIndexingWarning" />
+</manifest>
+

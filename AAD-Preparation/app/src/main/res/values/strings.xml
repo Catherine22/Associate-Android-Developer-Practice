@@ -46,12 +46,13 @@
     <string name="submit">submit</string>
     <string name="module1">BBC News</string>
     <string name="module2">Tour Guide</string>
-    <string name="module3">Module 3</string>
+    <string name="module3">Assets</string>
     <string name="module4">Module 4</string>
-    <string name="module1_info">Download and launch BBC News via Custom Tabs from another Android bundle</string>
     <string name="download_the_bundle">Download the bundle</string>
     <string name="launch">Launch</string>
     <string name="uninstall">Uninstall</string>
+    <string name="notice">Notice</string>
+    <string name="ok">OK</string>
 
     <!--radio group-->
     <string name="require_network">Require Network</string>
@@ -123,6 +124,13 @@
         <item>PLAYLISTS</item>
     </string-array>
 
+    <string-array name="bundle_info">
+        <item>Download and launch BBC News via Custom Tabs from another Android bundle</item>
+        <item>Download and launch Tour Guide via Custom Tabs from another Android bundle</item>
+        <item>Download and load assets via Custom Tabs from another Android bundle</item>
+        <item>Download and launch Tour Guide via Custom Tabs from another Android bundle</item>
+    </string-array>
+
 
     <string name="logcat" translatable="false">LogCat</string>
     <string name="foreground_service" translatable="false">Foreground service</string>
@@ -169,4 +177,5 @@
 
     <string name="title_bbc_news" translatable="false">BBC News</string>
     <string name="title_tour_guide" translatable="false">Tour Guide</string>
+    <string name="title_assets" translatable="false">Assets</string>
 </resources>

@@ -768,7 +768,7 @@ public class NewsPageActivity extends AppCompatActivity {
 7. Install and launch this bbc_news module 
 See [DynamicDeliveryActivity], [bbc_news module]     
 
-Code: [DynamicDeliveryActivity], [bbc_news module]     
+Code: [DynamicDeliveryActivity], [bbc_news module], [tour_guide module], [assets module]     
 [Google sample code](https://github.com/googlesamples/android-dynamic-features)     
 [Read More](https://developer.android.com/training/testing/fundamentals)        
 
@@ -972,6 +972,8 @@ The exam is only available in Java at this time (4/1/2019)
 [SearchSongsActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/SearchSongsActivity.java>
 [DynamicDeliveryActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/DynamicDeliveryActivity.java>
 [bbc_news module]:<https://github.com/Catherine22/AAD-Preparation/tree/master/AAD-Preparation/bbc_news>
+[tour_guide module]:<https://github.com/Catherine22/AAD-Preparation/tree/master/AAD-Preparation/tour_guide>
+[assets module]:<https://github.com/Catherine22/AAD-Preparation/tree/master/AAD-Preparation/assets>
 [AndroidManifest]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/AndroidManifest.xml>
 
 
