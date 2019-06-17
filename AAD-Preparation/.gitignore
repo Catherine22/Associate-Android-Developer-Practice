@@ -54,6 +54,11 @@ captures/
 
 # Google Services (e.g. APIs or Firebase)
 google-services.json
+## put google_maps_api.xml under open_weather/src/main/res/values
+# <resources>
+#     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">YOUR_API_KEY_FROM_GOOGLE_CONSOLE</string>
+# </resources>
+google_maps_api.xml
 
 # Freeline
 freeline.py
