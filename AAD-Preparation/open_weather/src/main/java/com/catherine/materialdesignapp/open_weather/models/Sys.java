@@ -3,15 +3,15 @@ package com.catherine.materialdesignapp.open_weather.models;
 public class Sys {
     private String country;
 
-    private String sunrise;
+    private int sunrise;
 
-    private String sunset;
+    private int sunset;
 
-    private String id;
+    private int id;
 
-    private String type;
+    private int type;
 
-    private String message;
+    private float message;
 
     public String getCountry() {
         return country;
@@ -21,43 +21,43 @@ public class Sys {
         this.country = country;
     }
 
-    public String getSunrise() {
+    public int getSunrise() {
         return sunrise;
     }
 
-    public void setSunrise(String sunrise) {
+    public void setSunrise(int sunrise) {
         this.sunrise = sunrise;
     }
 
-    public String getSunset() {
+    public int getSunset() {
         return sunset;
     }
 
-    public void setSunset(String sunset) {
+    public void setSunset(int sunset) {
         this.sunset = sunset;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(int type) {
         this.type = type;
     }
 
-    public String getMessage() {
+    public float getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
+    public void setMessage(float message) {
         this.message = message;
     }
 

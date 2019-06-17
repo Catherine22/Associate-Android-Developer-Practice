@@ -1,13 +1,13 @@
 package com.catherine.materialdesignapp.open_weather.models;
 
 public class Clouds {
-    private String all;
+    private int all;
 
-    public String getAll() {
+    public int getAll() {
         return all;
     }
 
-    public void setAll(String all) {
+    public void setAll(int all) {
         this.all = all;
     }
 

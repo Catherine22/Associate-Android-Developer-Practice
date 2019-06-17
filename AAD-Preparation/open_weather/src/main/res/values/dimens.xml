@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="safe_area_margin">16dp</dimen>
+    <dimen name="map_height">200dp</dimen>
+</resources>

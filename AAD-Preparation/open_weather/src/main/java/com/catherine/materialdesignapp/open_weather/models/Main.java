@@ -1,53 +1,53 @@
 package com.catherine.materialdesignapp.open_weather.models;
 
 public class Main {
-    private String temp;
+    private float temp;
 
-    private String temp_min;
+    private float temp_min;
 
-    private String humidity;
+    private int humidity;
 
-    private String pressure;
+    private int pressure;
 
-    private String temp_max;
+    private float temp_max;
 
-    public String getTemp() {
+    public float getTemp() {
         return temp;
     }
 
-    public void setTemp(String temp) {
+    public void setTemp(float temp) {
         this.temp = temp;
     }
 
-    public String getTemp_min() {
+    public float getTemp_min() {
         return temp_min;
     }
 
-    public void setTemp_min(String temp_min) {
+    public void setTemp_min(float temp_min) {
         this.temp_min = temp_min;
     }
 
-    public String getHumidity() {
+    public int getHumidity() {
         return humidity;
     }
 
-    public void setHumidity(String humidity) {
+    public void setHumidity(int humidity) {
         this.humidity = humidity;
     }
 
-    public String getPressure() {
+    public int getPressure() {
         return pressure;
     }
 
-    public void setPressure(String pressure) {
+    public void setPressure(int pressure) {
         this.pressure = pressure;
     }
 
-    public String getTemp_max() {
+    public float getTemp_max() {
         return temp_max;
     }
 
-    public void setTemp_max(String temp_max) {
+    public void setTemp_max(float temp_max) {
         this.temp_max = temp_max;
     }
 

@@ -1,6 +1,7 @@
 package com.catherine.materialdesignapp.open_weather;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+@SuppressLint("Registered")
 public class BaseActivity extends AppCompatActivity {
     private final static String TAG = BaseActivity.class.getSimpleName();
     private OnRequestPermissionsListener listener;
@@ -259,7 +261,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
 
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {

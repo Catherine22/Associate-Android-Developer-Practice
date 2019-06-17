@@ -83,12 +83,11 @@ android {
 
         // To support DayNight style, update to at lease 1.1.0-alpha02
         api "com.google.android.material:material:${rootProject.ext.material}"
-
         api "com.squareup.okhttp3:okhttp:${rootProject.ext.okhttp}"
         api "com.squareup.okhttp3:logging-interceptor:${rootProject.ext.okhttpLoggingInterceptor}"
         api "com.google.code.gson:gson:${rootProject.ext.gson}"
+        api "androidx.constraintlayout:constraintlayout:${rootProject.ext.constraintlayout}"
 
-        implementation "androidx.constraintlayout:constraintlayout:${rootProject.ext.constraintlayout}"
         implementation "androidx.recyclerview:recyclerview-selection:${rootProject.ext.recyclerviewSelection}"
 
 
@@ -118,6 +117,7 @@ android {
         implementation "com.google.android.play:core:${rootProject.ext.playcore}"
         // bundle's dependencies
         api "com.android.support:customtabs:${rootProject.ext.material}"
+        api "com.google.android.gms:play-services-maps:${rootProject.ext.googleMap}"
     }
 
     // dynamic delivery

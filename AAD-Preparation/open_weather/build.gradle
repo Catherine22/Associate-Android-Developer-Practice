@@ -23,6 +23,10 @@ android {
             buildConfigField("String", "OPEN_WEATHER_API_KEY", localProperties.getProperty("OPEN_WEATHER_API_KEY"))
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
