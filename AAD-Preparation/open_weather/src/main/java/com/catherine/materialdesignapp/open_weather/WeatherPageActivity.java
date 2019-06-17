@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import com.catherine.materialdesignapp.open_weather.models.WeatherResult;
 import com.google.gson.Gson;
 import okhttp3.*;
@@ -14,7 +14,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 
 import java.io.IOException;
 
-public class WeatherPageActivity extends AppCompatActivity {
+public class WeatherPageActivity extends BaseActivity {
     private final static String TAG = WeatherPageActivity.class.getSimpleName();
     private final static String WEATHER_URL = "api.openweathermap.org";
     private final static String PATH_DATA = "data";
@@ -32,8 +32,22 @@ public class WeatherPageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_page);
-        tv_info = findViewById(R.id.tv_info);
+        initView();
+        initOkHttp();
+        getLondonForecast();
+    }
 
+    private void initView() {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true); // enable back arrow on the top left area
+            getSupportActionBar().setTitle(TAG);
+        }
+        tv_info = findViewById(R.id.tv_info);
+    }
+
+    private void initOkHttp() {
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
             @Override
             public void log(String message) {
@@ -53,14 +67,13 @@ public class WeatherPageActivity extends AppCompatActivity {
                 .appendPath(PATH_VERSION);
         headersBuilder = new Headers.Builder()
                 .add("Content-Type", "application/json");
-        getWeather();
     }
 
     private void pinSSL() {
 
     }
 
-    private void getWeather() {
+    private void getLondonForecast() {
         Uri uri = uriBuilder
                 .appendPath(PATH_WEATHER)
                 .appendQueryParameter("q", "London")
@@ -78,7 +91,7 @@ public class WeatherPageActivity extends AppCompatActivity {
                 popUpWarningDialog(e.getMessage(), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        getWeather();
+                        getLondonForecast();
                     }
                 });
             }
@@ -90,7 +103,7 @@ public class WeatherPageActivity extends AppCompatActivity {
                     popUpWarningDialog(sb, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            getWeather();
+                            getLondonForecast();
                         }
                     });
                     return;
@@ -121,5 +134,4 @@ public class WeatherPageActivity extends AppCompatActivity {
                 .create();
         alertDialog.show();
     }
-
 }
