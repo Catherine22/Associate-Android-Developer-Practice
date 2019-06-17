@@ -1,24 +1,22 @@
 package com.catherine.materialdesignapp.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
+import android.view.WindowManager;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import com.catherine.materialdesignapp.MyApplication;
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.utils.CBridge;
 import com.catherine.materialdesignapp.utils.LocationHelper;
 import com.catherine.materialdesignapp.utils.SafetyUtils;
+import com.google.android.material.textfield.TextInputLayout;
 
-import java.util.Locale;
-
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment implements View.OnClickListener {
     private final static String TAG = MainFragment.class.getSimpleName();
 
     @Override
@@ -32,28 +30,45 @@ public class MainFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         //This keypair stores in your keystore. You can also see the same information by "keytool -list -v -keystore xxx.keystore  -alias xxx  -storepass xxx -keypass xxx" command
         //keytool -list -v -keystore debug.keystore -alias androiddebugkey -storepass android -keypass android
 
+        TextInputLayout til_package_name = view.findViewById(R.id.til_package_name);
+        til_package_name.getEditText().setText(MyApplication.INSTANCE.getPackageName());
+
+        TextInputLayout til_md5 = view.findViewById(R.id.til_md5);
+        til_md5.getEditText().setText(SafetyUtils.getSigningKeyFingerprint(MyApplication.INSTANCE, "md5"));
+
+        TextInputLayout til_sha1 = view.findViewById(R.id.til_sha1);
+        til_sha1.getEditText().setText(SafetyUtils.getSigningKeyFingerprint(MyApplication.INSTANCE, "sha1"));
+
+        TextInputLayout til_sha256 = view.findViewById(R.id.til_sha256);
+        til_sha256.getEditText().setText(SafetyUtils.getSigningKeyFingerprint(MyApplication.INSTANCE, "sha256"));
+
+        TextInputLayout til_crt_digest = view.findViewById(R.id.til_crt_digest);
+        til_crt_digest.getEditText().setText(SafetyUtils.calcApkCertificateDigests(MyApplication.INSTANCE, MyApplication.INSTANCE.getPackageName()) + "");
+
+        TextInputLayout til_digest = view.findViewById(R.id.til_digest);
+        til_digest.getEditText().setText(SafetyUtils.calcApkDigest(MyApplication.INSTANCE));
+
+        TextInputLayout til_location = view.findViewById(R.id.til_location);
         LocationHelper locationHelper = new LocationHelper();
-        TextView tv_location = view.findViewById(R.id.tv_location);
+        til_location.getEditText().setText(locationHelper.getPreferredLanguage());
+
+        TextInputLayout til_jni = view.findViewById(R.id.til_jni);
         CBridge cBridge = new CBridge();
-        String sb =
-                "From NDK:" +
-                        cBridge.stringFromJNI() +
-                        cBridge.plus(45, 55) +
-                        "\nPackage name:" +
-                        MyApplication.INSTANCE.getPackageName() +
-                        "\nMD5:" +
-                        SafetyUtils.getSigningKeyFingerprint(MyApplication.INSTANCE, "md5") +
-                        "\nFingerprint:\n{\nSHA1:" +
-                        SafetyUtils.getSigningKeyFingerprint(MyApplication.INSTANCE, "sha1") +
-                        "\nSHA256:" +
-                        SafetyUtils.getSigningKeyFingerprint(MyApplication.INSTANCE, "sha256") +
-                        "\n}\nApkCertificateDigestSha256:" +
-                        SafetyUtils.calcApkCertificateDigests(MyApplication.INSTANCE, MyApplication.INSTANCE.getPackageName()) +
-                        "\nApkDigest:" +
-                        SafetyUtils.calcApkDigest(MyApplication.INSTANCE);
-        tv_location.setText(String.format(Locale.US, "%s\nPreferred language: %s", sb, locationHelper.getPreferredLanguage()));
+        til_jni.getEditText().setText(cBridge.stringFromJNI() + cBridge.plus(45, 55));
+
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.et_package_name:
+                Log.d(TAG, "clocked");
+                break;
+        }
     }
 }

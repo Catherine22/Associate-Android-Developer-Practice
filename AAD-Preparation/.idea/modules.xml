@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AAD-Preparation.iml" filepath="$PROJECT_DIR$/AAD-Preparation.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/assets/assets.iml" filepath="$PROJECT_DIR$/assets/assets.iml" />
-      <module fileurl="file://$PROJECT_DIR$/bbc_news/bbc_news.iml" filepath="$PROJECT_DIR$/bbc_news/bbc_news.iml" />
-      <module fileurl="file://$PROJECT_DIR$/messagecenter/messagecenter.iml" filepath="$PROJECT_DIR$/messagecenter/messagecenter.iml" />
-      <module fileurl="file://$PROJECT_DIR$/open_weather/open_weather.iml" filepath="$PROJECT_DIR$/open_weather/open_weather.iml" />
-      <module fileurl="file://$PROJECT_DIR$/tour_guide/tour_guide.iml" filepath="$PROJECT_DIR$/tour_guide/tour_guide.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AAD-Preparation.iml" filepath="$PROJECT_DIR$/AAD-Preparation.iml" group="AAD-Preparation" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="AAD-Preparation/app" />
+      <module fileurl="file://$PROJECT_DIR$/assets/assets.iml" filepath="$PROJECT_DIR$/assets/assets.iml" group="AAD-Preparation/assets" />
+      <module fileurl="file://$PROJECT_DIR$/bbc_news/bbc_news.iml" filepath="$PROJECT_DIR$/bbc_news/bbc_news.iml" group="AAD-Preparation/bbc_news" />
+      <module fileurl="file://$PROJECT_DIR$/messagecenter/messagecenter.iml" filepath="$PROJECT_DIR$/messagecenter/messagecenter.iml" group="AAD-Preparation/messagecenter" />
+      <module fileurl="file://$PROJECT_DIR$/open_weather/open_weather.iml" filepath="$PROJECT_DIR$/open_weather/open_weather.iml" group="AAD-Preparation/open_weather" />
+      <module fileurl="file://$PROJECT_DIR$/tour_guide/tour_guide.iml" filepath="$PROJECT_DIR$/tour_guide/tour_guide.iml" group="AAD-Preparation/tour_guide" />
     </modules>
   </component>
 </project>

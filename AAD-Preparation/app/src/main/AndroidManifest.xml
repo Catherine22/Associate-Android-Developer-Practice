@@ -1,173 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.catherine.materialdesignapp">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="com.catherine.materialdesignapp">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!--network health-->
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.READ_USER_DICTIONARY" /> <!--content provider-->
-    <uses-permission android:name="android.permission.READ_CALL_LOG" /> <!--content provider-->
-    <uses-permission android:name="android.permission.WRITE_CALL_LOG" /> <!--content provider-->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/> <!--network health-->
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.READ_USER_DICTIONARY"/> <!--content provider-->
+    <uses-permission android:name="android.permission.READ_CALL_LOG"/> <!--content provider-->
+    <uses-permission android:name="android.permission.WRITE_CALL_LOG"/> <!--content provider-->
 
     <application
-        android:name=".MyApplication"
-        android:allowBackup="true"
-        android:extractNativeLibs="false"
-        android:fullBackupContent="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar"
-        tools:targetApi="m">
+            android:name=".MyApplication"
+            android:allowBackup="true"
+            android:extractNativeLibs="${extractNativeLibs}"
+            android:fullBackupContent="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:targetApi="m">
         <activity
-            android:name=".activities.MainActivity"
-            android:configChanges="orientation|keyboardHidden">
+                android:name=".activities.MainActivity"
+                android:configChanges="orientation|keyboardHidden">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
 
             <!-- THIS WORKS ON API 23+, open https://guarded-basin-12509.herokuapp.com to test app links  -->
             <intent-filter
-                android:autoVerify="true"
-                tools:targetApi="m">
-                <action android:name="android.intent.action.VIEW" />
+                    android:autoVerify="true"
+                    tools:targetApi="m">
+                <action android:name="android.intent.action.VIEW"/>
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
 
                 <data
-                    android:host="guarded-basin-12509.herokuapp.com"
-                    android:scheme="https" />
+                        android:host="guarded-basin-12509.herokuapp.com"
+                        android:scheme="https"/>
             </intent-filter>
         </activity>
 
         <activity
-            android:name=".activities.UIComponentsActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:parentActivityName=".activities.MainActivity">
+                android:name=".activities.UIComponentsActivity"
+                android:configChanges="orientation|keyboardHidden"
+                android:parentActivityName=".activities.MainActivity">
 
             <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.MainActivity" />
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".activities.MainActivity"/>
         </activity>
         <activity
-            android:name=".activities.LifecycleActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:parentActivityName=".activities.MainActivity">
+                android:name=".activities.LifecycleActivity"
+                android:configChanges="orientation|keyboardHidden"
+                android:parentActivityName=".activities.MainActivity">
 
             <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.MainActivity" />
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".activities.MainActivity"/>
         </activity>
         <activity
-            android:name=".activities.AppComponentsActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:parentActivityName=".activities.MainActivity">
+                android:name=".activities.AppComponentsActivity"
+                android:configChanges="orientation|keyboardHidden"
+                android:parentActivityName=".activities.MainActivity">
 
             <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.MainActivity" />
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".activities.MainActivity"/>
         </activity>
         <activity
-            android:name=".activities.BackgroundActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:parentActivityName=".activities.MainActivity">
+                android:name=".activities.BackgroundActivity"
+                android:configChanges="orientation|keyboardHidden"
+                android:parentActivityName=".activities.MainActivity">
 
             <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.MainActivity" />
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".activities.MainActivity"/>
         </activity>
         <activity
-            android:name=".activities.NotificationActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:parentActivityName=".activities.MainActivity">
+                android:name=".activities.NotificationActivity"
+                android:configChanges="orientation|keyboardHidden"
+                android:parentActivityName=".activities.MainActivity">
 
             <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.MainActivity" />
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".activities.MainActivity"/>
         </activity>
         <activity
-            android:name=".activities.DynamicDeliveryActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:parentActivityName=".activities.MainActivity">
+                android:name=".activities.DynamicDeliveryActivity"
+                android:configChanges="orientation|keyboardHidden"
+                android:parentActivityName=".activities.MainActivity">
 
             <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.MainActivity" />
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".activities.MainActivity"/>
         </activity>
         <activity
-            android:name=".activities.AlbumDetailsActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:parentActivityName=".activities.UIComponentsActivity">
+                android:name=".activities.AlbumDetailsActivity"
+                android:configChanges="orientation|keyboardHidden"
+                android:parentActivityName=".activities.UIComponentsActivity">
 
             <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activities.UIComponentsActivity" />
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".activities.UIComponentsActivity"/>
         </activity>
 
         <!-- this is the searchable activity, it performs searches -->
         <activity
-            android:name=".activities.SearchableSongsActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:launchMode="singleTop"
-            android:parentActivityName=".activities.MainActivity">
+                android:name=".activities.SearchableSongsActivity"
+                android:configChanges="orientation|keyboardHidden"
+                android:launchMode="singleTop"
+                android:parentActivityName=".activities.MainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
+                <action android:name="android.intent.action.SEARCH"/>
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
             </intent-filter>
             <intent-filter>
-                <action android:name="com.google.android.gms.actions.SEARCH_ACTION" />
+                <action android:name="com.google.android.gms.actions.SEARCH_ACTION"/>
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
             </intent-filter>
 
             <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
+                    android:name="android.app.searchable"
+                    android:resource="@xml/searchable"/>
         </activity>
 
         <!-- this activity enables the search dialog to initiate searches
          in the SearchableSongsActivity -->
 
         <provider
-            android:name=".providers.SearchSuggestionProvider"
-            android:authorities="com.catherine.materialdesignapp.providers.SearchSuggestionProvider"
-            android:exported="false" />
+                android:name=".providers.SearchSuggestionProvider"
+                android:authorities="com.catherine.materialdesignapp.providers.SearchSuggestionProvider"
+                android:exported="false"/>
 
 
         <!--Services-->
         <service
-            android:name=".services.MusicPlayerService"
-            android:exported="false">
+                android:name=".services.MusicPlayerService"
+                android:exported="false">
             <intent-filter>
-                <action android:name="com.catherine.materialdesignapp.startMusicPlayerService" />
+                <action android:name="com.catherine.materialdesignapp.startMusicPlayerService"/>
             </intent-filter>
         </service>
         <service
-            android:name=".services.NetworkHealthService"
-            android:exported="false">
+                android:name=".services.NetworkHealthService"
+                android:exported="false">
             <intent-filter>
-                <action android:name="com.catherine.materialdesignapp.startNetworkHealthService" />
+                <action android:name="com.catherine.materialdesignapp.startNetworkHealthService"/>
             </intent-filter>
         </service>
         <!--Services-->
 
         <!--JobSchedulers-->
         <service
-            android:name=".services.MusicPlayerJobScheduler"
-            android:exported="false"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
+                android:name=".services.MusicPlayerJobScheduler"
+                android:exported="false"
+                android:permission="android.permission.BIND_JOB_SERVICE"/>
         <service
-            android:name=".services.NetworkHealthJobScheduler"
-            android:exported="false"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
+                android:name=".services.NetworkHealthJobScheduler"
+                android:exported="false"
+                android:permission="android.permission.BIND_JOB_SERVICE"/>
         <!--JobSchedulers-->
 
         <!--<receiver-->

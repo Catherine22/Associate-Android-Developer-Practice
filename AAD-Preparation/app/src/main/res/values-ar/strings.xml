@@ -59,6 +59,14 @@
     <string name="any">أي</string>
     <string name="cellular">خلوي</string>
     <string name="unmetered">غير المحددة بمقدار بيانات</string>
+    <string name="preferred_language">Preferred Language</string>
+    <string name="strings_from_jni">strings from JNI</string>
+    <string name="fingerprint_apkdigest">Fingerprint - ApkDigest</string>
+    <string name="fingerprint_apkcertificatedigestsha256">Fingerprint - ApkCertificateDigestSha256</string>
+    <string name="fingerprint_sha256">Fingerprint - SHA256</string>
+    <string name="fingerprint_sha1">Fingerprint - SHA1</string>
+    <string name="md5">MD5</string>
+    <string name="packagename">PackageName</string>
 
     <string-array name="drawer_array">
         <item>مكونات التطبيق</item>

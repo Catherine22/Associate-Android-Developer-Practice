@@ -141,6 +141,7 @@
     <string name="album_name_transition" translatable="false">album_name_transition</string>
     <string name="album_artist_transition" translatable="false">album_artist_transition</string>
 
+
     <string name="countdown" translatable="false"><xliff:g example="5 days" id="time">%1$s</xliff:g>until holiday</string>
     <!-- Example placeholder for a special unicode symbol -->
     <string name="star_rating" translatable="false">Check out our 5<xliff:g id="star">\u2605</xliff:g></string>
@@ -174,9 +175,16 @@
         <item quantity="other">%d songs</item>
     </plurals>
 
-
     <string name="title_bbc_news" translatable="false">BBC News</string>
     <string name="title_tour_guide" translatable="false">Tour Guide</string>
     <string name="title_assets" translatable="false">Assets</string>
     <string name="title_open_weather" translatable="false">Open Weather</string>
+    <string name="preferred_language">Preferred Language</string>
+    <string name="strings_from_jni">strings from JNI</string>
+    <string name="fingerprint_apkdigest">Fingerprint - ApkDigest</string>
+    <string name="fingerprint_apkcertificatedigestsha256">Fingerprint - ApkCertificateDigestSha256</string>
+    <string name="fingerprint_sha256">Fingerprint - SHA256</string>
+    <string name="fingerprint_sha1">Fingerprint - SHA1</string>
+    <string name="md5">MD5</string>
+    <string name="packagename">PackageName</string>
 </resources>

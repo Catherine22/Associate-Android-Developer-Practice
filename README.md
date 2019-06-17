@@ -801,6 +801,9 @@ unzip app/debug/MaterialDesign.apks -d app/debug/apks
 [Read more](https://developer.android.com/studio/command-line/bundletool)       
 
 ## Fundamentals of Tests
+1. Tests give you rapid feedback on failures, which are spotted earlier on development cycle are far easier to fix than once that have gone live.       
+2. You are able to maintain a stable velocity throughout the lifetime of your project.      
+3. Avoid the boom bust cycle of crunch feature time and the aggregation of technical debt.      
 
 ### Testing pyramid
 1. (small tests) Unit test      
@@ -815,7 +818,16 @@ unzip app/debug/MaterialDesign.apks -d app/debug/apks
     - 10%       
 
 [Video](https://www.youtube.com/watch?v=pK7W5npkhho) 
-## TDD, Test Driven Development
+### TDD, Test Driven Development
+![screenshot](https://raw.githubusercontent.com/Catherine22/AAD-Preparation/master/AAD-Preparation/screenshots/TDD.png)  
+
+### Principles of Unit Testing
+1. Through: Test failure conditions, invalid inputs and boundary conditions.     
+2. Repeatable: Return the same results every time.      
+3. Focused: Focus one specific aspect of the code.        
+4. Verifies behaviour: Avoid writting too many assumption in the actual implementation of your code.        
+5. Fast     
+6. Concise      
 
 
 # Kotlin
