@@ -1,7 +1,6 @@
 package com.catherine.materialdesignapp.fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,7 @@ import com.catherine.materialdesignapp.utils.LocationHelper;
 import com.catherine.materialdesignapp.utils.SafetyUtils;
 import com.google.android.material.textfield.TextInputLayout;
 
-public class MainFragment extends Fragment implements View.OnClickListener {
+public class MainFragment extends Fragment {
     private final static String TAG = MainFragment.class.getSimpleName();
 
     @Override
@@ -61,14 +60,5 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         til_jni.getEditText().setText(cBridge.stringFromJNI() + cBridge.plus(45, 55));
 
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.et_package_name:
-                Log.d(TAG, "clocked");
-                break;
-        }
     }
 }

@@ -30,6 +30,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/packagename"
+                    android:enabled="false"
+                    android:focusable="false"
                     android:inputType="textMultiLine"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -49,6 +51,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/md5"
+                    android:enabled="false"
+                    android:focusable="false"
                     android:inputType="textMultiLine"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -68,6 +72,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/fingerprint_sha1"
+                    android:enabled="false"
+                    android:focusable="false"
                     android:inputType="textMultiLine"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -87,6 +93,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/fingerprint_sha256"
+                    android:enabled="false"
+                    android:focusable="false"
                     android:inputType="textMultiLine"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -106,6 +114,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/fingerprint_apkcertificatedigestsha256"
+                    android:enabled="false"
+                    android:focusable="false"
                     android:inputType="textMultiLine"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -125,6 +135,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/fingerprint_apkdigest"
+                    android:enabled="false"
+                    android:focusable="false"
                     android:inputType="textMultiLine"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -144,6 +156,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/preferred_language"
+                    android:enabled="false"
+                    android:focusable="false"
                     android:inputType="textMultiLine"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -163,6 +177,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/strings_from_jni"
+                    android:enabled="false"
+                    android:focusable="false"
                     android:inputType="textMultiLine"/>
         </com.google.android.material.textfield.TextInputLayout>
 

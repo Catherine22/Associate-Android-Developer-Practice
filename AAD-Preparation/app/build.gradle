@@ -1,5 +1,5 @@
-apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
+apply plugin: "com.android.application"
+apply plugin: "com.google.gms.google-services"
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -18,7 +18,7 @@ android {
                 cppFlags "-std=c++14"
             }
             ndk {
-                abiFilters 'arm64-v8a', 'armeabi-v7a', 'x86', 'x86_64'
+                abiFilters "arm64-v8a", "armeabi-v7a", "x86", "x86_64"
                 // mips, mips64, armeabi
             }
         }
@@ -31,7 +31,7 @@ android {
 //            shrinkResources true // resource shrinker cannot be used for multi-api applications
             pseudoLocalesEnabled true
             manifestPlaceholders = [extractNativeLibs: false]
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
 
         release {
@@ -40,7 +40,7 @@ android {
 //            shrinkResources true // resource shrinker cannot be used for multi-api applications
             pseudoLocalesEnabled false
             manifestPlaceholders = [extractNativeLibs: false]
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
 
@@ -79,13 +79,19 @@ android {
         resultsDir "$rootDir/test-results"
         reportDir "$rootDir/test-reports"
         unitTests {
-            includeAndroidResources = true
+            // Your unit tests can then access compiled versions of your resources, allowing the tests to run more quickly and accurately.
+//            includeAndroidResources = true
         }
     }
 
+
+    useLibrary 'android.test.runner'
+    useLibrary 'android.test.base'
+    useLibrary 'android.test.mock'
+
     dependencies {
-        implementation fileTree(dir: 'libs', include: ['*.jar'])
-        implementation project(path: ':messagecenter')
+        implementation fileTree(dir: "libs", include: ["*.jar"])
+        implementation project(path: ":messagecenter")
 
         // Libraries which can be re-used in other modules should use the `api` keyword.
         // This way they can be shared with dependent feature modules.
@@ -100,13 +106,18 @@ android {
         api "com.google.code.gson:gson:${rootProject.ext.gson}"
         api "androidx.constraintlayout:constraintlayout:${rootProject.ext.constraintlayout}"
 
-        // Unit tests
-        // Robolectric environment
+        // Android Unit tests
+
+        // Core library
         androidTestImplementation "androidx.test:core:${rootProject.ext.testCore}"
+        // AndroidJUnitRunner and JUnit Rules
         androidTestImplementation "androidx.test:runner:${rootProject.ext.androidx_test}"
         androidTestImplementation "androidx.test:rules:${rootProject.ext.androidx_test}"
+        // Espresso dependencies
+        androidTestImplementation "androidx.test.espresso:espresso-core:${rootProject.ext.expresso}"
 
-        // JUnit 4 framework
+
+        // Unit tests
         testImplementation "junit:junit:${rootProject.ext.junit}"
         testImplementation "org.mockito:mockito-core:${rootProject.ext.mockito}"
 
@@ -130,6 +141,5 @@ android {
 
     // dynamic delivery
     dynamicFeatures = [":bbc_news", ":tour_guide", ":assets", ":open_weather"]
-
 
 }

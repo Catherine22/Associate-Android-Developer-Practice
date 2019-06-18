@@ -1,5 +1,7 @@
 package com.catherine.materialdesignapp;
 
+import androidx.test.core.app.ApplicationProvider;
+import androidx.test.filters.SmallTest;
 import androidx.test.runner.AndroidJUnit4;
 import com.catherine.materialdesignapp.utils.LocationHelper;
 import com.catherine.materialdesignapp.utils.SafetyUtils;
@@ -11,12 +13,18 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
+/**
+ * In this case, we need the instance of MyApplication
+ */
+@SmallTest
 @RunWith(AndroidJUnit4.class)
 public class MainFragmentTest {
     private LocationHelper locationHelper;
+    private MyApplication myApplication;
 
     @Before
-    public void createLocationHelper() {
+    public void setUp() {
+        myApplication = ApplicationProvider.getApplicationContext();
         locationHelper = new LocationHelper();
     }
 
@@ -28,32 +36,32 @@ public class MainFragmentTest {
 
     @Test
     public void loadPackageName() {
-        assertNotNull(MyApplication.INSTANCE.getPackageName());
+        assertNotNull(myApplication.getPackageName());
     }
 
     @Test
     public void loadFingerprintMd5() {
-        assertNotNull(SafetyUtils.getSigningKeyFingerprint(MyApplication.INSTANCE, "md5"));
+        assertNotNull(SafetyUtils.getSigningKeyFingerprint(myApplication, "md5"));
     }
 
     @Test
     public void loadFingerprintMD5() {
-        assertNotNull(SafetyUtils.getSigningKeyFingerprint(MyApplication.INSTANCE, "MD5"));
+        assertNotNull(SafetyUtils.getSigningKeyFingerprint(myApplication, "MD5"));
     }
 
     @Test
     public void loadFingerprintSHA1() {
-        assertNotNull(SafetyUtils.getSigningKeyFingerprint(MyApplication.INSTANCE, "sha1"));
+        assertNotNull(SafetyUtils.getSigningKeyFingerprint(myApplication, "sha1"));
     }
 
     @Test
     public void loadFingerprintSHA256() {
-        assertNotNull(SafetyUtils.getSigningKeyFingerprint(MyApplication.INSTANCE, "sha256"));
+        assertNotNull(SafetyUtils.getSigningKeyFingerprint(myApplication, "sha256"));
     }
 
     @Test
     public void loadApkCrtDigests() {
-        List<String> digests = SafetyUtils.calcApkCertificateDigests(MyApplication.INSTANCE, MyApplication.INSTANCE.getPackageName());
+        List<String> digests = SafetyUtils.calcApkCertificateDigests(myApplication, myApplication.getPackageName());
         assertNotNull(digests);
         assertFalse(digests.isEmpty());
     }
@@ -61,17 +69,17 @@ public class MainFragmentTest {
     // Failure conditions
     @Test
     public void loadUnknownAlgorithm() {
-        assertNull(SafetyUtils.getSigningKeyFingerprint(MyApplication.INSTANCE, "md100"));
+        assertNull(SafetyUtils.getSigningKeyFingerprint(myApplication, "md100"));
     }
 
     @Test
     public void loadApkCrtDigestsWithTamperedPackageName() {
-        List<String> digests = SafetyUtils.calcApkCertificateDigests(MyApplication.INSTANCE, "com.eric.materialdesignapp");
+        List<String> digests = SafetyUtils.calcApkCertificateDigests(myApplication, "com.eric.materialdesignapp");
         assertTrue(digests == null || digests.isEmpty());
     }
 
     @Test
     public void loadDigest() {
-        assertNotNull(SafetyUtils.calcApkDigest(MyApplication.INSTANCE));
+        assertNotNull(SafetyUtils.calcApkDigest(myApplication));
     }
 }

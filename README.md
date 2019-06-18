@@ -817,7 +817,11 @@ unzip app/debug/MaterialDesign.apks -d app/debug/apks
     - Run on real devices or emulators       
     - 10%       
 
+![screenshot](https://raw.githubusercontent.com/Catherine22/AAD-Preparation/master/AAD-Preparation/screenshots/tests.png)       
+
+[Blog](https://testing.googleblog.com/2010/12/test-sizes.html)      
 [Video](https://www.youtube.com/watch?v=pK7W5npkhho) 
+
 ### TDD, Test Driven Development
 ![screenshot](https://raw.githubusercontent.com/Catherine22/AAD-Preparation/master/AAD-Preparation/screenshots/TDD.png)  
 
@@ -829,6 +833,19 @@ unzip app/debug/MaterialDesign.apks -d app/debug/apks
 5. Fast     
 6. Concise      
 
+#### Device
+You could run your unit tests on any of them:       
+1. Real devices     
+2. Emulator     
+3. Simulator. E.g. Roboletric       
+
+> Robolectric supports testing on JVM-powered development machines      
+
+
+
+
+[Google testing blog](https://testing.googleblog.com/)      
+[Google doc](https://developer.android.com/training/testing)
 
 # Kotlin
 The exam is only available in Java at this time (4/1/2019)      
