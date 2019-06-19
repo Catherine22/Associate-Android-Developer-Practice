@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.browser.customtabs.CustomTabsIntent;
 
 public class NewsPageActivity extends AppCompatActivity {
-    private final static String TAG = NewsPageActivity.class.getSimpleName();
+    public final static String TAG = NewsPageActivity.class.getSimpleName();
     private final static String BBC_NEWS_URL = "https://www.bbc.com/news";
     private final static int CUSTOM_TABS_REQUEST_CODE = 100;
 

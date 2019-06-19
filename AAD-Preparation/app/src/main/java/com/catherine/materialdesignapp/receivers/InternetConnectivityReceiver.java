@@ -15,7 +15,7 @@ import static com.catherine.materialdesignapp.utils.OccupiedActions.IS_CONNECTED
 import static com.catherine.materialdesignapp.utils.OccupiedActions.TYPE_NAME;
 
 public class InternetConnectivityReceiver extends BroadcastReceiver {
-    private final static String TAG = InternetConnectivityReceiver.class.getSimpleName();
+    public final static String TAG = InternetConnectivityReceiver.class.getSimpleName();
 
     @Override
     public void onReceive(Context context, Intent intent) {

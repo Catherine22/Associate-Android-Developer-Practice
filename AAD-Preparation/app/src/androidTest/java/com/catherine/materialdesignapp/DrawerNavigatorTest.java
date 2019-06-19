@@ -4,15 +4,27 @@ import android.test.ActivityInstrumentationTestCase2;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
+import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.test.espresso.contrib.NavigationViewActions;
+import androidx.test.espresso.matcher.BoundedMatcher;
 import androidx.test.filters.MediumTest;
-import com.catherine.materialdesignapp.activities.MainActivity;
+import androidx.test.filters.SdkSuppress;
+import com.catherine.materialdesignapp.activities.*;
 import com.google.android.material.navigation.NavigationView;
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
 import org.junit.Before;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
-import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
+import static androidx.test.espresso.action.ViewActions.pressBack;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.*;
+import static org.hamcrest.Matchers.is;
 
 @MediumTest
 public class DrawerNavigatorTest extends ActivityInstrumentationTestCase2<MainActivity> {
@@ -21,6 +33,7 @@ public class DrawerNavigatorTest extends ActivityInstrumentationTestCase2<MainAc
     private NavigationView mNavigationView;
     private String[] group1Titles;
     private String[] group2Titles;
+    private Map<Integer, String> staticActivityTitles;
 
     public DrawerNavigatorTest() {
         super(MainActivity.class);
@@ -36,6 +49,13 @@ public class DrawerNavigatorTest extends ActivityInstrumentationTestCase2<MainAc
         // group 2
         group2Titles = new String[2];
         System.arraycopy(allTitles, 4, group2Titles, 0, group2Titles.length);
+
+        staticActivityTitles = new HashMap<>();
+        staticActivityTitles.put(R.id.nav_dynamic_delivery, DynamicDeliveryActivity.TAG);
+        staticActivityTitles.put(R.id.nav_lifecycle, LifecycleActivity.TAG);
+        staticActivityTitles.put(R.id.nav_background, BackgroundActivity.TAG);
+        staticActivityTitles.put(R.id.nav_notification, NotificationActivity.TAG);
+
 
         mDrawerLayout = mActivity.findViewById(R.id.drawer_layout);
         mNavigationView = mDrawerLayout.findViewById(R.id.nav_view);
@@ -61,5 +81,69 @@ public class DrawerNavigatorTest extends ActivityInstrumentationTestCase2<MainAc
             assertEquals("ID for Item #" + i, group2Titles[i], currItem.getTitle());
         }
         onView(withContentDescription(R.string.navigation_drawer_close)).perform(click());
+    }
+
+    public void testStaticMenuOnClickEvents() {
+        // verify static titles
+        for (Integer id : staticActivityTitles.keySet()) {
+            clickAndNavigateTest(id, staticActivityTitles.get(id));
+        }
+    }
+
+    @SdkSuppress(minSdkVersion = 26)
+    public void testDynamicMenuOnClickEventsForOreo() {
+        // AppComponentsActivity
+        String[] titles = mActivity.getResources().getStringArray(R.array.app_component_array_O);
+        clickAndNavigateTest(R.id.nav_app_components, titles[0]);
+
+        // UIComponentsActivity
+        titles = mActivity.getResources().getStringArray(R.array.ui_component_bottom_navigation);
+        clickAndNavigateTest(R.id.nav_ui_components, titles[0]);
+    }
+
+    @SdkSuppress(minSdkVersion = 21)
+    public void testDynamicMenuOnClickEventsForLollipop() {
+        // AppComponentsActivity
+        String[] titles = mActivity.getResources().getStringArray(R.array.app_component_array_lollipop);
+        clickAndNavigateTest(R.id.nav_app_components, titles[0]);
+
+        // UIComponentsActivity
+        titles = mActivity.getResources().getStringArray(R.array.ui_component_bottom_navigation);
+        clickAndNavigateTest(R.id.nav_ui_components, titles[0]);
+    }
+
+    @SdkSuppress(maxSdkVersion = 20)
+    public void testDynamicMenuOnClickEvents() {
+        // AppComponentsActivity
+        String[] titles = mActivity.getResources().getStringArray(R.array.app_component_array);
+        clickAndNavigateTest(R.id.nav_app_components, titles[0]);
+
+        // UIComponentsActivity
+        titles = mActivity.getResources().getStringArray(R.array.ui_component_bottom_navigation);
+        clickAndNavigateTest(R.id.nav_ui_components, titles[0]);
+    }
+
+    private void clickAndNavigateTest(int id, String withString) {
+        onView(withContentDescription(R.string.navigation_drawer_open)).perform(click());
+        onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(id));
+
+        onView(isAssignableFrom(Toolbar.class)).check(matches(isDisplayed()));
+        onView(isAssignableFrom(Toolbar.class)).check(matches(withToolbarTitle(is(withString))));
+        onView(isRoot()).perform(pressBack());
+    }
+
+    private Matcher<Object> withToolbarTitle(Matcher<String> matcher) {
+        return new BoundedMatcher<Object, Toolbar>(Toolbar.class) {
+            @Override
+            protected boolean matchesSafely(Toolbar item) {
+                return matcher.matches(item.getTitle().toString());
+            }
+
+            @Override
+            public void describeTo(Description description) {
+                description.appendText("with toolbar title: ");
+                matcher.describeTo(description);
+            }
+        };
     }
 }

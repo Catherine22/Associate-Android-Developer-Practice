@@ -33,7 +33,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class BaseActivity extends AppCompatActivity implements OnActivityEventListener {
-    private final static String TAG = BaseActivity.class.getSimpleName();
+    public final static String TAG = BaseActivity.class.getSimpleName();
     private OnRequestPermissionsListener listener;
 
     //constants

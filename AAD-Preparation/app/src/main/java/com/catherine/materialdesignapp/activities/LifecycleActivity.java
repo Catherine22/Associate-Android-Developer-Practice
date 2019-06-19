@@ -17,7 +17,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public class LifecycleActivity extends BaseActivity implements LifecycleOwner, LogCatListener {
-    private final static String TAG = LifecycleActivity.class.getSimpleName();
+    public final static String TAG = LifecycleActivity.class.getSimpleName();
     private final static String STATE_TIMESTAMP = "timestamp";
     private long savedTimestamp;
     private TextView tv_log;

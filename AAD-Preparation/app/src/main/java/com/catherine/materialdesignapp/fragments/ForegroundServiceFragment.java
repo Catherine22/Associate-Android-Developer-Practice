@@ -16,7 +16,7 @@ import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.services.MusicPlayerService;
 
 public class ForegroundServiceFragment extends Fragment implements View.OnClickListener {
-    private final static String TAG = ForegroundServiceFragment.class.getSimpleName();
+    public final static String TAG = ForegroundServiceFragment.class.getSimpleName();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

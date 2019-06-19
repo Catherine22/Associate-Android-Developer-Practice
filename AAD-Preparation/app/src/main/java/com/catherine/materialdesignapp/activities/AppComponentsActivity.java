@@ -11,7 +11,7 @@ import com.catherine.materialdesignapp.adapters.TabLayoutAppComponentsAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 public class AppComponentsActivity extends BaseActivity {
-    private final static String TAG = AppComponentsActivity.class.getSimpleName();
+    public final static String TAG = AppComponentsActivity.class.getSimpleName();
     private Toolbar toolbar;
     private TabLayoutAppComponentsAdapter adapter;
 

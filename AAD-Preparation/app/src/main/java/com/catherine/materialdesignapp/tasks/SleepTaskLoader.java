@@ -8,7 +8,7 @@ import android.util.Log;
 import java.util.Locale;
 
 public class SleepTaskLoader extends AsyncTaskLoader<String> {
-    private final static String TAG = SleepTaskLoader.class.getSimpleName();
+    public final static String TAG = SleepTaskLoader.class.getSimpleName();
     private int SECONDS = 5;
     private String text;
     private String cache;

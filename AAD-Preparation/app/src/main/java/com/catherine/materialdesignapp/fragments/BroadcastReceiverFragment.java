@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 import com.catherine.materialdesignapp.R;
 
 public class BroadcastReceiverFragment extends Fragment {
-    private final static String TAG = BroadcastReceiverFragment.class.getSimpleName();
+    public final static String TAG = BroadcastReceiverFragment.class.getSimpleName();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

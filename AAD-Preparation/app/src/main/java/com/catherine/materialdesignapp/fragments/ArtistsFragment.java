@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ArtistsFragment extends ChildOfMusicFragment implements OnSearchViewListener {
-    private final static String TAG = ArtistsFragment.class.getSimpleName();
+    public final static String TAG = ArtistsFragment.class.getSimpleName();
     private ArtistAdapter adapter;
     private List<Artist> artists;
     private List<Artist> filteredArtists;

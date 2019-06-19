@@ -16,7 +16,7 @@ import com.catherine.materialdesignapp.utils.SafetyUtils;
 import com.google.android.material.textfield.TextInputLayout;
 
 public class MainFragment extends Fragment {
-    private final static String TAG = MainFragment.class.getSimpleName();
+    public final static String TAG = MainFragment.class.getSimpleName();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

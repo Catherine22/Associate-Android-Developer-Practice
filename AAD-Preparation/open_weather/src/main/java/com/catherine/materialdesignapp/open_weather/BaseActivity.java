@@ -24,7 +24,7 @@ import java.util.List;
 
 @SuppressLint("Registered")
 public class BaseActivity extends AppCompatActivity {
-    private final static String TAG = BaseActivity.class.getSimpleName();
+    public final static String TAG = BaseActivity.class.getSimpleName();
     private OnRequestPermissionsListener listener;
 
     //constants

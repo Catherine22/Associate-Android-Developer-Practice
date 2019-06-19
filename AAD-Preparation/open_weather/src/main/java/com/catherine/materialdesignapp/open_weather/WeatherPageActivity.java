@@ -36,7 +36,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class WeatherPageActivity extends BaseActivity implements OnMapReadyCallback, GoogleMap.OnMarkerDragListener {
-    private final static String TAG = WeatherPageActivity.class.getSimpleName();
+    public final static String TAG = WeatherPageActivity.class.getSimpleName();
     private final static String WEATHER_URL = "api.openweathermap.org";
     private final static String PATH_DATA = "data";
     private final static String PATH_VERSION = "2.5";

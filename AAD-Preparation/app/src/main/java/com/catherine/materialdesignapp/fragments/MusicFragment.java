@@ -17,7 +17,7 @@ import com.catherine.materialdesignapp.listeners.FragmentLifecycle;
 import com.catherine.materialdesignapp.listeners.UIComponentsListener;
 
 public class MusicFragment extends Fragment {
-    private final static String TAG = MusicFragment.class.getSimpleName();
+    public final static String TAG = MusicFragment.class.getSimpleName();
     public final static String STATE_SELECTED_TAB = "STATE_SELECTED_TAB"; // this works while having MusicFragment selected
     private int oldPosition = 0;
     private ViewPager viewpager;

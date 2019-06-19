@@ -6,7 +6,7 @@ import com.facebook.datasource.BaseDataSubscriber;
 import com.facebook.datasource.DataSource;
 
 public class PrefetchSubscriber extends BaseDataSubscriber<Void> {
-    private final static String TAG = PrefetchSubscriber.class.getSimpleName();
+    public final static String TAG = PrefetchSubscriber.class.getSimpleName();
     private int succeed, failed;
 
     @Override

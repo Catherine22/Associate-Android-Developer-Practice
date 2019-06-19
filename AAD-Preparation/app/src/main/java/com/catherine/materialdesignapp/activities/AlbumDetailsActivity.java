@@ -20,7 +20,7 @@ import com.catherine.materialdesignapp.listeners.PlaylistHelperListener;
 import com.facebook.drawee.view.SimpleDraweeView;
 
 public class AlbumDetailsActivity extends BaseActivity implements PlaylistHelperListener {
-    private final static String TAG = AlbumDetailsActivity.class.getSimpleName();
+    public final static String TAG = AlbumDetailsActivity.class.getSimpleName();
     private String album, artist;
     private NestedScrollView container;
     private Uri coverUri;

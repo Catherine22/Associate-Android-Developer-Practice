@@ -28,7 +28,7 @@ import static com.catherine.materialdesignapp.Constants.EXTERNAL_SD_CARD;
 import static com.catherine.materialdesignapp.Constants.SD_CARD;
 
 public class FileUtils {
-    private final static String TAG = FileUtils.class.getSimpleName();
+    public final static String TAG = FileUtils.class.getSimpleName();
 
     public static boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();

@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.Stack;
 
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, OnRequestPermissionsListener {
-    private final static String TAG = MainActivity.class.getSimpleName();
+    public final static String TAG = MainActivity.class.getSimpleName();
     private NotificationReceiver notificationReceiver;
     private DrawerLayout drawer;
     private String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -84,7 +84,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         Menu menu = navigationView.getMenu();
         String[] menuTitles = getResources().getStringArray(R.array.drawer_array);
 
-        int[] ids = {R.id.nav_app_components, R.id.nav_background, R.id.nav_notification, R.id.nav_manage, R.id.nav_lifecycle, R.id.nav_dynamic_delivery};
+        int[] ids = {R.id.nav_app_components, R.id.nav_background, R.id.nav_notification, R.id.nav_ui_components, R.id.nav_lifecycle, R.id.nav_dynamic_delivery};
         for (int i = 0; i < ids.length; i++) {
             MenuItem nav = menu.findItem(ids[i]);
             nav.setTitle(menuTitles[i]);
@@ -206,7 +206,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 Intent notificationIntent = new Intent(this, NotificationActivity.class);
                 startActivity(notificationIntent);
                 break;
-            case R.id.nav_manage:
+            case R.id.nav_ui_components:
                 Intent uiComponentsIntent = new Intent(this, UIComponentsActivity.class);
                 startActivity(uiComponentsIntent);
                 break;

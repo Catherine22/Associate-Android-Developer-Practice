@@ -7,7 +7,7 @@ import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;
 
 public class LifecycleObserverImpl implements LifecycleObserver {
-    private final static String TAG = LifecycleObserverImpl.class.getSimpleName();
+    public final static String TAG = LifecycleObserverImpl.class.getSimpleName();
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     public void connectListener() {

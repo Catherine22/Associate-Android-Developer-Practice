@@ -22,7 +22,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import java.util.List;
 
 public class ContentProviderFragment extends Fragment implements View.OnClickListener {
-    private final static String TAG = ContentProviderFragment.class.getSimpleName();
+    public final static String TAG = ContentProviderFragment.class.getSimpleName();
     //    private BottomSheetBehavior behavior;
 
     private BottomSheetDialog bottomSheetDialog;

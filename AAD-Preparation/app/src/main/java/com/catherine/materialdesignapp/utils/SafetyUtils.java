@@ -22,7 +22,7 @@ import java.util.zip.CRC32;
 import java.util.zip.CheckedInputStream;
 
 public class SafetyUtils {
-    private final static String TAG = SafetyUtils.class.getSimpleName();
+    public final static String TAG = SafetyUtils.class.getSimpleName();
 
     /**
      * Created SHA256 of input

@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 import com.catherine.materialdesignapp.MyApplication;
 
 public class UserProfileProvider extends ContentProvider {
-    private final static String TAG = UserProfileProvider.class.getSimpleName();
+    public final static String TAG = UserProfileProvider.class.getSimpleName();
     private final static String AUTHORITY = MyApplication.INSTANCE.getPackageName();
     private static final UriMatcher sURIMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 

@@ -31,7 +31,7 @@ import static com.catherine.materialdesignapp.services.BusyJobs.JOB_MUSIC_PLAYER
 
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 public class BackgroundServiceFragment extends Fragment implements View.OnClickListener {
-    private final static String TAG = BackgroundServiceFragment.class.getSimpleName();
+    public final static String TAG = BackgroundServiceFragment.class.getSimpleName();
     private JobScheduler jobScheduler;
     private RadioGroup rb_network;
     private Switch switch_require_network, switch_battery_not_low, switch_charging, switch_device_idle;

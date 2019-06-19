@@ -35,7 +35,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class DynamicDeliveryActivity extends BaseActivity implements View.OnClickListener, SplitInstallStateUpdatedListener {
-    private final static String TAG = DynamicDeliveryActivity.class.getSimpleName();
+    public final static String TAG = DynamicDeliveryActivity.class.getSimpleName();
     private BottomSheetBehavior behavior;
     private ConstraintLayout steps_area;
     private FrameLayout fl_content;

@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 import com.catherine.materialdesignapp.R;
 
 public class FavoritesFragment extends Fragment {
-    private final static String TAG = FavoritesFragment.class.getSimpleName();
+    public final static String TAG = FavoritesFragment.class.getSimpleName();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

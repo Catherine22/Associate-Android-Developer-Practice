@@ -49,7 +49,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchViewListener {
-    private final static String TAG = AlbumsFragment.class.getSimpleName();
+    public final static String TAG = AlbumsFragment.class.getSimpleName();
     private AlbumAdapter adapter;
     private List<Album> albums;
     private List<Album> filteredAlbums;

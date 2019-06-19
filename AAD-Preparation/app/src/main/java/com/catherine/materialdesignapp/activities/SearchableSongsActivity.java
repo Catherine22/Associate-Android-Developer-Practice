@@ -36,7 +36,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SearchableSongsActivity extends BaseActivity implements SearchView.OnQueryTextListener, PlaylistHelperListener {
-    private final static String TAG = SearchableSongsActivity.class.getSimpleName();
+    public final static String TAG = SearchableSongsActivity.class.getSimpleName();
     private SearchManager searchManager;
     private SearchView searchView;
     private Playlist playlist;
