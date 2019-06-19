@@ -67,6 +67,7 @@
     <string name="fingerprint_sha1">Fingerprint - SHA1</string>
     <string name="md5">MD5</string>
     <string name="packagename">PackageName</string>
+    <string name="communicate">Communicate</string>
 
     <string-array name="drawer_array">
         <item>مكونات التطبيق</item>

@@ -1,8 +1,10 @@
 package com.catherine.materialdesignapp;
 
 import android.test.ActivityInstrumentationTestCase2;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.test.filters.MediumTest;
 import com.catherine.materialdesignapp.activities.MainActivity;
+import org.junit.Before;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.Espresso.openActionBarOverflowOrOptionsMenu;
@@ -14,16 +16,15 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 public class DayNightModeTest extends ActivityInstrumentationTestCase2<MainActivity> {
 
     private MainActivity mActivity;
+    private String DAY_MODE = "Day Mode";
+    private String NIGHT_MODE = "Night Mode";
 
     public DayNightModeTest() {
         super(MainActivity.class);
     }
 
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-
-        // Espresso does not start the Activity for you we need to do this manually here.
+    @Before
+    public void setUp() {
         mActivity = getActivity();
     }
 
@@ -33,11 +34,15 @@ public class DayNightModeTest extends ActivityInstrumentationTestCase2<MainActiv
 
     public void testClickOptionsMenuNightMode() {
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
-        onView(withText("Night Mode")).perform(click());
+        onView(withText(NIGHT_MODE)).perform(click());
+        int nightMode = AppCompatDelegate.getDefaultNightMode();
+        assertEquals(nightMode, AppCompatDelegate.MODE_NIGHT_YES);
     }
 
     public void testClickOptionsMenuDayMode() {
         openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
-        onView(withText("Day Mode")).perform(click());
+        onView(withText(DAY_MODE)).perform(click());
+        int nightMode = AppCompatDelegate.getDefaultNightMode();
+        assertEquals(nightMode, AppCompatDelegate.MODE_NIGHT_NO);
     }
 }
