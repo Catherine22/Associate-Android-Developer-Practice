@@ -12,7 +12,7 @@ import static org.junit.Assert.assertNotNull;
 
 @SmallTest
 @RunWith(AndroidJUnit4.class)
-public class NativeUnitTests {
+public class NativeUnitTest {
     private CBridge cBridge;
 
     @Before

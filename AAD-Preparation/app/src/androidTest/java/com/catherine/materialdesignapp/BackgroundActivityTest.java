@@ -63,7 +63,8 @@ public class BackgroundActivityTest {
             onView(withId(R.id.rv_features)).perform(RecyclerViewActions.scrollToPosition(i))
                     .check(matches(Utils.atPosition(i, hasDescendant(withText(titles[i])))))
                     .check(matches(Utils.atPosition(i, hasDescendant(withText(subtitles[i])))));
-            //TODO test simpleDraweeView
+
+            // TODO test SimpleDraweeView
         }
     }
 

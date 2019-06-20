@@ -9,20 +9,13 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
+import android.view.*;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityCompat;
-
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.listeners.OnActivityEventListener;
 import com.catherine.materialdesignapp.listeners.OnRequestPermissionsListener;
@@ -284,11 +277,13 @@ public class BaseActivity extends AppCompatActivity implements OnActivityEventLi
 
     public void showSnackbar(View layout, CharSequence message) {
         final Snackbar snackbar = Snackbar.make(layout, message, Snackbar.LENGTH_LONG);
+        snackbar.show();
+    }
+
+    public void showSnackbar(View layout, CharSequence message, View.OnClickListener listener) {
+        final Snackbar snackbar = Snackbar.make(layout, message, Snackbar.LENGTH_LONG);
         snackbar.setActionTextColor(getResources().getColor(R.color.yellow));
-        snackbar.setAction(getResources().getString(R.string.undo), v -> {
-            snackbar.dismiss();
-            // do something
-        });
+        snackbar.setAction(getResources().getString(R.string.undo), listener);
         snackbar.show();
     }
 

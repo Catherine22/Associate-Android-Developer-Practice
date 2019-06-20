@@ -4,6 +4,7 @@ import android.test.ActivityInstrumentationTestCase2;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
+import android.view.View;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.test.espresso.contrib.NavigationViewActions;
@@ -26,10 +27,10 @@ import static org.hamcrest.Matchers.is;
 @MediumTest
 public class DrawerNavigatorTest extends ActivityInstrumentationTestCase2<MainActivity> {
     private MainActivity mActivity;
-    private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
     private String[] group1Titles;
     private String[] group2Titles;
+    private int[] headerIds;
     private Map<Integer, String> staticActivityTitles;
 
     public DrawerNavigatorTest() {
@@ -47,6 +48,8 @@ public class DrawerNavigatorTest extends ActivityInstrumentationTestCase2<MainAc
         group2Titles = new String[2];
         System.arraycopy(allTitles, 4, group2Titles, 0, group2Titles.length);
 
+        headerIds = new int[]{R.id.nav_main_header};
+
         staticActivityTitles = new HashMap<>();
         staticActivityTitles.put(R.id.nav_dynamic_delivery, DynamicDeliveryActivity.TAG);
         staticActivityTitles.put(R.id.nav_lifecycle, LifecycleActivity.TAG);
@@ -54,12 +57,23 @@ public class DrawerNavigatorTest extends ActivityInstrumentationTestCase2<MainAc
         staticActivityTitles.put(R.id.nav_notification, NotificationActivity.TAG);
 
 
-        mDrawerLayout = mActivity.findViewById(R.id.drawer_layout);
+        DrawerLayout mDrawerLayout = mActivity.findViewById(R.id.drawer_layout);
         mNavigationView = mDrawerLayout.findViewById(R.id.nav_view);
     }
 
     public void testNavigationDrawerAppearance() {
         onView(withContentDescription(R.string.navigation_drawer_open)).perform(click());
+        // verify headers
+        assertEquals(headerIds.length, mNavigationView.getHeaderCount());
+        for (int i = 0; i < headerIds.length; i++) {
+            View header = mNavigationView.getHeaderView(i);
+            assertEquals(headerIds[i], header.getId());
+        }
+        onView(withId(R.id.tv_title)).check(matches(withText(R.string.nav_header_title)));
+        onView(withId(R.id.tv_subtitle)).check(matches(withText(R.string.nav_header_subtitle)));
+        onView(withId(R.id.iv_icon)).check(matches(Utils.withDrawable(R.mipmap.ic_launcher_round, withId(R.id.iv_icon))));
+
+
         final Menu menu = mNavigationView.getMenu();
         assertNotNull("Menu should not be null", menu);
         // real size = 5 -> R.id.nav_app_components, R.id.nav_background, R.id.nav_notification, R.id.nav_manage, communicate (R.id.nav_lifecycle, R.id.nav_dynamic_delivery)
