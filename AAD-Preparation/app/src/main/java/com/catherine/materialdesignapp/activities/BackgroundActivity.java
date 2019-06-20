@@ -7,12 +7,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.adapters.CardRVAdapter;
 import com.catherine.materialdesignapp.listeners.OnItemClickListener;
@@ -20,6 +18,7 @@ import com.catherine.materialdesignapp.models.CardItem;
 import com.catherine.materialdesignapp.tasks.LoaderIds;
 import com.catherine.materialdesignapp.tasks.SleepTask;
 import com.catherine.materialdesignapp.tasks.SleepTaskLoader;
+import com.catherine.materialdesignapp.utils.Gallery;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,7 +89,8 @@ public class BackgroundActivity extends BaseActivity {
             subtitles = savedInstanceState.getStringArray(TEXT_STATE);
         }
         for (int i = 0; i < titles.length; i++) {
-            cards.add(new CardItem("https://lh5.googleusercontent.com/-GoUQVw1fnFw/URquv6xbC0I/AAAAAAAAAbs/zEUVTQQ43Zc/s1024/Kauai.jpg", titles[i], subtitles[i], null, null));
+            int index = (int) (Math.random() * Gallery.IMAGES.length);
+            cards.add(new CardItem(Gallery.IMAGES[index], titles[i], subtitles[i], null, null));
         }
         adapter.setEntities(cards);
         adapter.notifyDataSetChanged();
@@ -110,6 +110,8 @@ public class BackgroundActivity extends BaseActivity {
             public void onItemClick(View view, int position) {
                 Log.i(TAG, String.format(Locale.US, "clicked %d", position));
                 TextView subtitle = view.findViewById(R.id.tv_subtitle);
+                String helloMessage = BackgroundActivity.this.getString(R.string.hello_message);
+                String[] messages = helloMessage.split("\\s+"); // split string by blank space
                 switch (position) {
                     case 0:
                         // AsyncTask
@@ -117,7 +119,7 @@ public class BackgroundActivity extends BaseActivity {
                         if (sleepTask1 != null && !sleepTask1.isCancelled()) {
                             sleepTask1.cancel(true);
                         } else {
-                            sleepTask1 = new SleepTask(subtitle).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "Hello,", "there!");
+                            sleepTask1 = new SleepTask(subtitle).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, messages);
                         }
                         break;
                     case 1:
@@ -126,14 +128,14 @@ public class BackgroundActivity extends BaseActivity {
                         if (sleepTask2 != null && !sleepTask2.isCancelled()) {
                             sleepTask2.cancel(true);
                         } else {
-                            sleepTask2 = new SleepTask(subtitle).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, "Hello,", "there!");
+                            sleepTask2 = new SleepTask(subtitle).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, messages);
                         }
                         break;
                     case 2:
                         // AsyncTaskLoader
                         persistentTextViews[2] = subtitle;
                         Bundle b1 = new Bundle();
-                        b1.putString("message", "Hello, there!");
+                        b1.putString("message", helloMessage);
                         if (sleepTaskLoader1 == null) {
                             sleepTaskLoader1 = getLoaderManager().initLoader(LoaderIds.SLEEP_TASK1.getValue(), b1, new LoaderCallbacksImpl(2));
                         } else {
@@ -147,7 +149,7 @@ public class BackgroundActivity extends BaseActivity {
                         // AsyncTaskLoader
                         persistentTextViews[3] = subtitle;
                         Bundle b2 = new Bundle();
-                        b2.putString("message", "Hello, there!");
+                        b2.putString("message", helloMessage);
                         if (sleepTaskLoader2 == null) {
                             sleepTaskLoader2 = getLoaderManager().initLoader(LoaderIds.SLEEP_TASK2.getValue(), b2, new LoaderCallbacksImpl(3));
                         } else {

@@ -142,15 +142,24 @@
     <string name="album_artist_transition" translatable="false">album_artist_transition</string>
 
 
-    <string name="countdown" translatable="false"><xliff:g example="5 days" id="time">%1$s</xliff:g>until holiday</string>
+    <string name="countdown" translatable="false"><xliff:g example="5 days" id="time">%1$s</xliff:g>until holiday
+    </string>
     <!-- Example placeholder for a special unicode symbol -->
-    <string name="star_rating" translatable="false">Check out our 5<xliff:g id="star">\u2605</xliff:g></string>
+    <string name="star_rating" translatable="false">Check out our 5
+        <xliff:g id="star">\u2605</xliff:g>
+    </string>
     <!-- Example placeholder for a for a URL -->
-    <string name="app_homeurl" translatable="false">Visit us at <xliff:g id="application_homepage">http://my/app/home.html</xliff:g></string>
+    <string name="app_homeurl" translatable="false">Visit us at
+        <xliff:g id="application_homepage">http://my/app/home.html</xliff:g>
+    </string>
     <!-- Example placeholder for a name -->
-    <string name="prod_name" translatable="false">Learn more at <xliff:g id="prod_gamegroup">Game Group</xliff:g></string>
+    <string name="prod_name" translatable="false">Learn more at
+        <xliff:g id="prod_gamegroup">Game Group</xliff:g>
+    </string>
     <!-- Example placeholder for a literal -->
-    <string name="promo_message" translatable="false">Please use the "<xliff:g id="promotion_code">ABCDEFG</xliff:g>" to get a discount.</string>
+    <string name="promo_message" translatable="false">Please use the "<xliff:g id="promotion_code">ABCDEFG</xliff:g>" to
+        get a discount.
+    </string>
     <plurals name="numberOfSongsAvailable" translatable="false">
         <!--
              As a developer, you should always supply "one" and "other"
@@ -188,4 +197,9 @@
     <string name="md5">MD5</string>
     <string name="packagename">PackageName</string>
     <string name="communicate">Communicate</string>
+    <string name="hello_message" translatable="false">Hello, there!</string>
+    <string name="new_string" translatable="false">New string: %s</string>
+    <string name="empty_string" translatable="false">empty string</string>
+    <string name="progress_int" translatable="false">Progress: %d%%</string>
+    <string name="canceled_int" translatable="false">%s canceled</string>
 </resources>

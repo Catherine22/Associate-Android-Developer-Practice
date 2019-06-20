@@ -116,7 +116,6 @@ android {
         // Espresso dependencies
         androidTestImplementation "androidx.test.espresso:espresso-core:${rootProject.ext.espresso}"
         androidTestImplementation "androidx.test.espresso:espresso-contrib:${rootProject.ext.espresso}"
-        androidTestImplementation "androidx.test.espresso:espresso-intents:${rootProject.ext.espresso}"
 
 
         // Unit tests

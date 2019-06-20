@@ -2,6 +2,8 @@ package com.catherine.materialdesignapp.tasks;
 
 import android.os.AsyncTask;
 import android.widget.TextView;
+import com.catherine.materialdesignapp.MyApplication;
+import com.catherine.materialdesignapp.R;
 
 import java.lang.ref.WeakReference;
 import java.util.Locale;
@@ -9,10 +11,15 @@ import java.util.Locale;
 public class SleepTask extends AsyncTask<String, Integer, String> {
     private WeakReference<TextView> textView;
     private int SECONDS = 5;
+    private String newString, emptyString, progressInt, canceledInt;
 
 
     public SleepTask(TextView textView) {
         this.textView = new WeakReference<>(textView);
+        newString = MyApplication.INSTANCE.getString(R.string.new_string);
+        emptyString = MyApplication.INSTANCE.getString(R.string.empty_string);
+        progressInt = MyApplication.INSTANCE.getString(R.string.progress_int);
+        canceledInt = MyApplication.INSTANCE.getString(R.string.canceled_int);
     }
 
 
@@ -36,15 +43,15 @@ public class SleepTask extends AsyncTask<String, Integer, String> {
 
             result.deleteCharAt(result.length() - 1);
         } else {
-            result = new StringBuilder("empty string");
+            result = new StringBuilder(emptyString);
         }
-        return String.format(Locale.US, "New string: %s", result.toString());
+        return String.format(Locale.US, newString, result.toString());
     }
 
     @Override
     protected void onProgressUpdate(Integer... values) {
         int progress = (100 / SECONDS) * values[0];
-        textView.get().setText(String.format(Locale.US, "Progress: %d%%", progress));
+        textView.get().setText(String.format(Locale.US, progressInt, progress));
         super.onProgressUpdate(values);
     }
 
@@ -55,7 +62,7 @@ public class SleepTask extends AsyncTask<String, Integer, String> {
 
     @Override
     protected void onCancelled() {
-        textView.get().setText(String.format("%s canceled", textView.get().getText().toString()));
+        textView.get().setText(String.format(canceledInt, textView.get().getText().toString()));
         super.onCancelled();
     }
 }

@@ -7,13 +7,10 @@ import android.view.SubMenu;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.test.espresso.contrib.NavigationViewActions;
-import androidx.test.espresso.matcher.BoundedMatcher;
 import androidx.test.filters.MediumTest;
 import androidx.test.filters.SdkSuppress;
 import com.catherine.materialdesignapp.activities.*;
 import com.google.android.material.navigation.NavigationView;
-import org.hamcrest.Description;
-import org.hamcrest.Matcher;
 import org.junit.Before;
 
 import java.util.HashMap;
@@ -128,22 +125,7 @@ public class DrawerNavigatorTest extends ActivityInstrumentationTestCase2<MainAc
         onView(withId(R.id.nav_view)).perform(NavigationViewActions.navigateTo(id));
 
         onView(isAssignableFrom(Toolbar.class)).check(matches(isDisplayed()));
-        onView(isAssignableFrom(Toolbar.class)).check(matches(withToolbarTitle(is(withString))));
+        onView(isAssignableFrom(Toolbar.class)).check(matches(Utils.withToolbarTitle(is(withString))));
         onView(isRoot()).perform(pressBack());
-    }
-
-    private Matcher<Object> withToolbarTitle(Matcher<String> matcher) {
-        return new BoundedMatcher<Object, Toolbar>(Toolbar.class) {
-            @Override
-            protected boolean matchesSafely(Toolbar item) {
-                return matcher.matches(item.getTitle().toString());
-            }
-
-            @Override
-            public void describeTo(Description description) {
-                description.appendText("with toolbar title: ");
-                matcher.describeTo(description);
-            }
-        };
     }
 }

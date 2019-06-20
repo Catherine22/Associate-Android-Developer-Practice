@@ -770,7 +770,7 @@ public class NewsPageActivity extends AppCompatActivity {
 7. Install and launch this bbc_news module 
 See [DynamicDeliveryActivity], [bbc_news module]     
 
-Code: [DynamicDeliveryActivity], [bbc_news module], [tour_guide module], [assets module]     
+Code: [DynamicDeliveryActivity], [bbc_news module], [tour_guide module], [assets module], [open_weather module]     
 [Google sample code](https://github.com/googlesamples/android-dynamic-features)     
 [Read More](https://developer.android.com/training/testing/fundamentals)        
 
@@ -805,15 +805,18 @@ unzip app/debug/MaterialDesign.apks -d app/debug/apks
 2. You are able to maintain a stable velocity throughout the lifetime of your project.      
 3. Avoid the boom bust cycle of crunch feature time and the aggregation of technical debt.      
 
-### Testing pyramid
+## Testing pyramid
 1. (small tests) Unit test      
+    - Validate the functionality and contracts of each class within your app        
     - Run on your own local machine      
     - fast and focus        
     - 70%       
 2. (medium tests) Integration test      
+    - Interaction between a view and view model and run on particular screens, DAOs and multi-fragment tests        
     - Run on real devices or emulators       
     - 20%       
 3. (large tests) End-to-end test        
+    - validate end-to-end workflows that guide users through multiple modules and features      
     - Run on real devices or emulators       
     - 10%       
 
@@ -822,10 +825,10 @@ unzip app/debug/MaterialDesign.apks -d app/debug/apks
 [Blog](https://testing.googleblog.com/2010/12/test-sizes.html)      
 [Video](https://www.youtube.com/watch?v=pK7W5npkhho) 
 
-### TDD, Test Driven Development
+## TDD, Test Driven Development
 ![screenshot](https://raw.githubusercontent.com/Catherine22/AAD-Preparation/master/AAD-Preparation/screenshots/TDD.png)  
 
-### Principles of Unit Testing
+## Principles of Unit Testing
 1. Through: Test failure conditions, invalid inputs and boundary conditions.     
 2. Repeatable: Return the same results every time.      
 3. Focused: Focus one specific aspect of the code.        
@@ -833,7 +836,7 @@ unzip app/debug/MaterialDesign.apks -d app/debug/apks
 5. Fast     
 6. Concise      
 
-#### Device
+## Device
 You could run your unit tests on any of them:       
 1. Real devices     
 2. Emulator     
@@ -841,6 +844,17 @@ You could run your unit tests on any of them:
 
 > Robolectric supports testing on JVM-powered development machines      
 
+## Instrumented test 
+```Espresso```        
+- [NavigationDrawer unit test code]       
+- [Options menu unit test code]      
+
+```AndroidJUnit4```       
+- [RecyclerView unit test code]     
+
+## Robolectric      
+
+## Mockito      
 
 
 
@@ -1019,8 +1033,13 @@ The exam is only available in Java at this time (4/1/2019)
 [DynamicDeliveryActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/DynamicDeliveryActivity.java>
 [bbc_news module]:<https://github.com/Catherine22/AAD-Preparation/tree/master/AAD-Preparation/bbc_news>
 [tour_guide module]:<https://github.com/Catherine22/AAD-Preparation/tree/master/AAD-Preparation/tour_guide>
+[open_weather module]:<https://github.com/Catherine22/AAD-Preparation/tree/master/AAD-Preparation/open_weather>
 [assets module]:<https://github.com/Catherine22/AAD-Preparation/tree/master/AAD-Preparation/assets>
 [AndroidManifest]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/AndroidManifest.xml>
+[NavigationDrawer unit test code]:<https://github.com/Catherine22/AAD-Preparation/tree/master/AAD-Preparation/app/src/androidTest/java/com/catherine/materialdesignapp/DrawerNavigatorTest.java>
+[RecyclerView unit test code]:<https://github.com/Catherine22/AAD-Preparation/tree/master/AAD-Preparation/app/src/androidTest/java/com/catherine/materialdesignapp.BackgroundActivityTest.java>
+[Options menu unit test code]:<https://github.com/Catherine22/AAD-Preparation/tree/master/AAD-Preparation/app/src/androidTest/java/com/catherine/materialdesignapp.DayNightModeTest.java>
+
 
 
 [Basic Types]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/BasicTypes.kt>

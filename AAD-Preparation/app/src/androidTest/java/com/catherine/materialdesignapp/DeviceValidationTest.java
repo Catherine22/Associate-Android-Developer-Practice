@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
  */
 @SmallTest
 @RunWith(AndroidJUnit4.class)
-public class MainFragmentTest {
+public class DeviceValidationTest {
     private LocationHelper locationHelper;
     private MyApplication myApplication;
 

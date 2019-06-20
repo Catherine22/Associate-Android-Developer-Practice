@@ -4,6 +4,7 @@ import android.content.AsyncTaskLoader;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
+import com.catherine.materialdesignapp.R;
 
 import java.util.Locale;
 
@@ -12,10 +13,15 @@ public class SleepTaskLoader extends AsyncTaskLoader<String> {
     private int SECONDS = 5;
     private String text;
     private String cache;
+    private String newString, emptyString, progressInt, canceledInt;
 
     public SleepTaskLoader(Context context, String text) {
         super(context);
         this.text = text;
+        newString = context.getString(R.string.new_string);
+        emptyString = context.getString(R.string.empty_string);
+        progressInt = context.getString(R.string.progress_int);
+        canceledInt = context.getString(R.string.canceled_int);
     }
 
     @Override
@@ -23,14 +29,14 @@ public class SleepTaskLoader extends AsyncTaskLoader<String> {
         try {
             for (int i = 0; i < SECONDS; i++) {
                 int progress = (100 / SECONDS) * i;
-                deliverResult(String.format(Locale.US, "Progress: %d%%", progress));
+                deliverResult(String.format(Locale.US, progressInt, progress));
                 Thread.sleep(1000);
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        String result = (TextUtils.isEmpty(text)) ? "empty string" : text;
-        return String.format(Locale.US, "New string: %s", result);
+        String result = (TextUtils.isEmpty(text)) ? emptyString : text;
+        return String.format(Locale.US, newString, result);
     }
 
     @Override
@@ -42,7 +48,7 @@ public class SleepTaskLoader extends AsyncTaskLoader<String> {
     @Override
     public void stopLoading() {
         Log.i(TAG, "stopLoading");
-        deliverResult(String.format(Locale.US, "%s canceled", cache));
+        deliverResult(String.format(Locale.US, canceledInt, cache));
         super.stopLoading();
     }
 
