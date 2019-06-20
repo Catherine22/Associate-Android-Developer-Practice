@@ -23,6 +23,7 @@ import com.catherine.materialdesignapp.utils.Gallery;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 public class BackgroundActivity extends BaseActivity {
     public final static String TAG = BackgroundActivity.class.getSimpleName();
@@ -88,8 +89,9 @@ public class BackgroundActivity extends BaseActivity {
         if (savedInstanceState != null) {
             subtitles = savedInstanceState.getStringArray(TEXT_STATE);
         }
+        Random random = new Random();
         for (int i = 0; i < titles.length; i++) {
-            int index = (int) (Math.random() * Gallery.IMAGES.length);
+            int index = random.nextInt(Gallery.IMAGES.length);
             cards.add(new CardItem(Gallery.IMAGES[index], titles[i], subtitles[i], null, null));
         }
         adapter.setEntities(cards);

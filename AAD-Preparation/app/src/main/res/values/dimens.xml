@@ -10,6 +10,7 @@
     <dimen name="safe_area_margin_width">16dp</dimen>
     <dimen name="safe_area_margin_height">16dp</dimen>
     <dimen name="safe_area_margin">16dp</dimen>
+    <dimen name="half_safe_area_margin">8dp</dimen>
     <dimen name="bottom_sheet_item_height">56dp</dimen>
     <dimen name="bottom_sheet_height">224dp</dimen> <!-- 56 * 4 -->
     <dimen name="chip_height">32dp</dimen>

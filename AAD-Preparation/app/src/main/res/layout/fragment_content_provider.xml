@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".activities.BackgroundActivity"
-    tools:showIn="@layout/activity_app_components">
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_content_providers"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+<androidx.recyclerview.widget.RecyclerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/safe_area_margin_width"
-        android:layout_marginEnd="@dimen/safe_area_margin_width"
-        android:text="@string/content_providers" />
+        android:layout_height="match_parent"
+        android:id="@+id/rv_functions"
+        android:layout_margin="@dimen/safe_area_margin"
+        tools:context=".activities.AppComponentsActivity"
+        tools:showIn="@layout/activity_app_components">
 
-</LinearLayout>
+</androidx.recyclerview.widget.RecyclerView>
