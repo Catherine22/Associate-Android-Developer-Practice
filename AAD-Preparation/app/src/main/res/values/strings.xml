@@ -38,6 +38,7 @@
     <string name="deadline">Deadline</string>
     <string name="latency">Latency</string>
     <string name="empty_in_playlist">Empty in playlist</string>
+    <string name="empty_in_database">Empty in database</string>
     <string name="empty_in_playlist_desc">Add music and it will show up here.</string>
     <string name="purchase">Purchase</string>
     <string name="add_icon">Add</string>
@@ -136,7 +137,7 @@
         <item>Widgets</item>
         <item>Search</item>
         <item>Data storage</item>
-        <item>Abstract\nThreaded\nSync\nAdapter</item>
+        <item>AbstractThreadedSyncAdapter</item>
         <item>Other applications</item>
     </string-array>
 
@@ -149,6 +150,8 @@
     <string name="album_image_transition" translatable="false">album_image_transition</string>
     <string name="album_name_transition" translatable="false">album_name_transition</string>
     <string name="album_artist_transition" translatable="false">album_artist_transition</string>
+    <string name="content_provider_title_transition" translatable="false">content_provider_title_transition</string>
+    <string name="content_provider_bg_transition" translatable="false">content_provider_bg_transition</string>
 
 
     <string name="countdown" translatable="false"><xliff:g example="5 days" id="time">%1$s</xliff:g>until holiday

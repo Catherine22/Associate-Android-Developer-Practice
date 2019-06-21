@@ -31,6 +31,7 @@
 
 
     <dimen name="artist_round_shape">16dp</dimen>
+    <dimen name="common_radius">8dp</dimen>
     <dimen name="grid_margin">2dp</dimen>
     <dimen name="title_margin">12dp</dimen>
     <dimen name="artist_title_mask_height">48dp</dimen>

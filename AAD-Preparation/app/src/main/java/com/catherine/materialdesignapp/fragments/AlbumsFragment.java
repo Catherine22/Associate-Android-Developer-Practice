@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
@@ -18,7 +17,6 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import com.catherine.materialdesignapp.FirebaseDB;
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.activities.AlbumDetailsActivity;
@@ -39,11 +37,7 @@ import com.facebook.imagepipeline.cache.DefaultCacheKeyFactory;
 import com.facebook.imagepipeline.core.DefaultExecutorSupplier;
 import com.facebook.imagepipeline.core.ImagePipelineFactory;
 import com.facebook.imagepipeline.request.ImageRequest;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -94,33 +88,34 @@ public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchView
         adapter = new AlbumAdapter(getActivity(), filteredAlbums, new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                SimpleDraweeView sdv_photo = view.findViewById(R.id.sdv_photo);
+                TextView tv_name = view.findViewById(R.id.tv_title);
+                TextView tv_artist = view.findViewById(R.id.tv_subtitle);
 
+                Intent intent = new Intent(getActivity(), AlbumDetailsActivity.class);
+                intent.putExtra("cover", adapter.getImageUrl(position));
+                intent.putExtra("album", tv_name.getText().toString());
+                intent.putExtra("artist", tv_artist.getText().toString());
+
+                List<String> songList = filteredAlbums.get(position).getSongs();
+                if (songList != null && songList.size() != 0) {
+                    String[] songs = new String[songList.size()];
+                    intent.putExtra("songs", songList.toArray(songs));
+                }
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                     //Shared Elements Transitions
-                    SimpleDraweeView sdv_photo = view.findViewById(R.id.sdv_photo);
-                    TextView tv_name = view.findViewById(R.id.tv_title);
-                    TextView tv_artist = view.findViewById(R.id.tv_subtitle);
                     String imageTransitionName = sdv_photo.getTransitionName();
                     String nameTransitionName = tv_name.getTransitionName();
                     String artistTransitionName = tv_artist.getTransitionName();
-
-
-                    Intent intent = new Intent(getActivity(), AlbumDetailsActivity.class);
-                    intent.putExtra("cover", adapter.getImageUrl(position));
-                    intent.putExtra("album", tv_name.getText().toString());
-                    intent.putExtra("artist", tv_artist.getText().toString());
-
-                    List<String> songList = filteredAlbums.get(position).getSongs();
-                    if (songList != null && songList.size() != 0) {
-                        String[] songs = new String[songList.size()];
-                        intent.putExtra("songs", songList.toArray(songs));
-                    }
 
                     Pair<View, String> p1 = Pair.create(sdv_photo, imageTransitionName);
                     Pair<View, String> p2 = Pair.create(tv_name, nameTransitionName);
                     Pair<View, String> p3 = Pair.create(tv_artist, artistTransitionName);
                     ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), p1, p2, p3);
                     ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
+                } else {
+                    startActivity(intent);
                 }
             }
 

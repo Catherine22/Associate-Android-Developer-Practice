@@ -7,6 +7,10 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/> <!--network health-->
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
+    <!--content provider-->
+    <uses-permission android:name="android.permission.READ_CALL_LOG"/>
+    <uses-permission android:name="android.permission.WRITE_CALL_LOG"/>
+
     <application
             android:name=".MyApplication"
             android:allowBackup="true"
@@ -104,6 +108,15 @@
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value=".activities.UIComponentsActivity"/>
+        </activity>
+        <activity
+                android:name=".activities.CursorLoaderActivity"
+                android:configChanges="orientation|keyboardHidden"
+                android:parentActivityName=".activities.MainActivity">
+
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value=".activities.MainActivity"/>
         </activity>
 
         <!-- this is the searchable activity, it performs searches -->

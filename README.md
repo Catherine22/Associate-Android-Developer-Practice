@@ -429,28 +429,39 @@ Create your own content providers to share data with other applications or acces
 
 ### System content providers
 **In order to get the uri path, we are going to have a look at android source code.**       
-1. Go to https://android.googlesource.com/platform/packages/providers/ and pick out needed providers        
-2. Search ```<provider>``` tag in AndroidManifest, e.g. in https://android.googlesource.com/platform/packages/providers/UserDictionaryProvider/+/refs/tags/android-9.0.0_r33/AndroidManifest.xml        
+1. Go to https://android.googlesource.com/platform/packages/providers/ContactsProvider/+/master/ and pick out needed providers      
+2. Search ```<provider>``` tag in [AndroidManifest](https://android.googlesource.com/platform/packages/providers/ContactsProvider/+/master/AndroidManifest.xml), e.g.       
 ```xml
-<provider android:name="CallLogProvider"
-            android:authorities="call_log"
-            android:syncable="false" android:multiprocess="false"
-            android:exported="true"
-            android:readPermission="android.permission.READ_CALL_LOG"
-            android:writePermission="android.permission.WRITE_CALL_LOG">
-        </provider>
+<provider 
+    android:name="CallLogProvider"
+    android:authorities="call_log"
+    android:syncable="false" android:multiprocess="false"
+    android:exported="true"
+    android:readPermission="android.permission.READ_CALL_LOG"
+    android:writePermission="android.permission.WRITE_CALL_LOG">
+</provider>
 ```
-3. Now we have host name (```android:authorities```), then, go to [CallLogProvider] (```android:name```) to get the table name        
-4. Search "urimatcher" in [UserDictionaryProvider], and have a bunch of ```sURIMatcher.addURI()``` found. We figure out that one url is "content://call_log/calls"        
-5. Grant permission: ```<uses-permission android:name="android.permission.READ_CALL_LOG" />```, ```<uses-permission android:name="android.permission.WRITE_CALL_LOG" />```
+3. Now we have the host name (```android:authorities```), then go to [CallLogProvider], which refers to ```android:name```, and get the table name        
+4. Search ```UriMatcher``` in [CallLogProvider], you will find a bunch of ```sURIMatcher.addURI()```.       
+```java
+static {
+    sURIMatcher.addURI(CallLog.AUTHORITY, "calls", CALLS);
+    sURIMatcher.addURI(CallLog.AUTHORITY, "calls/#", CALLS_ID);
+    sURIMatcher.addURI(CallLog.AUTHORITY, "calls/filter/*", CALLS_FILTER);
+    // Shadow provider only supports "/calls".
+    sURIMatcher.addURI(CallLog.SHADOW_AUTHORITY, "calls", CALLS);
+}
+```
 
-**CRUD - Create**
+5. The completely path would be: scheme (content://) + table_name (authorities) + path (defined uriMatcher)      
+```java
+private final static Uri callLogsDB = Uri.parse("content://call_log/calls");
+```
+6. Fetch call logs      
+You are able to query call logs, register observers to listen to fetch events like incoming calls, outgoing calls, etc.     
+Check all fields you can query: [CallLogProvider], [CallLog](https://android.googlesource.com/platform/frameworks/base/+/master/core/java/android/provider/CallLog.java)       
 
-**CRUD - Read**
-
-**CRUD - Update**
-
-**CRUD - Delete**
+Code: [CursorLoaderActivity]
 
 ### User-defined content providers
 A content provider uri should be ```scheme + authority + table + [id] + [filter]```. E.g. ```content://com.catherine.myapp/member/1/name```     
@@ -858,8 +869,9 @@ You could run your unit tests on any of them:
 
 
 
+[Google sample](https://github.com/googlesamples/android-testing) 
 [Google testing blog](https://testing.googleblog.com/)      
-[Google doc](https://developer.android.com/training/testing)
+[Google doc](https://developer.android.com/training/testing)        
 
 # Kotlin
 The exam is only available in Java at this time (4/1/2019)      
@@ -1017,6 +1029,7 @@ The exam is only available in Java at this time (4/1/2019)
 [SleepTaskLoader]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/tasks/SleepTaskLoader.java>
 [NotificationActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/NotificationActivity.java>
 [ContentProviderFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/ContentProviderFragment.java>
+[CursorLoaderActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/CursorLoaderActivity.java>
 [BackgroundServiceFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/BackgroundServiceFragment.java>
 [rv_album_item]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/res/layout/rv_album_item.xml>
 [PlaylistAdapter]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/adapters/PlaylistAdapter.java>
@@ -1066,5 +1079,5 @@ The exam is only available in Java at this time (4/1/2019)
 [Functions]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/Functions.kt>
 [Higher-Order Functions and Lambdas]:<https://github.com/Catherine22/AAD-Preparation/blob/master/KotlinFromScratch/src/Lambdas.kt>
 
-[CallLogProvider]:<https://android.googlesource.com/platform/packages/providers/ContactsProvider/+/refs/tags/android-9.0.0_r34/src/com/android/providers/contacts/CallLogProvider.java>
+[CallLogProvider]:<https://android.googlesource.com/platform/packages/providers/ContactsProvider/+/master/src/com/android/providers/contacts/CallLogProvider.java>
 [Grid and keyline shapes]:<https://material.io/design/iconography/#grid-keyline-shapes>

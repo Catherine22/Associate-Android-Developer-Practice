@@ -7,6 +7,6 @@
         android:id="@+id/rv_functions"
         android:layout_margin="@dimen/safe_area_margin"
         tools:context=".activities.AppComponentsActivity"
-        tools:showIn="@layout/activity_app_components">
+        tools:showIn="@layout/fragment_content_provider">
 
 </androidx.recyclerview.widget.RecyclerView>

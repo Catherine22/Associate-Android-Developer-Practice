@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/srl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_table"
+                android:layout_marginBottom="@dimen/half_safe_area_margin"
+                android:layout_marginStart="@dimen/half_safe_area_margin"
+                android:layout_marginEnd="@dimen/half_safe_area_margin"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/empty_page"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <ImageView
+                    android:id="@+id/icon"
+                    android:layout_width="@dimen/empty_page_center_image_size"
+                    android:layout_height="@dimen/empty_page_center_image_size"
+                    android:layout_margin="@dimen/safe_area_margin"
+                    android:contentDescription="@string/cover"
+                    android:scaleType="centerInside"
+                    android:tint="@color/colorPrimary"
+                    app:layout_constraintBottom_toTopOf="@id/title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed"
+                    app:srcCompat="@drawable/sleeping"/>
+
+            <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/safe_area_margin"
+                    android:layout_marginEnd="@dimen/safe_area_margin"
+                    android:text="@string/empty_in_database"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

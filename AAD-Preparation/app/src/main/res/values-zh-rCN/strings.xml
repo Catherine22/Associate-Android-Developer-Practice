@@ -38,6 +38,7 @@
     <string name="deadline">最长保留时间</string>
     <string name="latency">延迟启动时间</string>
     <string name="empty_in_playlist">没有播放清单</string>
+    <string name="empty_in_database">Empty in database</string>
     <string name="empty_in_playlist_desc">添加音乐后将于此显示</string>
     <string name="purchase">购买</string>
     <string name="add_icon">添加</string>
