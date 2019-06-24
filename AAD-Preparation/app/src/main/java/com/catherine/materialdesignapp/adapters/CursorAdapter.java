@@ -7,10 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.core.util.Pair;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.listeners.OnItemClickListener;
+import com.catherine.materialdesignapp.models.CursorItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,10 +19,10 @@ import java.util.List;
 public class CursorAdapter extends RecyclerView.Adapter<CursorAdapter.MainRvHolder> {
     private final String TAG = CursorAdapter.class.getSimpleName();
     private Context ctx;
-    private List<Pair> entities;
+    private List<CursorItem> entities;
     private OnItemClickListener listener;
 
-    public CursorAdapter(Context ctx, List<Pair> entities, OnItemClickListener listener) {
+    public CursorAdapter(Context ctx, List<CursorItem> entities, OnItemClickListener listener) {
         this.ctx = ctx;
         if (entities == null)
             this.entities = new ArrayList<>();
@@ -49,20 +50,59 @@ public class CursorAdapter extends RecyclerView.Adapter<CursorAdapter.MainRvHold
             });
         }
 
-        Pair pair = entities.get(position);
-        if (pair.first
-                != null && !TextUtils.isEmpty(pair.first.toString())) {
-            mainRvHolder.tv_title.setVisibility(View.VISIBLE);
-            mainRvHolder.tv_title.setText(pair.first.toString());
-        } else
-            mainRvHolder.tv_title.setVisibility(View.GONE);
+        CursorItem item = entities.get(position);
+        if ((item.getType() & CursorItem.TOP) == CursorItem.TOP) {
+            mainRvHolder.c_top.setVisibility(View.VISIBLE);
+            mainRvHolder.c_body.setVisibility(View.GONE);
+            mainRvHolder.c_bottom.setVisibility(View.GONE);
+
+            if (!TextUtils.isEmpty(item.getTitle())) {
+                mainRvHolder.tv_header_title.setVisibility(View.VISIBLE);
+                mainRvHolder.tv_header_title.setText(item.getTitle());
+            } else
+                mainRvHolder.tv_header_title.setVisibility(View.GONE);
+
+            if (!TextUtils.isEmpty(item.getSubtitle())) {
+                mainRvHolder.tv_header_value.setVisibility(View.VISIBLE);
+                mainRvHolder.tv_header_value.setText(item.getSubtitle());
+            } else
+                mainRvHolder.tv_header_value.setVisibility(View.GONE);
+
+        } else if ((item.getType() & CursorItem.BODY) == CursorItem.BODY) {
+            mainRvHolder.c_top.setVisibility(View.GONE);
+            mainRvHolder.c_body.setVisibility(View.VISIBLE);
+            mainRvHolder.c_bottom.setVisibility(View.GONE);
+
+            if (!TextUtils.isEmpty(item.getTitle())) {
+                mainRvHolder.tv_body_title.setVisibility(View.VISIBLE);
+                mainRvHolder.tv_body_title.setText(item.getTitle());
+            } else
+                mainRvHolder.tv_body_title.setVisibility(View.GONE);
+
+            if (!TextUtils.isEmpty(item.getSubtitle())) {
+                mainRvHolder.tv_body_value.setVisibility(View.VISIBLE);
+                mainRvHolder.tv_body_value.setText(item.getSubtitle());
+            } else
+                mainRvHolder.tv_body_value.setVisibility(View.GONE);
+        } else {
+            mainRvHolder.c_top.setVisibility(View.GONE);
+            mainRvHolder.c_body.setVisibility(View.GONE);
+            mainRvHolder.c_bottom.setVisibility(View.VISIBLE);
+
+            if (!TextUtils.isEmpty(item.getTitle())) {
+                mainRvHolder.tv_bottom_title.setVisibility(View.VISIBLE);
+                mainRvHolder.tv_bottom_title.setText(item.getTitle());
+            } else
+                mainRvHolder.tv_bottom_title.setVisibility(View.GONE);
+
+            if (!TextUtils.isEmpty(item.getSubtitle())) {
+                mainRvHolder.tv_bottom_value.setVisibility(View.VISIBLE);
+                mainRvHolder.tv_bottom_value.setText(item.getSubtitle());
+            } else
+                mainRvHolder.tv_bottom_value.setVisibility(View.GONE);
+        }
 
 
-        if (pair.second != null && !TextUtils.isEmpty(pair.second.toString())) {
-            mainRvHolder.tv_value.setVisibility(View.VISIBLE);
-            mainRvHolder.tv_value.setText(pair.second.toString());
-        } else
-            mainRvHolder.tv_value.setVisibility(View.GONE);
     }
 
     @Override
@@ -70,24 +110,39 @@ public class CursorAdapter extends RecyclerView.Adapter<CursorAdapter.MainRvHold
         return entities.size();
     }
 
-
-    public void setEntities(List<Pair> entities) {
+    public void setEntities(List<CursorItem> entities) {
         this.entities = entities;
     }
 
-    public List<Pair> getEntities() {
+    public List<CursorItem> getEntities() {
         return entities;
+    }
+
+    public String getTitle(int pos) {
+        return getEntities().get(pos).getTitle();
+    }
+
+    public String getValue(int pos) {
+        return getEntities().get(pos).getSubtitle();
     }
 
 
     class MainRvHolder extends RecyclerView.ViewHolder {
-        TextView tv_title;
-        TextView tv_value;
+        TextView tv_header_title, tv_body_title, tv_bottom_title;
+        TextView tv_header_value, tv_body_value, tv_bottom_value;
+        ConstraintLayout c_top, c_body, c_bottom;
 
         MainRvHolder(View itemView) {
             super(itemView);
-            tv_title = itemView.findViewById(R.id.tv_title);
-            tv_value = itemView.findViewById(R.id.tv_value);
+            tv_header_title = itemView.findViewById(R.id.tv_header_title);
+            tv_body_title = itemView.findViewById(R.id.tv_body_title);
+            tv_bottom_title = itemView.findViewById(R.id.tv_bottom_title);
+            tv_header_value = itemView.findViewById(R.id.tv_header_value);
+            tv_body_value = itemView.findViewById(R.id.tv_body_value);
+            tv_bottom_value = itemView.findViewById(R.id.tv_bottom_value);
+            c_top = itemView.findViewById(R.id.c_top);
+            c_body = itemView.findViewById(R.id.c_body);
+            c_bottom = itemView.findViewById(R.id.c_bottom);
         }
     }
 }

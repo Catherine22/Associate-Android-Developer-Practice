@@ -11,11 +11,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.util.Pair;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -23,6 +21,7 @@ import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.adapters.CursorAdapter;
 import com.catherine.materialdesignapp.listeners.OnItemClickListener;
 import com.catherine.materialdesignapp.listeners.OnRequestPermissionsListener;
+import com.catherine.materialdesignapp.models.CursorItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +35,7 @@ public class CursorLoaderActivity extends BaseActivity {
      * scheme (content://) + table_name (authorities) + path (defined uriMatcher)
      */
     final static Uri Call_LOGS_URI = Uri.parse("content://call_log/calls");
-    final String[] callLogsQuery = new String[]{CallLogs.TYPE, CallLogs.NUMBER_PRESENTATION, CallLogs.NUMBER, CallLogs.FEATURES};
+    final String[] callLogsQuery = new String[]{CallLogs.NUMBER, CallLogs.TYPE, CallLogs.NUMBER_PRESENTATION, CallLogs.FEATURES};
 
     private SwipeRefreshLayout swipeRefreshLayout;
     private ConstraintLayout empty_page;
@@ -72,8 +71,7 @@ public class CursorLoaderActivity extends BaseActivity {
         adapter = new CursorAdapter(this, getDefaultList(type), new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                TextView tv_value = view.findViewById(R.id.tv_value);
-                copy(tv_value.getText().toString());
+                copy(adapter.getValue(position));
             }
 
             @Override
@@ -99,15 +97,15 @@ public class CursorLoaderActivity extends BaseActivity {
         }
     }
 
-    private List<Pair> getDefaultList(int type) {
-        List<Pair> pairs = new ArrayList<>();
+    private List<CursorItem> getDefaultList(int type) {
+        List<CursorItem> items = new ArrayList<>();
         if (type == CALL_LOGS) {
-            pairs.add(new Pair<String, String>(CallLogs.TYPE, null));
-            pairs.add(new Pair<String, String>(CallLogs.NUMBER_PRESENTATION, null));
-            pairs.add(new Pair<String, String>(CallLogs.NUMBER, null));
-            pairs.add(new Pair<String, String>(CallLogs.FEATURES, null));
+            items.add(new CursorItem(CallLogs.NUMBER, null, CursorItem.TOP));
+            items.add(new CursorItem(CallLogs.TYPE, null, CursorItem.BODY));
+            items.add(new CursorItem(CallLogs.NUMBER_PRESENTATION, null, CursorItem.BODY));
+            items.add(new CursorItem(CallLogs.FEATURES, null, CursorItem.BOTTOM));
         }
-        return pairs;
+        return items;
     }
 
     private void registerCallLogsObserver() {
@@ -122,20 +120,31 @@ public class CursorLoaderActivity extends BaseActivity {
                 // load data
                 Cursor cursor = resolver.query(Call_LOGS_URI, callLogsQuery, null, null, null);
                 Log.d(TAG, "cursor items:" + cursor.getCount());
-                List<Pair> pairs = new ArrayList<>();
+                List<CursorItem> items = new ArrayList<>();
                 while (cursor.moveToNext()) {
 //                    try {
 //                        Thread.sleep(500);// to pretend we have a plenty of data
 //                    } catch (InterruptedException e) {
 //                        e.printStackTrace();
 //                    }
-                    for (int i = 0; i < 4; i++) {
-                        pairs.add(new Pair<>(callLogsQuery[i], cursor.getString(i)));
+                    items.add(new CursorItem(callLogsQuery[0], cursor.getString(0), CursorItem.TOP));
+                    for (int i = 1; i < 3; i++) {
+                        items.add(new CursorItem(callLogsQuery[i], cursor.getString(i), CursorItem.BODY));
                     }
+                    items.add(new CursorItem(callLogsQuery[3], cursor.getString(3), CursorItem.BOTTOM));
                 }
                 cursor.close();
-                adapter.setEntities(pairs);
+                adapter.setEntities(items);
                 adapter.notifyDataSetChanged();
+
+
+                if (items.size() == 0) {
+                    empty_page.setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.GONE);
+                } else {
+                    empty_page.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override

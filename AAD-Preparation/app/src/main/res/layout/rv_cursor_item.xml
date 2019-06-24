@@ -1,36 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/common_border"
-        android:layout_marginTop="@dimen/half_safe_area_margin"
-        android:clickable="true"
-        android:focusable="true">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:clickable="true"
+             android:focusable="true">
 
-    <TextView
-            android:id="@+id/tv_title"
-            android:layout_height="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:singleLine="true"
-            style="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:layout_height="wrap_content"
+            android:id="@+id/c_top"
             android:layout_marginTop="@dimen/half_safe_area_margin"
-            android:layout_marginStart="@dimen/half_safe_area_margin"
-            android:layout_marginEnd="@dimen/half_safe_area_margin"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:background="@drawable/common_border_top">
 
-    <TextView
-            android:id="@+id/tv_value"
-            android:layout_height="wrap_content"
+        <TextView
+                android:id="@+id/tv_header_title"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:singleLine="true"
+                android:layout_marginTop="@dimen/half_safe_area_margin"
+                android:layout_marginStart="@dimen/half_safe_area_margin"
+                android:layout_marginEnd="@dimen/half_safe_area_margin"
+                style="@android:style/TextAppearance.DeviceDefault.Medium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+                android:id="@+id/tv_header_value"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginStart="@dimen/half_safe_area_margin"
+                android:layout_marginEnd="@dimen/half_safe_area_margin"
+                android:layout_marginBottom="@dimen/half_safe_area_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_header_title"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_margin="@dimen/half_safe_area_margin"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_title"/>
+            android:layout_height="wrap_content"
+            android:id="@+id/c_body"
+            android:background="@drawable/common_border_body">
+
+        <TextView
+                android:id="@+id/tv_body_title"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:singleLine="true"
+                android:layout_marginTop="@dimen/half_safe_area_margin"
+                android:layout_marginStart="@dimen/half_safe_area_margin"
+                android:layout_marginEnd="@dimen/half_safe_area_margin"
+                style="@android:style/TextAppearance.DeviceDefault.Medium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+                android:id="@+id/tv_body_value"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginStart="@dimen/half_safe_area_margin"
+                android:layout_marginEnd="@dimen/half_safe_area_margin"
+                android:layout_marginBottom="@dimen/half_safe_area_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_body_title"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/c_bottom"
+            android:background="@drawable/common_border_bottom">
+
+        <TextView
+                android:id="@+id/tv_bottom_title"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:singleLine="true"
+                android:layout_marginTop="@dimen/half_safe_area_margin"
+                android:layout_marginStart="@dimen/half_safe_area_margin"
+                android:layout_marginEnd="@dimen/half_safe_area_margin"
+                style="@android:style/TextAppearance.DeviceDefault.Medium"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+                android:id="@+id/tv_bottom_value"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="@dimen/half_safe_area_margin"
+                android:layout_marginStart="@dimen/half_safe_area_margin"
+                android:layout_marginEnd="@dimen/half_safe_area_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_bottom_title"/>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
