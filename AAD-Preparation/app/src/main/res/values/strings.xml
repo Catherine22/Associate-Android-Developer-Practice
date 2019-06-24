@@ -147,6 +147,31 @@
         <item>ContactsProvider2</item>
     </string-array>
 
+    <!--https://developer.android.com/reference/android/provider/ContactsContract.CommonDataKinds.Phone.html#TYPE_HOME-->
+    <string-array name="contact_types">
+        <item>Custom Type</item>
+        <item>Home</item>
+        <item>Mobile</item>
+        <item>Work</item>
+        <item>Fax Work</item>
+        <item>Fax Home</item>
+        <item>Pager</item>
+        <item>Other</item>
+        <item>Callback</item>
+        <item>Car</item>
+        <item>Company Main</item>
+        <item>ISDN</item>
+        <item>MAIN</item>
+        <item>Other Fax</item>
+        <item>Radio</item>
+        <item>Telex</item>
+        <item>TTY TDD</item>
+        <item>Work Mobile</item>
+        <item>Work Pager</item>
+        <item>Assistant</item>
+        <item>MMS</item>
+    </string-array>
+
 
     <string name="logcat" translatable="false">LogCat</string>
     <string name="foreground_service" translatable="false">Foreground service</string>

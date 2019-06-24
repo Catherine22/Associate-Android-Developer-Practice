@@ -9,7 +9,10 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.ContactsContract;
+import android.text.TextUtils;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
@@ -24,6 +27,7 @@ import com.catherine.materialdesignapp.listeners.OnRequestPermissionsListener;
 import com.catherine.materialdesignapp.models.CursorItem;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class CursorLoaderActivity extends BaseActivity {
@@ -38,12 +42,14 @@ public class CursorLoaderActivity extends BaseActivity {
     final static Uri Call_LOGS_URI = Uri.parse("content://call_log/calls");
     final String[] callLogsQuery = new String[]{CallLogs.NUMBER, CallLogs.TYPE, CallLogs.NUMBER_PRESENTATION, CallLogs.FEATURES};
 
+
     private SwipeRefreshLayout swipeRefreshLayout;
     private ConstraintLayout empty_page;
     private RecyclerView recyclerView;
     private CursorAdapter adapter;
     private ContentResolver resolver;
     private CallLogsContentObserver callLogsContentObserver;
+    private ContactsContentObserver contactsContentObserver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,22 +101,31 @@ public class CursorLoaderActivity extends BaseActivity {
     private void functionHub(int type) {
         if (type == CALL_LOGS) {
             registerCallLogsObserver();
-        }
+        } else if (type == CONTACTS)
+            registerContactsObserver();
     }
 
     private List<CursorItem> getDefaultList(int type) {
         List<CursorItem> items = new ArrayList<>();
-        if (type == CALL_LOGS) {
-            items.add(new CursorItem(CallLogs.NUMBER, null, CursorItem.TOP));
-            items.add(new CursorItem(CallLogs.TYPE, null, CursorItem.BODY));
-            items.add(new CursorItem(CallLogs.NUMBER_PRESENTATION, null, CursorItem.BODY));
-            items.add(new CursorItem(CallLogs.FEATURES, null, CursorItem.BOTTOM));
+        switch (type) {
+            case CALL_LOGS:
+                items.add(new CursorItem(CallLogs.NUMBER, null, CursorItem.TOP));
+                items.add(new CursorItem(CallLogs.TYPE, null, CursorItem.BODY));
+                items.add(new CursorItem(CallLogs.NUMBER_PRESENTATION, null, CursorItem.BODY));
+                items.add(new CursorItem(CallLogs.FEATURES, null, CursorItem.BOTTOM));
+                return items;
+            case CONTACTS:
+                items.add(new CursorItem(ContactsContract.Contacts._ID, null, CursorItem.TOP));
+                items.add(new CursorItem(ContactsContract.Contacts.DISPLAY_NAME, null, CursorItem.BODY));
+                items.add(new CursorItem(ContactsContract.CommonDataKinds.Phone.NUMBER, null, CursorItem.BOTTOM));
+                return items;
+            default:
+                return items;
         }
-        return items;
     }
 
     private void registerCallLogsObserver() {
-        String[] permission = {Manifest.permission.READ_CALL_LOG, Manifest.permission.WRITE_CALL_LOG};
+        String[] permission = {Manifest.permission.READ_CALL_LOG};
         getPermissions(permission, new OnRequestPermissionsListener() {
             @Override
             public void onGranted() {
@@ -156,6 +171,176 @@ public class CursorLoaderActivity extends BaseActivity {
             @Override
             public void onRetry() {
                 registerCallLogsObserver();
+            }
+        });
+    }
+
+
+    List<Integer> contactIds;
+    SparseArray<String> idToName;
+    SparseArray<List<String>> idToNumberType;
+    SparseArray<List<String>> idToCallNumber;
+
+    private void registerContactsObserver() {
+        String[] permission = {Manifest.permission.READ_CONTACTS};
+        getPermissions(permission, new OnRequestPermissionsListener() {
+            @Override
+            public void onGranted() {
+                // register an observer so that you can do something when the phone rings
+                contactsContentObserver = new ContactsContentObserver(new Handler());
+                resolver.registerContentObserver(ContactsContract.Contacts.CONTENT_URI, true, contactsContentObserver);
+
+                // load data
+                contactIds = new LinkedList<>();
+                idToName = new SparseArray<>();
+                idToNumberType = new SparseArray<>();
+                idToCallNumber = new SparseArray<>();
+
+                // step1: Get all _IDs and names in the table "contact"
+                Cursor cursorForContactID = getContentResolver().query(
+                        ContactsContract.Contacts.CONTENT_URI,
+                        new String[]{
+                                ContactsContract.Contacts._ID,
+                                ContactsContract.Contacts.DISPLAY_NAME
+                        },
+                        null,
+                        null,
+                        null
+                );
+
+                if (cursorForContactID != null) {
+                    while (cursorForContactID.moveToNext()) {
+                        int id = cursorForContactID.getInt(0);
+                        String displayName = cursorForContactID.getString(1);
+                        contactIds.add(id);
+                        idToName.put(id, displayName);
+                    }
+                }
+                if (cursorForContactID != null) {
+                    cursorForContactID.close();
+                }
+
+                String[] contactTypes = getResources().getStringArray(R.array.contact_types);
+                for (int ID : contactIds) {
+                    LinkedList<Integer> listRawContacts = new LinkedList<>();
+                    // step2: Get all the _IDs in the table "RawContact", which is equal to the raw_contact_IDs in the table "Data"
+                    Cursor cursorForRawContactID = getContentResolver().query(
+                            ContactsContract.RawContacts.CONTENT_URI,
+                            new String[]{ContactsContract.RawContacts._ID},
+                            ContactsContract.RawContacts.CONTACT_ID + " = ?",
+                            new String[]{String.valueOf(ID)},
+                            null
+                    );
+
+                    if (cursorForRawContactID == null) {
+                        continue;
+                    }
+
+                    while (cursorForRawContactID.moveToNext()) {
+                        listRawContacts.add(cursorForRawContactID.getInt(cursorForRawContactID.getColumnIndex(ContactsContract.RawContacts._ID)));
+                    }
+
+                    cursorForRawContactID.close();
+
+
+                    // step3: Get phone numbers via raw_contact_ID
+                    LinkedList<String> names = new LinkedList<>();
+                    LinkedList<String> numbers = new LinkedList<>();
+                    for (Integer rawID : listRawContacts) {
+                        Cursor cursorForCallNumbers = getContentResolver().query(
+                                ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                                new String[]{
+                                        ContactsContract.CommonDataKinds.Phone.TYPE,
+                                        ContactsContract.CommonDataKinds.Phone.NUMBER,
+                                        ContactsContract.CommonDataKinds.Phone.LABEL
+                                },
+                                ContactsContract.CommonDataKinds.Phone.RAW_CONTACT_ID + " = ?",
+                                new String[]{String.valueOf(rawID)},
+                                ContactsContract.CommonDataKinds.Phone.TYPE
+                        );
+
+                        if (cursorForCallNumbers != null) {
+                            while (cursorForCallNumbers.moveToNext()) {
+                                int type = cursorForCallNumbers.getInt(0);
+                                String number = cursorForCallNumbers.getString(1);
+                                if (type == 0) { // customType
+                                    names.add(cursorForCallNumbers.getString(2));
+                                } else
+                                    names.add(contactTypes[type]);
+                                numbers.add(number);
+                            }
+                        }
+
+                        if (cursorForCallNumbers != null) {
+                            cursorForCallNumbers.close();
+                        }
+                    }
+                    idToNumberType.put(ID, names);
+                    idToCallNumber.put(ID, numbers);
+                }
+
+
+                List<CursorItem> items = new ArrayList<>();
+                for (int i = 0; i < contactIds.size(); i++) {
+                    int id = contactIds.get(i);
+                    CursorItem idItem = new CursorItem(ContactsContract.Contacts._ID, id + "", CursorItem.TOP);
+
+                    CursorItem displayNameItem = null;
+                    if (!TextUtils.isEmpty(idToName.get(id))) {
+                        displayNameItem = new CursorItem(ContactsContract.Contacts.DISPLAY_NAME, idToName.get(id), CursorItem.BODY);
+                    }
+
+
+                    List<String> numberTypes = idToNumberType.get(id);
+                    List<String> callNumbers = idToCallNumber.get(id);
+
+                    if (numberTypes != null && !numberTypes.isEmpty()) {
+                        items.add(idItem);
+                        if (displayNameItem != null) {
+                            items.add(displayNameItem);
+                        }
+                        for (int j = 0; j < numberTypes.size(); j++) {
+                            if (j == numberTypes.size() - 1) {
+                                items.add(new CursorItem(numberTypes.get(j), callNumbers.get(j), CursorItem.BOTTOM));
+                            } else {
+                                items.add(new CursorItem(numberTypes.get(j), callNumbers.get(j), CursorItem.BODY));
+                            }
+                        }
+                    } else {
+                        // no numbers
+                        if (displayNameItem != null) {
+                            items.add(idItem);
+                            displayNameItem = new CursorItem(ContactsContract.Contacts.DISPLAY_NAME, idToName.get(id), (CursorItem.BOTTOM));
+                            items.add(displayNameItem);
+                        } else {
+                            idItem = new CursorItem(ContactsContract.Contacts._ID, id + "", (CursorItem.TOP | CursorItem.BOTTOM));
+                            items.add(idItem);
+                        }
+
+                    }
+                }
+
+                adapter.setEntities(items);
+                adapter.notifyDataSetChanged();
+
+
+                if (items.size() == 0) {
+                    empty_page.setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.GONE);
+                } else {
+                    empty_page.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onDenied(@Nullable List<String> deniedPermissions) {
+                finish();
+            }
+
+            @Override
+            public void onRetry() {
+                registerContactsObserver();
             }
         });
     }
@@ -281,8 +466,6 @@ public class CursorLoaderActivity extends BaseActivity {
          * Call was on RTT at some point
          */
         static final int FEATURES_RTT = 1 << 5;
-
-
     }
 
     private class CallLogsContentObserver extends ContentObserver {
@@ -292,6 +475,37 @@ public class CursorLoaderActivity extends BaseActivity {
          * @param handler The handler to run {@link #onChange} on, or null if none.
          */
         CallLogsContentObserver(Handler handler) {
+            super(handler);
+        }
+
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+            super.onChange(selfChange, uri);
+            Log.d(TAG, "onChange:" + selfChange + "/uri:" + uri);
+
+        }
+
+        @Override
+        public boolean deliverSelfNotifications() {
+            return super.deliverSelfNotifications();
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            super.onChange(selfChange);
+            Log.d(TAG, "onChange:" + selfChange);
+            getContentResolver().unregisterContentObserver(this);
+            registerCallLogsObserver(); // update data
+        }
+    }
+
+    private class ContactsContentObserver extends ContentObserver {
+        /**
+         * Creates a content observer.
+         *
+         * @param handler The handler to run {@link #onChange} on, or null if none.
+         */
+        ContactsContentObserver(Handler handler) {
             super(handler);
         }
 
@@ -311,7 +525,7 @@ public class CursorLoaderActivity extends BaseActivity {
             super.onChange(selfChange);
             Log.d(TAG, "onChange:" + selfChange);
             getContentResolver().unregisterContentObserver(this);
-            registerCallLogsObserver(); // update data
+            registerContactsObserver(); // update data
         }
     }
 
@@ -319,6 +533,11 @@ public class CursorLoaderActivity extends BaseActivity {
     protected void onDestroy() {
         try {
             getContentResolver().unregisterContentObserver(callLogsContentObserver);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            getContentResolver().unregisterContentObserver(contactsContentObserver);
         } catch (Exception e) {
             e.printStackTrace();
         }

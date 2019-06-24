@@ -441,6 +441,7 @@ Create your own content providers to share data with other applications or acces
     android:writePermission="android.permission.WRITE_CALL_LOG">
 </provider>
 ```
+To read call logs, ask for ```READ_CALL_LOG``` permission.      
 3. Now we have the host name (```android:authorities```), then go to [CallLogProvider], which refers to ```android:name```, and get the table name        
 4. Search ```UriMatcher``` in [CallLogProvider], you will find a bunch of ```sURIMatcher.addURI()```.       
 ```java
@@ -466,7 +467,7 @@ Code: [CursorLoaderActivity]
 ### User-defined content providers
 A content provider uri should be ```scheme + authority + table + [id] + [filter]```. E.g. ```content://com.catherine.myapp/member/1/name```     
 
-Code: [ContentProviderFragment]
+ContactsProvider + CallLogs code: [ContentProviderFragment]
 
 # Working in the background
 Tasks on a background thread using ```AsyncTask``` (for short or interruptible tasks) or ```AsyncTaskLoader``` (for tasks that are high-priority, or tasks that need to report back to the user or UI).   
