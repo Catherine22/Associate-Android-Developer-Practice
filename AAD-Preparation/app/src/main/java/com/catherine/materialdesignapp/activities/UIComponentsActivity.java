@@ -118,14 +118,6 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_search) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Log.d(TAG, "onNavigationItemSelected:" + item.getTitle());
         return switchTab(item.getItemId());

@@ -106,6 +106,7 @@
     </string-array>
 
     <string-array name="app_component_array">
+        <item>Background service</item>
         <item>Broadcast Receiver</item>
         <item>Content Provider</item>
     </string-array>

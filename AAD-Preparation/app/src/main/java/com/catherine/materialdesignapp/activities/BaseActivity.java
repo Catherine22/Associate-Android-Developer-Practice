@@ -8,6 +8,7 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.SearchRecentSuggestions;
 import android.util.Log;
 import android.view.*;
 import android.widget.TextView;
@@ -19,6 +20,8 @@ import androidx.core.app.ActivityCompat;
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.listeners.OnActivityEventListener;
 import com.catherine.materialdesignapp.listeners.OnRequestPermissionsListener;
+import com.catherine.materialdesignapp.providers.SearchSuggestionProvider;
+import com.catherine.materialdesignapp.utils.Storage;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
@@ -46,6 +49,7 @@ public class BaseActivity extends AppCompatActivity implements OnActivityEventLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+        initNightMode();
 
         // with the app theme is "NoActionBar", this bunch of code help to update statusBar style
         try {
@@ -57,6 +61,85 @@ public class BaseActivity extends AppCompatActivity implements OnActivityEventLi
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    // We set the theme, immediately in the Activity’s onCreate()
+    private void initNightMode() {
+        Storage storage = new Storage(this);
+        int nightMode = storage.retrieveInt(Storage.NIGHT_MODE);
+        if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+        lastMode = nightMode;
+    }
+
+    private int lastMode;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Storage storage = new Storage(this);
+        int currentMode = storage.retrieveInt(Storage.NIGHT_MODE);
+        if (lastMode != currentMode) {
+            // Recreate the activity for the theme change to take effect.
+            recreate();
+        }
+    }
+
+
+    /**
+     * @param menu
+     * @return true or onOptionsItemSelected(MenuItem) won't work
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+
+        Storage storage = new Storage(this);
+        int nightMode = storage.retrieveInt(Storage.NIGHT_MODE);
+        if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {
+            menu.getItem(0).setTitle(getString(R.string.action_day_mode));
+        } else {
+            menu.getItem(0).setTitle(getString(R.string.action_night_mode));
+        }
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_night_mode:
+                Storage storage = new Storage(this);
+                int nightMode = AppCompatDelegate.getDefaultNightMode();
+                if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    storage.save(Storage.NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_NO);
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    item.setTitle(getString(R.string.action_day_mode));
+                    storage.save(Storage.NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_YES);
+                }
+                // Recreate the activity for the theme change to take effect.
+                recreate();
+                return true;
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            case R.id.action_search:
+                return true;
+            case R.id.action_clear:
+                SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
+                        SearchSuggestionProvider.AUTHORITY, SearchSuggestionProvider.MODE);
+                suggestions.clearHistory();
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 
@@ -249,18 +332,6 @@ public class BaseActivity extends AppCompatActivity implements OnActivityEventLi
                 listener.onRetry();
                 break;
         }
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @Override

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.recyclerview.widget.RecyclerView
+<ListView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/rv_functions"
+        android:id="@+id/list_functions"
         android:layout_margin="@dimen/safe_area_margin"
         tools:context=".activities.AppComponentsActivity"
-        tools:showIn="@layout/fragment_content_provider"/>
+        tools:showIn="@layout/fragment_selector">
+
+</ListView>

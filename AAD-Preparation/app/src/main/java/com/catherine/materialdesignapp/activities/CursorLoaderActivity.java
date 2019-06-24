@@ -30,6 +30,7 @@ public class CursorLoaderActivity extends BaseActivity {
     public final static String TAG = CursorLoaderActivity.class.getSimpleName();
     public final static String PROVIDER = "provider";
     public final static int CALL_LOGS = 0;
+    public final static int CONTACTS = 1;
 
     /**
      * scheme (content://) + table_name (authorities) + path (defined uriMatcher)

@@ -152,18 +152,6 @@ public class SearchableSongsActivity extends BaseActivity implements SearchView.
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_clear) {
-            SearchRecentSuggestions suggestions = new SearchRecentSuggestions(this,
-                    SearchSuggestionProvider.AUTHORITY, SearchSuggestionProvider.MODE);
-            suggestions.clearHistory();
-            onBackPressed();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     public boolean onQueryTextSubmit(String query) {
         return false; // Start activity with "SEARCH_ACTION" intent-filter
     }

@@ -9,18 +9,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.SeekBar;
-import android.widget.Switch;
-
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.components.Slider;
 import com.catherine.materialdesignapp.listeners.OnActivityEventListener;
@@ -29,7 +22,6 @@ import com.catherine.materialdesignapp.services.MusicPlayerService;
 
 import static com.catherine.materialdesignapp.services.BusyJobs.JOB_MUSIC_PLAYER;
 
-@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 public class BackgroundServiceFragment extends Fragment implements View.OnClickListener {
     public final static String TAG = BackgroundServiceFragment.class.getSimpleName();
     private JobScheduler jobScheduler;
@@ -51,7 +43,7 @@ public class BackgroundServiceFragment extends Fragment implements View.OnClickL
         ConstraintLayout layout_job_scheduler = view.findViewById(R.id.layout_job_scheduler);
         ConstraintLayout layout_background = view.findViewById(R.id.layout_background);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             layout_background.setVisibility(View.GONE);
             layout_job_scheduler.setVisibility(View.VISIBLE);
 
@@ -121,6 +113,7 @@ public class BackgroundServiceFragment extends Fragment implements View.OnClickL
 
                 }
             });
+            jobScheduler = (JobScheduler) getActivity().getSystemService(getActivity().JOB_SCHEDULER_SERVICE);
         } else {
             layout_background.setVisibility(View.VISIBLE);
             layout_job_scheduler.setVisibility(View.GONE);
@@ -132,7 +125,6 @@ public class BackgroundServiceFragment extends Fragment implements View.OnClickL
         }
 
         onActivityEventListener = (OnActivityEventListener) getActivity();
-        jobScheduler = (JobScheduler) getActivity().getSystemService(getActivity().JOB_SCHEDULER_SERVICE);
     }
 
     @Override

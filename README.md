@@ -583,7 +583,7 @@ button.setOnClickListener(
 );
 ```
 
-Code: [MainActivity]
+Code: [BaseActivity]
 [Read more](https://www.youtube.com/watch?v=1by5J7c5Vz4)       
 
 # Styles

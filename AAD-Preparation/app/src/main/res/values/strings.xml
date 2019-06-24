@@ -96,6 +96,7 @@
     </string-array>
 
     <string-array name="app_component_array">
+        <item>Background service</item>
         <item>Broadcast Receiver</item>
         <item>Content Provider</item>
     </string-array>
@@ -139,6 +140,11 @@
         <item>Data storage</item>
         <item>AbstractThreadedSyncAdapter</item>
         <item>Other applications</item>
+    </string-array>
+
+    <string-array name="providers">
+        <item>CallLogProvider</item>
+        <item>ContactsProvider2</item>
     </string-array>
 
 

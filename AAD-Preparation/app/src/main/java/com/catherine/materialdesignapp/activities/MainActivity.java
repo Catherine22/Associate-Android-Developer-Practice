@@ -48,24 +48,12 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        initNightMode();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initComponents();
         handleAppLinks(getIntent());
         registerReceivers();
         getPermissions(permissions, this);
-    }
-
-    // We set the theme, immediately in the Activity’s onCreate()
-    private void initNightMode() {
-        Storage storage = new Storage(this);
-        int nightMode = storage.retrieveInt(Storage.NIGHT_MODE);
-        if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        }
     }
 
     private void initComponents() {
@@ -130,43 +118,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 titleStack.pop();
                 getSupportActionBar().setTitle(titleStack.peek());
             }
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-
-        Storage storage = new Storage(this);
-        int nightMode = storage.retrieveInt(Storage.NIGHT_MODE);
-        if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {
-            menu.getItem(0).setTitle(getString(R.string.action_day_mode));
-        } else {
-            menu.getItem(0).setTitle(getString(R.string.action_night_mode));
-        }
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_night_mode:
-                Storage storage = new Storage(this);
-                int nightMode = AppCompatDelegate.getDefaultNightMode();
-                if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                    storage.save(Storage.NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_NO);
-                } else {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                    item.setTitle(getString(R.string.action_day_mode));
-                    storage.save(Storage.NIGHT_MODE, AppCompatDelegate.MODE_NIGHT_YES);
-                }
-                // Recreate the activity for the theme change to take effect.
-                recreate();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
         }
     }
 
