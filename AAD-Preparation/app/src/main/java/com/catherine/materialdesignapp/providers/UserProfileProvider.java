@@ -5,10 +5,8 @@ import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.net.Uri;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
 import com.catherine.materialdesignapp.MyApplication;
 
 public class UserProfileProvider extends ContentProvider {

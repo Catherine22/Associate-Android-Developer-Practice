@@ -2,9 +2,7 @@ package com.catherine.materialdesignapp.jetpack.repositories;
 
 import android.app.Application;
 import android.os.AsyncTask;
-
 import androidx.lifecycle.LiveData;
-
 import com.catherine.materialdesignapp.jetpack.daos.ArtistDao;
 import com.catherine.materialdesignapp.jetpack.databases.ArtistRoomDatabase;
 import com.catherine.materialdesignapp.jetpack.entities.Artist;

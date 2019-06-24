@@ -2,7 +2,6 @@ package com.catherine.materialdesignapp.utils;
 
 import android.os.AsyncTask;
 import android.widget.TextView;
-
 import com.catherine.materialdesignapp.tasks.LogcatTask;
 
 

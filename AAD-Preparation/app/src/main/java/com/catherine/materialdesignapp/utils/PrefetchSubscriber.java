@@ -1,7 +1,6 @@
 package com.catherine.materialdesignapp.utils;
 
 import android.util.Log;
-
 import com.facebook.datasource.BaseDataSubscriber;
 import com.facebook.datasource.DataSource;
 

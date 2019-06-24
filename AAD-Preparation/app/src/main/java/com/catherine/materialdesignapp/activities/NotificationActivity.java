@@ -7,10 +7,8 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.CompoundButton;
-
 import androidx.appcompat.widget.Toolbar;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.models.ChannelInfo;
 import com.catherine.materialdesignapp.utils.NotificationUtils;
@@ -18,11 +16,7 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.textfield.TextInputLayout;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class NotificationActivity extends BaseActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
     public final static String TAG = NotificationActivity.class.getSimpleName();

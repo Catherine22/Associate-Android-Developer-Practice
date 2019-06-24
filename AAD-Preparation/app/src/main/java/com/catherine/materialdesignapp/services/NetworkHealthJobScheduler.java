@@ -6,7 +6,6 @@ import android.app.job.JobService;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.util.Log;
-
 import com.catherine.materialdesignapp.receivers.InternetConnectivityReceiver;
 
 @TargetApi(Build.VERSION_CODES.O)

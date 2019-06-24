@@ -8,15 +8,12 @@ import android.provider.SearchRecentSuggestions;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import com.catherine.materialdesignapp.FirebaseDB;
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.adapters.AddSongsAdapter;
@@ -26,11 +23,7 @@ import com.catherine.materialdesignapp.jetpack.entities.Song;
 import com.catherine.materialdesignapp.listeners.OnItemClickListener;
 import com.catherine.materialdesignapp.listeners.PlaylistHelperListener;
 import com.catherine.materialdesignapp.providers.SearchSuggestionProvider;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.*;
 
 import java.util.HashMap;
 import java.util.Map;

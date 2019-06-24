@@ -3,7 +3,6 @@ package com.catherine.materialdesignapp.components;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.selection.ItemKeyProvider;
-
 import com.catherine.materialdesignapp.jetpack.entities.Artist;
 
 import java.util.List;

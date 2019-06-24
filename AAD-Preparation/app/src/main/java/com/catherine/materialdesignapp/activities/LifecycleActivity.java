@@ -3,10 +3,8 @@ package com.catherine.materialdesignapp.activities;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
-
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.LifecycleOwner;
-
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.listeners.LogCatListener;
 import com.catherine.materialdesignapp.utils.LifecycleObserverImpl;

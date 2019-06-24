@@ -7,14 +7,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
-
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.fragments.FavoritesFragment;
 import com.catherine.materialdesignapp.fragments.HomeFragment;

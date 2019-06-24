@@ -12,10 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.listeners.OnItemClickListener;
 import com.catherine.materialdesignapp.models.CardItem;
@@ -25,11 +23,10 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.facebook.imagepipeline.request.Postprocessor;
+import jp.wasabeef.fresco.processors.BlurPostprocessor;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import jp.wasabeef.fresco.processors.BlurPostprocessor;
 
 public class CardRVAdapter extends RecyclerView.Adapter<CardRVAdapter.MainRvHolder> {
     private final String TAG = CardRVAdapter.class.getSimpleName();

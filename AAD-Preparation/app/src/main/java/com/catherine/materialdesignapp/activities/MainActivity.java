@@ -9,7 +9,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -20,7 +19,6 @@ import com.catherine.materialdesignapp.fragments.MainFragment;
 import com.catherine.materialdesignapp.listeners.OnRequestPermissionsListener;
 import com.catherine.materialdesignapp.receivers.NotificationReceiver;
 import com.catherine.materialdesignapp.utils.OccupiedActions;
-import com.catherine.materialdesignapp.utils.Storage;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;

@@ -5,7 +5,6 @@ import android.app.job.JobParameters;
 import android.app.job.JobService;
 import android.os.Build;
 import android.util.Log;
-
 import com.catherine.materialdesignapp.listeners.OnMusicPlayerListener;
 import com.catherine.materialdesignapp.tasks.MusicPlayer;
 

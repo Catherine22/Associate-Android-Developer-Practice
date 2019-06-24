@@ -7,12 +7,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
-
 import com.catherine.messagecenter.Server;
 
-import static com.catherine.materialdesignapp.utils.OccupiedActions.ACTION_NETWORK_STATE;
-import static com.catherine.materialdesignapp.utils.OccupiedActions.IS_CONNECTED;
-import static com.catherine.materialdesignapp.utils.OccupiedActions.TYPE_NAME;
+import static com.catherine.materialdesignapp.utils.OccupiedActions.*;
 
 public class InternetConnectivityReceiver extends BroadcastReceiver {
     public final static String TAG = InternetConnectivityReceiver.class.getSimpleName();

@@ -1,11 +1,9 @@
 package com.catherine.materialdesignapp.jetpack.databases;
 
 import android.content.Context;
-
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-
 import com.catherine.materialdesignapp.Constants;
 import com.catherine.materialdesignapp.jetpack.daos.ArtistDao;
 import com.catherine.materialdesignapp.jetpack.entities.Artist;

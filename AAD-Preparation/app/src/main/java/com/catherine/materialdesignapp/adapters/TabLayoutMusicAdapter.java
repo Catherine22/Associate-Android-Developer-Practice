@@ -1,11 +1,9 @@
 package com.catherine.materialdesignapp.adapters;
 
 import android.os.Parcelable;
-
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
-
 import com.catherine.materialdesignapp.MyApplication;
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.fragments.AlbumsFragment;

@@ -5,12 +5,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.adapters.SongAdapter;
 import com.catherine.materialdesignapp.components.PlaylistHelper;

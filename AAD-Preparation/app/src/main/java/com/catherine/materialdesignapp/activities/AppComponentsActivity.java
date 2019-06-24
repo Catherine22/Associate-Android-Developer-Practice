@@ -72,7 +72,6 @@ public class AppComponentsActivity extends BaseActivity implements ContentProvid
         });
         setSupportActionBar(toolbar);
         switchTo(viewpager.getCurrentItem());
-        Log.d(TAG, "items:" + adapter.getCount());
     }
 
     private void switchTo(int pos) {

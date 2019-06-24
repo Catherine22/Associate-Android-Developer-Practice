@@ -2,11 +2,9 @@ package com.catherine.materialdesignapp.jetpack.entities;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
 import com.catherine.materialdesignapp.listeners.ProguardIgnored;
 
 import java.util.HashMap;

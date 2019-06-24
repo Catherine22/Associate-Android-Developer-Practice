@@ -1,9 +1,7 @@
 package com.catherine.materialdesignapp.jetpack;
 
 import androidx.room.TypeConverter;
-
 import com.catherine.materialdesignapp.jetpack.entities.Song;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 

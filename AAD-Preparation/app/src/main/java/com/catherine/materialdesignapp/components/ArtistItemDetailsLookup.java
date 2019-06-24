@@ -2,12 +2,10 @@ package com.catherine.materialdesignapp.components;
 
 import android.view.MotionEvent;
 import android.view.View;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.selection.ItemDetailsLookup;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.catherine.materialdesignapp.adapters.ArtistAdapter;
 
 public class ArtistItemDetailsLookup extends ItemDetailsLookup<String> {

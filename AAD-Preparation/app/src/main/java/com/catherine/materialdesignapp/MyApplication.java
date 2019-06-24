@@ -9,7 +9,6 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.HandlerThread;
 import android.util.Log;
-
 import com.catherine.materialdesignapp.services.NetworkHealthJobScheduler;
 import com.catherine.materialdesignapp.services.NetworkHealthService;
 import com.catherine.materialdesignapp.utils.FileUtils;

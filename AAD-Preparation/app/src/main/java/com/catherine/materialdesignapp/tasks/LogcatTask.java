@@ -2,7 +2,6 @@ package com.catherine.materialdesignapp.tasks;
 
 import android.os.AsyncTask;
 import android.widget.TextView;
-
 import com.catherine.materialdesignapp.MyApplication;
 
 import java.io.BufferedReader;

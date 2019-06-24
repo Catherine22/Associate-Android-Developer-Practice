@@ -1,7 +1,6 @@
 package com.catherine.materialdesignapp.jetpack;
 
 import androidx.room.TypeConverter;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 

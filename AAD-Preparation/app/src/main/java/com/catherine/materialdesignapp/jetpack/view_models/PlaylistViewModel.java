@@ -1,10 +1,8 @@
 package com.catherine.materialdesignapp.jetpack.view_models;
 
 import android.app.Application;
-
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-
 import com.catherine.materialdesignapp.jetpack.entities.Playlist;
 import com.catherine.materialdesignapp.jetpack.repositories.PlaylistRepository;
 

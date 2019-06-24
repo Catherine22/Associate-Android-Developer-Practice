@@ -1,7 +1,6 @@
 package com.catherine.materialdesignapp.utils;
 
 import android.util.Log;
-
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;

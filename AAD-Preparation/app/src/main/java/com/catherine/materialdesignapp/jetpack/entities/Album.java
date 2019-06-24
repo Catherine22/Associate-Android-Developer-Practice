@@ -1,10 +1,9 @@
 package com.catherine.materialdesignapp.jetpack.entities;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
-
 import com.catherine.materialdesignapp.listeners.ProguardIgnored;
-import androidx.annotation.NonNull;
 
 import java.util.List;
 

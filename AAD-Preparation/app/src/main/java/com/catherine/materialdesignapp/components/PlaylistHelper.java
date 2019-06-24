@@ -6,10 +6,8 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
-
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.catherine.materialdesignapp.FirebaseDB;
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.adapters.AddToPlaylistAdapter;
@@ -20,17 +18,9 @@ import com.catherine.materialdesignapp.listeners.PlaylistHelperListener;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 public class PlaylistHelper implements View.OnClickListener {
     private String TAG = "PlaylistHelper";

@@ -3,7 +3,6 @@ package com.catherine.materialdesignapp.components;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.catherine.materialdesignapp.adapters.PlaylistAdapter;
 
 public class RecyclerViewItemTouchHelper extends ItemTouchHelper.Callback {

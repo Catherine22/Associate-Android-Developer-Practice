@@ -11,18 +11,13 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-
 import com.catherine.materialdesignapp.MyApplication;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 import static com.catherine.materialdesignapp.Constants.EXTERNAL_SD_CARD;
 import static com.catherine.materialdesignapp.Constants.SD_CARD;

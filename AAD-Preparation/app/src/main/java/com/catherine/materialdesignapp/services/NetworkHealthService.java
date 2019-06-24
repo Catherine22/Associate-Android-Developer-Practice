@@ -4,9 +4,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.IBinder;
-
 import androidx.annotation.Nullable;
-
 import com.catherine.materialdesignapp.listeners.ProguardIgnored;
 import com.catherine.materialdesignapp.receivers.InternetConnectivityReceiver;
 

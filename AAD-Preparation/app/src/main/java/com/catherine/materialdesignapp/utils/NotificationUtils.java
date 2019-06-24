@@ -1,21 +1,15 @@
 package com.catherine.materialdesignapp.utils;
 
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
+import android.app.*;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.widget.RemoteViews;
-
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.RemoteInput;
-
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.activities.MainActivity;
 import com.catherine.materialdesignapp.models.ChannelInfo;
