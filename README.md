@@ -122,7 +122,7 @@ You need the following:
 
 
 (Optional) Create your search suggestion content provider       
-```java
+```Java
 public class SearchSuggestionProvider extends SearchRecentSuggestionsProvider {
     public final static String AUTHORITY = "com.catherine.materialdesignapp.providers.SearchSuggestionProvider";
     public final static int MODE = DATABASE_MODE_QUERIES | DATABASE_MODE_2LINES;
@@ -141,7 +141,7 @@ And register your content provider in AndroidManifest.xml
 ```
 
 3. Handle intents and create a search icon in your activity
-```java
+```Java
 public class SearchSongsActivity extends AppCompatActivity {  
     private final static String TAG = SearchSongsActivity.class.getSimpleName();  
     private SearchManager searchManager;
@@ -333,7 +333,7 @@ Code: [LifecycleActivity], [LifecycleObserverImpl]
 ```
 
 2. In activities        
-```java
+```Java
  @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
@@ -444,7 +444,7 @@ Create your own content providers to share data with other applications or acces
 To read call logs, ask for ```READ_CALL_LOG``` permission.      
 3. Now we have the host name (```android:authorities```), then go to [CallLogProvider], which refers to ```android:name```, and get the table name        
 4. Search ```UriMatcher``` in [CallLogProvider], you will find a bunch of ```sURIMatcher.addURI()```.       
-```java
+```Java
 static {
     sURIMatcher.addURI(CallLog.AUTHORITY, "calls", CALLS);
     sURIMatcher.addURI(CallLog.AUTHORITY, "calls/#", CALLS_ID);
@@ -455,7 +455,7 @@ static {
 ```
 
 5. The completely path would be: scheme (content://) + table_name (authorities) + path (defined uriMatcher)      
-```java
+```Java
 private final static Uri callLogsDB = Uri.parse("content://call_log/calls");
 ```
 6. Fetch call logs      
@@ -470,8 +470,58 @@ A content provider uri should be ```scheme + authority + table + [id] + [filter]
 ContactsProvider + CallLogs code: [ContentProviderFragment]
 
 ### Define your own content provider
+code: [AlbumsProvider]      
 
+Query examples:     
+1. Query all of Taylor Swift's albums and return ```title``` and ```url```
+```Kotlin
+val ALBUM_URI = Uri.parse("content://com.catherine.materialdesignapp.providers.AlbumsProvider/albums")
+var cursor: Cursor? = null
+try {
+    cursor = contentResolver.query(
+            ALBUM_URI,
+            arrayOf("title, url"),
+            "artist = ?",
+            arrayOf("Taylor Swift"),
+            null)
+    Log.d(TAG, "cursor items:" + cursor?.count)
+    if (cursor != null)
+        while (cursor.moveToNext()) {
+            for (i in 0 until cursor.columnCount) {
+                Log.d(TAG, "${cursor.getColumnName(i)}: ${cursor.getString(i)}")
+            }
+        }
+} catch (e: Exception) {
+    e.printStackTrace()
+} finally {
+    cursor?.close()
+}
+```
 
+2. Query the ```_id = 3``` item
+```Kotlin
+val ALBUM_URI = Uri.parse("content://com.catherine.materialdesignapp.providers.AlbumsProvider/albums/3")
+var cursor: Cursor? = null
+try {
+    cursor = contentResolver.query(
+            ALBUM_URI,
+            null,
+            null,
+            null,
+            null)
+    Log.d(TAG, "cursor items:" + cursor?.count)
+    if (cursor != null)
+        while (cursor.moveToNext()) {
+            for (i in 0 until cursor.columnCount) {
+                Log.d(TAG, "${cursor.getColumnName(i)}: ${cursor.getString(i)}")
+            }
+        }
+} catch (e: Exception) {
+    e.printStackTrace()
+} finally {
+    cursor?.close()
+}
+```
 
 # Working in the background
 Tasks on a background thread using ```AsyncTask``` (for short or interruptible tasks) or ```AsyncTaskLoader``` (for tasks that are high-priority, or tasks that need to report back to the user or UI).   
@@ -545,7 +595,7 @@ android:theme="@style/AppTheme.NoActionBar"
 ```
 
 3. Initialise night mode programmatically if you want
-```java
+```Java
 public class MainActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -568,7 +618,7 @@ public class MainActivity {
 ```
 
 4. Switch day/night mode programmatically if you want
-```java
+```Java
 SharedPreferences sharedPreferences = getSharedPreferences("main", Context.MODE_PRIVATE);
 button.setOnClickListener(
     v -> {
@@ -1034,6 +1084,7 @@ The exam is only available in Java at this time (4/1/2019)
 [SleepTaskLoader]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/tasks/SleepTaskLoader.java>
 [NotificationActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/NotificationActivity.java>
 [ContentProviderFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/ContentProviderFragment.java>
+[AlbumsProvider]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/providers/AlbumsProvider.java>
 [CursorLoaderActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/CursorLoaderActivity.java>
 [BackgroundServiceFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/BackgroundServiceFragment.java>
 [rv_album_item]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/res/layout/rv_album_item.xml>

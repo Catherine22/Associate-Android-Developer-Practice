@@ -125,6 +125,8 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.MainRvHolder
             ImageRequest imageRequest = ImageRequest.fromUri(url);
             CacheKey cacheKey = DefaultCacheKeyFactory.getInstance().getEncodedCacheKey(imageRequest, null);
             BinaryResource resource = ImagePipelineFactory.getInstance().getMainFileCache().getResource(cacheKey);
+            if (resource == null)
+                return null;
             File file = ((FileBinaryResource) resource).getFile();
             bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
         } catch (Exception e) {

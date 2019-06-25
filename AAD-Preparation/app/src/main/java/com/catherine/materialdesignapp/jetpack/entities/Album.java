@@ -1,6 +1,7 @@
 package com.catherine.materialdesignapp.jetpack.entities;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 import com.catherine.materialdesignapp.listeners.ProguardIgnored;
@@ -15,14 +16,25 @@ public class Album implements ProguardIgnored {
     private String artist;
 
     @NonNull
-    @PrimaryKey
     private String title;
+
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(index = true, name = "_id")
+    private long id;
 
     private String url;
 
     private String thumbnail_image;
 
     private List<String> songs;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getImage() {
         return image;
