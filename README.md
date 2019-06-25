@@ -469,6 +469,10 @@ A content provider uri should be ```scheme + authority + table + [id] + [filter]
 
 ContactsProvider + CallLogs code: [ContentProviderFragment]
 
+### Define your own content provider
+
+
+
 # Working in the background
 Tasks on a background thread using ```AsyncTask``` (for short or interruptible tasks) or ```AsyncTaskLoader``` (for tasks that are high-priority, or tasks that need to report back to the user or UI).   
 

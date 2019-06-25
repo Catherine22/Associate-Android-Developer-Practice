@@ -95,7 +95,6 @@ public class AppComponentsActivity extends BaseActivity implements ContentProvid
         String title = SelectorFragment.TAG;
         Bundle bundle = new Bundle();
 
-
         f = new SelectorFragment();
         bundle.putInt("index", index);
         f.setArguments(bundle);

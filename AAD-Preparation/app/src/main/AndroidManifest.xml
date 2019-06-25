@@ -151,6 +151,10 @@
                 android:authorities="com.catherine.materialdesignapp.providers.SearchSuggestionProvider"
                 android:exported="false"/>
 
+        <provider
+                android:name=".providers.AlbumsProvider"
+                android:authorities="com.catherine.materialdesignapp.providers.AlbumsProvider"
+                android:exported="true"/>
 
         <!--Services-->
         <service

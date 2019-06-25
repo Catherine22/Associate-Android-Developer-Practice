@@ -50,7 +50,14 @@ public class ContentProviderFragment extends Fragment {
         FunctionAdapter adapter = new FunctionAdapter(items, getActivity(), new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                contentProviderFragmentListener.popUpFragment(position);
+                switch (position) {
+                    case 0:
+                        contentProviderFragmentListener.popUpFragment(position);
+                        break;
+                    case 1:
+
+                        break;
+                }
             }
 
             @Override

@@ -134,7 +134,7 @@
     </string-array>
 
     <string-array name="content_provider_functions">
-        <item>CursorLoader</item>
+        <item>System Providers</item>
         <item>Widgets</item>
         <item>Search</item>
         <item>Data storage</item>
