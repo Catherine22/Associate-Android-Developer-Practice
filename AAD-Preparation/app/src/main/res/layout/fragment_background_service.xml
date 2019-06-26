@@ -9,186 +9,35 @@
         tools:showIn="@layout/activity_app_components">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_background"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/layout_job_scheduler"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-            <Switch
-                    android:id="@+id/switch_require_network"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/text_area_height"
-                    android:layout_marginStart="@dimen/safe_area_margin_width"
-                    android:layout_marginEnd="@dimen/safe_area_margin_width"
-                    android:text="@string/require_network"
-                    app:layout_constraintBottom_toTopOf="@+id/rb_network"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-            <RadioGroup
-                    android:id="@+id/rb_network"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/safe_area_margin_width"
-                    android:layout_marginEnd="@dimen/safe_area_margin_width"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toTopOf="@id/switch_battery_not_low"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/switch_require_network">
-
-                <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/radio_any"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/text_area_height"
-                        android:layout_weight="1"
-                        android:checked="true"
-                        android:text="@string/any"/>
-
-                <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/radio_cellular"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/text_area_height"
-                        android:layout_weight="1"
-                        android:text="@string/cellular"/>
-
-                <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/radio_unmetered"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/text_area_height"
-                        android:layout_weight="1"
-                        android:text="@string/unmetered"/>
-            </RadioGroup>
-
-            <Switch
-                    android:id="@+id/switch_battery_not_low"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/text_area_height"
-                    android:layout_marginStart="@dimen/safe_area_margin_width"
-                    android:layout_marginEnd="@dimen/safe_area_margin_width"
-                    android:text="@string/require_battery_not_low"
-                    app:layout_constraintBottom_toTopOf="@id/switch_charging"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rb_network"/>
-
-            <Switch
-                    android:id="@+id/switch_charging"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/text_area_height"
-                    android:layout_marginStart="@dimen/safe_area_margin_width"
-                    android:layout_marginEnd="@dimen/safe_area_margin_width"
-                    android:text="@string/require_charging"
-                    app:layout_constraintBottom_toTopOf="@id/switch_device_idle"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/switch_battery_not_low"/>
-
-            <Switch
-                    android:id="@+id/switch_device_idle"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/text_area_height"
-                    android:layout_marginStart="@dimen/safe_area_margin_width"
-                    android:layout_marginEnd="@dimen/safe_area_margin_width"
-                    android:text="@string/require_device_idle"
-                    app:layout_constraintBottom_toTopOf="@id/slider_latency"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/switch_charging"/>
-
-
-            <com.catherine.materialdesignapp.components.Slider
-                    android:id="@+id/slider_latency"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/safe_area_margin"
-                    app:c_name="@string/latency"
-                    app:layout_constraintBottom_toTopOf="@id/slider_deadline"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/switch_device_idle"/>
-
-            <com.catherine.materialdesignapp.components.Slider
-                    android:id="@+id/slider_deadline"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/safe_area_margin"
-                    app:c_name="@string/deadline"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/slider_latency"/>
-
-
-            <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_start_job"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/safe_area_margin_width"
-                    android:layout_marginEnd="@dimen/safe_area_margin_width"
-                    android:text="@string/start_job_scheduler"
-                    app:layout_constraintBottom_toTopOf="@id/btn_stop_job"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/slider_deadline"/>
-
-
-            <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_stop_job"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/safe_area_margin_width"
-                    android:layout_marginEnd="@dimen/safe_area_margin_width"
-                    android:text="@string/stop_job_scheduler"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/btn_start_job"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/layout_background"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_start_service"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/safe_area_margin_width"
+                android:layout_marginEnd="@dimen/safe_area_margin_width"
+                android:text="@string/start_service"
+                app:layout_constraintBottom_toTopOf="@id/btn_stop_service"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"/>
 
-            <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_start_service"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/safe_area_margin_width"
-                    android:layout_marginEnd="@dimen/safe_area_margin_width"
-                    android:text="@string/start_service"
-                    app:layout_constraintBottom_toTopOf="@id/btn_stop_service"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
-
-            <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_stop_service"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/safe_area_margin_width"
-                    android:layout_marginEnd="@dimen/safe_area_margin_width"
-                    android:text="@string/stop_service"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/btn_start_service"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_stop_service"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/safe_area_margin_width"
+                android:layout_marginEnd="@dimen/safe_area_margin_width"
+                android:text="@string/stop_service"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_start_service"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

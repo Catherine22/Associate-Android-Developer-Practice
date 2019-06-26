@@ -3,7 +3,6 @@ package com.catherine.messagecenter;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import static com.catherine.messagecenter.Config.messagesList;
@@ -38,7 +37,7 @@ public class Server {
         }
         if (messagesList.containsKey(action)) {
             String key = messagesList.get(action);
-            if (!"MESSAGES_DOUBLE".equals(key)) {
+            if (!"MESSAGES_BUNDLE".equals(key)) {
                 ar.onFailure(ErrorMessages.MULTIPLE_VALUE);
                 CLog.e(TAG, "MULTIPLE_VALUE:" + action);
                 return;
@@ -64,7 +63,7 @@ public class Server {
         }
         if (messagesList.containsKey(action)) {
             String key = messagesList.get(action);
-            if (!"MESSAGES_DOUBLE".equals(key)) {
+            if (!"MESSAGES_BOOLEAN".equals(key)) {
                 ar.onFailure(ErrorMessages.MULTIPLE_VALUE);
                 CLog.e(TAG, "MULTIPLE_VALUE:" + action);
                 return;
@@ -90,7 +89,7 @@ public class Server {
         }
         if (messagesList.containsKey(action)) {
             String key = messagesList.get(action);
-            if (!"MESSAGES_DOUBLE".equals(key)) {
+            if (!"MESSAGES_STRING".equals(key)) {
                 ar.onFailure(ErrorMessages.MULTIPLE_VALUE);
                 CLog.e(TAG, "MULTIPLE_VALUE:" + action);
                 return;
@@ -116,7 +115,7 @@ public class Server {
         }
         if (messagesList.containsKey(action)) {
             String key = messagesList.get(action);
-            if (!"MESSAGES_DOUBLE".equals(key)) {
+            if (!"MESSAGES_INT".equals(key)) {
                 ar.onFailure(ErrorMessages.MULTIPLE_VALUE);
                 CLog.e(TAG, "MULTIPLE_VALUE:" + action);
                 return;

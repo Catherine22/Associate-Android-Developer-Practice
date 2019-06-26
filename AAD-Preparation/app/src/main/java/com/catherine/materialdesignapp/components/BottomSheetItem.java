@@ -44,7 +44,7 @@ public class BottomSheetItem extends RelativeLayout {
     private void initView(Context ctx, AttributeSet attrs) {
         initView(ctx);
 
-        String namespace = String.format("%s%s", "http://schemas.android.com/apk/",  ctx.getPackageName());
+        String namespace = String.format("%s%s", "http://schemas.android.com/apk/", ctx.getPackageName());
         String title = attrs.getAttributeValue(namespace, "c_title");
         int icon = attrs.getAttributeResourceValue(namespace, "c_icon", -1);
         if (icon != -1) {

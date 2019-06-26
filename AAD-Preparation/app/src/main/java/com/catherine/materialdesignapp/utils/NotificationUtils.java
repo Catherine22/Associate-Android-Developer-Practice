@@ -107,7 +107,7 @@ public class NotificationUtils extends ContextWrapper {
         positive.setAction(OccupiedActions.ACTION_POSITIVE_CLICK);
         PendingIntent positiveIntent = PendingIntent.getBroadcast(this, notificationId, positive, PendingIntent.FLAG_CANCEL_CURRENT);
 
-        Intent negative =new Intent(OccupiedActions.ACTION_UPDATE_NOTIFICATION);
+        Intent negative = new Intent(OccupiedActions.ACTION_UPDATE_NOTIFICATION);
         negative.putExtra(OccupiedActions.NOTIFICATION_ID, notificationId);
         negative.setAction(OccupiedActions.ACTION_NEGATIVE_CLICK);
         PendingIntent negativeIntent = PendingIntent.getBroadcast(this, notificationId, negative, PendingIntent.FLAG_CANCEL_CURRENT);

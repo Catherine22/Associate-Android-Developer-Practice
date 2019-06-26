@@ -258,6 +258,20 @@ List all resource directories you should take care of:
 10. xml/     
 11. font/       
 
+## Create your own resources for specific needs
+E.g. 
+Language and region: ```en```, ```en-rUS```     
+Layout Direction: ```ldrtl```, ```ldltr```      
+HDR: ```highdr```, ```lowdr```      
+Screen Orientation: ```port```, ```land```      
+UI mode: ```car```, ```television```, ```watch```...        
+Nigh mode: ```night```, ```notnight```      
+DPI: ```ldpi```, ```mdpi```...      
+Platform version: ```v21```, ```v26```...       
+...     
+
+Go to https://developer.android.com/guide/topics/resources/providing-resources.html#AlternativeResources and check **table 2**
+
 
 # Device compatibility
 1. Create alternative UI resources such as layouts, drawables and mipmaps     
@@ -270,11 +284,7 @@ List all resource directories you should take care of:
 5. Build a dynamic UI with fragments        
 6. Test on all screen sizes     
 
-ConstraintLayout example: []      
-Fragments example: []     
-
 [Read more](https://developer.android.com/training/multiscreen/screensizes)
-
 
 ## Pixel densities
 Pixel density is how many pixels within a physical area of the screen, ```dpi``` is the basic unit.       
@@ -301,6 +311,14 @@ To see more details by automatically importing icons with Android Studio Image A
 
 [Read more](https://developer.android.com/guide/practices/screens_support)        
 
+## To support right-to-left layouts
+1. Target API 17 or higher       
+2. In Manifest,     
+```xml
+<application
+    android:supportsRtl="true">
+</application>
+```
 
 # Lifecycle
 [Read more](https://developer.android.com/guide/components/activities/activity-lifecycle)
@@ -718,6 +736,10 @@ button.setOnClickListener(
 );
 ```
 
+5. Notice, in step 4, the ```recreate()``` will recreate the Activity only, which means, other activities won't update simultaneously. They are still Day Mode. To update the whole app to Night Mode, there are two points:        
+    - Create your own Night Mode resources if needed. E.g. ```layout-night```       
+    - Manage options menu by your base activity     
+
 Code: [BaseActivity]
 [Read more](https://www.youtube.com/watch?v=1by5J7c5Vz4)       
 
@@ -1132,22 +1154,22 @@ The exam is only available in Java at this time (4/1/2019)
 
 
 
-[Material design]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#material-design>
-[Localisation]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#Localisation>
-[Device compatibility]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#device-compatibility>
-[res]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/res/>
-[Lifecycle]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#lifecycle>
-[App components]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#app-components>
-[Working in the background]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#working-in-the-background>
-[Notification]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#notification>
-[Accessibility Features]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#accessibility-features>
-[Day/Night Mode]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#daynight-mode>
-[Styles]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#styles>
-[Jetpack]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#jetpack>
-[Debugging]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#debugging>
-[Test]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#test>
-[Kotlin]:<https://github.com/Catherine22/AAD-Preparation/blob/master/README.md#kotlin>
+[Material design]:<https://github.com/Catherine22/AAD-Preparation#material-design>
+[Localisation]:<https://github.com/Catherine22/AAD-Preparation#Localisation>
+[Device compatibility]:<https://github.com/Catherine22/AAD-Preparation#device-compatibility>
+[Lifecycle]:<https://github.com/Catherine22/AAD-Preparation#lifecycle>
+[App components]:<https://github.com/Catherine22/AAD-Preparation#app-components>
+[Working in the background]:<https://github.com/Catherine22/AAD-Preparation#working-in-the-background>
+[Notification]:<https://github.com/Catherine22/AAD-Preparation#notification>
+[Accessibility Features]:<https://github.com/Catherine22/AAD-Preparation#accessibility-features>
+[Day/Night Mode]:<https://github.com/Catherine22/AAD-Preparation#daynight-mode>
+[Styles]:<https://github.com/Catherine22/AAD-Preparation#styles>
+[Jetpack]:<https://github.com/Catherine22/AAD-Preparation#jetpack>
+[Debugging]:<https://github.com/Catherine22/AAD-Preparation#debugging>
+[Test]:<https://github.com/Catherine22/AAD-Preparation#test>
+[Kotlin]:<https://github.com/Catherine22/AAD-Preparation#kotlin>
 
+[res]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/res/>
 [BaseActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/BaseActivity.java>
 [MainActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/MainActivity.java>
 [LifecycleActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/LifecycleActivity.java>
@@ -1186,8 +1208,8 @@ The exam is only available in Java at this time (4/1/2019)
 [assets module]:<https://github.com/Catherine22/AAD-Preparation/tree/master/AAD-Preparation/assets>
 [AndroidManifest]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/AndroidManifest.xml>
 [NavigationDrawer unit test code]:<https://github.com/Catherine22/AAD-Preparation/tree/master/AAD-Preparation/app/src/androidTest/java/com/catherine/materialdesignapp/DrawerNavigatorTest.java>
-[RecyclerView unit test code]:<https://github.com/Catherine22/AAD-Preparation/tree/master/AAD-Preparation/app/src/androidTest/java/com/catherine/materialdesignapp.BackgroundActivityTest.java>
-[Options menu unit test code]:<https://github.com/Catherine22/AAD-Preparation/tree/master/AAD-Preparation/app/src/androidTest/java/com/catherine/materialdesignapp.DayNightModeTest.java>
+[RecyclerView unit test code]:<https://github.com/Catherine22/AAD-Preparation/tree/master/AAD-Preparation/app/src/androidTest/java/com/catherine/materialdesignapp/BackgroundActivityTest.java>
+[Options menu unit test code]:<https://github.com/Catherine22/AAD-Preparation/tree/master/AAD-Preparation/app/src/androidTest/java/com/catherine/materialdesignapp/DayNightModeTest.java>
 
 
 

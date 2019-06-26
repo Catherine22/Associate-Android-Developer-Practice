@@ -172,7 +172,6 @@ public class BaseActivity extends AppCompatActivity implements OnActivityEventLi
             } else if (ActivityCompat.checkSelfPermission(this, p) != PackageManager.PERMISSION_GRANTED) {
                 deniedPermissionsList.add(p);
             }
-
         }
 
         if (requestSpec != grantedSpec) {

@@ -13,14 +13,12 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.widget.ContentLoadingProgressBar;
 import com.catherine.materialdesignapp.BuildConfig;
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.components.StepItem;
-import com.catherine.materialdesignapp.utils.Storage;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.play.core.splitcompat.SplitCompat;
@@ -128,15 +126,6 @@ public class DynamicDeliveryActivity extends BaseActivity implements View.OnClic
             public void onSlide(@NonNull View bottomSheet, float slideOffset) {
             }
         });
-
-
-        Storage storage = new Storage(this);
-        int nightMode = storage.retrieveInt(Storage.NIGHT_MODE);
-        if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {
-            bottomSheet.setBackgroundResource(R.drawable.bottom_sheet_dark_bg);
-        } else {
-            bottomSheet.setBackgroundResource(R.drawable.bottom_sheet_light_bg);
-        }
 
         currentStepInt = 1;
         updateBottomSheetView(currentStepInt);

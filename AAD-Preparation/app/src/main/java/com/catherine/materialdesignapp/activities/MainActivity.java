@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import androidx.annotation.Nullable;
@@ -24,11 +25,10 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.List;
 import java.util.Stack;
 
-public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener, OnRequestPermissionsListener {
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
     public final static String TAG = MainActivity.class.getSimpleName();
     private NotificationReceiver notificationReceiver;
     private DrawerLayout drawer;
-    private String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
     private Fragment[] fragments;
     private String[] titles;
@@ -48,13 +48,35 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initComponents();
+        askForPermission();
         handleAppLinks(getIntent());
-        registerReceivers();
-        getPermissions(permissions, this);
     }
 
-    private void initComponents() {
+    private void askForPermission() {
+        getPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, new OnRequestPermissionsListener() {
+            @Override
+            public void onGranted() {
+                Log.d(TAG, "onGranted");
+                MyApplication.INSTANCE.init(true);
+                init();
+            }
+
+            @Override
+            public void onDenied(@Nullable List<String> deniedPermissions) {
+                Log.d(TAG, "onDenied:" + deniedPermissions);
+                MyApplication.INSTANCE.init(false);
+                init();
+            }
+
+            @Override
+            public void onRetry() {
+                Log.d(TAG, "onRetry");
+                askForPermission();
+            }
+        });
+    }
+
+    private void init() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -80,17 +102,21 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         titles = getResources().getStringArray(R.array.main_fragment_titles);
         titleStack = new Stack<>();
         popUpFragment(Content.Default);
+        registerReceivers();
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
+        askForPermission();
         handleAppLinks(intent);
     }
 
     private void handleAppLinks(Intent appLinkIntent) {
         // ATTENTION: This was auto-generated to handle app links.
+        Log.d(TAG, "handleAppLinks");
         if (appLinkIntent == null)
             return;
+        Log.d(TAG, appLinkIntent.toString());
         String appLinkAction = appLinkIntent.getAction();
         Uri appLinkData = appLinkIntent.getData();
     }
@@ -178,20 +204,5 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     protected void onDestroy() {
         unregisterReceivers();
         super.onDestroy();
-    }
-
-    @Override
-    public void onGranted() {
-        MyApplication.INSTANCE.init(true);
-    }
-
-    @Override
-    public void onDenied(@Nullable List<String> deniedPermissions) {
-        MyApplication.INSTANCE.init(false);
-    }
-
-    @Override
-    public void onRetry() {
-        getPermissions(permissions, this);
     }
 }

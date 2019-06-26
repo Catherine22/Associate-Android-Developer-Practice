@@ -15,6 +15,8 @@ import com.catherine.materialdesignapp.utils.LocationHelper;
 import com.catherine.materialdesignapp.utils.SafetyUtils;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.Locale;
+
 public class MainFragment extends Fragment {
     public final static String TAG = MainFragment.class.getSimpleName();
 
@@ -58,6 +60,14 @@ public class MainFragment extends Fragment {
         TextInputLayout til_jni = view.findViewById(R.id.til_jni);
         CBridge cBridge = new CBridge();
         til_jni.getEditText().setText(cBridge.stringFromJNI() + cBridge.plus(45, 55));
+
+        TextInputLayout til_special_str = view.findViewById(R.id.til_special_str);
+        til_special_str.getEditText().setText(
+                String.format(Locale.US, "Untranslatable strings: \n%s\n%s\n%s\n%s\n%s\n%s",
+                        getString(R.string.countdown), getString(R.string.star_rating),
+                        getString(R.string.app_homeurl), getString(R.string.prod_name),
+                        getString(R.string.promo_message), getResources().getQuantityString(R.plurals.numberOfSongsAvailable, 3))
+        );
 
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }

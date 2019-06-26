@@ -54,6 +54,8 @@
     <string name="uninstall">Uninstall</string>
     <string name="notice">Notice</string>
     <string name="ok">OK</string>
+    <string name="unfold">Unfold</string>
+    <string name="lifecycle">Lifecycle</string>
 
     <!--radio group-->
     <string name="require_network">Require Network</string>
@@ -62,6 +64,7 @@
     <string name="unmetered">غير المحددة بمقدار بيانات</string>
     <string name="preferred_language">Preferred Language</string>
     <string name="strings_from_jni">strings from JNI</string>
+    <string name="special_string">special string</string>
     <string name="fingerprint_apkdigest">Fingerprint - ApkDigest</string>
     <string name="fingerprint_apkcertificatedigestsha256">Fingerprint - ApkCertificateDigestSha256</string>
     <string name="fingerprint_sha256">Fingerprint - SHA256</string>

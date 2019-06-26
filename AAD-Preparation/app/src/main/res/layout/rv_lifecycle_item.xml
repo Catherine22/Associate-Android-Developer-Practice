@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/half_safe_area_margin"
+        android:background="@drawable/common_border"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:showIn="@layout/activity_lifecycle"
+        tools:context=".activities.LifecycleActivity">
+
+    <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/colorAccent"
+            android:layout_margin="@dimen/half_safe_area_margin"
+            android:focusable="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/bt_show_body"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageButton
+            android:id="@+id/bt_show_body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp"
+            android:background="@android:color/transparent"
+            android:layout_margin="@dimen/half_safe_area_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/unfold"/>
+
+
+    <TextView
+            android:id="@+id/tv_body"
+            android:layout_marginStart="@dimen/half_safe_area_margin"
+            android:layout_marginEnd="@dimen/half_safe_area_margin"
+            android:layout_marginBottom="@dimen/half_safe_area_margin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

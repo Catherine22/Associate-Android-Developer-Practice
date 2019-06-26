@@ -2,15 +2,13 @@ package com.catherine.materialdesignapp.services;
 
 import android.app.Service;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.IBinder;
 import androidx.annotation.Nullable;
 import com.catherine.materialdesignapp.listeners.ProguardIgnored;
-import com.catherine.materialdesignapp.receivers.InternetConnectivityReceiver;
+import com.catherine.materialdesignapp.utils.LogCatHelper;
 
 
-public class NetworkHealthService extends Service implements ProguardIgnored {
-    private InternetConnectivityReceiver internetReceiver;
+public class LogcatService extends Service implements ProguardIgnored {
 
     @Nullable
     @Override
@@ -21,16 +19,13 @@ public class NetworkHealthService extends Service implements ProguardIgnored {
     @Override
     public void onCreate() {
         super.onCreate();
+        LogCatHelper logcatHelper = new LogCatHelper();
+        logcatHelper.startRecording();
     }
 
 
     @Override
     public void onDestroy() {
-        try {
-            unregisterReceiver(internetReceiver);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         super.onDestroy();
     }
 }
