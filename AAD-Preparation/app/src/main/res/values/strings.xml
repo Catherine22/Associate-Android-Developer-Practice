@@ -55,7 +55,6 @@
     <string name="notice">Notice</string>
     <string name="ok">OK</string>
     <string name="unfold">Unfold</string>
-    <string name="lifecycle">Lifecycle</string>
 
     <!--radio group-->
     <string name="require_network">Require Network</string>
@@ -174,8 +173,13 @@
         <item>MMS</item>
     </string-array>
 
+    <string-array name="lifecycle_items">
+        <item>Logcat</item>
+        <item>Lifecycle</item>
+        <item>Crash Log if exists</item>
+    </string-array>
 
-    <string name="logcat" translatable="false">LogCat</string>
+
     <string name="foreground_service" translatable="false">Foreground service</string>
     <string name="background_service" translatable="false">Background service</string>
     <string name="job_scheduler" translatable="false">Job scheduler</string>

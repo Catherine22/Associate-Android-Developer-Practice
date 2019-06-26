@@ -58,6 +58,7 @@ public class LifecycleAdapter extends RecyclerView.Adapter<LifecycleAdapter.Main
         if (!TextUtils.isEmpty(pair.second)) {
             mainRvHolder.tv_body.setVisibility(View.VISIBLE);
             mainRvHolder.tv_body.setText(pair.second);
+            unfoldedItems[position] = true;
         } else
             mainRvHolder.tv_body.setVisibility(View.GONE);
         dropDownOrUp(mainRvHolder.itemView, position);

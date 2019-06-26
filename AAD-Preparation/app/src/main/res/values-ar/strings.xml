@@ -55,7 +55,6 @@
     <string name="notice">Notice</string>
     <string name="ok">OK</string>
     <string name="unfold">Unfold</string>
-    <string name="lifecycle">Lifecycle</string>
 
     <!--radio group-->
     <string name="require_network">Require Network</string>

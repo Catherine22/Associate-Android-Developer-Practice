@@ -3,7 +3,9 @@ package com.catherine.materialdesignapp.activities;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -54,8 +56,15 @@ public class LifecycleActivity extends BaseActivity implements LifecycleOwner, L
         lifecycleObserver.setLifecycleListener(this);
         getLifecycle().addObserver(lifecycleObserver);
 
-        features.add(new Pair<>(getString(R.string.logcat), ""));
-        features.add(new Pair<>(getString(R.string.lifecycle), ""));
+        String[] titles = getResources().getStringArray(R.array.lifecycle_items);
+        for (String title : titles) {
+            features.add(new Pair<>(title, ""));
+        }
+
+
+        // crash log
+        SharedPreferences sp = getSharedPreferences("CrashLog", Context.MODE_PRIVATE);
+        features.set(2, new Pair<>(titles[2], sp.getString("CrashLog", "No crash history")));
 
         RecyclerView rv_features = findViewById(R.id.rv_features);
         rv_features.setLayoutManager(new LinearLayoutManager(this));

@@ -4,7 +4,9 @@ import android.app.Application;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Environment;
 import android.os.HandlerThread;
@@ -23,7 +25,7 @@ import java.util.Map;
 
 import static com.catherine.materialdesignapp.services.BusyJobs.JOB_NETWORK_STATE;
 
-public class MyApplication extends Application {
+public class MyApplication extends Application implements Thread.UncaughtExceptionHandler {
     private static String TAG = MyApplication.class.getSimpleName();
     public static MyApplication INSTANCE;
     public HandlerThread musicPlayerThread;
@@ -114,5 +116,33 @@ public class MyApplication extends Application {
             Fresco.initialize(this, config);
         } else
             Fresco.initialize(this);
+    }
+
+    @Override
+    public void uncaughtException(Thread t, Throwable e) {
+        StringBuilder msg = new StringBuilder();
+        msg.append(e).append("\n");
+
+        for (int i = 0; i < e.getStackTrace().length; i++) {
+            msg.append(e.getStackTrace()[i].toString()).append("\n");
+        }
+
+        if (e.getCause().getStackTrace().length > 0)
+            msg.append("\nCaused by:\n");
+
+        for (int k = 0; k < e.getCause().getStackTrace().length; k++) {
+            msg.append(e.getCause().getStackTrace()[k].toString()).append("\n");
+        }
+
+        SharedPreferences sp = getSharedPreferences("CrashLog", Context.MODE_PRIVATE);
+        sp.edit().putString("CrashLog", msg.toString()).apply();
+        Log.e(TAG, "crashHandler : " + sp.getString("CrashLog", "No crash history"));
+
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+        System.exit(1);
     }
 }
