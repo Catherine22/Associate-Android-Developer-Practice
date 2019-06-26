@@ -523,6 +523,86 @@ try {
 }
 ```
 
+3. Insert a new item
+```Kotlin
+val values = ContentValues()
+values.put("title", "Reputation")
+values.put("url", "https://www.amazon.com/reputation-Taylor-Swift/dp/B0754BBDF1/ref=ntt_mus_dp_dpt_1")
+values.put("image", "https://images-na.ssl-images-amazon.com/images/I/81Ii6u2neLL._SX522_.jpg")
+values.put("thumbnail_image", "https://images-na.ssl-images-amazon.com/images/I/71PcXiIap4L.jpg")
+values.put("artist", "Taylor Swift")
+val songList = arrayListOf(
+    "...Ready for It?",
+    "End Game",
+    "I Did Something Bad",
+    "Don't Blame Me",
+    "Delicate",
+    "Look What You Made Me Do"
+)
+values.put(
+    "songs", fromStringList(songList)
+)
+try {
+    contentResolver.insert(
+        ALBUM_URI,
+        values
+    )
+} catch (e: Exception){
+    e.printStackTrace()
+}
+```
+```Kotlin
+private fun fromStringList(value: List<String>?): String {
+    if (value == null || value.isEmpty()) {
+        return JSONArray().toString()
+    }
+    val ja = JSONArray()
+    for (i in value.indices) {
+        ja.put(value[i])
+    }
+    return ja.toString()
+}
+```
+
+4. Update "Speak Now"
+```Kotlin
+var values = ContentValues()
+var songList = arrayListOf("Mine", "Innocent", "Speak Now")
+values.put("songs", "'" + fromStringList(songList) + "'")
+try {
+    contentResolver.update(
+        ALBUM_URI,
+        values,
+        "title = ?",
+        arrayOf(
+            "Speak Now"
+        )
+    )
+} catch (e: Exception){
+    e.printStackTrace()
+}
+```
+
+5. Delete the ```_id = 3``` item
+```Kotlin
+val ALBUM_ID_URI = Uri.parse("content://com.catherine.materialdesignapp.providers.AlbumsProvider/albums/3")
+try {
+    contentResolver.delete(ALBUM_ID_URI, null, null)
+} catch (e: Exception){
+    e.printStackTrace()
+}
+```
+
+6. Delete Taylor Swift's Reputation album
+```Kotlin
+try {
+    contentResolver.delete(ALBUM_URI, "artist = ? AND title = ?", arrayOf("Taylor Swift", "Reputation"))
+} catch (e: Exception) {
+    e.printStackTrace()
+}
+```
+
+
 # Working in the background
 Tasks on a background thread using ```AsyncTask``` (for short or interruptible tasks) or ```AsyncTaskLoader``` (for tasks that are high-priority, or tasks that need to report back to the user or UI).   
 

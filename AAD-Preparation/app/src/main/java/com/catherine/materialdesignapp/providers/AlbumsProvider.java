@@ -126,7 +126,7 @@ public class AlbumsProvider extends ContentProvider {
                     album.setUrl(values.getAsString("url"));
 
                 if (values.containsKey("songs")) {
-                    album.setSongs(StringListConverter.fromString("songs"));
+                    album.setSongs(StringListConverter.fromString(values.getAsString("songs")));
                 }
                 long id = albumDao.insert(album);
                 getContext().getContentResolver().notifyChange(uri, null);
@@ -213,7 +213,7 @@ public class AlbumsProvider extends ContentProvider {
         if (header.length() == mQuery.length())
             throw new IllegalArgumentException("Invalid URI, cannot update with incorrect values: " + uri);
 
-        mQuery.delete(mQuery.length() - " AND ".length(), mQuery.length());
+        mQuery.delete(mQuery.length() - ", ".length(), mQuery.length());
 
         String[] mSelectionArgs = selectionArgs;
         if (sURIMatcher.match(uri) == ALBUMS) {
@@ -251,9 +251,8 @@ public class AlbumsProvider extends ContentProvider {
             sb.append(str);
             sb.append(" = ");
             sb.append(values.getAsString(str));
-            sb.append(" AND ");
+            sb.append(", ");
         }
         return sb.toString();
     }
-
 }
