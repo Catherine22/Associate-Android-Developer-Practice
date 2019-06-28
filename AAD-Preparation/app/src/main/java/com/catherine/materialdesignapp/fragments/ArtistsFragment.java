@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
@@ -13,6 +14,7 @@ import androidx.recyclerview.selection.StorageStrategy;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.adapters.ArtistAdapter;
 import com.catherine.materialdesignapp.components.ArtistItemDetailsLookup;
@@ -22,7 +24,6 @@ import com.catherine.materialdesignapp.jetpack.view_models.ArtistViewModel;
 import com.catherine.materialdesignapp.listeners.OnSearchViewListener;
 import com.catherine.materialdesignapp.listeners.UIComponentsListener;
 import com.catherine.materialdesignapp.utils.TextHelper;
-import com.google.firebase.database.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,6 @@ public class ArtistsFragment extends ChildOfMusicFragment implements OnSearchVie
     private SelectionTracker<String> tracker;
     private UIComponentsListener listener;
 
-    // RoomDatabase
     private ArtistViewModel artistViewModel;
 
     @Override
@@ -53,7 +53,6 @@ public class ArtistsFragment extends ChildOfMusicFragment implements OnSearchVie
         SwipeRefreshLayout swipeRefreshLayout = view.findViewById(R.id.srl);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary, R.color.colorAccent, R.color.colorPrimaryDark, R.color.colorAccentDark);
         swipeRefreshLayout.setOnRefreshListener(() -> {
-            fillInData();
             swipeRefreshLayout.setRefreshing(false);
         });
         RecyclerView recyclerView = view.findViewById(R.id.rv_artist);
@@ -78,38 +77,12 @@ public class ArtistsFragment extends ChildOfMusicFragment implements OnSearchVie
         tracker.addObserver(new SelectionObserver());
         listener = (UIComponentsListener) getActivity();
 
+        // RoomDatabase
         artistViewModel = ViewModelProviders.of(this).get(ArtistViewModel.class);
         artistViewModel.getArtistLiveData().observe(this, artists -> {
             filteredArtists.clear();
             filteredArtists.addAll(artists);
             updateList();
-        });
-        fillInData();
-    }
-
-    private void fillInData() {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("artists");
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                Log.d(TAG, String.format("size: %d", dataSnapshot.getChildrenCount()));
-                artists.clear();
-                for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    Artist artist = child.getValue(Artist.class);
-                    Log.i(TAG, String.format("%s: %s", child.getKey(), artist));
-                    artists.add(artist);
-                    artistViewModel.insert(artist);
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
         });
     }
 
@@ -158,5 +131,12 @@ public class ArtistsFragment extends ChildOfMusicFragment implements OnSearchVie
             Log.d(TAG, String.format("onItemStateChanged: %s, isSelected: %b", key, selected));
             super.onItemStateChanged(key, selected);
         }
+    }
+
+
+    @Override
+    public void onDestroy() {
+        artistViewModel.release();
+        super.onDestroy();
     }
 }

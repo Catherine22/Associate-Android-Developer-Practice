@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -14,7 +15,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import com.catherine.materialdesignapp.FirebaseDB;
+
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.activities.SearchableSongsActivity;
 import com.catherine.materialdesignapp.activities.UIComponentsActivity;
@@ -26,7 +27,6 @@ import com.catherine.materialdesignapp.listeners.OnPlaylistItemClickListener;
 import com.catherine.materialdesignapp.listeners.OnSearchViewListener;
 import com.catherine.materialdesignapp.listeners.UIComponentsListener;
 import com.catherine.materialdesignapp.utils.TextHelper;
-import com.google.firebase.database.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,10 +39,6 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
     private ConstraintLayout empty_page;
     private RecyclerView recyclerView;
     private UIComponentsListener listener;
-
-    // firebase
-    private DatabaseReference myRef;
-    private ValueEventListener firebaseValueEventListener;
 
     // RoomDatabase
     private PlaylistViewModel playlistViewModel;
@@ -58,14 +54,10 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        String DB_PATH = FirebaseDB.PLAYLIST;
-        myRef = database.getReference(DB_PATH);
 
         SwipeRefreshLayout swipeRefreshLayout = view.findViewById(R.id.srl);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary, R.color.colorAccent, R.color.colorPrimaryDark, R.color.colorAccentDark);
         swipeRefreshLayout.setOnRefreshListener(() -> {
-            fillInData();
             swipeRefreshLayout.setRefreshing(false);
         });
 
@@ -116,41 +108,6 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
             adapter.setEntities(filteredPlaylists);
             updateList();
         });
-        fillInData();
-    }
-
-    private void fillInData() {
-        if (firebaseValueEventListener != null)
-            myRef.removeEventListener(firebaseValueEventListener);
-
-        // This method is called once with the initial value and again
-        // whenever data at this location is updated.
-        // Failed to read value
-        firebaseValueEventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                Log.d(TAG, String.format("size: %d", dataSnapshot.getChildrenCount()));
-
-                playlists.clear();
-                for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    Playlist playlist = child.getValue(Playlist.class);
-                    Log.i(TAG, String.format("%s: %s", child.getKey(), playlist));
-
-                    playlists.add(playlist);
-                    playlistViewModel.insert(playlist);
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
-                updateList();
-            }
-        };
-        myRef.addValueEventListener(firebaseValueEventListener);
     }
 
     @Override
@@ -198,8 +155,7 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
 
     @Override
     public void onDestroy() {
-        if (firebaseValueEventListener != null)
-            myRef.removeEventListener(firebaseValueEventListener);
+        playlistViewModel.release();
         super.onDestroy();
     }
 }

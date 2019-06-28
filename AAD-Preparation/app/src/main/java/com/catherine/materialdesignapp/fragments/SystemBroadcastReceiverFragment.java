@@ -13,18 +13,26 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.catherine.materialdesignapp.MyApplication;
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.adapters.ReceiverAdapter;
 import com.catherine.materialdesignapp.listeners.OnItemClickListener;
 import com.catherine.materialdesignapp.models.ReceiverItem;
-import com.catherine.materialdesignapp.services.*;
+import com.catherine.materialdesignapp.services.AirplaneModeJobScheduler;
+import com.catherine.materialdesignapp.services.AirplaneModeService;
+import com.catherine.materialdesignapp.services.BatteryLowJobScheduler;
+import com.catherine.materialdesignapp.services.BatteryLowService;
+import com.catherine.materialdesignapp.services.BusyJobs;
+import com.catherine.materialdesignapp.services.ScreenOnOffJobScheduler;
+import com.catherine.materialdesignapp.services.ScreenOnOffService;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -94,15 +102,15 @@ public class SystemBroadcastReceiverFragment extends Fragment {
             }
         });
         rv.setAdapter(adapter);
+
+
+        // init serviceConnection to bind services
+        batteryLowConnection = new BatteryLowConnection();
     }
 
     private void bindService(int position) {
         Intent intent;
         if (position == 2) {
-            if (batteryLowConnection == null) {
-                // init serviceConnection to bind services
-                batteryLowConnection = new BatteryLowConnection();
-            }
             intent = new Intent(getActivity(), BatteryLowService.class);
             MyApplication.INSTANCE.bindService(intent, batteryLowConnection, Context.BIND_AUTO_CREATE);
         }
@@ -110,8 +118,11 @@ public class SystemBroadcastReceiverFragment extends Fragment {
 
     private void unbindService(int position) {
         if (position == 2) {
-            if (batteryLowConnection != null)
+            try {
                 MyApplication.INSTANCE.unbindService(batteryLowConnection);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         ReceiverItem newItem = items.get(position);
@@ -121,8 +132,11 @@ public class SystemBroadcastReceiverFragment extends Fragment {
 
     @Override
     public void onDestroy() {
-        if (batteryLowConnection != null)
+        try {
             MyApplication.INSTANCE.unbindService(batteryLowConnection);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         super.onDestroy();
     }
 

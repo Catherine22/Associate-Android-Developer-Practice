@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
 import com.catherine.materialdesignapp.listeners.ProguardIgnored;
 
 import java.util.List;
@@ -13,10 +14,10 @@ public class Album implements ProguardIgnored {
     private String image;
 
     @NonNull
-    private String artist;
+    private String artist = "";
 
     @NonNull
-    private String title;
+    private String title = "";
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(index = true, name = "_id")

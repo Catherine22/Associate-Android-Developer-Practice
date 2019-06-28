@@ -3,11 +3,11 @@ package com.catherine.materialdesignapp.fragments;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
@@ -17,7 +17,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import com.catherine.materialdesignapp.FirebaseDB;
+
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.activities.AlbumDetailsActivity;
 import com.catherine.materialdesignapp.adapters.AlbumAdapter;
@@ -37,7 +37,6 @@ import com.facebook.imagepipeline.cache.DefaultCacheKeyFactory;
 import com.facebook.imagepipeline.core.DefaultExecutorSupplier;
 import com.facebook.imagepipeline.core.ImagePipelineFactory;
 import com.facebook.imagepipeline.request.ImageRequest;
-import com.google.firebase.database.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,11 +48,6 @@ public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchView
     private List<Album> filteredAlbums;
     private PrefetchSubscriber subscriber;
     private UIComponentsListener listener;
-
-    // firebase
-    private DatabaseReference myRef;
-    private ValueEventListener firebaseValueEventListener;
-    private String DB_PATH = FirebaseDB.ALBUMS;
 
     // RoomDatabase
     private AlbumViewModel albumViewModel;
@@ -70,14 +64,9 @@ public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchView
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        // firebase
-        myRef = database.getReference(DB_PATH);
-
         SwipeRefreshLayout swipeRefreshLayout = view.findViewById(R.id.srl);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary, R.color.colorAccent, R.color.colorPrimaryDark, R.color.colorAccentDark);
         swipeRefreshLayout.setOnRefreshListener(() -> {
-            fillInData();
             swipeRefreshLayout.setRefreshing(false);
         });
         RecyclerView recyclerView = view.findViewById(R.id.rv_artist);
@@ -136,41 +125,6 @@ public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchView
             adapter.setEntities(filteredAlbums);
             updateList();
         });
-        fillInData();
-    }
-
-    private void fillInData() {
-        // Retrieve data from firebase realtime database
-        if (firebaseValueEventListener != null)
-            myRef.removeEventListener(firebaseValueEventListener);
-
-        // This method is called once with the initial value and again
-        // whenever data at this location is updated.
-        // Failed to read value
-        firebaseValueEventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                Log.d(TAG, String.format("size: %d", dataSnapshot.getChildrenCount()));
-
-                albums.clear();
-                for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    Album album = child.getValue(Album.class);
-                    Log.i(TAG, String.format("%s: %s", child.getKey(), album));
-                    albums.add(album);
-                    albumViewModel.insert(album);
-                }
-                cacheItems();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        };
-        myRef.addValueEventListener(firebaseValueEventListener);
     }
 
     private void cacheItems() {
@@ -231,8 +185,7 @@ public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchView
 
     @Override
     public void onDestroy() {
-        if (firebaseValueEventListener != null)
-            myRef.removeEventListener(firebaseValueEventListener);
+        albumViewModel.release();
         super.onDestroy();
     }
 }

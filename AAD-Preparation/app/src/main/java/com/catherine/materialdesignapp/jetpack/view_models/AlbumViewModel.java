@@ -28,4 +28,8 @@ public class AlbumViewModel extends AndroidViewModel {
         mAlbumRepository.insert(album);
     }
 
+    public void release() {
+        mAlbumRepository.releaseFirebase();
+    }
+
 }
