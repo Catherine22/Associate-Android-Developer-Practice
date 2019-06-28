@@ -53,9 +53,8 @@ public class MusicPlayer implements MediaPlayer.OnCompletionListener {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
             if (MyApplication.INSTANCE.musicPlayerThread != null && MyApplication.INSTANCE.musicPlayerThread.isAlive())
                 MyApplication.INSTANCE.musicPlayerThread.quitSafely();
-            else
-                MyApplication.INSTANCE.musicPlayerThread.quit();
-        }
+        } else
+            MyApplication.INSTANCE.musicPlayerThread.quit();
     }
 
     @Override

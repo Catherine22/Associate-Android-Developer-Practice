@@ -1,6 +1,7 @@
 package com.catherine.materialdesignapp.activities;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+@SuppressLint("Registered") // No need to register in Manifest
 public class BaseActivity extends AppCompatActivity implements OnActivityEventListener {
     public final static String TAG = BaseActivity.class.getSimpleName();
     private OnRequestPermissionsListener listener;

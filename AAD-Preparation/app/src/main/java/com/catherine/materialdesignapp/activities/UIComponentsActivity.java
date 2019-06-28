@@ -52,7 +52,6 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
     private final static String STATE_SELECTED_BOTTOM_NAVIGATION = "STATE_SELECTED_BOTTOM_NAVIGATION";
 
     private BottomNavigationView navigationView;
-    private FloatingActionButton fab_addToPlaylist;
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewpager;
@@ -84,7 +83,7 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
         }
         navigationView.setOnNavigationItemSelectedListener(this);
 
-        fab_addToPlaylist = findViewById(R.id.fab_addToPlaylist);
+        FloatingActionButton fab_addToPlaylist = findViewById(R.id.fab_addToPlaylist);
         fab_addToPlaylist.setOnClickListener(v -> {
 
 

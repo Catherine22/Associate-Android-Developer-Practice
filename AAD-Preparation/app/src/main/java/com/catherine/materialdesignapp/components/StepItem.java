@@ -58,6 +58,7 @@ public class StepItem extends RelativeLayout {
 
         boolean isDone = styleable.getBoolean(R.styleable.StepItem_s_is_done, false);
         isFinished(isDone);
+        styleable.recycle();
     }
 
     public void setTitle(String title) {

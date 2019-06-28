@@ -1,5 +1,7 @@
 package com.catherine.materialdesignapp.open_weather.models;
 
+import java.util.Arrays;
+
 public class MyList {
     private String dt;
 
@@ -113,6 +115,6 @@ public class MyList {
 
     @Override
     public String toString() {
-        return "ClassPojo [dt = " + dt + ", rain = " + rain + ", coord = " + coord + ", snow = " + snow + ", name = " + name + ", weather = " + weather + ", main = " + main + ", id = " + id + ", clouds = " + clouds + ", sys = " + sys + ", wind = " + wind + "]";
+        return "Class [dt = " + dt + ", rain = " + rain + ", coord = " + coord + ", snow = " + snow + ", name = " + name + ", weather = " + Arrays.toString(weather) + ", main = " + main + ", id = " + id + ", clouds = " + clouds + ", sys = " + sys + ", wind = " + wind + "]";
     }
 }

@@ -23,6 +23,6 @@ public class Rain {
 
     @Override
     public String toString() {
-        return "ClassPojo [1H = " + oneHour + ", 3H = " + threeHours + "]";
+        return "Class [1H = " + oneHour + ", 3H = " + threeHours + "]";
     }
 }

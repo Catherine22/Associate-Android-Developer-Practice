@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/bottom_sheet_item_height">
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/bottom_sheet_item_height">
 
     <ImageView
-        android:id="@+id/iv_icon"
-        android:layout_width="@dimen/icon_24"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="@dimen/safe_area_margin_width" />
+            android:id="@+id/iv_icon"
+            android:layout_width="@dimen/icon_24"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/icon"
+            android:layout_marginStart="@dimen/safe_area_margin_width"/>
 
     <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="@dimen/safe_area_margin_width"
-        android:layout_marginEnd="@dimen/safe_area_margin_width" />
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/safe_area_margin_width"
+            android:layout_marginEnd="@dimen/safe_area_margin_width"/>
 
 </RelativeLayout>

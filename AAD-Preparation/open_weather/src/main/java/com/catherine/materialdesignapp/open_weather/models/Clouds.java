@@ -13,6 +13,6 @@ public class Clouds {
 
     @Override
     public String toString() {
-        return "ClassPojo [all = " + all + "]";
+        return "Class [all = " + all + "]";
     }
 }

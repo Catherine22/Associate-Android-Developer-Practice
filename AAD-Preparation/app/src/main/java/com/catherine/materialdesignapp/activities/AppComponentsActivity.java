@@ -90,12 +90,7 @@ public class AppComponentsActivity extends BaseActivity implements ContentProvid
 
     @Override
     public String[] getList(int index) {
-        switch (index) {
-            case 0:
-                return getResources().getStringArray(R.array.providers);
-            default:
-                return getResources().getStringArray(R.array.providers);
-        }
+        return getResources().getStringArray(R.array.providers);
     }
 
     @Override

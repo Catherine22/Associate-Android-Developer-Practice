@@ -86,17 +86,14 @@ public class LifecycleActivity extends BaseActivity implements LifecycleListener
         client = new Client(LifecycleActivity.this, result -> updateEntity(0, result.getString()));
         client.gotMessages(OccupiedActions.ACTION_UPDATE_LOGGER);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            try {
-                JobScheduler jobScheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
-                ComponentName componentName = new ComponentName(this, LogcatJobScheduler.class);
-                JobInfo jobInfo = new JobInfo.Builder(BusyJobs.JOB_LOGGER, componentName)
-                        .setRequiresStorageNotLow(true)
-                        .setRequiresCharging(false)
-                        .build();
+            JobScheduler jobScheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
+            ComponentName componentName = new ComponentName(this, LogcatJobScheduler.class);
+            JobInfo jobInfo = new JobInfo.Builder(BusyJobs.JOB_LOGGER, componentName)
+                    .setRequiresStorageNotLow(true)
+                    .setRequiresCharging(false)
+                    .build();
+            if (jobScheduler != null)
                 jobScheduler.schedule(jobInfo);
-            } catch (NullPointerException e) {
-                e.printStackTrace();
-            }
         } else {
             Intent intent = new Intent(this, LogcatService.class);
             startService(intent);

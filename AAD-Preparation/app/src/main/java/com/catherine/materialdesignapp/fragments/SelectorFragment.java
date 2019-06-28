@@ -28,7 +28,7 @@ public class SelectorFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ContentProviderFragmentListener listener = (ContentProviderFragmentListener) getActivity();
 
-        int index = getArguments().getInt("index");
+        int index = (getArguments() != null) ? getArguments().getInt("index", 0) : 0;
         String[] array = listener.getList(index);
         ListView listView = view.findViewById(R.id.list_functions);
         listView.setAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, array));

@@ -6,6 +6,7 @@ import android.app.job.JobService;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.util.Log;
+import com.catherine.materialdesignapp.MyApplication;
 import com.catherine.materialdesignapp.receivers.InternetConnectivityReceiver;
 
 @TargetApi(Build.VERSION_CODES.O)
@@ -18,7 +19,7 @@ public class NetworkHealthJobScheduler extends JobService {
         Log.e(TAG, "onStartJob");
         internetReceiver = new InternetConnectivityReceiver();
         IntentFilter internetIntentFilter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
-        registerReceiver(internetReceiver, internetIntentFilter);
+        MyApplication.INSTANCE.registerReceiver(internetReceiver, internetIntentFilter);
         return false;
     }
 
@@ -31,7 +32,7 @@ public class NetworkHealthJobScheduler extends JobService {
     @Override
     public void onDestroy() {
         try {
-            unregisterReceiver(internetReceiver);
+            MyApplication.INSTANCE.unregisterReceiver(internetReceiver);
         } catch (Exception e) {
             e.printStackTrace();
         }

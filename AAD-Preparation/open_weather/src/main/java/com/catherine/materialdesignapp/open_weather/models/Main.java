@@ -53,7 +53,7 @@ public class Main {
 
     @Override
     public String toString() {
-        return "ClassPojo [temp = " + temp + ", temp_min = " + temp_min + ", humidity = " + humidity + ", pressure = " + pressure + ", temp_max = " + temp_max + "]";
+        return "Class [temp = " + temp + ", temp_min = " + temp_min + ", humidity = " + humidity + ", pressure = " + pressure + ", temp_max = " + temp_max + "]";
     }
 }
 

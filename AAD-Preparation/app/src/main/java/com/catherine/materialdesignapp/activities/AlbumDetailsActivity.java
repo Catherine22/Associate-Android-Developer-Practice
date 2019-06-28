@@ -40,10 +40,12 @@ public class AlbumDetailsActivity extends BaseActivity implements PlaylistHelper
             getSupportActionBar().setTitle(TAG);
         }
 
+        if (getIntent() == null || getIntent().getExtras() == null)
+            finish();
         Bundle bundle = getIntent().getExtras();
-        coverUri = Uri.parse(bundle.getString("cover"));
-        album = bundle.getString("album");
-        artist = bundle.getString("artist");
+        coverUri = Uri.parse(bundle.getString("cover", ""));
+        album = bundle.getString("album", "");
+        artist = bundle.getString("artist", "");
         String[] songs = bundle.getStringArray("songs");
 
         container = findViewById(R.id.container);

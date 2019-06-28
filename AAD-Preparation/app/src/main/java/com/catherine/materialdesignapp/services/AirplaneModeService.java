@@ -6,6 +6,7 @@ import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.IBinder;
 import androidx.annotation.Nullable;
+import com.catherine.materialdesignapp.MyApplication;
 import com.catherine.materialdesignapp.listeners.ProguardIgnored;
 import com.catherine.materialdesignapp.receivers.AirplaneModeChangedReceiver;
 
@@ -32,7 +33,11 @@ public class AirplaneModeService extends Service implements ProguardIgnored {
 
     @Override
     public void onDestroy() {
-        unregisterReceiver(airplaneModeChangedReceiver);
+        try {
+            MyApplication.INSTANCE.unregisterReceiver(airplaneModeChangedReceiver);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         super.onDestroy();
     }
 }

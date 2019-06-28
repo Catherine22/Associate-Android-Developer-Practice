@@ -22,10 +22,4 @@ public class LogcatService extends Service implements ProguardIgnored {
         LogCatHelper logcatHelper = new LogCatHelper();
         logcatHelper.startRecording();
     }
-
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
 }

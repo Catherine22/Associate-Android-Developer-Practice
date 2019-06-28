@@ -1,5 +1,7 @@
 package com.catherine.materialdesignapp.open_weather.models;
 
+import java.util.Arrays;
+
 public class WeatherResult {
 
     private int count;
@@ -44,6 +46,6 @@ public class WeatherResult {
 
     @Override
     public String toString() {
-        return "ClassPojo [count = " + count + ", cod = " + cod + ", message = " + message + ", list = " + list + "]";
+        return "Class [count = " + count + ", cod = " + cod + ", message = " + message + ", list = " + Arrays.toString(list) + "]";
     }
 }

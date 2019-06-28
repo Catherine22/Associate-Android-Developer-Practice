@@ -1,88 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".activities.AlbumDetailsActivity"
-    tools:showIn="@layout/activity_album_details">
+<androidx.core.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".activities.AlbumDetailsActivity"
+        tools:showIn="@layout/activity_album_details">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
         <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/sdv_cover"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/album_height_large"
-            android:scaleType="centerCrop"
-            android:transitionName="@string/album_image_transition"
-            app:fadeDuration="300"
-            app:failureImage="@color/gray"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:placeholderImage="@color/colorPrimary"
-            app:retryImage="@drawable/ic_refresh_black_24dp"
-            app:retryImageScaleType="centerInside" />
+                android:id="@+id/sdv_cover"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/album_height_large"
+                android:scaleType="centerCrop"
+                app:fadeDuration="300"
+                app:failureImage="@color/gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:placeholderImage="@color/colorPrimary"
+                app:retryImage="@drawable/ic_refresh_black_24dp"
+                app:retryImageScaleType="centerInside"/>
 
         <TextView
-            android:id="@+id/tv_album_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/safe_area_margin"
-            android:singleLine="true"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:transitionName="@string/album_name_transition"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/sdv_cover" />
+                android:id="@+id/tv_album_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/safe_area_margin"
+                android:singleLine="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sdv_cover"/>
 
         <TextView
-            android:id="@+id/tv_artist"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/safe_area_margin"
-            android:layout_marginEnd="@dimen/safe_area_margin"
-            android:singleLine="true"
-            android:transitionName="@string/album_artist_transition"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_album_name" />
+                android:id="@+id/tv_artist"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/safe_area_margin"
+                android:layout_marginEnd="@dimen/safe_area_margin"
+                android:singleLine="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_album_name"/>
 
         <TextView
-            android:id="@+id/tv_details"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="@dimen/safe_area_margin"
-            android:layout_marginEnd="@dimen/safe_area_margin"
-            app:layout_constraintBottom_toTopOf="@id/rv_songs"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_artist" />
+                android:id="@+id/tv_details"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/safe_area_margin"
+                android:layout_marginEnd="@dimen/safe_area_margin"
+                app:layout_constraintBottom_toTopOf="@id/rv_songs"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_artist"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_songs"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/safe_area_margin"
-            app:layout_constraintBottom_toTopOf="@id/btn_purchase"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_details" />
+                android:id="@+id/rv_songs"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/safe_area_margin"
+                app:layout_constraintBottom_toTopOf="@id/btn_purchase"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_details"/>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_purchase"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/safe_area_margin"
-            android:text="@string/purchase"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+                android:id="@+id/btn_purchase"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/safe_area_margin"
+                android:text="@string/purchase"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

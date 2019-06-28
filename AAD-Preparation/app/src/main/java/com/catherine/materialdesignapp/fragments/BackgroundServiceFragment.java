@@ -16,12 +16,14 @@ import android.widget.Switch;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import com.catherine.materialdesignapp.MyApplication;
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.components.Slider;
 import com.catherine.materialdesignapp.listeners.OnActivityEventListener;
 import com.catherine.materialdesignapp.services.MusicPlayerJobScheduler;
 import com.catherine.materialdesignapp.services.MusicPlayerService;
 
+import static android.content.Context.JOB_SCHEDULER_SERVICE;
 import static com.catherine.materialdesignapp.services.BusyJobs.JOB_MUSIC_PLAYER;
 
 public class BackgroundServiceFragment extends Fragment implements View.OnClickListener {
@@ -103,7 +105,7 @@ public class BackgroundServiceFragment extends Fragment implements View.OnClickL
 
                 }
             });
-            jobScheduler = (JobScheduler) getActivity().getSystemService(getActivity().JOB_SCHEDULER_SERVICE);
+            jobScheduler = (JobScheduler) MyApplication.INSTANCE.getSystemService(JOB_SCHEDULER_SERVICE);
         } else {
             Button btn_start_service = view.findViewById(R.id.btn_start_service);
             btn_start_service.setOnClickListener(this);
@@ -139,14 +141,16 @@ public class BackgroundServiceFragment extends Fragment implements View.OnClickL
                                 requiresNetwork = JobInfo.NETWORK_TYPE_UNMETERED;
                                 break;
                             case R.id.radio_cellular:
-                                requiresNetwork = JobInfo.NETWORK_TYPE_CELLULAR;
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                                    requiresNetwork = JobInfo.NETWORK_TYPE_CELLULAR;
+                                }
                                 break;
                         }
                     }
                     try {
                         ComponentName componentName = new ComponentName(getActivity(), MusicPlayerJobScheduler.class);
                         JobInfo jobInfo;
-                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                             jobInfo = new JobInfo.Builder(JOB_MUSIC_PLAYER, componentName)
                                     .setRequiresDeviceIdle(switch_device_idle.isChecked())
                                     .setRequiresBatteryNotLow(switch_battery_not_low.isChecked())

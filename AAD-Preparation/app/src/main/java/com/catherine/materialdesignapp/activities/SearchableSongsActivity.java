@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.SearchRecentSuggestions;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -30,7 +29,6 @@ import java.util.Map;
 
 public class SearchableSongsActivity extends BaseActivity implements SearchView.OnQueryTextListener, PlaylistHelperListener {
     public final static String TAG = SearchableSongsActivity.class.getSimpleName();
-    private SearchManager searchManager;
     private SearchView searchView;
     private Playlist playlist;
     private Map<String, Song> songs;
@@ -138,7 +136,7 @@ public class SearchableSongsActivity extends BaseActivity implements SearchView.
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.searchable_menu, menu);
 
-        searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         return true;
@@ -155,9 +153,9 @@ public class SearchableSongsActivity extends BaseActivity implements SearchView.
      */
     @Override
     public boolean onQueryTextChange(String newText) {
-        if (TextUtils.isEmpty(newText)) {
-            // TODO: reset data
-        }
+//        if (TextUtils.isEmpty(newText)) {
+//            // TODO: reset data
+//        }
         return true;
     }
 

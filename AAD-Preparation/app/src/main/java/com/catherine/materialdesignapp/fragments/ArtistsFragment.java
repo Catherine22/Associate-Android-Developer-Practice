@@ -158,20 +158,5 @@ public class ArtistsFragment extends ChildOfMusicFragment implements OnSearchVie
             Log.d(TAG, String.format("onItemStateChanged: %s, isSelected: %b", key, selected));
             super.onItemStateChanged(key, selected);
         }
-
-        @Override
-        public void onSelectionRefresh() {
-            super.onSelectionRefresh();
-        }
-
-        @Override
-        public void onSelectionChanged() {
-            super.onSelectionChanged();
-        }
-
-        @Override
-        public void onSelectionRestored() {
-            super.onSelectionRestored();
-        }
     }
 }

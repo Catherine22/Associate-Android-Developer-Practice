@@ -6,10 +6,12 @@ import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import com.catherine.materialdesignapp.models.NotificationChannelsGroup;
 import com.catherine.materialdesignapp.tasks.MusicPlayer;
 import com.catherine.materialdesignapp.utils.NotificationUtils;
 
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class MusicPlayerService extends Service {
     private static final String TAG = MusicPlayerService.class.getSimpleName();
     private MusicPlayer musicPlayer;
@@ -19,10 +21,8 @@ public class MusicPlayerService extends Service {
         super.onCreate();
         Log.d(TAG, "onCreate");
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationUtils notificationUtils = new NotificationUtils(this, NotificationChannelsGroup.CHANNELS.get(NotificationChannelsGroup.FOREGROUND_SERVICE));
-            startForeground(1, notificationUtils.getNotificationForForegroundServices());
-        }
+        NotificationUtils notificationUtils = new NotificationUtils(this, NotificationChannelsGroup.CHANNELS.get(NotificationChannelsGroup.FOREGROUND_SERVICE));
+        startForeground(1, notificationUtils.getNotificationForForegroundServices());
     }
 
     @Override

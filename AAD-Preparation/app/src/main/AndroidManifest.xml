@@ -175,6 +175,12 @@
                 <action android:name="com.catherine.materialdesignapp.startAirplaneModeService"/>
             </intent-filter>
         </service>
+        <service android:name=".services.BatteryLowService"
+                 android:exported="false">
+            <intent-filter>
+                <action android:name="com.catherine.materialdesignapp.startBatteryLowService"/>
+            </intent-filter>
+        </service>
         <!--Services-->
 
         <!--JobSchedulers-->
@@ -191,6 +197,9 @@
                  android:exported="false"
                  android:permission="android.permission.BIND_JOB_SERVICE"/>
         <service android:name=".services.AirplaneModeJobScheduler"
+                 android:exported="false"
+                 android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:name=".services.BatteryLowJobScheduler"
                  android:exported="false"
                  android:permission="android.permission.BIND_JOB_SERVICE"/>
         <!--JobSchedulers-->

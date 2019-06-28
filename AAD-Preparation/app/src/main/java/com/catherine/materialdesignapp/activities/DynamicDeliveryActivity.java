@@ -37,7 +37,6 @@ public class DynamicDeliveryActivity extends BaseActivity implements View.OnClic
     private BottomSheetBehavior behavior;
     private ConstraintLayout steps_area;
     private FrameLayout fl_content;
-    private StepItem stepItem1, stepItem2, stepItem3, stepItem4;
     private View bottomSheet;
 
     // components inside the bottom sheet
@@ -93,10 +92,10 @@ public class DynamicDeliveryActivity extends BaseActivity implements View.OnClic
     private void initView() {
         fl_content = findViewById(R.id.fl_content);
         steps_area = findViewById(R.id.steps_area);
-        stepItem1 = findViewById(R.id.step1);
-        stepItem2 = findViewById(R.id.step2);
-        stepItem3 = findViewById(R.id.step3);
-        stepItem4 = findViewById(R.id.step4);
+        StepItem stepItem1 = findViewById(R.id.step1);
+        StepItem stepItem2 = findViewById(R.id.step2);
+        StepItem stepItem3 = findViewById(R.id.step3);
+        StepItem stepItem4 = findViewById(R.id.step4);
         stepItem1.setOnClickListener(this);
         stepItem2.setOnClickListener(this);
         stepItem3.setOnClickListener(this);

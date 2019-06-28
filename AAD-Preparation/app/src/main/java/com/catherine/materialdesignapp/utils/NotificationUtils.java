@@ -21,6 +21,8 @@ public class NotificationUtils extends ContextWrapper {
 
     public NotificationUtils(Context context) {
         super(context);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+            throw new IllegalArgumentException("Please call  NotificationUtils(Context, ChannelInfo)");
     }
 
 

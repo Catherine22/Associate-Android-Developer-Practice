@@ -46,7 +46,7 @@ import java.security.cert.CertificateFactory;
 import java.util.List;
 import java.util.Locale;
 
-public class WeatherPageActivity extends BaseActivity implements OnMapReadyCallback, GoogleMap.OnCircleClickListener {
+public class WeatherPageActivity extends BaseActivity implements OnMapReadyCallback, GoogleMap.OnCircleClickListener, LocationListener {
     public final static String TAG = WeatherPageActivity.class.getSimpleName();
     private final static String WEATHER_URL = "api.openweathermap.org";
     private final static String PATH_DATA = "data";
@@ -156,31 +156,7 @@ public class WeatherPageActivity extends BaseActivity implements OnMapReadyCallb
                 LocationManager.GPS_PROVIDER,
                 MIN_TIME,
                 MIN_DISTANCE,
-                new LocationListener() {
-                    @Override
-                    public void onLocationChanged(Location location) {
-                        Log.e(TAG, "onLocationChanged");
-                        updateMapAndForecast(googleMap, location);
-                    }
-
-                    @Override
-                    public void onStatusChanged(String provider, int status, Bundle extras) {
-
-                    }
-
-                    // User enabled GPS
-                    @Override
-                    public void onProviderEnabled(String provider) {
-                        Log.e(TAG, "onProviderEnabled");
-                        updateMapAndForecast(googleMap, getLocation());
-                    }
-
-                    // User disabled GPS
-                    @Override
-                    public void onProviderDisabled(String provider) {
-                        popUpWarningDialog("GPS is not available", (dialog, which) -> updateMapAndForecast(googleMap, getLocation()));
-                    }
-                }
+                this
 
         );
     }
@@ -299,5 +275,36 @@ public class WeatherPageActivity extends BaseActivity implements OnMapReadyCallb
     @Override
     public void onCircleClick(Circle circle) {
         Toast.makeText(this, latLngToName(circle.getCenter()), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        lm.removeUpdates(this);
+        super.onDestroy();
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        Log.e(TAG, "onLocationChanged");
+        updateMapAndForecast(googleMap, location);
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    // User enabled GPS
+    @Override
+    public void onProviderEnabled(String provider) {
+        Log.e(TAG, "onProviderEnabled");
+        updateMapAndForecast(googleMap, getLocation());
+    }
+
+    // User disabled GPS
+    @Override
+    public void onProviderDisabled(String provider) {
+        popUpWarningDialog("GPS is not available", (dialog, which) -> updateMapAndForecast(googleMap, getLocation()));
     }
 }

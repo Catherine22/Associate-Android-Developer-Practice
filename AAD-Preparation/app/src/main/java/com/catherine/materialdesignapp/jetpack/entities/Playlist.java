@@ -18,7 +18,7 @@ public class Playlist implements Comparable<Playlist>, Cloneable, Parcelable, Pr
 
     @NonNull
     @PrimaryKey
-    private String name;
+    private String name = "unknown";
 
     private Map<String, Song> songs = new HashMap<>();
 

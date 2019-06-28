@@ -128,7 +128,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
 
         if (Intent.ACTION_SCREEN_ON.equals(appLinkAction)
-                || Intent.ACTION_AIRPLANE_MODE_CHANGED.equals(appLinkAction)) {
+                || Intent.ACTION_AIRPLANE_MODE_CHANGED.equals(appLinkAction)
+                || Intent.ACTION_BATTERY_LOW.equals(appLinkAction)) {
             Intent appComponentsIntent = new Intent(this, AppComponentsActivity.class);
             appComponentsIntent.setAction(TabLayoutAppComponentsAdapter.BROADCAST_RECEIVER + "");
             startActivityForResult(appComponentsIntent, 12345);
@@ -137,11 +138,15 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     private void registerReceivers() {
         notificationReceiver = new NotificationReceiver();
-        registerReceiver(notificationReceiver, new IntentFilter(OccupiedActions.ACTION_UPDATE_NOTIFICATION));
+        MyApplication.INSTANCE.registerReceiver(notificationReceiver, new IntentFilter(OccupiedActions.ACTION_UPDATE_NOTIFICATION));
     }
 
     private void unregisterReceivers() {
-        unregisterReceiver(notificationReceiver);
+        try {
+            MyApplication.INSTANCE.unregisterReceiver(notificationReceiver);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -162,15 +167,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private void popUpFragment(Content content) {
         String title = titles[content.index];
         Fragment f = null;
-        switch (content) {
-            case Default:
-                if (fragments[content.index] == null) {
-                    f = new MainFragment();
-                    fragments[content.index] = f;
-                } else {
-                    f = fragments[content.index];
-                }
-                break;
+        if (content == Content.Default) {
+            if (fragments[content.index] == null) {
+                f = new MainFragment();
+                fragments[content.index] = f;
+            } else {
+                f = fragments[content.index];
+            }
         }
         getSupportFragmentManager().beginTransaction()
                 .addToBackStack(title)

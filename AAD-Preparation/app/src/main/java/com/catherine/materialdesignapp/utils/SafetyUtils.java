@@ -8,44 +8,17 @@ import android.util.Base64;
 import android.util.Log;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.security.DigestInputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.CRC32;
-import java.util.zip.CheckedInputStream;
 
 public class SafetyUtils {
     public final static String TAG = SafetyUtils.class.getSimpleName();
-
-    /**
-     * Created SHA256 of input
-     *
-     * @param input
-     * @return
-     */
-    public static byte[] hash(byte[] input) {
-        if (input != null) {
-            final MessageDigest digest;
-            try {
-                digest = MessageDigest.getInstance("SHA-256");
-                byte[] hashedBytes = input;
-                digest.update(hashedBytes, 0, hashedBytes.length);
-                return hashedBytes;
-            } catch (NoSuchAlgorithmException e) {
-                Log.e(TAG, "problem hashing \"" + input + "\" " + e.getMessage(), e);
-            }
-        } else {
-            Log.w(TAG, "hash called with null input byte[]");
-        }
-        return null;
-    }
 
     public static String getSigningKeyFingerprint(Context ctx, String alg) {
         String result = null;
@@ -64,15 +37,14 @@ public class SafetyUtils {
     /**
      * Gets the encoded representation of the first signing certificated used to sign current APK
      *
-     * @param ctx
-     * @return
+     * @param ctx Context
+     * @return byte array
      */
     private static byte[] getSigningKeyCertificate(Context ctx) {
         try {
             PackageManager pm = ctx.getPackageManager();
             String packageName = ctx.getPackageName();
-            int flags = PackageManager.GET_SIGNATURES;
-            PackageInfo packageInfo = pm.getPackageInfo(packageName, flags);
+            PackageInfo packageInfo = pm.getPackageInfo(packageName, PackageManager.GET_SIGNATURES);
             Signature[] signatures = packageInfo.signatures;
 
             if (signatures != null && signatures.length >= 1) {
@@ -132,25 +104,7 @@ public class SafetyUtils {
 
     public static String calcApkDigest(final Context context) {
         byte[] hashed2 = getApkFileDigest(context);
-        String encoded2 = Base64.encodeToString(hashed2, Base64.NO_WRAP);
-        return encoded2;
-    }
-
-    private static long getApkFileChecksum(Context context) {
-        String apkPath = context.getPackageCodePath();
-        Long chksum = null;
-        try {
-            // Open the file and build a CRC32 checksum.
-            FileInputStream fis = new FileInputStream(new File(apkPath));
-            CRC32 chk = new CRC32();
-            CheckedInputStream cis = new CheckedInputStream(fis, chk);
-            byte[] buff = new byte[80];
-            while (cis.read(buff) >= 0) ;
-            chksum = chk.getValue();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return chksum;
+        return Base64.encodeToString(hashed2, Base64.NO_WRAP);
     }
 
 
@@ -165,18 +119,7 @@ public class SafetyUtils {
     }
 
     private static byte[] getDigest(InputStream in, String algorithm) throws Throwable {
-        int BUFFER_SIZE = 2048;
         MessageDigest md = MessageDigest.getInstance(algorithm);
-        try {
-            DigestInputStream dis = new DigestInputStream(in, md);
-            byte[] buffer = new byte[BUFFER_SIZE];
-            while (dis.read(buffer) != -1) {
-                //
-            }
-            dis.close();
-        } finally {
-            in.close();
-        }
         return md.digest();
     }
 }

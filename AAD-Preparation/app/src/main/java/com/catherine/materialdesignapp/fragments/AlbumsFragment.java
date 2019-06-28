@@ -112,6 +112,7 @@ public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchView
                     Pair<View, String> p1 = Pair.create(sdv_photo, imageTransitionName);
                     Pair<View, String> p2 = Pair.create(tv_name, nameTransitionName);
                     Pair<View, String> p3 = Pair.create(tv_artist, artistTransitionName);
+
                     ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), p1, p2, p3);
                     ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
                 } else {
@@ -148,7 +149,7 @@ public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchView
         // Failed to read value
         firebaseValueEventListener = new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 Log.d(TAG, String.format("size: %d", dataSnapshot.getChildrenCount()));
@@ -164,7 +165,7 @@ public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchView
             }
 
             @Override
-            public void onCancelled(DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError error) {
                 // Failed to read value
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
@@ -178,6 +179,8 @@ public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchView
 //                File file = new File(Constants.ROOT_PATH + Constants.FRESCO_DIR + "/");
                 String url = albums.get(i).getUrl();
                 ImageRequest imageRequest = ImageRequest.fromUri(url);
+                if (imageRequest == null)
+                    return;
                 CacheKey cacheKey = DefaultCacheKeyFactory.getInstance().getEncodedCacheKey(imageRequest, null);
                 BinaryResource resource = ImagePipelineFactory.getInstance().getMainFileCache().getResource(cacheKey);
                 if (resource == null || resource.size() == 0) {

@@ -11,13 +11,14 @@
     <string name="action_clear_history">Clear history</string>
     <string name="action_search">Search</string>
     <string name="alert_icon">أيقونة التنبيه</string>
+    <string name="icon">icon</string>
     <string name="undo">فك</string>
     <string name="hello_world">مرحبا بالعالم!</string>
     <string name="settings">الإعدادات</string>
-    <string name="register_receiver">Register</string>
-    <string name="unregister_receiver">Unregister</string>
-    <string name="start_service">بدء الخدمات</string>
-    <string name="stop_service">وقف الخدمات</string>
+    <string name="bind_service">Bind</string>
+    <string name="unbind_service">Unbind</string>
+    <string name="start_service">Start service</string>
+    <string name="stop_service">Stop service</string>
     <string name="start_job_scheduler">بدء جدولة الوظيفة</string>
     <string name="stop_job_scheduler">وقف جدولة الوظيفة</string>
     <string name="start_broadcast">استقبال البث</string>
@@ -110,12 +111,6 @@
     </string-array>
 
     <string-array name="app_component_array">
-        <item>Background service</item>
-        <item>Broadcast Receiver</item>
-        <item>Content Provider</item>
-    </string-array>
-
-    <string-array name="app_component_array_lollipop">
         <item>Background service</item>
         <item>Broadcast Receiver</item>
         <item>Content Provider</item>

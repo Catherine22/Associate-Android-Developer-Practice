@@ -486,11 +486,6 @@ public class CursorLoaderActivity extends BaseActivity {
         }
 
         @Override
-        public boolean deliverSelfNotifications() {
-            return super.deliverSelfNotifications();
-        }
-
-        @Override
         public void onChange(boolean selfChange) {
             super.onChange(selfChange);
             Log.d(TAG, "onChange:" + selfChange);
@@ -513,11 +508,6 @@ public class CursorLoaderActivity extends BaseActivity {
         public void onChange(boolean selfChange, Uri uri) {
             super.onChange(selfChange, uri);
             Log.d(TAG, "onChange:" + selfChange + "/uri:" + uri);
-        }
-
-        @Override
-        public boolean deliverSelfNotifications() {
-            return super.deliverSelfNotifications();
         }
 
         @Override

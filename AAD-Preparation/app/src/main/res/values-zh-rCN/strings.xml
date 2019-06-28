@@ -11,11 +11,12 @@
     <string name="action_clear_history">清理搜寻记录</string>
     <string name="action_search">搜寻</string>
     <string name="alert_icon">提醒图标</string>
+    <string name="icon">icon</string>
     <string name="undo">还原</string>
     <string name="hello_world">你好啊！</string>
     <string name="settings">设置</string>
-    <string name="register_receiver">Register</string>
-    <string name="unregister_receiver">Unregister</string>
+    <string name="bind_service">Bind</string>
+    <string name="unbind_service">Unbind</string>
     <string name="start_service">启动服务</string>
     <string name="stop_service">停止服务</string>
     <string name="start_job_scheduler">启动 job scheduler</string>
@@ -110,12 +111,6 @@
     </string-array>
 
     <string-array name="app_component_array">
-        <item>Background service</item>
-        <item>Broadcast Receiver</item>
-        <item>Content Provider</item>
-    </string-array>
-
-    <string-array name="app_component_array_lollipop">
         <item>Background service</item>
         <item>Broadcast Receiver</item>
         <item>Content Provider</item>

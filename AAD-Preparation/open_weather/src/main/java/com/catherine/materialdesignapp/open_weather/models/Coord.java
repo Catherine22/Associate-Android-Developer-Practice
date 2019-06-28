@@ -23,6 +23,6 @@ public class Coord {
 
     @Override
     public String toString() {
-        return "ClassPojo [lon = " + lon + ", lat = " + lat + "]";
+        return "Class [lon = " + lon + ", lat = " + lat + "]";
     }
 }

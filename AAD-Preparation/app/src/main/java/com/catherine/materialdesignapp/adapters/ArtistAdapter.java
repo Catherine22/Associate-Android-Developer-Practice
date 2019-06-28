@@ -30,7 +30,6 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.MainRvHold
 
     public final static int MAX_COLUMNS = 4;
     private SelectionTracker<String> selectionTracker;
-    private float gridMargin;
     private float cellWidth;
 
     public ArtistAdapter(Context ctx, List<Artist> entities/*, OnItemClickListener listener*/) {
@@ -42,7 +41,7 @@ public class ArtistAdapter extends RecyclerView.Adapter<ArtistAdapter.MainRvHold
 //        this.listener = listener;
 
 
-        gridMargin = ctx.getResources().getDimension(R.dimen.grid_margin);
+        float gridMargin = ctx.getResources().getDimension(R.dimen.grid_margin);
         cellWidth = (DisplayHelper.getScreenWidth() * 1.0f - (MAX_COLUMNS + 1) * gridMargin) / MAX_COLUMNS;
     }
 

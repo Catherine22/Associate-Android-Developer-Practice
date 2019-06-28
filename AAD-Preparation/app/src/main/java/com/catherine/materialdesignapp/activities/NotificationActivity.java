@@ -77,102 +77,95 @@ public class NotificationActivity extends BaseActivity implements View.OnClickLi
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
-
-    @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_push:
-                if (selectedChips.isEmpty()) {
-                    showSnackbar(swipeRefreshLayout, getString(R.string.no_notification_services_selected));
+        if (v.getId() == R.id.btn_push) {
+            if (selectedChips.isEmpty()) {
+                showSnackbar(swipeRefreshLayout, getString(R.string.no_notification_services_selected));
+                return;
+            }
+
+            String title = til_title.getEditText().getText().toString();
+            if (TextUtils.isEmpty(title)) {
+                til_title.setErrorEnabled(true);
+                til_title.setError(String.format(Locale.US, getString(R.string.cannot_be_empty), getString(R.string.title)));
+                return;
+            }
+
+            String subtitle = til_subtitle.getEditText().getText().toString();
+            if (TextUtils.isEmpty(subtitle)) {
+                til_subtitle.setErrorEnabled(true);
+                til_subtitle.setError(String.format(Locale.US, getString(R.string.cannot_be_empty), getString(R.string.subtitle)));
+                return;
+            }
+
+            String channel = null;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                channel = til_channel.getEditText().getText().toString();
+                if (TextUtils.isEmpty(channel)) {
+                    til_channel.setErrorEnabled(true);
+                    til_channel.setError(String.format(Locale.US, getString(R.string.cannot_be_empty), getString(R.string.channel)));
                     return;
                 }
+            }
 
-                String title = til_title.getEditText().getText().toString();
-                if (TextUtils.isEmpty(title)) {
-                    til_title.setErrorEnabled(true);
-                    til_title.setError(String.format(Locale.US, getString(R.string.cannot_be_empty), getString(R.string.title)));
-                    return;
-                }
-
-                String subtitle = til_subtitle.getEditText().getText().toString();
-                if (TextUtils.isEmpty(subtitle)) {
-                    til_subtitle.setErrorEnabled(true);
-                    til_subtitle.setError(String.format(Locale.US, getString(R.string.cannot_be_empty), getString(R.string.subtitle)));
-                    return;
-                }
-
-                String channel = null;
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    channel = til_channel.getEditText().getText().toString();
-                    if (TextUtils.isEmpty(channel)) {
-                        til_channel.setErrorEnabled(true);
-                        til_channel.setError(String.format(Locale.US, getString(R.string.cannot_be_empty), getString(R.string.channel)));
-                        return;
-                    }
-                }
-
-                for (Integer selectedChip : selectedChips) {
-                    switch (selectedChip) {
-                        case R.id.chip_local:
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                String id;
-                                if (channelTable.containsKey(channel)) {
-                                    id = channelTable.get(channel);
-                                } else {
-                                    id = System.currentTimeMillis() / 1000 + "";
-                                    channelTable.put(channel, id);
-                                }
-                                ChannelInfo channelInfo = new ChannelInfo(id, channel);
-                                NotificationUtils notificationUtils = new NotificationUtils(this, channelInfo);
-                                notificationUtils.sendNotification(title, subtitle, (int) System.currentTimeMillis() / 1000);
+            for (Integer selectedChip : selectedChips) {
+                switch (selectedChip) {
+                    case R.id.chip_local:
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            String id;
+                            if (channelTable.containsKey(channel)) {
+                                id = channelTable.get(channel);
                             } else {
-                                NotificationUtils notificationUtils = new NotificationUtils(this);
-                                notificationUtils.sendNotification(title, subtitle, (int) System.currentTimeMillis() / 1000);
+                                id = System.currentTimeMillis() / 1000 + "";
+                                channelTable.put(channel, id);
                             }
-                            break;
-                        case R.id.chip_local_hands_up:
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                String id;
-                                if (channelTable.containsKey(channel)) {
-                                    id = channelTable.get(channel);
-                                } else {
-                                    id = System.currentTimeMillis() / 1000 + "";
-                                    channelTable.put(channel, id);
-                                }
-                                ChannelInfo channelInfo = new ChannelInfo(id, channel);
-                                NotificationUtils notificationUtils = new NotificationUtils(this, channelInfo);
-                                notificationUtils.sendHandsUpNotification(title, subtitle, (int) System.currentTimeMillis() / 1000);
+                            ChannelInfo channelInfo = new ChannelInfo(id, channel);
+                            NotificationUtils notificationUtils = new NotificationUtils(this, channelInfo);
+                            notificationUtils.sendNotification(title, subtitle, (int) System.currentTimeMillis() / 1000);
+                        } else {
+                            NotificationUtils notificationUtils = new NotificationUtils(this);
+                            notificationUtils.sendNotification(title, subtitle, (int) System.currentTimeMillis() / 1000);
+                        }
+                        break;
+                    case R.id.chip_local_hands_up:
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            String id;
+                            if (channelTable.containsKey(channel)) {
+                                id = channelTable.get(channel);
                             } else {
-                                NotificationUtils notificationUtils = new NotificationUtils(this);
-                                notificationUtils.sendHandsUpNotification(title, subtitle, (int) System.currentTimeMillis() / 1000);
+                                id = System.currentTimeMillis() / 1000 + "";
+                                channelTable.put(channel, id);
                             }
-                            break;
-                        case R.id.chip_local_reply:
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                String id;
-                                if (channelTable.containsKey(channel)) {
-                                    id = channelTable.get(channel);
-                                } else {
-                                    id = System.currentTimeMillis() / 1000 + "";
-                                    channelTable.put(channel, id);
-                                }
-                                ChannelInfo channelInfo = new ChannelInfo(id, channel);
-                                NotificationUtils notificationUtils = new NotificationUtils(this, channelInfo);
-                                notificationUtils.sendNotificationWithResponse(title, subtitle, (int) System.currentTimeMillis() / 1000);
+                            ChannelInfo channelInfo = new ChannelInfo(id, channel);
+                            NotificationUtils notificationUtils = new NotificationUtils(this, channelInfo);
+                            notificationUtils.sendHandsUpNotification(title, subtitle, (int) System.currentTimeMillis() / 1000);
+                        } else {
+                            NotificationUtils notificationUtils = new NotificationUtils(this);
+                            notificationUtils.sendHandsUpNotification(title, subtitle, (int) System.currentTimeMillis() / 1000);
+                        }
+                        break;
+                    case R.id.chip_local_reply:
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            String id;
+                            if (channelTable.containsKey(channel)) {
+                                id = channelTable.get(channel);
                             } else {
-                                NotificationUtils notificationUtils = new NotificationUtils(this);
-                                notificationUtils.sendNotificationWithResponse(title, subtitle, (int) System.currentTimeMillis() / 1000);
+                                id = System.currentTimeMillis() / 1000 + "";
+                                channelTable.put(channel, id);
                             }
-                            break;
-                        case R.id.chip_fcm:
+                            ChannelInfo channelInfo = new ChannelInfo(id, channel);
+                            NotificationUtils notificationUtils = new NotificationUtils(this, channelInfo);
+                            notificationUtils.sendNotificationWithResponse(title, subtitle, (int) System.currentTimeMillis() / 1000);
+                        } else {
+                            NotificationUtils notificationUtils = new NotificationUtils(this);
+                            notificationUtils.sendNotificationWithResponse(title, subtitle, (int) System.currentTimeMillis() / 1000);
+                        }
+                        break;
+                    case R.id.chip_fcm:
 
-                            break;
-                    }
+                        break;
                 }
-                break;
+            }
         }
     }
 
