@@ -6,11 +6,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
@@ -21,9 +23,9 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import okhttp3.*;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -44,19 +46,22 @@ import java.security.cert.CertificateFactory;
 import java.util.List;
 import java.util.Locale;
 
-public class WeatherPageActivity extends BaseActivity implements OnMapReadyCallback, GoogleMap.OnMarkerDragListener {
+public class WeatherPageActivity extends BaseActivity implements OnMapReadyCallback, GoogleMap.OnCircleClickListener {
     public final static String TAG = WeatherPageActivity.class.getSimpleName();
     private final static String WEATHER_URL = "api.openweathermap.org";
     private final static String PATH_DATA = "data";
     private final static String PATH_VERSION = "2.5";
     private final static String PATH_FIND = "find";
     private final static String APP_ID = BuildConfig.OPEN_WEATHER_API_KEY;
+    private final static long MIN_TIME = 3000; // ms
+    private final static float MIN_DISTANCE = 3f; // meter
 
     private OkHttpClient client;
-    private Uri.Builder uriBuilder;
-    private Headers.Builder headersBuilder;
     private AlertDialog alertDialog;
     private TextView tv_info;
+
+    private GoogleMap googleMap;
+    private CircleOptions circleOptions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +77,7 @@ public class WeatherPageActivity extends BaseActivity implements OnMapReadyCallb
             public void onGranted() {
                 initView();
                 initOkHttp();
+                registerLocationListener();
             }
 
             @Override
@@ -127,25 +133,67 @@ public class WeatherPageActivity extends BaseActivity implements OnMapReadyCallb
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
-        uriBuilder = new Uri.Builder()
+    private Uri.Builder getDefaultUriBuilder() {
+        return new Uri.Builder()
                 .scheme("https")
                 .authority(WEATHER_URL)
                 .appendPath(PATH_DATA)
                 .appendPath(PATH_VERSION);
-        headersBuilder = new Headers.Builder()
+    }
+
+    private Headers.Builder getDefaultHeadersBuilder() {
+        return new Headers.Builder()
                 .add("Content-Type", "application/json");
     }
 
+    @SuppressLint("MissingPermission")
+    private void registerLocationListener() {
+        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        // In this case, listener will be called when MIN_TIME == 3s AND MIN_DISTANCE = 3m
+        lm.requestLocationUpdates(
+                LocationManager.GPS_PROVIDER,
+                MIN_TIME,
+                MIN_DISTANCE,
+                new LocationListener() {
+                    @Override
+                    public void onLocationChanged(Location location) {
+                        Log.e(TAG, "onLocationChanged");
+                        updateMapAndForecast(googleMap, location);
+                    }
+
+                    @Override
+                    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+                    }
+
+                    // User enabled GPS
+                    @Override
+                    public void onProviderEnabled(String provider) {
+                        Log.e(TAG, "onProviderEnabled");
+                        updateMapAndForecast(googleMap, getLocation());
+                    }
+
+                    // User disabled GPS
+                    @Override
+                    public void onProviderDisabled(String provider) {
+                        popUpWarningDialog("GPS is not available", (dialog, which) -> updateMapAndForecast(googleMap, getLocation()));
+                    }
+                }
+
+        );
+    }
+
     private void getForecast(final LatLng latLng) {
-        Uri uri = uriBuilder
+        Uri uri = getDefaultUriBuilder()
                 .appendPath(PATH_FIND)
                 .appendQueryParameter("lat", latLng.latitude + "")
                 .appendQueryParameter("lon", latLng.longitude + "")
                 .appendQueryParameter("cnt", "10")
                 .appendQueryParameter("appid", APP_ID)
                 .build();
-        Headers headers = headersBuilder.build();
+        Headers headers = getDefaultHeadersBuilder().build();
         Request request = new Request.Builder()
                 .headers(headers)
                 .url(uri.toString())
@@ -154,14 +202,14 @@ public class WeatherPageActivity extends BaseActivity implements OnMapReadyCallb
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-                popUpWarningDialog(e.getMessage(), (dialog, which) -> getForecast(latLng));
+                popUpWarningDialog(e.getMessage(), (dialog, which) -> updateMapAndForecast(googleMap, getLocation()));
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 if (!response.isSuccessful() || response.code() != 200 || response.body() == null) {
                     String sb = "code: " + response.code();
-                    popUpWarningDialog(sb, (dialog, which) -> getForecast(latLng));
+                    popUpWarningDialog(sb, (dialog, which) -> updateMapAndForecast(googleMap, getLocation()));
                     return;
                 }
 
@@ -205,11 +253,24 @@ public class WeatherPageActivity extends BaseActivity implements OnMapReadyCallb
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        this.googleMap = googleMap;
         googleMap.setMyLocationEnabled(true);
         googleMap.getUiSettings().setMyLocationButtonEnabled(true);
+        circleOptions = new CircleOptions();
+        circleOptions.clickable(true);
+        googleMap.setOnCircleClickListener(this);
         Location location = getLocation();
+        updateMapAndForecast(googleMap, location);
+    }
+
+
+    private void updateMapAndForecast(GoogleMap googleMap, Location location) {
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-        googleMap.addMarker(new MarkerOptions().position(latLng).title(getMyLocation(latLng)));
+        Toast.makeText(this, latLngToName(latLng), Toast.LENGTH_LONG).show();
+
+        circleOptions.center(latLng);
+        googleMap.addCircle(circleOptions);
+
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         getForecast(latLng);
     }
@@ -220,23 +281,7 @@ public class WeatherPageActivity extends BaseActivity implements OnMapReadyCallb
         return lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
     }
 
-    @Override
-    public void onMarkerDragStart(Marker marker) {
-
-    }
-
-    @Override
-    public void onMarkerDrag(Marker marker) {
-
-    }
-
-    @Override
-    public void onMarkerDragEnd(Marker marker) {
-        getMyLocation(marker.getPosition());
-        getForecast(marker.getPosition());
-    }
-
-    public String getMyLocation(LatLng latLng) {
+    public String latLngToName(LatLng latLng) {
         String unknown = "unknown";
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
         List<android.location.Address> addresses;
@@ -249,5 +294,10 @@ public class WeatherPageActivity extends BaseActivity implements OnMapReadyCallb
             e.printStackTrace();
         }
         return unknown;
+    }
+
+    @Override
+    public void onCircleClick(Circle circle) {
+        Toast.makeText(this, latLngToName(circle.getCenter()), Toast.LENGTH_LONG).show();
     }
 }

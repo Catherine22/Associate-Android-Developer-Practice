@@ -1,15 +1,15 @@
 package com.catherine.materialdesignapp.open_weather.models;
 
 public class Wind {
-    private int deg;
+    private float deg;
 
     private float speed;
 
-    public int getDeg() {
+    public float getDeg() {
         return deg;
     }
 
-    public void setDeg(int deg) {
+    public void setDeg(float deg) {
         this.deg = deg;
     }
 

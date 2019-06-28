@@ -178,7 +178,6 @@
     <string-array name="system_receivers">
         <item>Screen On/Off</item>
         <item>Airplane Mode Changed</item>
-        <item>Locale changed</item>
     </string-array>
 
 

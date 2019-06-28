@@ -461,10 +461,6 @@ Code: [AirplaneModeService], [AirplaneModeJobScheduler], [ScreenOnOffService], [
 4. Ask for permission if needed     
 5. Register services or schedule jobs (Android 5.0+)        
 
-### Implicit broadcast exceptions
-These broadcasts can continue to register receivers in manifest.     
-
-
 Code: [SystemBroadcastReceiverFragment]       
 [Read more](https://developer.android.com/reference/android/content/BroadcastReceiver)       
 
@@ -1049,7 +1045,6 @@ You could run your unit tests on any of them:
 ## Robolectric      
 
 ## Mockito      
-
 
 
 [Google sample](https://github.com/googlesamples/android-testing) 
