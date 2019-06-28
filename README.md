@@ -17,6 +17,7 @@ https://developers.google.com/training/certification/associate-android-developer
 - [Jetpack]    
 - [Debugging]  
 - [Test]  
+- [Others]      
 - [Kotlin]
 
 # Material design
@@ -449,13 +450,23 @@ Code: [BackgroundServiceFragment], [MusicPlayerService], [MusicPlayerJobSchedule
 ## Broadcast receiver
 You could either register receivers by dynamically extending ```BroadcastReceiver``` or statically declaring an implementation with the ```<receiver>``` tag in the AndroidManifest.xml.        
 
-NOTICE, some receivers needn't to be defined in Manifest, check the list [here](https://developer.android.com/guide/components/broadcast-exceptions.html)        
+NOTICE, since Android 8.0 (API level 26), some receivers cannot be defined in Manifest, check the list [here](https://developer.android.com/guide/components/broadcast-exceptions.html)        
+
+In most cases, you should follow the stops:     
+1. Check available receivers [here](https://chromium.googlesource.com/android_tools/+/refs/heads/master/sdk/platforms/android-28/data/broadcast_actions.txt)        
+2. Create your own receivers        
+Code: [ScreenOnReceiver], [AirplaneModeChangedReceiver]     
+3. Let services or jobs to filter system intents        
+Code: [AirplaneModeService], [AirplaneModeJobScheduler], [ScreenOnOffService], [ScreenOnOffJobScheduler]        
+4. Ask for permission if needed     
+5. Register services or schedule jobs (Android 5.0+)        
+
+### Implicit broadcast exceptions
+These broadcasts can continue to register receivers in manifest.     
 
 
-Code: [NetworkHealthService], [NetworkHealthJobScheduler], [InternetConnectivityReceiver]        
+Code: [SystemBroadcastReceiverFragment]       
 [Read more](https://developer.android.com/reference/android/content/BroadcastReceiver)       
-[All available system receivers](https://chromium.googlesource.com/android_tools/+/refs/heads/master/sdk/platforms/android-28/data/broadcast_actions.txt)       
-
 
 ## Content Provider
 Create your own content providers to share data with other applications or access existing content providers in another applications.       
@@ -1045,6 +1056,44 @@ You could run your unit tests on any of them:
 [Google testing blog](https://testing.googleblog.com/)      
 [Google doc](https://developer.android.com/training/testing)        
 
+# Others
+## Generate SSL client certificates via openssl
+E.g. https://openweathermap.org/api     
+
+1. Show SSL certificates        
+```sh
+openssl s_client -connect openweathermap.org:443 -showcerts
+```
+
+2. Create a .pem file and paste string from ```-----BEGIN CERTIFICATE-----``` to ```-----END CERTIFICATE-----```        
+```sh
+echo -n | openssl s_client -connect openweathermap.org:443 | \ sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > openweathermap.crt
+```
+
+> Convert .pem file to .crt
+```sh
+openssl x509 -outform der -in openweathermap.pem -out openweathermap.crt
+```
+
+## Debug
+1. Check pem online     
+https://www.sslshopper.com/certificate-decoder.html     
+
+2. Pin SSL online
+https://www.ssllabs.com/ssltest/index.html
+
+3. Debug certificates
+```sh
+openssl s_client -debug -connect w openweathermap.org:443
+```
+search ```Verify return code```     
+
+4. Pin certificates
+```sh
+openssl s_client -servername openweathermap.org -connect openweathermap.org:443 | openssl x509 -pubkey -noout | openssl pkey -pubin -outform der | openssl dgst -sha256 -binary | openssl enc -base64
+```
+
+
 # Kotlin
 The exam is only available in Java at this time (4/1/2019)      
 [Read more](https://kotlinlang.org/docs/reference/)     
@@ -1194,8 +1243,14 @@ The exam is only available in Java at this time (4/1/2019)
 [MusicPlayerJobScheduler]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/services/MusicPlayerJobScheduler.java>
 [AndroidManifest]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/AndroidManifest.xml>
 [InternetConnectivityReceiver]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/receivers/InternetConnectivityReceiver.java>
+[AirplaneModeChangedReceiver]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/receivers/AirplaneModeChangedReceiver.java>
+[ScreenOnReceiver]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/receivers/ScreenOnReceiver.java>
 [NetworkHealthService]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/services/NetworkHealthService.java>
 [NetworkHealthJobScheduler]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/services/NetworkHealthJobScheduler.java>
+[AirplaneModeService]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/services/AirplaneModeService.java>
+[AirplaneModeJobScheduler]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/services/AirplaneModeJobScheduler.java>
+[ScreenOnOffService]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/services/ScreenOnOffService.java>
+[ScreenOnOffJobScheduler]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/services/ScreenOnOffJobScheduler.java>
 [BackgroundActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/BackgroundActivity.java>
 [SleepTask]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/tasks/SleepTask.java>
 [SleepTaskLoader]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/tasks/SleepTaskLoader.java>
@@ -1214,6 +1269,7 @@ The exam is only available in Java at this time (4/1/2019)
 [ArtistItemDetailsLookup]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/components/ArtistItemDetailsLookup.java>
 [RecyclerViewItemTouchHelper]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/components/RecyclerViewItemTouchHelper.java>
 [MusicFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/MusicFragment.java>
+[SystemBroadcastReceiverFragment]<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/SystemBroadcastReceiverFragment.java>
 [UIComponentsActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/UIComponentsActivity.java>
 [SearchSongsActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/SearchSongsActivity.java>
 [DynamicDeliveryActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/DynamicDeliveryActivity.java>

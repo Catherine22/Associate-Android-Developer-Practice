@@ -31,7 +31,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.TrustManagerFactory;
+import javax.net.ssl.X509TrustManager;
+import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.security.KeyStore;
+import java.security.SecureRandom;
+import java.security.cert.Certificate;
+import java.security.cert.CertificateFactory;
 import java.util.List;
 import java.util.Locale;
 
@@ -93,22 +102,39 @@ public class WeatherPageActivity extends BaseActivity implements OnMapReadyCallb
     private void initOkHttp() {
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(message -> Log.i(TAG, message));
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        pinSSL();
 
-        client = new OkHttpClient.Builder()
-                .addInterceptor(loggingInterceptor)
-                .build();
+        try {
+            BufferedInputStream bis = new BufferedInputStream(getResources().openRawResource(R.raw.openweathermap));
+            CertificateFactory cf = CertificateFactory.getInstance("X.509");
+            Certificate cert = cf.generateCertificate(bis);
+            bis.close();
+
+            KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
+            keyStore.load(null, null);
+            keyStore.setCertificateEntry("openweathermap.org", cert);
+
+            String tmfAlgorithm = TrustManagerFactory.getDefaultAlgorithm();
+            TrustManagerFactory tmf = TrustManagerFactory.getInstance(tmfAlgorithm);
+            tmf.init(keyStore);
+            TrustManager[] trustManagers = tmf.getTrustManagers();
+
+            SSLContext sc = SSLContext.getInstance("TLS");
+            sc.init(null, trustManagers, new SecureRandom());
+            client = new OkHttpClient.Builder()
+                    .addInterceptor(loggingInterceptor)
+                    .sslSocketFactory(sc.getSocketFactory(), (X509TrustManager) trustManagers[0])
+                    .build();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         uriBuilder = new Uri.Builder()
-                .scheme("http")
+                .scheme("https")
                 .authority(WEATHER_URL)
                 .appendPath(PATH_DATA)
                 .appendPath(PATH_VERSION);
         headersBuilder = new Headers.Builder()
                 .add("Content-Type", "application/json");
-    }
-
-    private void pinSSL() {
-
     }
 
     private void getForecast(final LatLng latLng) {
@@ -164,15 +190,17 @@ public class WeatherPageActivity extends BaseActivity implements OnMapReadyCallb
     }
 
     private void popUpWarningDialog(String message, DialogInterface.OnClickListener onRetry) {
-        if (alertDialog != null && alertDialog.isShowing())
-            alertDialog.dismiss();
-        alertDialog = new AlertDialog.Builder(WeatherPageActivity.this)
-                .setTitle(R.string.warnings)
-                .setIcon(R.drawable.ic_warning_black_24dp)
-                .setTitle(message)
-                .setNegativeButton(R.string.retry, onRetry)
-                .create();
-        alertDialog.show();
+        runOnUiThread(() -> {
+            if (alertDialog != null && alertDialog.isShowing())
+                alertDialog.dismiss();
+            alertDialog = new AlertDialog.Builder(WeatherPageActivity.this)
+                    .setTitle(R.string.warnings)
+                    .setIcon(R.drawable.ic_warning_black_24dp)
+                    .setTitle(message)
+                    .setNegativeButton(R.string.retry, onRetry)
+                    .create();
+            alertDialog.show();
+        });
     }
 
     @Override

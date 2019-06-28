@@ -26,6 +26,16 @@
         <meta-data
                 android:name="com.google.android.geo.API_KEY"
                 android:value="@string/google_api_key"/>
+
+
+
+        <receiver android:name=".LocaleChangedReceiver"
+                  android:enabled="true"
+                  android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.LOCALE_CHANGED"/>
+            </intent-filter>
+        </receiver>
     </application>
 </manifest>
 
