@@ -14,6 +14,8 @@
     <string name="undo">فك</string>
     <string name="hello_world">مرحبا بالعالم!</string>
     <string name="settings">الإعدادات</string>
+    <string name="register_receiver">Register</string>
+    <string name="unregister_receiver">Unregister</string>
     <string name="start_service">بدء الخدمات</string>
     <string name="stop_service">وقف الخدمات</string>
     <string name="start_job_scheduler">بدء جدولة الوظيفة</string>

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,6 +17,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import com.catherine.materialdesignapp.MyApplication;
 import com.catherine.materialdesignapp.R;
+import com.catherine.materialdesignapp.adapters.TabLayoutAppComponentsAdapter;
 import com.catherine.materialdesignapp.fragments.MainFragment;
 import com.catherine.materialdesignapp.listeners.OnRequestPermissionsListener;
 import com.catherine.materialdesignapp.receivers.NotificationReceiver;
@@ -119,6 +121,18 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         Log.d(TAG, appLinkIntent.toString());
         String appLinkAction = appLinkIntent.getAction();
         Uri appLinkData = appLinkIntent.getData();
+
+        // deal with user-defined actions from receiver
+        if (TextUtils.isEmpty(appLinkAction))
+            return;
+
+
+        if (Intent.ACTION_SCREEN_ON.equals(appLinkAction)
+                || Intent.ACTION_AIRPLANE_MODE_CHANGED.equals(appLinkAction)) {
+            Intent appComponentsIntent = new Intent(this, AppComponentsActivity.class);
+            appComponentsIntent.setAction(TabLayoutAppComponentsAdapter.BROADCAST_RECEIVER + "");
+            startActivityForResult(appComponentsIntent, 12345);
+        }
     }
 
     private void registerReceivers() {

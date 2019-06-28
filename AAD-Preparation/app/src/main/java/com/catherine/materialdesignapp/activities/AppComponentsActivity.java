@@ -1,6 +1,8 @@
 package com.catherine.materialdesignapp.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -71,6 +73,13 @@ public class AppComponentsActivity extends BaseActivity implements ContentProvid
             }
         });
         setSupportActionBar(toolbar);
+
+        Intent intent = getIntent();
+        if (intent != null && !TextUtils.isEmpty(intent.getAction())) {
+            String action = intent.getAction();
+            int pageId = Integer.parseInt(action);
+            viewpager.setCurrentItem(adapter.getPosition(pageId));
+        }
         switchTo(viewpager.getCurrentItem());
     }
 

@@ -14,6 +14,8 @@
     <string name="undo">undo</string>
     <string name="hello_world">Hello World!</string>
     <string name="settings">Settings</string>
+    <string name="register_receiver">Register</string>
+    <string name="unregister_receiver">Unregister</string>
     <string name="start_service">Start services</string>
     <string name="stop_service">Stop services</string>
     <string name="start_job_scheduler">Start job scheduler</string>
@@ -102,12 +104,6 @@
         <item>Content Provider</item>
     </string-array>
 
-    <string-array name="app_component_array_lollipop">
-        <item>Background service</item>
-        <item>Broadcast Receiver</item>
-        <item>Content Provider</item>
-    </string-array>
-
     <string-array name="app_component_array_O">
         <item>Foreground service</item>
         <item>Background service</item>
@@ -179,6 +175,13 @@
         <item>Crash Log if exists</item>
     </string-array>
 
+    <string-array name="system_receivers">
+        <item>Screen On/Off</item>
+        <item>Airplane Mode Changed</item>
+        <item>Power Connected/Disconnected</item>
+        <item>Battery Change/Low/Okay</item>
+    </string-array>
+
 
     <string name="foreground_service" translatable="false">Foreground service</string>
     <string name="background_service" translatable="false">Background service</string>
@@ -191,7 +194,8 @@
     <string name="content_provider_bg_transition" translatable="false">content_provider_bg_transition</string>
 
 
-    <string name="countdown" translatable="false"><xliff:g example="5 days" id="time">%1$s</xliff:g>until holiday
+    <string name="countdown" translatable="false">countdown <xliff:g example="5 days" id="time">%1$s</xliff:g> until
+        holiday
     </string>
     <!-- Example placeholder for a special unicode symbol -->
     <string name="star_rating" translatable="false">Check out our 5
@@ -206,7 +210,7 @@
         <xliff:g id="prod_gamegroup">Game Group</xliff:g>
     </string>
     <!-- Example placeholder for a literal -->
-    <string name="promo_message" translatable="false">Please use the "<xliff:g id="promotion_code">ABCDEFG</xliff:g>" to
+    <string name="promo_message" translatable="false">Please use the "<xliff:g id="promotion_code">%s</xliff:g>" to
         get a discount.
     </string>
     <plurals name="numberOfSongsAvailable" translatable="false">
@@ -217,6 +221,7 @@
              translators will need to use %d for languages where "one"
              doesn't mean 1 (as explained above).
           -->
+        <item quantity="zero">no song found.</item>
         <item quantity="one">%d song found.</item>
         <item quantity="other">%d songs found.</item>
     </plurals>

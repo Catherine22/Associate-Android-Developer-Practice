@@ -9,12 +9,12 @@
         tools:showIn="@layout/activity_app_components">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layout_background"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
         <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_start_service"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"

@@ -64,9 +64,9 @@ public class MainFragment extends Fragment {
         TextInputLayout til_special_str = view.findViewById(R.id.til_special_str);
         til_special_str.getEditText().setText(
                 String.format(Locale.US, "Untranslatable strings: \n%s\n%s\n%s\n%s\n%s\n%s",
-                        getString(R.string.countdown), getString(R.string.star_rating),
+                        getString(R.string.countdown, "5 days"), getString(R.string.star_rating),
                         getString(R.string.app_homeurl), getString(R.string.prod_name),
-                        getString(R.string.promo_message), getResources().getQuantityString(R.plurals.numberOfSongsAvailable, 3))
+                        getString(R.string.promo_message, "ABCDEFG"), getResources().getQuantityString(R.plurals.numberOfSongsAvailable, 3))
         );
 
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);

@@ -85,7 +85,6 @@ public class BackgroundServiceFragment extends Fragment implements View.OnClickL
                 }
             });
 
-
             slider_latency.setMaxProgress(PROGRESS_MAX);
             slider_latency.setProgressDesc(String.format(getResources().getQuantityString(R.plurals.second, PROGRESS_MIN), PROGRESS_MIN));
             slider_latency.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {

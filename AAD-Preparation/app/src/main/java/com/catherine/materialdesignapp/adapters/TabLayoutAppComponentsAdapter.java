@@ -7,9 +7,9 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import com.catherine.materialdesignapp.MyApplication;
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.fragments.BackgroundServiceFragment;
-import com.catherine.materialdesignapp.fragments.BroadcastReceiverFragment;
 import com.catherine.materialdesignapp.fragments.ContentProviderFragment;
 import com.catherine.materialdesignapp.fragments.ForegroundServiceFragment;
+import com.catherine.materialdesignapp.fragments.SystemBroadcastReceiverFragment;
 
 public class TabLayoutAppComponentsAdapter extends FragmentStatePagerAdapter {
     private String[] TABS;
@@ -25,11 +25,6 @@ public class TabLayoutAppComponentsAdapter extends FragmentStatePagerAdapter {
             TABS = MyApplication.INSTANCE.getResources().getStringArray(R.array.app_component_array_O);
             pageIds = new int[]{
                     FOREGROUND_SERVICE, BACKGROUND_SERVICE, BROADCAST_RECEIVER, CONTENT_PROVIDER
-            };
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            TABS = MyApplication.INSTANCE.getResources().getStringArray(R.array.app_component_array_lollipop);
-            pageIds = new int[]{
-                    BACKGROUND_SERVICE, BROADCAST_RECEIVER, CONTENT_PROVIDER
             };
         } else {
             TABS = MyApplication.INSTANCE.getResources().getStringArray(R.array.app_component_array);
@@ -48,17 +43,8 @@ public class TabLayoutAppComponentsAdapter extends FragmentStatePagerAdapter {
                 case 1:
                     return new BackgroundServiceFragment();
                 case 2:
-                    return new BroadcastReceiverFragment();
+                    return new SystemBroadcastReceiverFragment();
                 case 3:
-                    return new ContentProviderFragment();
-            }
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            switch (position) {
-                case 0:
-                    return new BackgroundServiceFragment();
-                case 1:
-                    return new BroadcastReceiverFragment();
-                case 2:
                     return new ContentProviderFragment();
             }
         } else {
@@ -66,13 +52,13 @@ public class TabLayoutAppComponentsAdapter extends FragmentStatePagerAdapter {
                 case 0:
                     return new BackgroundServiceFragment();
                 case 1:
-                    return new BroadcastReceiverFragment();
+                    return new SystemBroadcastReceiverFragment();
                 case 2:
                     return new ContentProviderFragment();
 
             }
         }
-        return null;
+        throw new IndexOutOfBoundsException("Page not found");
     }
 
     @Override
@@ -82,6 +68,24 @@ public class TabLayoutAppComponentsAdapter extends FragmentStatePagerAdapter {
 
     public int getPageId(int position) {
         return pageIds[position];
+    }
+
+    public int getPosition(int pageId) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            return pageId;
+        } else {
+            switch (pageId) {
+                case BACKGROUND_SERVICE:
+                    return 0;
+                case BROADCAST_RECEIVER:
+                    return 1;
+                case CONTENT_PROVIDER:
+                    return 2;
+                default:
+                    throw new IndexOutOfBoundsException("Page not found");
+
+            }
+        }
     }
 
     @Override

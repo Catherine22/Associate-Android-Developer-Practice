@@ -9,6 +9,7 @@ public class OccupiedActions {
 
     public final static String ACTION_UPDATE_LOGGER = "ACTION_UPDATE_LOGGER";
 
+
     // actions for broadcast
     public final static String ACTION_UPDATE_NOTIFICATION = String.format("%s.updateNotification", MyApplication.INSTANCE.getPackageName());
     public final static String ACTION_POSITIVE_CLICK = "ACTION_POSITIVE_CLICK";

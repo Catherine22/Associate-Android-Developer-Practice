@@ -6,6 +6,7 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.text.TextUtils;
 import android.widget.RemoteViews;
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
@@ -62,8 +63,23 @@ public class NotificationUtils extends ContextWrapper {
      * @param notificationId user defined
      */
     public void sendNotification(String title, String body, int notificationId) {
+        sendNotification(title, body, notificationId, null);
+    }
+
+
+    /**
+     * Push a notification on whatever version devices
+     *
+     * @param title          comes from Firebase cloud messing
+     * @param body           comes from Firebase cloud messing
+     * @param notificationId user defined
+     * @param action         attach messages to MainActivity if needed
+     */
+    public void sendNotification(String title, String body, int notificationId, String action) {
         // Create an Intent for the activity you want to start
         Intent resultIntent = new Intent(this, MainActivity.class);
+        if (!TextUtils.isEmpty(action))
+            resultIntent.setAction(action);
         // Create the TaskStackBuilder and add the intent, which inflates the back stack
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
         stackBuilder.addNextIntentWithParentStack(resultIntent);
@@ -93,8 +109,14 @@ public class NotificationUtils extends ContextWrapper {
     }
 
     public void sendHandsUpNotification(String title, String body, int notificationId) {
+        sendHandsUpNotification(title, body, notificationId, null);
+    }
+
+    public void sendHandsUpNotification(String title, String body, int notificationId, String action) {
         // Create an Intent for the activity you want to start
         Intent resultIntent = new Intent(this, MainActivity.class);
+        if (!TextUtils.isEmpty(action))
+            resultIntent.setAction(action);
         // Create the TaskStackBuilder and add the intent, which inflates the back stack
         TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
         stackBuilder.addNextIntentWithParentStack(resultIntent);

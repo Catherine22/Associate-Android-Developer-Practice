@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.View;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.util.Pair;
-import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.catherine.materialdesignapp.R;
@@ -32,14 +31,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class LifecycleActivity extends BaseActivity implements LifecycleOwner, LifecycleListener {
+public class LifecycleActivity extends BaseActivity implements LifecycleListener {
     public final static String TAG = LifecycleActivity.class.getSimpleName();
     private final static String STATE_TIMESTAMP = "timestamp";
     private final static String STATE_LOG = "log";
     private final static String STATE_LIFECYCLE_EVENTS = "lifecycleEvents";
+    private final static String STATE_UNFOLDED_ITEMS = "unfoldedItems";
     private List<Pair<String, String>> features = new ArrayList<>();
     private LifecycleAdapter adapter;
     private Client client;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +52,6 @@ public class LifecycleActivity extends BaseActivity implements LifecycleOwner, L
             getSupportActionBar().setDisplayHomeAsUpEnabled(true); // enable back arrow on the top left area
             getSupportActionBar().setTitle(TAG);
         }
-
         LifecycleObserverImpl lifecycleObserver = new LifecycleObserverImpl();
         lifecycleObserver.setLifecycleListener(this);
         getLifecycle().addObserver(lifecycleObserver);
@@ -101,6 +101,13 @@ public class LifecycleActivity extends BaseActivity implements LifecycleOwner, L
             Intent intent = new Intent(this, LogcatService.class);
             startService(intent);
         }
+
+
+        if (savedInstanceState == null)
+            return;
+
+        recoverView(savedInstanceState);
+
     }
 
     @Override
@@ -109,6 +116,12 @@ public class LifecycleActivity extends BaseActivity implements LifecycleOwner, L
         savedInstanceState.putLong(STATE_TIMESTAMP, timestamp);
         savedInstanceState.putString(STATE_LOG, features.get(0).second);
         savedInstanceState.putString(STATE_LIFECYCLE_EVENTS, features.get(1).second);
+
+        boolean[] unfoldedItems = new boolean[features.size()];
+        for (int i = 0; i < features.size(); i++) {
+            unfoldedItems[i] = adapter.isUnfolded(i);
+        }
+        savedInstanceState.putBooleanArray(STATE_UNFOLDED_ITEMS, unfoldedItems);
         super.onSaveInstanceState(savedInstanceState);
     }
 
@@ -117,9 +130,20 @@ public class LifecycleActivity extends BaseActivity implements LifecycleOwner, L
         super.onRestoreInstanceState(savedInstanceState);
         if (savedInstanceState == null)
             return;
+        recoverView(savedInstanceState);
+    }
+
+    private void recoverView(Bundle savedInstanceState) {
         long savedTimestamp = savedInstanceState.getLong(STATE_TIMESTAMP);
         features.set(0, new Pair<>(features.get(0).first, savedInstanceState.getString(STATE_LOG)));
         features.set(1, new Pair<>(features.get(1).first, savedInstanceState.getString(STATE_LIFECYCLE_EVENTS)));
+        boolean[] unfoldedItems = savedInstanceState.getBooleanArray(STATE_UNFOLDED_ITEMS);
+        if (unfoldedItems == null || unfoldedItems.length == 0)
+            unfoldedItems = new boolean[features.size()];
+        for (int i = 0; i < features.size(); i++) {
+            adapter.unfold(i, unfoldedItems[i]);
+        }
+        adapter.notifyDataSetChanged();
         Log.e(TAG, String.format("restored saved instance state: %s", stampToDate(savedTimestamp)));
     }
 

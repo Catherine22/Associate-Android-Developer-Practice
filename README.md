@@ -335,8 +335,8 @@ Code: [LifecycleActivity]
 
 
 ## Monitor lifecycle events via ```Lifecycle``` class in two ways:        
-1. Implement both ```LifecycleObserver``` and ```LifecycleOwner```      
-Code: [LifecycleActivity], [LifecycleObserverImpl]
+1. Implement ```LifecycleObserver```        
+Code: [LifecycleActivity], [LifecycleObserverImpl]      
 
 2. Associate with Jetpack       
 
@@ -356,10 +356,20 @@ Code: [LifecycleActivity], [LifecycleObserverImpl]
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         // do something
+        
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            Log.d(TAG, "landscape");
+        } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            Log.d(TAG, "portrait");
+        }
     }
 ```
 Code: [BaseActivity]        
 [Read more](https://blog.csdn.net/zhaokaiqiang1992/article/details/19921703)        
+
+## PictureInPicture and Multi-window        
+Picture in picture mode is a special case of multi-window mode.     
+
 
 # App components
 There are four different types of app components:       
@@ -437,10 +447,15 @@ Code: [BackgroundServiceFragment], [MusicPlayerService], [MusicPlayerJobSchedule
 [Read more](https://developer.android.com/guide/components/services)        
 
 ## Broadcast receiver
-You could either register receivers by dynamically extending ```BroadcastReceiver``` or statically declaring an implementation with the ```<receiver>``` tag in the AndroidManifest.xml
+You could either register receivers by dynamically extending ```BroadcastReceiver``` or statically declaring an implementation with the ```<receiver>``` tag in the AndroidManifest.xml.        
+
+NOTICE, some receivers needn't to be defined in Manifest, check the list [here](https://developer.android.com/guide/components/broadcast-exceptions.html)        
+
 
 Code: [NetworkHealthService], [NetworkHealthJobScheduler], [InternetConnectivityReceiver]        
 [Read more](https://developer.android.com/reference/android/content/BroadcastReceiver)       
+[All available system receivers](https://chromium.googlesource.com/android_tools/+/refs/heads/master/sdk/platforms/android-28/data/broadcast_actions.txt)       
+
 
 ## Content Provider
 Create your own content providers to share data with other applications or access existing content providers in another applications.       

@@ -11,6 +11,7 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.HandlerThread;
 import android.util.Log;
+import com.catherine.materialdesignapp.services.BusyJobs;
 import com.catherine.materialdesignapp.services.NetworkHealthJobScheduler;
 import com.catherine.materialdesignapp.services.NetworkHealthService;
 import com.catherine.materialdesignapp.utils.FileUtils;
@@ -22,8 +23,6 @@ import com.google.firebase.FirebaseApp;
 
 import java.io.File;
 import java.util.Map;
-
-import static com.catherine.materialdesignapp.services.BusyJobs.JOB_NETWORK_STATE;
 
 public class MyApplication extends Application implements Thread.UncaughtExceptionHandler {
     private static String TAG = MyApplication.class.getSimpleName();
@@ -72,7 +71,7 @@ public class MyApplication extends Application implements Thread.UncaughtExcepti
             try {
                 JobScheduler jobScheduler = (JobScheduler) getSystemService(JOB_SCHEDULER_SERVICE);
                 ComponentName componentName = new ComponentName(this, NetworkHealthJobScheduler.class);
-                JobInfo jobInfo = new JobInfo.Builder(JOB_NETWORK_STATE, componentName)
+                JobInfo jobInfo = new JobInfo.Builder(BusyJobs.JOB_NETWORK_STATE, componentName)
                         .setRequiresStorageNotLow(false)
                         .setRequiresBatteryNotLow(true)
                         .setRequiresCharging(false)

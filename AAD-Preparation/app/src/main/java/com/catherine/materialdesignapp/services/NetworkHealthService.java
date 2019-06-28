@@ -21,6 +21,9 @@ public class NetworkHealthService extends Service implements ProguardIgnored {
     @Override
     public void onCreate() {
         super.onCreate();
+        internetReceiver = new InternetConnectivityReceiver();
+        IntentFilter internetIntentFilter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
+        registerReceiver(internetReceiver, internetIntentFilter);
     }
 
 

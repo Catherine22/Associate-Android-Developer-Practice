@@ -12,150 +12,136 @@
     <uses-permission android:name="android.permission.READ_CALL_LOG"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
 
+    <!--extractNativeLibs relates to dynamic delivery-->
+    <!--resizeableActivity enables/disables multi-window display-->
+    <!--supportsPictureInPicture supports PictureInPicture-->
     <application
             android:name=".MyApplication"
             android:allowBackup="true"
             android:extractNativeLibs="${extractNativeLibs}"
+            android:resizeableActivity="true"
+            android:supportsPictureInPicture="false"
             android:fullBackupContent="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme.NoActionBar"
-            tools:targetApi="m">
-        <activity
-                android:name=".activities.MainActivity"
-                android:configChanges="orientation|keyboardHidden">
+            android:theme="@style/AppTheme.NoActionBar">
+
+        <activity android:name=".activities.MainActivity"
+                  android:launchMode="singleInstance"
+                  android:taskAffinity="com.catherine.materialdesignapp"
+                  android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|keyboardHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
 
             <!-- THIS WORKS ON API 23+, open https://guarded-basin-12509.herokuapp.com to test app links  -->
-            <intent-filter
-                    android:autoVerify="true"
-                    tools:targetApi="m">
+            <intent-filter android:autoVerify="true"
+                           tools:targetApi="m">
                 <action android:name="android.intent.action.VIEW"/>
 
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
 
-                <data
-                        android:host="guarded-basin-12509.herokuapp.com"
-                        android:scheme="https"/>
+                <data android:host="guarded-basin-12509.herokuapp.com"
+                      android:scheme="https"/>
             </intent-filter>
         </activity>
 
-        <activity
-                android:name=".activities.UIComponentsActivity"
-                android:configChanges="orientation|keyboardHidden"
-                android:parentActivityName=".activities.MainActivity">
+        <activity android:name=".activities.UIComponentsActivity"
+                  android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|keyboardHidden"
+                  android:parentActivityName=".activities.MainActivity">
 
-            <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".activities.MainActivity"/>
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                       android:value=".activities.MainActivity"/>
         </activity>
-        <activity
-                android:name=".activities.LifecycleActivity"
-                android:configChanges="orientation|keyboardHidden"
-                android:parentActivityName=".activities.MainActivity">
 
-            <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".activities.MainActivity"/>
+        <activity android:name=".activities.LifecycleActivity"
+                  android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|keyboardHidden"
+                  android:parentActivityName=".activities.MainActivity">
+
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                       android:value=".activities.MainActivity"/>
         </activity>
-        <activity
-                android:name=".activities.AppComponentsActivity"
-                android:configChanges="orientation|keyboardHidden"
-                android:parentActivityName=".activities.MainActivity">
 
-            <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".activities.MainActivity"/>
+        <activity android:name=".activities.AppComponentsActivity"
+                  android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|keyboardHidden"
+                  android:parentActivityName=".activities.MainActivity">
+
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                       android:value=".activities.MainActivity"/>
         </activity>
-        <activity
-                android:name=".activities.BackgroundActivity"
-                android:configChanges="orientation|keyboardHidden"
-                android:parentActivityName=".activities.MainActivity">
+        <activity android:name=".activities.BackgroundActivity"
+                  android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|keyboardHidden"
+                  android:parentActivityName=".activities.MainActivity">
 
-            <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".activities.MainActivity"/>
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                       android:value=".activities.MainActivity"/>
         </activity>
-        <activity
-                android:name=".activities.NotificationActivity"
-                android:configChanges="orientation|keyboardHidden"
-                android:parentActivityName=".activities.MainActivity">
 
-            <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".activities.MainActivity"/>
+        <activity android:name=".activities.NotificationActivity"
+                  android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|keyboardHidden"
+                  android:parentActivityName=".activities.MainActivity">
+
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                       android:value=".activities.MainActivity"/>
         </activity>
-        <activity
-                android:name=".activities.DynamicDeliveryActivity"
-                android:configChanges="orientation|keyboardHidden"
-                android:parentActivityName=".activities.MainActivity">
+        <activity android:name=".activities.DynamicDeliveryActivity"
+                  android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|keyboardHidden"
+                  android:parentActivityName=".activities.MainActivity">
 
-            <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".activities.MainActivity"/>
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                       android:value=".activities.MainActivity"/>
         </activity>
-        <activity
-                android:name=".activities.AlbumDetailsActivity"
-                android:configChanges="orientation|keyboardHidden"
-                android:parentActivityName=".activities.UIComponentsActivity">
 
-            <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".activities.UIComponentsActivity"/>
+        <activity android:name=".activities.AlbumDetailsActivity"
+                  android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|keyboardHidden"
+                  android:parentActivityName=".activities.UIComponentsActivity">
+
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                       android:value=".activities.UIComponentsActivity"/>
         </activity>
-        <activity
-                android:name=".activities.CursorLoaderActivity"
-                android:configChanges="orientation|keyboardHidden"
-                android:parentActivityName=".activities.MainActivity">
+        <activity android:name=".activities.CursorLoaderActivity"
+                  android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|keyboardHidden"
+                  android:parentActivityName=".activities.MainActivity">
 
-            <meta-data
-                    android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".activities.MainActivity"/>
+            <meta-data android:name="android.support.PARENT_ACTIVITY"
+                       android:value=".activities.MainActivity"/>
         </activity>
 
         <!-- this is the searchable activity, it performs searches -->
-        <activity
-                android:name=".activities.SearchableSongsActivity"
-                android:configChanges="orientation|keyboardHidden"
-                android:launchMode="singleTop"
-                android:parentActivityName=".activities.MainActivity">
+        <activity android:name=".activities.SearchableSongsActivity"
+                  android:configChanges="screenSize|smallestScreenSize|screenLayout|orientation|keyboardHidden"
+                  android:launchMode="singleTop"
+                  android:parentActivityName=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH"/>
-
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
             </intent-filter>
+
             <intent-filter>
                 <action android:name="com.google.android.gms.actions.SEARCH_ACTION"/>
-
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
             </intent-filter>
 
-            <meta-data
-                    android:name="android.app.searchable"
-                    android:resource="@xml/searchable"/>
+            <meta-data android:name="android.app.searchable"
+                       android:resource="@xml/searchable"/>
         </activity>
 
         <!-- this activity enables the search dialog to initiate searches
          in the SearchableSongsActivity -->
 
-        <provider
-                android:name=".providers.SearchSuggestionProvider"
-                android:authorities="com.catherine.materialdesignapp.providers.SearchSuggestionProvider"
-                android:exported="false"/>
+        <provider android:name=".providers.SearchSuggestionProvider"
+                  android:authorities="com.catherine.materialdesignapp.providers.SearchSuggestionProvider"
+                  android:exported="false"/>
 
-        <provider
-                android:name=".providers.AlbumsProvider"
-                android:authorities="com.catherine.materialdesignapp.providers.AlbumsProvider"
-                android:exported="true"/>
+        <provider android:name=".providers.AlbumsProvider"
+                  android:authorities="com.catherine.materialdesignapp.providers.AlbumsProvider"
+                  android:exported="true"/>
 
         <!--Services-->
         <service
@@ -165,35 +151,48 @@
                 <action android:name="com.catherine.materialdesignapp.startMusicPlayerService"/>
             </intent-filter>
         </service>
-        <service
-                android:name=".services.NetworkHealthService"
-                android:exported="false">
+        <service android:name=".services.NetworkHealthService"
+                 android:exported="false">
             <intent-filter>
                 <action android:name="com.catherine.materialdesignapp.startNetworkHealthService"/>
             </intent-filter>
         </service>
-        <service
-                android:name=".services.LogcatService"
-                android:exported="false">
+        <service android:name=".services.LogcatService"
+                 android:exported="false">
             <intent-filter>
                 <action android:name="com.catherine.materialdesignapp.startLogcatService"/>
+            </intent-filter>
+        </service>
+        <service android:name=".services.ScreenOnOffService"
+                 android:exported="false">
+            <intent-filter>
+                <action android:name="com.catherine.materialdesignapp.startScreenOnOffService"/>
+            </intent-filter>
+        </service>
+        <service android:name=".services.AirplaneModeService"
+                 android:exported="false">
+            <intent-filter>
+                <action android:name="com.catherine.materialdesignapp.startAirplaneModeService"/>
             </intent-filter>
         </service>
         <!--Services-->
 
         <!--JobSchedulers-->
-        <service
-                android:name=".services.MusicPlayerJobScheduler"
-                android:exported="false"
-                android:permission="android.permission.BIND_JOB_SERVICE"/>
-        <service
-                android:name=".services.NetworkHealthJobScheduler"
-                android:exported="false"
-                android:permission="android.permission.BIND_JOB_SERVICE"/>
-        <service
-                android:name=".services.LogcatJobScheduler"
-                android:exported="false"
-                android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:name=".services.MusicPlayerJobScheduler"
+                 android:exported="false"
+                 android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:name=".services.NetworkHealthJobScheduler"
+                 android:exported="false"
+                 android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:name=".services.LogcatJobScheduler"
+                 android:exported="false"
+                 android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:name=".services.ScreenOnOffJobScheduler"
+                 android:exported="false"
+                 android:permission="android.permission.BIND_JOB_SERVICE"/>
+        <service android:name=".services.AirplaneModeJobScheduler"
+                 android:exported="false"
+                 android:permission="android.permission.BIND_JOB_SERVICE"/>
         <!--JobSchedulers-->
 
         <!--<receiver-->

@@ -14,6 +14,8 @@
     <string name="undo">还原</string>
     <string name="hello_world">你好啊！</string>
     <string name="settings">设置</string>
+    <string name="register_receiver">Register</string>
+    <string name="unregister_receiver">Unregister</string>
     <string name="start_service">启动服务</string>
     <string name="stop_service">停止服务</string>
     <string name="start_job_scheduler">启动 job scheduler</string>
