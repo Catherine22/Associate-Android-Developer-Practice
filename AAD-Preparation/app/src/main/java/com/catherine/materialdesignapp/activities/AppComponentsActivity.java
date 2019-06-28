@@ -50,6 +50,7 @@ public class AppComponentsActivity extends BaseActivity implements ContentProvid
             @Override
             public void onPageSelected(int position) {
                 Log.i(TAG, String.format("onPageSelected:%d", position));
+                switchTo(position);
             }
 
             @Override
@@ -61,7 +62,6 @@ public class AppComponentsActivity extends BaseActivity implements ContentProvid
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 Log.d(TAG, "onTabSelected:" + tab.getPosition());
-                switchTo(tab.getPosition());
             }
 
             @Override
@@ -86,6 +86,26 @@ public class AppComponentsActivity extends BaseActivity implements ContentProvid
     private void switchTo(int pos) {
         getSupportActionBar().setTitle(adapter.getPageTitle(pos));
         toolbar.setTitle(adapter.getPageTitle(pos));
+
+        // to keep the popped up fragment state
+        switch (pos) {
+            case 0:
+            case 1:
+                if (f_container.getVisibility() == View.VISIBLE) {
+                    viewpager.setVisibility(View.VISIBLE);
+                    f_container.setVisibility(View.INVISIBLE);
+                }
+                break;
+            case 2:
+                if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+                    viewpager.setVisibility(View.INVISIBLE);
+                    f_container.setVisibility(View.VISIBLE);
+                }
+                break;
+            default:
+                throw new IndexOutOfBoundsException("index cannot be larger than " + adapter.getCount());
+        }
+
     }
 
     @Override
@@ -113,12 +133,12 @@ public class AppComponentsActivity extends BaseActivity implements ContentProvid
 
     @Override
     public void onBackPressed() {
-        if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
+            getSupportFragmentManager().popBackStack();
+        } else if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
             getSupportFragmentManager().popBackStack();
             viewpager.setVisibility(View.VISIBLE);
             f_container.setVisibility(View.INVISIBLE);
-        } else if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
-            getSupportFragmentManager().popBackStack();
         } else {
             super.onBackPressed();
         }

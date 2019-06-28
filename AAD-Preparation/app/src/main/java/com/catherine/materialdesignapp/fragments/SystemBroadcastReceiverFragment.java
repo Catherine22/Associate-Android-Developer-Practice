@@ -94,14 +94,15 @@ public class SystemBroadcastReceiverFragment extends Fragment {
             }
         });
         rv.setAdapter(adapter);
-
-        // init serviceConnection to bind services
-        batteryLowConnection = new BatteryLowConnection();
     }
 
     private void bindService(int position) {
         Intent intent;
         if (position == 2) {
+            if (batteryLowConnection == null) {
+                // init serviceConnection to bind services
+                batteryLowConnection = new BatteryLowConnection();
+            }
             intent = new Intent(getActivity(), BatteryLowService.class);
             MyApplication.INSTANCE.bindService(intent, batteryLowConnection, Context.BIND_AUTO_CREATE);
         }
