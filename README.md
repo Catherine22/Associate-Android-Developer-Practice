@@ -15,6 +15,7 @@ https://developers.google.com/training/certification/associate-android-developer
 - [Day/Night Mode]      
 - [Styles]       
 - [Jetpack]    
+- [Architecture]  
 - [Debugging]  
 - [Test]  
 - [Others]      
@@ -839,6 +840,278 @@ dependencies {
 
 [Read More](https://developer.android.com/jetpack/androidx/migrate)
 
+# Architecture
+Follow the instruction and create your first MVVM app      
+![screenshot](https://raw.githubusercontent.com/Catherine22/AAD-Preparation/master/AAD-Preparation/screenshots/architecture.png)       
+
+## 1. Database
+1. Annotated with ```@Database```        
+2. Extend ```RoomDatabase```        
+3. Annotated with entities associated with the database. E.g. ```@Database(entities = {xxx.class}, version = 1, exportSchema = false)```   
+4. Include an abstract method without any arguments and return ```Dao```. E.g ```public abstract MyDao myDao();```     
+
+```Java
+@Database(entities = {School.class}, version = SchoolDatabase.SCHOOL_DB_VERSION, exportSchema = false)
+public abstract class SchoolDatabase extends RoomDatabase {
+    public final static int SCHOOL_DB_VERSION = 1;
+    public final static String SCHOOL_DB = "school_database";
+
+    public abstract StudentDao studentDao();
+    private static volatile SchoolDatabase sInstance = null;
+
+    @NonNull
+    public static synchronized SchoolDatabase getInstance(final Context context) {
+        if (sInstance == null) {
+            synchronized (SchoolDatabase.class) {
+                if (sInstance == null) {
+                    sInstance = Room.databaseBuilder(context.getApplicationContext(),
+                            SchoolDatabase.class, SCHOOL_DB)
+                            // Wipes and rebuilds instead of migrating
+                            // if no Migration object.
+                            // Migration is not part of this practical.
+                            .fallbackToDestructiveMigration()
+                            .build();
+                }
+            }
+        }
+        return sInstance;
+    }
+}
+```
+
+## 2. Entity
+Tables within the database.
+
+```Java
+// Database naming schema
+public final class DataStudentName {
+    public static final String TABLE_NAME = "student";
+    public static final String COL_STUDENT_ID = "student_id";
+    public static final String COL_NAME = "name";
+    public static final String COL_CLASS = "class";
+}
+```
+
+```Java
+@Entity(tableName = DataStudentName.TABLE_NAME)
+public class Student implements Comparable<Student> {
+    @NonNull
+    @PrimaryKey
+    @ColumnInfo(name = DataStudentName.COL_STUDENT_ID)
+    private String mStudentId;
+
+    @ColumnInfo(name = DataStudentName.COL_NAME)
+    private String mName;
+
+    @ColumnInfo(name = DataStudentName.COL_CLASS)
+    private String mClass;
+
+    public Student(@NonNull String mStudentId, String mName, String mClass) {
+        this.mStudentId = mStudentId;
+        this.mName = mName;
+        this.mClass = mClass;
+    }
+
+    @NonNull
+    public String getStudentId() {
+        return mStudentId;
+    }
+
+    public String getName() {
+        return mName;
+    }
+
+    public String getClass() {
+        return mClass;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "mStudentId='" + mStudentId + '\'' +
+                ", mName='" + mName + '\'' +
+                ", mClass='" + mClass + '\'' +
+                '}';
+    }
+
+    @Override
+    public int compareTo(@NonNull Student o) {
+        return this.mStudentId.compareTo(o.mStudentId);
+    }
+}
+```
+
+## 3. DAO
+Data Access Object, which includes a bunch of SQL commands to help user access data.
+```Java
+@Dao
+public interface StudentDao {
+
+    @Query("SELECT * FROM student ORDER BY name ASC")
+    LiveData<List<Student>> getAll();
+
+    @Query("SELECT * FROM student ORDER BY name ASC")
+    DataSource.Factory<Integer, Student> getStudentDataSource();
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertAll(Student... students);
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insert(Student student);
+
+    @Update
+    int updateAll(Student... students);
+
+    @RawQuery
+    int updateByRawQuery(SupportSQLiteQuery query);
+
+    @Query("DELETE FROM student WHERE student_id = :student_id")
+    int deleteByRawQuery(String student_id);
+
+    @Query("DELETE FROM student")
+    void deleteAll();
+}
+```
+
+## 4. Repository
+Handle data sources and makes sure to execute on the correct thread.        
+
+```Java
+public class DataRepository {
+    private final static String TAG = DataRepository.class.getSimpleName();
+    private final StudentDao mDao;
+    private final ExecutorService mIoExecutor;
+    private static volatile DataRepository sInstance = null;
+
+    public static DataRepository getInstance(Application application) {
+        if (sInstance == null) {
+            synchronized (DataRepository.class) {
+                if (sInstance == null) {
+                    StudentDatabase database = StudentDatabase.getInstance(application);
+                    sInstance = new DataRepository(database.studentDao(),
+                            Executors.newSingleThreadExecutor());
+                            
+                    // load default data from .json or .db files from /raw/ directory if you like
+                }
+            }
+        }
+        return sInstance;
+    }
+
+    public DataRepository(StudentDao dao, ExecutorService executor) {
+        mIoExecutor = executor;
+        mDao = dao;
+    }
+}
+```
+
+## 5. ViewModel
+1. Store and manage data for UI     
+2. Extend ```ViewModel```       
+
+```Java
+// ViewModel for AddStudentActivity
+public class AddStudentViewModel extends ViewModel {
+
+    private DataRepository mRepository;
+
+    public AddStudentViewModel(DataRepository repository) {
+        mRepository = repository;
+    }
+
+    public void save(Student student) {
+        mRepository.insert(student);
+    }
+
+    public void save(String name, String classStr) {
+        Student student = new Student(
+            System.currentTimeMillis() + "",
+            name,
+            classStr
+        );
+        save(student);
+    }
+}
+```
+
+
+## 6. ViewModel Factory
+1. Factory for creating a AddStudentViewModel.     
+2. Implement ```ViewModelProvider.Factory```
+
+```Java
+public class AddStudentViewModelFactory implements ViewModelProvider.Factory {
+    private final DataRepository mRepository;
+
+    public static AddStudentViewModelFactory createFactory(Activity activity) {
+        Application application = activity.getApplication();
+        if (application == null) {
+            throw new IllegalStateException("Not yet attached to Application");
+        }
+        return new AddStudentViewModelFactory(DataRepository.getInstance(application));
+    }
+
+    private AddStudentViewModelFactory(DataRepository repository) {
+        mRepository = repository;
+    }
+
+    @NonNull
+    @Override
+    public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
+        try {
+            return modelClass.getConstructor(DataRepository.class).newInstance(mRepository);
+        } catch (InstantiationException | IllegalAccessException |
+                NoSuchMethodException | InvocationTargetException e) {
+            throw new RuntimeException("Cannot create an instance of " + modelClass, e);
+        }
+    }
+}
+```
+
+## 7. Activity
+1. Initialise ViewModel via ViewModelFactory      
+2. Manipulate data via ViewModel        
+
+```Java
+public class MainActivity extends AppCompatActivity {
+    private final static String TAG = MainActivity.class.getSimpleName();
+    private AddStudentViewModel mViewModel;
+    private EditText mName, mClass;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        AddStudentViewModelFactory viewModelFactory = AddStudentViewModelFactory.createFactory(this);
+        mViewModel = ViewModelProviders.of(this, viewModelFactory)
+                .get(AddStudentViewModel.class);
+
+        setContentView(R.layout.activity_main);
+
+        mName = findViewById(R.id.et_name);
+        mClass = findViewById(R.id.et_class);
+
+        Button mSave = findViewById(R.id.bt_save);
+        mSave.setOnClickListener(this::saveOnClick);
+    }
+
+    public void saveOnClick(View view) {
+        String name = TextUtils.isEmpty(mName.getText()) ? "" : mName.getText().toString();
+        String classStr = TextUtils.isEmpty(mClass.getText()) ? "" : mClass.getText().toString();
+
+        if (name.length() == 0 || classStr.length() == 0) {
+            Log.e(TAG, "Missing input");
+            return;
+        }
+        mViewModel.save(name, classStr);
+        finish();
+    }
+}
+```
+
+
+[Room doc](https://developer.android.com/training/data-storage/room)        
+[Practice](https://codelabs.developers.google.com/codelabs/android-room-with-a-view/index.html?index=..%2F..index#0)        
+
 # Debugging
 
 1. Set the debuggable variable (Some 3rd party dependencies might use this variable as well)        
@@ -1224,6 +1497,7 @@ The exam is only available in Java at this time (4/1/2019)
 [Day/Night Mode]:<https://github.com/Catherine22/AAD-Preparation#daynight-mode>
 [Styles]:<https://github.com/Catherine22/AAD-Preparation#styles>
 [Jetpack]:<https://github.com/Catherine22/AAD-Preparation#jetpack>
+[Architecture]:<https://github.com/Catherine22/AAD-Preparation#architecture>
 [Debugging]:<https://github.com/Catherine22/AAD-Preparation#debugging>
 [Test]:<https://github.com/Catherine22/AAD-Preparation#test>
 [Kotlin]:<https://github.com/Catherine22/AAD-Preparation#kotlin>
