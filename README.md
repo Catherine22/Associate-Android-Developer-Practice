@@ -844,6 +844,7 @@ dependencies {
 Follow the instruction and create your first MVVM app      
 ![screenshot](https://raw.githubusercontent.com/Catherine22/AAD-Preparation/master/AAD-Preparation/screenshots/architecture.png)       
 
+
 ## 1. Database
 1. Annotated with ```@Database```        
 2. Extend ```RoomDatabase```        
@@ -953,6 +954,9 @@ public interface StudentDao {
     @Query("SELECT * FROM student ORDER BY name ASC")
     DataSource.Factory<Integer, Student> getStudentDataSource();
 
+    @Query("SELECT * FROM student ORDER BY name ASC")
+    List<Student> getRawList();
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(Student... students);
 
@@ -1034,7 +1038,6 @@ public class AddStudentViewModel extends ViewModel {
 }
 ```
 
-
 ## 6. ViewModel Factory
 1. Factory for creating a AddStudentViewModel.     
 2. Implement ```ViewModelProvider.Factory```
@@ -1104,6 +1107,83 @@ public class MainActivity extends AppCompatActivity {
         }
         mViewModel.save(name, classStr);
         finish();
+    }
+}
+```
+
+## 8. Unit tests (Espresso)
+
+```gradle
+dependencies {
+    def android_test_version = "1.0.2"
+    def espresso_version = "3.0.1"
+
+    androidTestImplementation "com.android.support.test:runner:$android_test_version"
+    androidTestImplementation "com.android.support.test:rules:$android_test_version"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso_version"
+    androidTestImplementation "com.android.support.test.espresso:espresso-contrib:$espresso_version"
+}
+```
+
+```Java
+@RunWith(AndroidJUnit4.class)
+public class AddEntityReadWriteTest {
+    private StudentDao studentDao;
+    private StudentDatabase database;
+
+    @Before
+    public void createDb() {
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        database = Room.inMemoryDatabaseBuilder(context, StudentDatabase.class).build();
+        studentDao = database.studentDao();
+    }
+
+    @After
+    public void closeDb() {
+        database.close();
+    }
+
+    @Test
+    public void writeStudentAndReadList() {
+        Student student = new Student(
+            System.currentTimeMillis() + "",
+            "Tom",
+            "A1"
+        );
+        studentDao.insert(student);
+        List<Student> students = studentDao.getRawList();
+        Assert.assertEquals(student.compareTo(students.get(0)), 0);
+    }
+
+    @Test
+    public void updateStudentAndReadList() {
+        // insert a student
+        Student student = new Student(
+            System.currentTimeMillis() + "",
+            "Thomas",
+            "A001"
+        );
+        studentDao.insert(student);
+        List<Student> students = studentDao.getRawList();
+        Assert.assertEquals(student.compareTo(students.get(0)), 0);
+
+
+        // update the student
+        String studentId = student.getStudentId();
+        String newClass = "C002";
+
+        String mSelection = String.format("UPDATE %1$s SET %2$s = '%3$s' WHERE %4$s = '%5$s'",
+                DataStudentName.TABLE_NAME,
+                DataStudentName.COL_CLASS,
+                newClass,
+                DataStudentName.COL_STUDENT_ID,
+                studentId
+        );
+        SimpleSQLiteQuery simpleSQLiteQuery = new SimpleSQLiteQuery(mSelection, null);
+
+        studentDao.updateByRawQuery(simpleSQLiteQuery);
+        students = studentDao.getRawList();
+        Assert.assertEquals(newName, students.get(0).getName());
     }
 }
 ```
