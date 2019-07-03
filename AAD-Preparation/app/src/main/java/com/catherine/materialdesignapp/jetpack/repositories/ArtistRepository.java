@@ -1,11 +1,11 @@
 package com.catherine.materialdesignapp.jetpack.repositories;
 
 import android.app.Application;
-import android.os.AsyncTask;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
+import com.catherine.materialdesignapp.FirebaseDB;
 import com.catherine.materialdesignapp.jetpack.daos.ArtistDao;
 import com.catherine.materialdesignapp.jetpack.databases.ArtistRoomDatabase;
 import com.catherine.materialdesignapp.jetpack.entities.Artist;
@@ -16,88 +16,80 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class ArtistRepository {
     public final static String TAG = ArtistRepository.class.getSimpleName();
     private ArtistDao mArtistDao;
-    private LiveData<List<Artist>> artistLiveData;
+    private final ExecutorService mIoExecutor;
+    private static volatile ArtistRepository sInstance = null;
 
     private FirebaseDatabase database;
     private DatabaseReference myRef;
-    private ValueEventListener firebaseValueEventListener;
 
-    public ArtistRepository(Application application) {
-        ArtistRoomDatabase db = ArtistRoomDatabase.getDatabase(application);
-        mArtistDao = db.artistDao();
-        artistLiveData = mArtistDao.getAllArtists();
 
-        database = FirebaseDatabase.getInstance();
-        myRef = database.getReference("artists");
-        firebaseValueEventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot == null || dataSnapshot.getChildrenCount() == 0)
-                    return;
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                Log.d(TAG, String.format("size: %d", dataSnapshot.getChildrenCount()));
-                new updateAllAsyncTask(mArtistDao).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, dataSnapshot.getChildren());
+    public static ArtistRepository getInstance(Application application) {
+        if (sInstance == null) {
+            synchronized (ArtistRepository.class) {
+                if (sInstance == null) {
+                    ArtistRoomDatabase db = ArtistRoomDatabase.getDatabase(application);
+                    sInstance = new ArtistRepository(db.artistDao(), Executors.newSingleThreadExecutor());
+
+                    // update data source
+                    sInstance.database = FirebaseDatabase.getInstance();
+                    sInstance.myRef = sInstance.database.getReference(FirebaseDB.ARTISTS);
+                    sInstance.myRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if (dataSnapshot == null || dataSnapshot.getChildrenCount() == 0)
+                                return;
+
+                            // try to update data in a smarter way
+                            Log.d(TAG, String.format("size: %d", dataSnapshot.getChildrenCount()));
+                            sInstance.deleteAll();
+                            for (DataSnapshot child : dataSnapshot.getChildren()) {
+                                Artist artist = child.getValue(Artist.class);
+                                Log.i(TAG, String.format("%s: %s", child.getKey(), artist));
+                                sInstance.insert(artist);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError error) {
+                            // Failed to read value
+                            Log.w(TAG, "Failed to read value.", error.toException());
+                        }
+                    });
+                }
             }
+        }
+        return sInstance;
+    }
 
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        };
-        myRef.addValueEventListener(firebaseValueEventListener);
+    public ArtistRepository(ArtistDao dao, ExecutorService executor) {
+        mIoExecutor = executor;
+        mArtistDao = dao;
     }
 
     public LiveData<List<Artist>> getArtistLiveData() {
-        return artistLiveData;
+        try {
+            return mIoExecutor.submit(mArtistDao::getAllArtists).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+            return null;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public void insert(Artist artist) {
-        new insertAsyncTask(mArtistDao).execute(artist);
+        mIoExecutor.submit(() -> mArtistDao.insert(artist));
     }
 
-    public void releaseFirebase() {
-        myRef.removeEventListener(firebaseValueEventListener);
+    public void deleteAll() {
+        mIoExecutor.submit(mArtistDao::deleteAll);
     }
-
-    private static class insertAsyncTask extends AsyncTask<Artist, Void, Void> {
-
-        private ArtistDao mAsyncTaskDao;
-
-        insertAsyncTask(ArtistDao dao) {
-            mAsyncTaskDao = dao;
-        }
-
-        @Override
-        protected Void doInBackground(final Artist... params) {
-            mAsyncTaskDao.insert(params[0]);
-            return null;
-        }
-    }
-
-    private static class updateAllAsyncTask extends AsyncTask<Iterable<DataSnapshot>, Void, Void> {
-
-        private ArtistDao mAsyncTaskDao;
-
-        updateAllAsyncTask(ArtistDao dao) {
-            mAsyncTaskDao = dao;
-        }
-
-        @Override
-        protected Void doInBackground(final Iterable<DataSnapshot>... params) {
-            mAsyncTaskDao.deleteAll();
-            for (DataSnapshot child : params[0]) {
-                Artist artist = child.getValue(Artist.class);
-                Log.i(TAG, String.format("%s: %s", child.getKey(), artist));
-                mAsyncTaskDao.insert(artist);
-            }
-            return null;
-        }
-    }
-
 }

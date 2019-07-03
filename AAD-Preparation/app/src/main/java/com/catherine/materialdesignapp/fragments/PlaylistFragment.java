@@ -23,6 +23,7 @@ import com.catherine.materialdesignapp.adapters.PlaylistAdapter;
 import com.catherine.materialdesignapp.components.RecyclerViewItemTouchHelper;
 import com.catherine.materialdesignapp.jetpack.entities.Playlist;
 import com.catherine.materialdesignapp.jetpack.view_models.PlaylistViewModel;
+import com.catherine.materialdesignapp.jetpack.view_models.PlaylistViewModelFactory;
 import com.catherine.materialdesignapp.listeners.OnPlaylistItemClickListener;
 import com.catherine.materialdesignapp.listeners.OnSearchViewListener;
 import com.catherine.materialdesignapp.listeners.UIComponentsListener;
@@ -39,9 +40,6 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
     private ConstraintLayout empty_page;
     private RecyclerView recyclerView;
     private UIComponentsListener listener;
-
-    // RoomDatabase
-    private PlaylistViewModel playlistViewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -101,7 +99,9 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
         if (UIComponentsActivity.TAG.equals(getActivity().getClass().getSimpleName()))
             listener = (UIComponentsListener) getActivity();
 
-        playlistViewModel = ViewModelProviders.of(this).get(PlaylistViewModel.class);
+        // RoomDatabase
+        PlaylistViewModelFactory playlistViewModelFactory = PlaylistViewModelFactory.createFactory(getActivity());
+        PlaylistViewModel playlistViewModel = ViewModelProviders.of(this, playlistViewModelFactory).get(PlaylistViewModel.class);
         playlistViewModel.getAllPlaylists().observe(this, playlists -> {
             filteredPlaylists.clear();
             filteredPlaylists.addAll(playlists);
@@ -155,7 +155,6 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
 
     @Override
     public void onDestroy() {
-        playlistViewModel.release();
         super.onDestroy();
     }
 }

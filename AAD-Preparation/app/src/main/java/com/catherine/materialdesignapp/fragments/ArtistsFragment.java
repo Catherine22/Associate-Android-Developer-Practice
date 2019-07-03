@@ -21,6 +21,7 @@ import com.catherine.materialdesignapp.components.ArtistItemDetailsLookup;
 import com.catherine.materialdesignapp.components.ArtistItemKeyProvider;
 import com.catherine.materialdesignapp.jetpack.entities.Artist;
 import com.catherine.materialdesignapp.jetpack.view_models.ArtistViewModel;
+import com.catherine.materialdesignapp.jetpack.view_models.ArtistViewModelFactory;
 import com.catherine.materialdesignapp.listeners.OnSearchViewListener;
 import com.catherine.materialdesignapp.listeners.UIComponentsListener;
 import com.catherine.materialdesignapp.utils.TextHelper;
@@ -36,8 +37,6 @@ public class ArtistsFragment extends ChildOfMusicFragment implements OnSearchVie
     private ArtistItemKeyProvider artistItemKeyProvider;
     private SelectionTracker<String> tracker;
     private UIComponentsListener listener;
-
-    private ArtistViewModel artistViewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -78,7 +77,8 @@ public class ArtistsFragment extends ChildOfMusicFragment implements OnSearchVie
         listener = (UIComponentsListener) getActivity();
 
         // RoomDatabase
-        artistViewModel = ViewModelProviders.of(this).get(ArtistViewModel.class);
+        ArtistViewModelFactory artistViewModelFactory = ArtistViewModelFactory.createFactory(getActivity());
+        ArtistViewModel artistViewModel = ViewModelProviders.of(this, artistViewModelFactory).get(ArtistViewModel.class);
         artistViewModel.getArtistLiveData().observe(this, artists -> {
             filteredArtists.clear();
             filteredArtists.addAll(artists);
@@ -136,7 +136,6 @@ public class ArtistsFragment extends ChildOfMusicFragment implements OnSearchVie
 
     @Override
     public void onDestroy() {
-        artistViewModel.release();
         super.onDestroy();
     }
 }

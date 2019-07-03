@@ -7,13 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.services.MusicPlayerService;
 
-public class ForegroundServiceFragment extends Fragment implements View.OnClickListener {
+public class ForegroundServiceFragment extends Fragment {
     public final static String TAG = ForegroundServiceFragment.class.getSimpleName();
 
     @Override
@@ -27,13 +29,12 @@ public class ForegroundServiceFragment extends Fragment implements View.OnClickL
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         final Button btn_start_service = view.findViewById(R.id.btn_start_service);
-        btn_start_service.setOnClickListener(this);
+        btn_start_service.setOnClickListener(this::onClick);
         Button btn_stop_service = view.findViewById(R.id.btn_stop_service);
-        btn_stop_service.setOnClickListener(this);
+        btn_stop_service.setOnClickListener(this::onClick);
     }
 
-    @Override
-    public void onClick(View v) {
+    private void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_start_service:
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

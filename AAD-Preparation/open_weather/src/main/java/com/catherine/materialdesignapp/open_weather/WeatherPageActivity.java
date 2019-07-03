@@ -13,9 +13,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
+
+import com.catherine.materialdesignapp.activities.BaseActivity;
+import com.catherine.materialdesignapp.listeners.OnRequestPermissionsListener;
 import com.catherine.materialdesignapp.open_weather.models.Rain;
 import com.catherine.materialdesignapp.open_weather.models.Snow;
 import com.catherine.materialdesignapp.open_weather.models.WeatherResult;
@@ -27,16 +31,11 @@ import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.Gson;
-import okhttp3.*;
-import okhttp3.logging.HttpLoggingInterceptor;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.TrustManagerFactory;
-import javax.net.ssl.X509TrustManager;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.security.KeyStore;
@@ -45,6 +44,19 @@ import java.security.cert.Certificate;
 import java.security.cert.CertificateFactory;
 import java.util.List;
 import java.util.Locale;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.TrustManagerFactory;
+import javax.net.ssl.X509TrustManager;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Headers;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
 
 public class WeatherPageActivity extends BaseActivity implements OnMapReadyCallback, GoogleMap.OnCircleClickListener, LocationListener {
     public final static String TAG = WeatherPageActivity.class.getSimpleName();

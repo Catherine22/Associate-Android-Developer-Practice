@@ -4,4 +4,5 @@ public class FirebaseDB {
     public static String PLAYLIST = "playlists";
     public static String SONGS = "songs";
     public static String ALBUMS = "albums";
+    public static String ARTISTS = "artists";
 }

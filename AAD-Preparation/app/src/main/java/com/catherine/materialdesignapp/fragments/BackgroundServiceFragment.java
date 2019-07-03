@@ -13,9 +13,11 @@ import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Switch;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
 import com.catherine.materialdesignapp.MyApplication;
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.components.Slider;
@@ -26,7 +28,7 @@ import com.catherine.materialdesignapp.services.MusicPlayerService;
 import static android.content.Context.JOB_SCHEDULER_SERVICE;
 import static com.catherine.materialdesignapp.services.BusyJobs.JOB_MUSIC_PLAYER;
 
-public class BackgroundServiceFragment extends Fragment implements View.OnClickListener {
+public class BackgroundServiceFragment extends Fragment {
     public final static String TAG = BackgroundServiceFragment.class.getSimpleName();
     private JobScheduler jobScheduler;
     private RadioGroup rb_network;
@@ -46,9 +48,9 @@ public class BackgroundServiceFragment extends Fragment implements View.OnClickL
         super.onViewCreated(view, savedInstanceState);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Button btn_start_job = view.findViewById(R.id.btn_start_job);
-            btn_start_job.setOnClickListener(this);
+            btn_start_job.setOnClickListener(this::onClick);
             Button btn_stop_job = view.findViewById(R.id.btn_stop_job);
-            btn_stop_job.setOnClickListener(this);
+            btn_stop_job.setOnClickListener(this::onClick);
             rb_network = view.findViewById(R.id.rb_network);
             rb_network.setVisibility(View.GONE);
             switch_require_network = view.findViewById(R.id.switch_require_network);
@@ -108,16 +110,15 @@ public class BackgroundServiceFragment extends Fragment implements View.OnClickL
             jobScheduler = (JobScheduler) MyApplication.INSTANCE.getSystemService(JOB_SCHEDULER_SERVICE);
         } else {
             Button btn_start_service = view.findViewById(R.id.btn_start_service);
-            btn_start_service.setOnClickListener(this);
+            btn_start_service.setOnClickListener(this::onClick);
             Button btn_stop_service = view.findViewById(R.id.btn_stop_service);
-            btn_stop_service.setOnClickListener(this);
+            btn_stop_service.setOnClickListener(this::onClick);
         }
 
         onActivityEventListener = (OnActivityEventListener) getActivity();
     }
 
-    @Override
-    public void onClick(View v) {
+    private void onClick(View v) {
         Intent intent = new Intent(getActivity(), MusicPlayerService.class);
         switch (v.getId()) {
             case R.id.btn_start_service:

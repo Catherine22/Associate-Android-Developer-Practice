@@ -12,17 +12,22 @@ import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.widget.ContentLoadingProgressBar;
+
 import com.catherine.materialdesignapp.BuildConfig;
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.components.StepItem;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.play.core.splitcompat.SplitCompat;
-import com.google.android.play.core.splitinstall.*;
+import com.google.android.play.core.splitinstall.SplitInstallManager;
+import com.google.android.play.core.splitinstall.SplitInstallManagerFactory;
+import com.google.android.play.core.splitinstall.SplitInstallRequest;
+import com.google.android.play.core.splitinstall.SplitInstallSessionState;
 import com.google.android.play.core.splitinstall.model.SplitInstallSessionStatus;
 
 import java.io.BufferedReader;
@@ -32,7 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class DynamicDeliveryActivity extends BaseActivity implements View.OnClickListener, SplitInstallStateUpdatedListener {
+public class DynamicDeliveryActivity extends BaseActivity {
     public final static String TAG = DynamicDeliveryActivity.class.getSimpleName();
     private BottomSheetBehavior behavior;
     private ConstraintLayout steps_area;
@@ -96,10 +101,10 @@ public class DynamicDeliveryActivity extends BaseActivity implements View.OnClic
         StepItem stepItem2 = findViewById(R.id.step2);
         StepItem stepItem3 = findViewById(R.id.step3);
         StepItem stepItem4 = findViewById(R.id.step4);
-        stepItem1.setOnClickListener(this);
-        stepItem2.setOnClickListener(this);
-        stepItem3.setOnClickListener(this);
-        stepItem4.setOnClickListener(this);
+        stepItem1.setOnClickListener(this::onClick);
+        stepItem2.setOnClickListener(this::onClick);
+        stepItem3.setOnClickListener(this::onClick);
+        stepItem4.setOnClickListener(this::onClick);
         dynamicModules[0].stepItem = stepItem1;
         dynamicModules[1].stepItem = stepItem2;
         dynamicModules[2].stepItem = stepItem3;
@@ -109,9 +114,9 @@ public class DynamicDeliveryActivity extends BaseActivity implements View.OnClic
 
         bottomSheet = findViewById(R.id.bottom_sheet);
         btn_launch = bottomSheet.findViewById(R.id.btn_launch);
-        btn_launch.setOnClickListener(this);
+        btn_launch.setOnClickListener(this::onClick);
         btn_uninstall = bottomSheet.findViewById(R.id.btn_uninstall);
-        btn_uninstall.setOnClickListener(this);
+        btn_uninstall.setOnClickListener(this::onClick);
         tv_info = bottomSheet.findViewById(R.id.tv_info);
         progressBar = bottomSheet.findViewById(R.id.progress_bar);
         behavior = BottomSheetBehavior.from(bottomSheet);
@@ -132,24 +137,23 @@ public class DynamicDeliveryActivity extends BaseActivity implements View.OnClic
 
     @Override
     protected void onResume() {
-        splitInstallManager.registerListener(this);
+        splitInstallManager.registerListener(this::onStateUpdate);
         super.onResume();
     }
 
     @Override
     protected void onPause() {
-        splitInstallManager.unregisterListener(this);
+        splitInstallManager.unregisterListener(this::onStateUpdate);
         super.onPause();
     }
 
     @Override
     protected void onDestroy() {
-        splitInstallManager.unregisterListener(this);
+        splitInstallManager.unregisterListener(this::onStateUpdate);
         super.onDestroy();
     }
 
-    @Override
-    public void onClick(View v) {
+    private void onClick(View v) {
         DynamicModule module = dynamicModules[currentStepInt - 1];
         switch (v.getId()) {
             case R.id.step1:
@@ -237,8 +241,7 @@ public class DynamicDeliveryActivity extends BaseActivity implements View.OnClic
         progressBar.setProgress(Math.round(state.bytesDownloaded()));
     }
 
-    @Override
-    public void onStateUpdate(SplitInstallSessionState state) {
+    private void onStateUpdate(SplitInstallSessionState state) {
         DynamicModule module = dynamicModules[currentStepInt - 1];
         switch (state.status()) {
             case SplitInstallSessionStatus.DOWNLOADING:

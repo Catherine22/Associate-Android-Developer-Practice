@@ -1,7 +1,6 @@
 package com.catherine.materialdesignapp.jetpack.repositories;
 
 import android.app.Application;
-import android.os.AsyncTask;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
@@ -17,95 +16,82 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class PlaylistRepository {
     public final static String TAG = PlaylistRepository.class.getSimpleName();
 
     private PlaylistDao mPlaylistDao;
-    private LiveData<List<Playlist>> playlistLiveData;
+    private final ExecutorService mIoExecutor;
+    private static volatile PlaylistRepository sInstance = null;
 
     // firebase
+    private FirebaseDatabase database;
     private DatabaseReference myRef;
-    private ValueEventListener firebaseValueEventListener;
 
-    public PlaylistRepository(Application application) {
-        PlaylistRoomDatabase db = PlaylistRoomDatabase.getDatabase(application);
-        mPlaylistDao = db.playlistDao();
-        playlistLiveData = mPlaylistDao.getAllPlaylists();
+    public static PlaylistRepository getInstance(Application application) {
+        if (sInstance == null) {
+            synchronized (PlaylistRepository.class) {
+                if (sInstance == null) {
+                    PlaylistRoomDatabase db = PlaylistRoomDatabase.getDatabase(application);
+                    sInstance = new PlaylistRepository(db.playlistDao(), Executors.newSingleThreadExecutor());
 
-        // initialise firebase
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        String DB_PATH = FirebaseDB.PLAYLIST;
-        myRef = database.getReference(DB_PATH);
+                    // update data source
+                    sInstance.database = FirebaseDatabase.getInstance();
+                    sInstance.myRef = sInstance.database.getReference(FirebaseDB.PLAYLIST);
+                    sInstance.myRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if (dataSnapshot == null || dataSnapshot.getChildrenCount() == 0)
+                                return;
 
-        // This method is called once with the initial value and again
-        // whenever data at this location is updated.
-        // Failed to read value
-        firebaseValueEventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot == null || dataSnapshot.getChildrenCount() == 0)
-                    return;
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                Log.d(TAG, String.format("size: %d", dataSnapshot.getChildrenCount()));
-                new updateAllAsyncTask(mPlaylistDao).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, dataSnapshot.getChildren());
+                            // try to update data in a smarter way
+                            Log.d(TAG, String.format("size: %d", dataSnapshot.getChildrenCount()));
+                            sInstance.deleteAll();
+                            for (DataSnapshot child : dataSnapshot.getChildren()) {
+                                Playlist playlist = child.getValue(Playlist.class);
+                                Log.i(TAG, String.format("%s: %s", child.getKey(), playlist));
+                                sInstance.insert(playlist);
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError error) {
+                            // Failed to read value
+                            Log.w(TAG, "Failed to read value.", error.toException());
+                        }
+                    });
+                }
             }
+        }
+        return sInstance;
+    }
 
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        };
-        myRef.addValueEventListener(firebaseValueEventListener);
+    public PlaylistRepository(PlaylistDao dao, ExecutorService executor) {
+        mPlaylistDao = dao;
+        mIoExecutor = executor;
     }
 
     public LiveData<List<Playlist>> getPlaylistLiveData() {
-        return playlistLiveData;
+        try {
+            return mIoExecutor.submit(mPlaylistDao::getAllPlaylists).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+            return null;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public void deleteAll() {
+        mIoExecutor.submit(mPlaylistDao::deleteAll);
     }
 
     public void insert(Playlist playlist) {
-        new insertAsyncTask(mPlaylistDao).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, playlist);
-    }
-
-    public void releaseFirebase() {
-        myRef.removeEventListener(firebaseValueEventListener);
-    }
-
-    private static class insertAsyncTask extends AsyncTask<Playlist, Void, Void> {
-
-        private PlaylistDao mAsyncTaskDao;
-
-        insertAsyncTask(PlaylistDao dao) {
-            mAsyncTaskDao = dao;
-        }
-
-        @Override
-        protected Void doInBackground(final Playlist... params) {
-            mAsyncTaskDao.insert(params[0]);
-            return null;
-        }
-    }
-
-    private static class updateAllAsyncTask extends AsyncTask<Iterable<DataSnapshot>, Void, Void> {
-
-        private PlaylistDao mAsyncTaskDao;
-
-        updateAllAsyncTask(PlaylistDao dao) {
-            mAsyncTaskDao = dao;
-        }
-
-        @Override
-        protected Void doInBackground(final Iterable<DataSnapshot>... params) {
-            mAsyncTaskDao.deleteAll();
-            for (DataSnapshot child : params[0]) {
-                Playlist playlist = child.getValue(Playlist.class);
-                Log.i(TAG, String.format("%s: %s", child.getKey(), playlist));
-                mAsyncTaskDao.insert(playlist);
-            }
-            return null;
-        }
+        mIoExecutor.submit(() -> mPlaylistDao.insert(playlist));
     }
 
 }

@@ -99,6 +99,8 @@ android {
         implementation "jp.wasabeef:fresco-processors:${rootProject.ext.frescoProcessors}"
         implementation "com.google.firebase:firebase-database:${rootProject.ext.firebaseVersion}"
         implementation "androidx.recyclerview:recyclerview-selection:${rootProject.ext.recyclerviewSelection}"
+        implementation "androidx.paging:paging-common:${rootProject.ext.paging}"
+        implementation "androidx.paging:paging-runtime:${rootProject.ext.paging}"
         // To support DayNight style, update to at lease 1.1.0-alpha02
         api "com.google.android.material:material:${rootProject.ext.material}"
         api "com.squareup.okhttp3:okhttp:${rootProject.ext.okhttp}"

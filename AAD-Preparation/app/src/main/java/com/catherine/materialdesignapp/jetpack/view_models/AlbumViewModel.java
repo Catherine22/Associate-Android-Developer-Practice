@@ -1,22 +1,21 @@
 package com.catherine.materialdesignapp.jetpack.view_models;
 
-import android.app.Application;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModel;
+
 import com.catherine.materialdesignapp.jetpack.entities.Album;
 import com.catherine.materialdesignapp.jetpack.repositories.AlbumRepository;
 
 import java.util.List;
 
-public class AlbumViewModel extends AndroidViewModel {
+public class AlbumViewModel extends ViewModel {
 
     private AlbumRepository mAlbumRepository;
     private LiveData<List<Album>> albumLiveData;
 
 
-    public AlbumViewModel(Application application) {
-        super(application);
-        mAlbumRepository = new AlbumRepository(application);
+    public AlbumViewModel(AlbumRepository mAlbumRepository) {
+        this.mAlbumRepository = mAlbumRepository;
         albumLiveData = mAlbumRepository.getAlbumLiveData();
     }
 
@@ -27,9 +26,4 @@ public class AlbumViewModel extends AndroidViewModel {
     public void insert(Album album) {
         mAlbumRepository.insert(album);
     }
-
-    public void release() {
-        mAlbumRepository.releaseFirebase();
-    }
-
 }

@@ -23,6 +23,7 @@ import com.catherine.materialdesignapp.activities.AlbumDetailsActivity;
 import com.catherine.materialdesignapp.adapters.AlbumAdapter;
 import com.catherine.materialdesignapp.jetpack.entities.Album;
 import com.catherine.materialdesignapp.jetpack.view_models.AlbumViewModel;
+import com.catherine.materialdesignapp.jetpack.view_models.AlbumViewModelFactory;
 import com.catherine.materialdesignapp.listeners.OnItemClickListener;
 import com.catherine.materialdesignapp.listeners.OnSearchViewListener;
 import com.catherine.materialdesignapp.listeners.UIComponentsListener;
@@ -48,9 +49,6 @@ public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchView
     private List<Album> filteredAlbums;
     private PrefetchSubscriber subscriber;
     private UIComponentsListener listener;
-
-    // RoomDatabase
-    private AlbumViewModel albumViewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -118,7 +116,9 @@ public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchView
         subscriber = new PrefetchSubscriber();
         listener = (UIComponentsListener) getActivity();
 
-        albumViewModel = ViewModelProviders.of(this).get(AlbumViewModel.class);
+        // RoomDatabase
+        AlbumViewModelFactory albumViewModelFactory = AlbumViewModelFactory.createFactory(getActivity());
+        AlbumViewModel albumViewModel = ViewModelProviders.of(this, albumViewModelFactory).get(AlbumViewModel.class);
         albumViewModel.getAlbumLiveData().observe(this, albums -> {
             filteredAlbums.clear();
             filteredAlbums.addAll(albums);
@@ -181,11 +181,5 @@ public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchView
     @Override
     public void onFragmentHide() {
 
-    }
-
-    @Override
-    public void onDestroy() {
-        albumViewModel.release();
-        super.onDestroy();
     }
 }

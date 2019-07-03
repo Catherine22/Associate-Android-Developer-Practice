@@ -1,10 +1,12 @@
 package com.catherine.materialdesignapp.jetpack.databases;
 
 import android.content.Context;
+
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
+
 import com.catherine.materialdesignapp.Constants;
 import com.catherine.materialdesignapp.jetpack.StringListConverter;
 import com.catherine.materialdesignapp.jetpack.daos.AlbumDao;
@@ -15,7 +17,7 @@ import com.catherine.materialdesignapp.jetpack.entities.Album;
 public abstract class AlbumRoomDatabase extends RoomDatabase {
     public abstract AlbumDao albumDao();
 
-    private static AlbumRoomDatabase INSTANCE;
+    private static volatile AlbumRoomDatabase INSTANCE;
 
     public static AlbumRoomDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {

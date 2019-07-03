@@ -6,8 +6,10 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.catherine.materialdesignapp.FirebaseDB;
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.adapters.AddToPlaylistAdapter;
@@ -18,11 +20,19 @@ import com.catherine.materialdesignapp.listeners.PlaylistHelperListener;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.database.*;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
-public class PlaylistHelper implements View.OnClickListener {
+public class PlaylistHelper {
     private String TAG = "PlaylistHelper";
     private AddToPlaylistAdapter addToPlaylistAdapter;
     private BottomSheetDialog playlistsDialog, createPlaylistDialog;
@@ -115,7 +125,7 @@ public class PlaylistHelper implements View.OnClickListener {
         View createPlaylistView = activity.getLayoutInflater().inflate(R.layout.bottom_sheet_create_a_playlist, null);
         createPlaylistDialog.setContentView(createPlaylistView);
         btn_submit = createPlaylistDialog.findViewById(R.id.btn_submit);
-        btn_submit.setOnClickListener(this);
+        btn_submit.setOnClickListener(this::onClick);
         til_title = createPlaylistDialog.findViewById(R.id.til_title);
         til_title.getEditText().addTextChangedListener(new MyTextWatcher(til_title.getEditText().getId()));
 
@@ -164,8 +174,7 @@ public class PlaylistHelper implements View.OnClickListener {
         }
     }
 
-    @Override
-    public void onClick(View v) {
+    private void onClick(View v) {
         // create a new playlist with the chosen song
         if (v.getId() == R.id.btn_submit) {
             String name = til_title.getEditText().getText().toString();

@@ -1,23 +1,20 @@
 package com.catherine.materialdesignapp.jetpack.view_models;
 
-import android.app.Application;
-
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModel;
 
 import com.catherine.materialdesignapp.jetpack.entities.Artist;
 import com.catherine.materialdesignapp.jetpack.repositories.ArtistRepository;
 
 import java.util.List;
 
-public class ArtistViewModel extends AndroidViewModel {
+public class ArtistViewModel extends ViewModel {
 
     private ArtistRepository mArtistRepository;
     private LiveData<List<Artist>> artistLiveData;
 
-    public ArtistViewModel(Application application) {
-        super(application);
-        mArtistRepository = new ArtistRepository(application);
+    public ArtistViewModel(ArtistRepository mArtistRepository) {
+        this.mArtistRepository = mArtistRepository;
         artistLiveData = mArtistRepository.getArtistLiveData();
     }
 
@@ -27,9 +24,5 @@ public class ArtistViewModel extends AndroidViewModel {
 
     public void insert(Artist artist) {
         mArtistRepository.insert(artist);
-    }
-
-    public void release() {
-        mArtistRepository.releaseFirebase();
     }
 }

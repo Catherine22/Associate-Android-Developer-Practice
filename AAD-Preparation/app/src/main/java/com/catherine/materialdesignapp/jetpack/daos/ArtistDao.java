@@ -5,6 +5,8 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
+
 import com.catherine.materialdesignapp.jetpack.entities.Artist;
 
 import java.util.List;
@@ -19,4 +21,9 @@ public interface ArtistDao {
 
     @Query("SELECT * from artist_table ORDER BY `artist` ASC")
     LiveData<List<Artist>> getAllArtists();
+
+    @Update
+    int updateAll(Artist... artists);
+
+
 }

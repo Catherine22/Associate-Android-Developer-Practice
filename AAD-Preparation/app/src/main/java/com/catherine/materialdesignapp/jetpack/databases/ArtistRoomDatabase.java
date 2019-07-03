@@ -12,7 +12,7 @@ import com.catherine.materialdesignapp.jetpack.entities.Artist;
 public abstract class ArtistRoomDatabase extends RoomDatabase {
     public abstract ArtistDao artistDao();
 
-    private static ArtistRoomDatabase INSTANCE;
+    private static volatile ArtistRoomDatabase INSTANCE;
 
     public static ArtistRoomDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {

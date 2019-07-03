@@ -7,12 +7,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
+
 import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.fragments.FavoritesFragment;
 import com.catherine.materialdesignapp.fragments.HomeFragment;
@@ -23,8 +25,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
-public class UIComponentsActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener,
-        UIComponentsListener, FragmentManager.OnBackStackChangedListener, SearchView.OnQueryTextListener {
+public class UIComponentsActivity extends BaseActivity implements UIComponentsListener, SearchView.OnQueryTextListener {
     public final static String TAG = UIComponentsActivity.class.getSimpleName();
 
     private enum Tag {
@@ -81,12 +82,10 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
         for (int i = 0; i < titles.length; i++) {
             menu.getItem(i).setTitle(titles[i]);
         }
-        navigationView.setOnNavigationItemSelectedListener(this);
+        navigationView.setOnNavigationItemSelectedListener(this::onNavigationItemSelected);
 
         FloatingActionButton fab_addToPlaylist = findViewById(R.id.fab_addToPlaylist);
         fab_addToPlaylist.setOnClickListener(v -> {
-
-
         });
 
 
@@ -94,8 +93,7 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
         tabLayout = findViewById(R.id.tab_layout);
         tabLayout.setVisibility(View.GONE);
 
-        getSupportFragmentManager().addOnBackStackChangedListener(this);
-
+        getSupportFragmentManager().addOnBackStackChangedListener(this::onBackStackChanged);
         if (savedInstanceState == null) {
             // initialise home fragment
             navigationView.setSelectedItemId(R.id.nav_home);
@@ -114,8 +112,7 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
         return true;
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+    private boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Log.d(TAG, "onNavigationItemSelected:" + item.getTitle());
         return switchTab(item.getItemId());
     }
@@ -227,8 +224,7 @@ public class UIComponentsActivity extends BaseActivity implements BottomNavigati
         }
     }
 
-    @Override
-    public void onBackStackChanged() {
+    private void onBackStackChanged() {
         Log.w(TAG, String.format("Back stack counts: %d", getSupportFragmentManager().getBackStackEntryCount()));
     }
 

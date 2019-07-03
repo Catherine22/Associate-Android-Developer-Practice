@@ -1,24 +1,20 @@
 package com.catherine.materialdesignapp.jetpack.view_models;
 
-import android.app.Application;
-
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModel;
 
 import com.catherine.materialdesignapp.jetpack.entities.Playlist;
 import com.catherine.materialdesignapp.jetpack.repositories.PlaylistRepository;
 
 import java.util.List;
 
-public class PlaylistViewModel extends AndroidViewModel {
+public class PlaylistViewModel extends ViewModel {
 
     private PlaylistRepository mPlaylistRepository;
     private LiveData<List<Playlist>> playlistLiveData;
 
-
-    public PlaylistViewModel(Application application) {
-        super(application);
-        mPlaylistRepository = new PlaylistRepository(application);
+    public PlaylistViewModel(PlaylistRepository mPlaylistRepository) {
+        this.mPlaylistRepository = mPlaylistRepository;
         playlistLiveData = mPlaylistRepository.getPlaylistLiveData();
     }
 
@@ -29,9 +25,4 @@ public class PlaylistViewModel extends AndroidViewModel {
     public void insert(Playlist playlist) {
         mPlaylistRepository.insert(playlist);
     }
-
-    public void release() {
-        mPlaylistRepository.releaseFirebase();
-    }
-
 }
