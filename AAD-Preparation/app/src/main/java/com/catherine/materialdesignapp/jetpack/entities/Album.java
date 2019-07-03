@@ -1,16 +1,14 @@
 package com.catherine.materialdesignapp.jetpack.entities;
 
 import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.PrimaryKey;
 
 import com.catherine.materialdesignapp.listeners.ProguardIgnored;
 
 import java.util.List;
 
-@Entity(tableName = "album_table")
-public class Album implements ProguardIgnored {
+@Entity(tableName = "album_table", primaryKeys = {"artist", "title"})
+public class Album implements ProguardIgnored, Comparable<Album> {
     private String image;
 
     @NonNull
@@ -19,23 +17,11 @@ public class Album implements ProguardIgnored {
     @NonNull
     private String title = "";
 
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(index = true, name = "_id")
-    private long id;
-
     private String url;
 
     private String thumbnail_image;
 
     private List<String> songs;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getImage() {
         return image;
@@ -88,5 +74,12 @@ public class Album implements ProguardIgnored {
     @Override
     public String toString() {
         return "{image = " + image + ", artist = " + artist + ", songs = " + songs + ", title = " + title + ", url = " + url + ", thumbnail_image = " + thumbnail_image + "}";
+    }
+
+    @Override
+    public int compareTo(@NonNull Album o) {
+        if (0 == artist.compareTo(o.artist) && 0 == title.compareTo(o.title))
+            return 0;
+        return -1;
     }
 }

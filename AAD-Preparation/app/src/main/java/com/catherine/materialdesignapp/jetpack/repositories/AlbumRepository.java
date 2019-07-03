@@ -4,6 +4,8 @@ import android.app.Application;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
+import androidx.paging.LivePagedListBuilder;
+import androidx.paging.PagedList;
 
 import com.catherine.materialdesignapp.FirebaseDB;
 import com.catherine.materialdesignapp.jetpack.daos.AlbumDao;
@@ -15,7 +17,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -74,9 +75,21 @@ public class AlbumRepository {
         mIoExecutor = executor;
     }
 
-    public LiveData<List<Album>> getAlbumLiveData() {
+    public LiveData<PagedList<Album>> getAlbumLiveData(int size) {
         try {
-            return mIoExecutor.submit(mAlbumDao::getAllAlbums).get();
+            return new LivePagedListBuilder<>(mIoExecutor.submit(() -> mAlbumDao.getAlbumDataSource()).get(), size).build();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+            return null;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public LiveData<PagedList<Album>> getAlbumLiveData(String keyword, int size) {
+        try {
+            return new LivePagedListBuilder<>(mIoExecutor.submit(() -> mAlbumDao.getAlbumDataSource(keyword)).get(), size).build();
         } catch (ExecutionException e) {
             e.printStackTrace();
             return null;

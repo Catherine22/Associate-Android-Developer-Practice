@@ -1,54 +1,28 @@
 package com.catherine.materialdesignapp.fragments;
 
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
-import androidx.core.app.ActivityOptionsCompat;
-import androidx.core.util.Pair;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.catherine.materialdesignapp.R;
-import com.catherine.materialdesignapp.activities.AlbumDetailsActivity;
 import com.catherine.materialdesignapp.adapters.AlbumAdapter;
-import com.catherine.materialdesignapp.jetpack.entities.Album;
 import com.catherine.materialdesignapp.jetpack.view_models.AlbumViewModel;
 import com.catherine.materialdesignapp.jetpack.view_models.AlbumViewModelFactory;
-import com.catherine.materialdesignapp.listeners.OnItemClickListener;
 import com.catherine.materialdesignapp.listeners.OnSearchViewListener;
 import com.catherine.materialdesignapp.listeners.UIComponentsListener;
-import com.catherine.materialdesignapp.utils.PrefetchSubscriber;
-import com.catherine.materialdesignapp.utils.TextHelper;
-import com.facebook.binaryresource.BinaryResource;
-import com.facebook.cache.common.CacheKey;
-import com.facebook.datasource.DataSource;
-import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.drawee.view.SimpleDraweeView;
-import com.facebook.imagepipeline.cache.DefaultCacheKeyFactory;
-import com.facebook.imagepipeline.core.DefaultExecutorSupplier;
-import com.facebook.imagepipeline.core.ImagePipelineFactory;
-import com.facebook.imagepipeline.request.ImageRequest;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchViewListener {
     public final static String TAG = AlbumsFragment.class.getSimpleName();
-    private AlbumAdapter adapter;
-    private List<Album> albums;
-    private List<Album> filteredAlbums;
-    private PrefetchSubscriber subscriber;
     private UIComponentsListener listener;
+    private AlbumViewModel albumViewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -64,87 +38,24 @@ public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchView
 
         SwipeRefreshLayout swipeRefreshLayout = view.findViewById(R.id.srl);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary, R.color.colorAccent, R.color.colorPrimaryDark, R.color.colorAccentDark);
-        swipeRefreshLayout.setOnRefreshListener(() -> {
-            swipeRefreshLayout.setRefreshing(false);
-        });
+        swipeRefreshLayout.setOnRefreshListener(() -> swipeRefreshLayout.setRefreshing(false));
         RecyclerView recyclerView = view.findViewById(R.id.rv_artist);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        albums = new ArrayList<>();
-        filteredAlbums = new ArrayList<>();
-        adapter = new AlbumAdapter(getActivity(), filteredAlbums, new OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                SimpleDraweeView sdv_photo = view.findViewById(R.id.sdv_photo);
-                TextView tv_name = view.findViewById(R.id.tv_title);
-                TextView tv_artist = view.findViewById(R.id.tv_subtitle);
-
-                Intent intent = new Intent(getActivity(), AlbumDetailsActivity.class);
-                intent.putExtra("cover", adapter.getImageUrl(position));
-                intent.putExtra("album", tv_name.getText().toString());
-                intent.putExtra("artist", tv_artist.getText().toString());
-
-                List<String> songList = filteredAlbums.get(position).getSongs();
-                if (songList != null && songList.size() != 0) {
-                    String[] songs = new String[songList.size()];
-                    intent.putExtra("songs", songList.toArray(songs));
-                }
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    //Shared Elements Transitions
-                    String imageTransitionName = sdv_photo.getTransitionName();
-                    String nameTransitionName = tv_name.getTransitionName();
-                    String artistTransitionName = tv_artist.getTransitionName();
-
-                    Pair<View, String> p1 = Pair.create(sdv_photo, imageTransitionName);
-                    Pair<View, String> p2 = Pair.create(tv_name, nameTransitionName);
-                    Pair<View, String> p3 = Pair.create(tv_artist, artistTransitionName);
-
-                    ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(getActivity(), p1, p2, p3);
-                    ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
-                } else {
-                    startActivity(intent);
-                }
-            }
-
-            @Override
-            public void onItemLongClick(View view, int position) {
-
-            }
-        });
+        AlbumAdapter adapter = new AlbumAdapter();
         recyclerView.setAdapter(adapter);
-        subscriber = new PrefetchSubscriber();
+
+        if (getActivity() == null)
+            return;
+
         listener = (UIComponentsListener) getActivity();
+        // special case, this fragment will be called at first lunch, which means onFragmentShow() won't be triggered
+        listener.addOnSearchListener(this);
 
         // RoomDatabase
         AlbumViewModelFactory albumViewModelFactory = AlbumViewModelFactory.createFactory(getActivity());
-        AlbumViewModel albumViewModel = ViewModelProviders.of(this, albumViewModelFactory).get(AlbumViewModel.class);
-        albumViewModel.getAlbumLiveData().observe(this, albums -> {
-            filteredAlbums.clear();
-            filteredAlbums.addAll(albums);
-            adapter.setEntities(filteredAlbums);
-            updateList();
-        });
-    }
-
-    private void cacheItems() {
-        try {
-            for (int i = 0; i < albums.size(); i++) {
-//                File file = new File(Constants.ROOT_PATH + Constants.FRESCO_DIR + "/");
-                String url = albums.get(i).getUrl();
-                ImageRequest imageRequest = ImageRequest.fromUri(url);
-                if (imageRequest == null)
-                    return;
-                CacheKey cacheKey = DefaultCacheKeyFactory.getInstance().getEncodedCacheKey(imageRequest, null);
-                BinaryResource resource = ImagePipelineFactory.getInstance().getMainFileCache().getResource(cacheKey);
-                if (resource == null || resource.size() == 0) {
-                    DataSource<Void> ds = Fresco.getImagePipeline().prefetchToDiskCache(ImageRequest.fromUri(url), null);
-                    ds.subscribe(subscriber, new DefaultExecutorSupplier(3).forBackgroundTasks());
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        albumViewModel = ViewModelProviders.of(this, albumViewModelFactory).get(AlbumViewModel.class);
+        albumViewModel.getAlbumLiveData().observe(this, adapter::submitList);
     }
 
     @Override
@@ -154,22 +65,8 @@ public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchView
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        filteredAlbums.clear();
-        for (Album album : albums) {
-            if (TextHelper.matcher(album.getArtist(), newText) || TextHelper.matcher(album.getTitle(), newText)) {
-                filteredAlbums.add(album);
-            }
-        }
-        updateList();
+        albumViewModel.search(newText);
         return false;
-    }
-
-    private void updateList() {
-        try {
-            getActivity().runOnUiThread(() -> adapter.notifyDataSetChanged());
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -180,6 +77,7 @@ public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchView
 
     @Override
     public void onFragmentHide() {
-
+        if (listener != null)
+            listener.addOnSearchListener(null);
     }
 }
