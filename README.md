@@ -26,11 +26,11 @@ https://developer.android.com/preview?hl=en
 
 ## Android Q
 1. ```SYSTEM_ALERT_WINDOW``` on longer works on Android GO devices    
-  - Bubbles: ```Notification.BubbleMetadata.Builder()```    
+    - Bubbles: ```Notification.BubbleMetadata.Builder()```    
 2. Dark theme   
-  - (option1) use theme: ```xxx.DayNight```, [code](https://github.com/Catherine22/AAD-Preparation#daynight-mode)   
-  - (option2) ```android:forceDarkAllowed="true"```, ```view.setForceDarkAllowed(false)```    
-  - (option3) DIY   
+    - (option1) use theme: ```xxx.DayNight```, [code](https://github.com/Catherine22/AAD-Preparation#daynight-mode)   
+    - (option2) ```android:forceDarkAllowed="true"```, ```view.setForceDarkAllowed(false)```    
+    - (option3) DIY   
 3. New share sheet    
 4. Notification actions   
 5. WebView: Detect hung renderer if you like    
@@ -42,29 +42,29 @@ https://developer.android.com/preview?hl=en
 11. ```PowerManager```    
 12. ```androidx.preference```   
 13. Architecture components:    
-  - WorkManager   
-  - Navigation    
-  - savedState for ViewModel    
-  - Benchmarking    
-  - Lifecycle, Lifedata, Room   
+    - WorkManager   
+    - Navigation    
+    - savedState for ViewModel    
+    - Benchmarking    
+    - Lifecycle, Lifedata, Room   
 14. CameraX library   
 15. Jetpack Compose (New generation UI toolkit)   
 16. UI    
-  - ViewPager2 (like ViewPager, but better)    
-  - ViewBindings (```SearchItemBinding```, no more ```findViewById()```)   
+    - ViewPager2 (like ViewPager, but better)    
+    - ViewBindings (```SearchItemBinding```, no more ```findViewById()```)   
 17. Graph   
-  - Blend Mode    
-  - RenderNode (display properties such as alpha, shadows)    
-  - HardwareRender    
-  - Wrap Bitmap with ```HardwareBuffer```   
+    - Blend Mode    
+    - RenderNode (display properties such as alpha, shadows)    
+    - HardwareRender    
+    - Wrap Bitmap with ```HardwareBuffer```   
 18. Vulkan    
 19. ANGEL   
 20. Audio playback capture    
 21. External storage (targetSDK = Q)    
-  - sandboxed by default    
-  - Media files: Storage permission + MediaStore    
-  - Photo metadata: Storage + MediaLocation permission    
-  - All files: Manifest tags    
+    - sandboxed by default    
+    - Media files: Storage permission + MediaStore    
+    - Photo metadata: Storage + MediaLocation permission    
+    - All files: Manifest tags    
 22. Location permission (allows only while the app is in use)   
 
 
