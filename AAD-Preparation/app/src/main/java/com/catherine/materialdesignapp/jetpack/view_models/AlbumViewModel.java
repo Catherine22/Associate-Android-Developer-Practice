@@ -13,13 +13,14 @@ public class AlbumViewModel extends ViewModel {
     private AlbumRepository mAlbumRepository;
     private LiveData<PagedList<Album>> albumLiveData;
     private final MediatorLiveData<PagedList<Album>> mAlbumMediator = new MediatorLiveData<>();
-    private final static int PAGE_SIZE = 30;
+    private int pageSize;
 
 
     public AlbumViewModel(AlbumRepository mAlbumRepository) {
         this.mAlbumRepository = mAlbumRepository;
-        albumLiveData = mAlbumRepository.getAlbumLiveData(PAGE_SIZE);
-        mAlbumMediator.addSource(mAlbumRepository.getAlbumLiveData(PAGE_SIZE), mAlbumMediator::setValue);
+        pageSize = mAlbumRepository.getCount();
+        albumLiveData = mAlbumRepository.getAlbumLiveData(pageSize);
+        mAlbumMediator.addSource(mAlbumRepository.getAlbumLiveData(pageSize), mAlbumMediator::setValue);
     }
 
     public MediatorLiveData<PagedList<Album>> getAlbumLiveData() {
@@ -28,7 +29,8 @@ public class AlbumViewModel extends ViewModel {
 
     public void search(String keyword) {
         mAlbumMediator.removeSource(albumLiveData);
-        mAlbumMediator.addSource(mAlbumRepository.getAlbumLiveData(keyword, PAGE_SIZE), mAlbumMediator::setValue);
+        albumLiveData = mAlbumRepository.getAlbumLiveData(keyword, pageSize);
+        mAlbumMediator.addSource(albumLiveData, mAlbumMediator::setValue);
     }
 
     public void insert(Album album) {

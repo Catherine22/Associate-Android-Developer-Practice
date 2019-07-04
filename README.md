@@ -4,6 +4,7 @@ Associate Android Developer Study Guide
 https://developers.google.com/training/certification/associate-android-developer/study-guide/   
 
 # Navigation
+- [Android updates]     
 - [Material design]         
 - [Localisation]      
 - [Device compatibility]        
@@ -20,6 +21,38 @@ https://developers.google.com/training/certification/associate-android-developer
 - [Test]  
 - [Others]      
 - [Kotlin]
+
+# Android updates
+https://developer.android.com/preview?hl=en
+
+## Code and solution
+
+### Android Marshmallow
+1. Runtime permission       
+    - [Ask for runtime permission](https://github.com/Catherine22/MobileManager#android60%E6%88%96%E4%BB%A5%E4%B8%8A%E6%9D%83%E9%99%90%E8%AE%BE%E7%BD%AE)        
+    - Code: [BaseActivity]      
+2. Support ```JobScheduler```       
+    - [Read more](https://github.com/Catherine22/AAD-Preparation#services)      
+3. Cannot get mac addresses     
+    - Require ```ACCESS_COARSE_LOCATION``` and ```ACCESS_FINE_LOCATION``` permission        
+
+### Android Nougat
+1. New types of notifications        
+    - Code: [NotificationUtils]     
+2. App shortcuts        
+
+### Android Oreo
+1. Notification channel     
+    - Code: [NotificationUtils]     
+2. More job restrictions        
+    - [Read more](https://github.com/Catherine22/AAD-Preparation#services)      
+3. Support ForegroundService        
+    - [Read more](https://github.com/Catherine22/AAD-Preparation#services)      
+
+### Android Pie
+1. New types of notifications       
+2. 
+
 
 # Material design
 Add the material dependency in build.gradle
@@ -59,6 +92,8 @@ implementation 'com.google.android.material:material:1.0.0'
 - RecyclerView (drag + swipe) -> [PlaylistFragment], [PlaylistAdapter], [RecyclerViewItemTouchHelper]    
 - RecyclerView (SelectionTracker) -> [ArtistsFragment], [ArtistAdapter], [ArtistItemKeyProvider], [ArtistItemDetailsLookup]    
   ```SelectionTracker``` is another to do ```setOnClickListener```, which is more powerful while multiple items need selecting   
+- PagedList ->      
+- Preference ->     
 - BottomNavigationView -> [UIComponentsActivity]    
 - TabLayout + ViewPager -> [MusicFragment], [UIComponentsActivity]    
 - SearchView -> [SearchSongsActivity], [AndroidManifest]     
@@ -539,9 +574,9 @@ try {
 }
 ```
 
-2. Query the ```_id = 3``` item
+2. Query the ```title = Fearless``` item
 ```Kotlin
-val ALBUM_URI = Uri.parse("content://com.catherine.materialdesignapp.providers.AlbumsProvider/albums/3")
+val ALBUM_URI = Uri.parse("content://com.catherine.materialdesignapp.providers.AlbumsProvider/albums/Fearless")
 var cursor: Cursor? = null
 try {
     cursor = contentResolver.query(
@@ -624,11 +659,11 @@ try {
 }
 ```
 
-5. Delete the ```_id = 3``` item
+5. Delete the ```title = Fearless``` item
 ```Kotlin
-val ALBUM_ID_URI = Uri.parse("content://com.catherine.materialdesignapp.providers.AlbumsProvider/albums/3")
+val ALBUM_TITLE_URI = Uri.parse("content://com.catherine.materialdesignapp.providers.AlbumsProvider/albums/Fearless")
 try {
-    contentResolver.delete(ALBUM_ID_URI, null, null)
+    contentResolver.delete(ALBUM_TITLE_URI, null, null)
 } catch (e: Exception){
     e.printStackTrace()
 }
@@ -1565,7 +1600,7 @@ The exam is only available in Java at this time (4/1/2019)
 
 
 
-
+[Android updates]:<https://github.com/Catherine22/AAD-Preparation#android-updates>
 [Material design]:<https://github.com/Catherine22/AAD-Preparation#material-design>
 [Localisation]:<https://github.com/Catherine22/AAD-Preparation#Localisation>
 [Device compatibility]:<https://github.com/Catherine22/AAD-Preparation#device-compatibility>
@@ -1630,6 +1665,7 @@ The exam is only available in Java at this time (4/1/2019)
 [NavigationDrawer unit test code]:<https://github.com/Catherine22/AAD-Preparation/tree/master/AAD-Preparation/app/src/androidTest/java/com/catherine/materialdesignapp/DrawerNavigatorTest.java>
 [RecyclerView unit test code]:<https://github.com/Catherine22/AAD-Preparation/tree/master/AAD-Preparation/app/src/androidTest/java/com/catherine/materialdesignapp/BackgroundActivityTest.java>
 [Options menu unit test code]:<https://github.com/Catherine22/AAD-Preparation/tree/master/AAD-Preparation/app/src/androidTest/java/com/catherine/materialdesignapp/DayNightModeTest.java>
+[NotificationUtils]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/utils/NotificationUtils.java>
 
 
 

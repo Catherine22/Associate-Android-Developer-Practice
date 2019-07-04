@@ -8,12 +8,14 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.room.Room;
 import androidx.sqlite.db.SimpleSQLiteQuery;
 import androidx.sqlite.db.SupportSQLiteQuery;
 import androidx.sqlite.db.SupportSQLiteQueryBuilder;
+
 import com.catherine.materialdesignapp.jetpack.StringListConverter;
 import com.catherine.materialdesignapp.jetpack.daos.AlbumDao;
 import com.catherine.materialdesignapp.jetpack.databases.AlbumRoomDatabase;
@@ -28,11 +30,11 @@ public class AlbumsProvider extends ContentProvider {
 
 
     private static final int ALBUMS = 1;
-    private static final int ALBUMS_ID = 2;
+    private static final int ALBUMS_TITLE = 2;
 
     static {
         sURIMatcher.addURI(AUTHORITY, "albums", ALBUMS);
-        sURIMatcher.addURI(AUTHORITY, "albums/#", ALBUMS_ID);
+        sURIMatcher.addURI(AUTHORITY, "albums/#", ALBUMS_TITLE);
     }
 
     private AlbumDao albumDao;
@@ -63,9 +65,9 @@ public class AlbumsProvider extends ContentProvider {
                         .orderBy(sortOrder)
                         .create();
                 return albumDao.select(mQuery);
-            case ALBUMS_ID:
-                if (!TextUtils.isEmpty(selection) && !selection.trim().contains("_id=")) {
-                    String mSelection = selection + " AND _id = ?";
+            case ALBUMS_TITLE:
+                if (!TextUtils.isEmpty(selection) && !selection.trim().contains("title=")) {
+                    String mSelection = selection + " AND title = ?";
                     String[] mSelectionArgs = new String[selectionArgs.length + 1];
                     System.arraycopy(selectionArgs, 0, mSelectionArgs, 0, selectionArgs.length);
                     mSelectionArgs[mSelectionArgs.length - 1] = ContentUris.parseId(uri) + "";
@@ -95,7 +97,7 @@ public class AlbumsProvider extends ContentProvider {
         switch (sURIMatcher.match(uri)) {
             case ALBUMS:
                 return "vnd.android.cursor.dir/" + AUTHORITY + "." + "albums";
-            case ALBUMS_ID:
+            case ALBUMS_TITLE:
                 return "vnd.android.cursor.item/" + AUTHORITY + "." + "albums/#";
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
@@ -131,8 +133,8 @@ public class AlbumsProvider extends ContentProvider {
                 long id = albumDao.insert(album);
                 getContext().getContentResolver().notifyChange(uri, null);
                 return ContentUris.withAppendedId(uri, id);
-            case ALBUMS_ID:
-                throw new IllegalArgumentException("Invalid URI, cannot insert with _id: " + uri);
+            case ALBUMS_TITLE:
+                throw new IllegalArgumentException("Invalid URI, cannot insert with title: " + uri);
             default:
                 throw new IllegalArgumentException("Unknown URI: " + uri);
         }
@@ -144,29 +146,29 @@ public class AlbumsProvider extends ContentProvider {
         SimpleSQLiteQuery query;
         switch (sURIMatcher.match(uri)) {
             case ALBUMS:
-                if (TextUtils.isEmpty(selection) || selection.trim().contains("_id="))
-                    throw new IllegalArgumentException("Invalid URI, cannot delete without _id: " + uri);
+                if (TextUtils.isEmpty(selection) || selection.trim().contains("title="))
+                    throw new IllegalArgumentException("Invalid URI, cannot delete without title: " + uri);
 
                 query = new SimpleSQLiteQuery("DELETE FROM album_table WHERE " + selection, selectionArgs);
                 count = albumDao.deleteByRawQuery(query);
                 getContext().getContentResolver().notifyChange(uri, null);
                 return count;
-            case ALBUMS_ID:
+            case ALBUMS_TITLE:
                 if (getContext() == null)
                     return -1;
 
                 String mSelection;
                 String[] mSelectionArgs;
                 if (TextUtils.isEmpty(selection)) {
-                    mSelection = "DELETE FROM album_table WHERE _id = ?";
+                    mSelection = "DELETE FROM album_table WHERE title = ?";
                     mSelectionArgs = new String[]{ContentUris.parseId(uri) + ""};
-                } else if (!selection.trim().contains("_id=")) {
-                    mSelection = "DELETE FROM album_table WHERE " + selection + " AND _id = ?";
+                } else if (!selection.trim().contains("title=")) {
+                    mSelection = "DELETE FROM album_table WHERE " + selection + " AND title = ?";
                     mSelectionArgs = new String[selectionArgs.length + 1];
                     System.arraycopy(selectionArgs, 0, mSelectionArgs, 0, selectionArgs.length);
                     mSelectionArgs[mSelectionArgs.length - 1] = ContentUris.parseId(uri) + "";
                 } else {
-                    throw new IllegalArgumentException("Invalid URI, cannot delete with duplicated _id: " + uri);
+                    throw new IllegalArgumentException("Invalid URI, cannot delete with duplicated title: " + uri);
                 }
 
                 query = new SimpleSQLiteQuery(mSelection, mSelectionArgs);
@@ -184,7 +186,7 @@ public class AlbumsProvider extends ContentProvider {
         if (getContext() == null)
             return -1;
 
-        if (sURIMatcher.match(uri) != ALBUMS && sURIMatcher.match(uri) != ALBUMS_ID)
+        if (sURIMatcher.match(uri) != ALBUMS && sURIMatcher.match(uri) != ALBUMS_TITLE)
             throw new IllegalArgumentException("Invalid URI: " + uri);
 
         if (values == null)
@@ -222,18 +224,18 @@ public class AlbumsProvider extends ContentProvider {
                 mQuery.append(selection);
             }
         } else {
-            // sURIMatcher.match(uri) == ALBUMS_ID
+            // sURIMatcher.match(uri) == ALBUMS_TITLE
             if (TextUtils.isEmpty(selection)) {
-                mQuery.append(" WHERE _id = ?");
+                mQuery.append(" WHERE title = ?");
                 mSelectionArgs = new String[]{ContentUris.parseId(uri) + ""};
-            } else if (!selection.trim().contains("_id=")) {
+            } else if (!selection.trim().contains("title=")) {
                 mQuery.append(" WHERE ");
                 mQuery.append(selection);
                 mSelectionArgs = new String[selectionArgs.length + 1];
                 System.arraycopy(selectionArgs, 0, mSelectionArgs, 0, selectionArgs.length);
                 mSelectionArgs[mSelectionArgs.length - 1] = ContentUris.parseId(uri) + "";
             } else {
-                throw new IllegalArgumentException("Invalid URI, cannot update with duplicated _id: " + uri);
+                throw new IllegalArgumentException("Invalid URI, cannot update with duplicated title: " + uri);
             }
         }
 

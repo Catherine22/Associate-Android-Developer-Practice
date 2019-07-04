@@ -35,9 +35,16 @@ import java.io.File;
 
 public class AlbumAdapter extends PagedListAdapter<Album, AlbumAdapter.MainRvHolder> {
     private final String TAG = AlbumAdapter.class.getSimpleName();
+    private ItemClickEvent itemClickEvent;
+
 
     public AlbumAdapter() {
         super(DIFF_CALLBACK);
+    }
+
+    public AlbumAdapter(ItemClickEvent itemClickEvent) {
+        this();
+        this.itemClickEvent = itemClickEvent;
     }
 
     @NonNull
@@ -48,7 +55,6 @@ public class AlbumAdapter extends PagedListAdapter<Album, AlbumAdapter.MainRvHol
 
     @Override
     public void onBindViewHolder(@NonNull final MainRvHolder mainRvHolder, final int position) {
-
         Album album = getItem(position);
         if (album != null)
             mainRvHolder.bindTo(album);
@@ -57,7 +63,7 @@ public class AlbumAdapter extends PagedListAdapter<Album, AlbumAdapter.MainRvHol
 
     }
 
-    class MainRvHolder extends RecyclerView.ViewHolder {
+    public class MainRvHolder extends RecyclerView.ViewHolder {
         private TextView tv_title;
         private TextView tv_subtitle;
         private SimpleDraweeView sdv_photo;
@@ -78,6 +84,9 @@ public class AlbumAdapter extends PagedListAdapter<Album, AlbumAdapter.MainRvHol
 
         void bindTo(Album album) {
             this.album = album;
+            if (itemClickEvent != null)
+                itemView.setOnClickListener(v -> itemClickEvent.onClick(v, album));
+
             if (!TextUtils.isEmpty(album.getImage())) {
                 sdv_photo.setVisibility(View.VISIBLE);
                 // show raw images
@@ -155,6 +164,10 @@ public class AlbumAdapter extends PagedListAdapter<Album, AlbumAdapter.MainRvHol
             sdv_photo.setImageURI("");
         }
 
+    }
+
+    public interface ItemClickEvent {
+        void onClick(View view, Album album);
     }
 
     private static final DiffUtil.ItemCallback<Album> DIFF_CALLBACK =

@@ -99,6 +99,18 @@ public class AlbumRepository {
         }
     }
 
+    public int getCount() {
+        try {
+            return mIoExecutor.submit(mAlbumDao::count).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+            return 0;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
     public void insert(Album album) {
         mIoExecutor.submit(() -> mAlbumDao.insert(album));
     }
