@@ -34,7 +34,7 @@ https://developer.android.com/preview?hl=en
 3. New share sheet    
 4. Notification actions   
 5. WebView: Detect hung renderer if you like    
-6. More easy to set accessibility   
+6. Be easier to set accessibility   
 7. Text   
 8. ```Magnifier```    
 9. TLS 1.3 enabled by default   
@@ -482,7 +482,7 @@ Code (ViewPager + Fragment): [MusicFragment]
 - Two services in Android - background service and foreground service     
 - Background services are no longer working since Android Oreo, you are suppose to use ```JobScheduler``` instead.      
 - Foreground services and JobScheduler are alternatives to run app in the background, but ```notification``` is required while running a foreground service.      
-- ```JobScheduler``` is only available on devices running API 21+. Fore devices running API 14+ including devices without Google Play serivces, ```WorkManager``` let you schedule background tasks that need guaranteed completion,  whether or not the app process is running.
+- ```JobScheduler``` is only available on devices running API 21+. Fore devices running API 14+ including devices without Google Play services, ```WorkManager``` let you schedule background tasks that need guaranteed completion,  whether or not the app process is running.
 
 | Android API level | background service | foreground service | job scheduler |
 | -- | -- | -- | -- |
