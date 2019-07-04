@@ -4,6 +4,8 @@ import android.app.Application;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
+import androidx.paging.LivePagedListBuilder;
+import androidx.paging.PagedList;
 
 import com.catherine.materialdesignapp.FirebaseDB;
 import com.catherine.materialdesignapp.jetpack.daos.ArtistDao;
@@ -85,11 +87,48 @@ public class ArtistRepository {
         }
     }
 
+
+    public LiveData<PagedList<Artist>> getArtistLiveData(int size) {
+        try {
+            return new LivePagedListBuilder<>(mIoExecutor.submit(() -> mArtistDao.getArtistDataSource()).get(), size).build();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+            return null;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public LiveData<PagedList<Artist>> getArtistLiveData(String keyword, int size) {
+        try {
+            return new LivePagedListBuilder<>(mIoExecutor.submit(() -> mArtistDao.getArtistDataSource(keyword)).get(), size).build();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+            return null;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public void insert(Artist artist) {
         mIoExecutor.submit(() -> mArtistDao.insert(artist));
     }
 
     public void deleteAll() {
         mIoExecutor.submit(mArtistDao::deleteAll);
+    }
+
+    public int count() {
+        try {
+            return mIoExecutor.submit(mArtistDao::count).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+            return 0;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 }

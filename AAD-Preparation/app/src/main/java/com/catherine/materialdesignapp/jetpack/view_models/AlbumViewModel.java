@@ -18,9 +18,9 @@ public class AlbumViewModel extends ViewModel {
 
     public AlbumViewModel(AlbumRepository mAlbumRepository) {
         this.mAlbumRepository = mAlbumRepository;
-        pageSize = mAlbumRepository.getCount();
+        pageSize = mAlbumRepository.count();
         albumLiveData = mAlbumRepository.getAlbumLiveData(pageSize);
-        mAlbumMediator.addSource(mAlbumRepository.getAlbumLiveData(pageSize), mAlbumMediator::setValue);
+        mAlbumMediator.addSource(albumLiveData, mAlbumMediator::setValue);
     }
 
     public MediatorLiveData<PagedList<Album>> getAlbumLiveData() {

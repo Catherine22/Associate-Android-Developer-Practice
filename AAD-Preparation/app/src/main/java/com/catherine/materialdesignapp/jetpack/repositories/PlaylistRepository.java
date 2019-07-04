@@ -4,6 +4,8 @@ import android.app.Application;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
+import androidx.paging.LivePagedListBuilder;
+import androidx.paging.PagedList;
 
 import com.catherine.materialdesignapp.FirebaseDB;
 import com.catherine.materialdesignapp.jetpack.daos.PlaylistDao;
@@ -76,7 +78,31 @@ public class PlaylistRepository {
 
     public LiveData<List<Playlist>> getPlaylistLiveData() {
         try {
-            return mIoExecutor.submit(mPlaylistDao::getAllPlaylists).get();
+            return mIoExecutor.submit(mPlaylistDao::getAllPlaylist).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+            return null;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public LiveData<PagedList<Playlist>> getPlaylistLiveData(int size) {
+        try {
+            return new LivePagedListBuilder<>(mIoExecutor.submit(() -> mPlaylistDao.getPlaylistDataSource()).get(), size).build();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+            return null;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public LiveData<PagedList<Playlist>> getPlaylistLiveData(String keyword, int size) {
+        try {
+            return new LivePagedListBuilder<>(mIoExecutor.submit(() -> mPlaylistDao.getPlaylistDataSource(keyword)).get(), size).build();
         } catch (ExecutionException e) {
             e.printStackTrace();
             return null;
@@ -90,8 +116,24 @@ public class PlaylistRepository {
         mIoExecutor.submit(mPlaylistDao::deleteAll);
     }
 
+    public void delete(Playlist playlist) {
+        mIoExecutor.submit(() -> mPlaylistDao.delete(playlist.getName()));
+    }
+
     public void insert(Playlist playlist) {
         mIoExecutor.submit(() -> mPlaylistDao.insert(playlist));
+    }
+
+    public int count() {
+        try {
+            return mIoExecutor.submit(mPlaylistDao::count).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+            return 0;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 
 }

@@ -99,7 +99,7 @@ public class AlbumRepository {
         }
     }
 
-    public int getCount() {
+    public int count() {
         try {
             return mIoExecutor.submit(mAlbumDao::count).get();
         } catch (ExecutionException e) {

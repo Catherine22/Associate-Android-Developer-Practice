@@ -5,5 +5,5 @@ import androidx.viewpager.widget.ViewPager;
 public interface UIComponentsListener {
     void addViewPagerManager(ViewPager viewpager, String[] titles);
 
-    void addOnSearchListener(OnSearchViewListener listener);
+    void setOnSearchListener(OnSearchViewListener listener);
 }

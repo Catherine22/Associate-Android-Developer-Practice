@@ -61,7 +61,7 @@ public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchView
 
         listener = (UIComponentsListener) getActivity();
         // special case, this fragment will be called at first lunch, which means onFragmentShow() won't be triggered
-        listener.addOnSearchListener(this);
+        listener.setOnSearchListener(this);
 
         // RoomDatabase
         AlbumViewModelFactory albumViewModelFactory = AlbumViewModelFactory.createFactory(getActivity());
@@ -83,13 +83,11 @@ public class AlbumsFragment extends ChildOfMusicFragment implements OnSearchView
     @Override
     public void onFragmentShow() {
         if (listener != null)
-            listener.addOnSearchListener(this);
+            listener.setOnSearchListener(this);
     }
 
     @Override
     public void onFragmentHide() {
-        if (listener != null)
-            listener.addOnSearchListener(null);
     }
 
     private void goToAlbumDetails(View view, Album album) {

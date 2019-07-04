@@ -3,10 +3,11 @@ package com.catherine.materialdesignapp.jetpack.entities;
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
 import com.catherine.materialdesignapp.listeners.ProguardIgnored;
 
 @Entity(tableName = "artist_table")
-public class Artist implements ProguardIgnored {
+public class Artist implements ProguardIgnored, Comparable<Artist> {
     private String image;
 
     @NonNull
@@ -42,5 +43,10 @@ public class Artist implements ProguardIgnored {
     @Override
     public String toString() {
         return "{image = " + image + ", artist = " + artist + ", url = " + url + "}";
+    }
+
+    @Override
+    public int compareTo(Artist o) {
+        return artist.compareTo(o.getArtist());
     }
 }

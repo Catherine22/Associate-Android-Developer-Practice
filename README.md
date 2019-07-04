@@ -92,7 +92,7 @@ implementation 'com.google.android.material:material:1.0.0'
 - RecyclerView (drag + swipe) -> [PlaylistFragment], [PlaylistAdapter], [RecyclerViewItemTouchHelper]    
 - RecyclerView (SelectionTracker) -> [ArtistsFragment], [ArtistAdapter], [ArtistItemKeyProvider], [ArtistItemDetailsLookup]    
   ```SelectionTracker``` is another to do ```setOnClickListener```, which is more powerful while multiple items need selecting   
-- PagedList ->      
+- RecyclerView + PagedListAdapter -> [AlbumsFragment]     
 - Preference ->     
 - BottomNavigationView -> [UIComponentsActivity]    
 - TabLayout + ViewPager -> [MusicFragment], [UIComponentsActivity]    
@@ -1146,6 +1146,7 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
+
 ## 8. Unit tests (Espresso)
 
 ```gradle
@@ -1223,9 +1224,10 @@ public class AddEntityReadWriteTest {
 }
 ```
 
-
+Code: [AlbumsFragment], [AlbumAdapter], [AlbumViewModelFactory], [AlbumViewModel], [AlbumRepository], [AlbumRoomDatabase], [AlbumDao], [Album]       
 [Room doc](https://developer.android.com/training/data-storage/room)        
-[Practice](https://codelabs.developers.google.com/codelabs/android-room-with-a-view/index.html?index=..%2F..index#0)        
+[Practice](https://codelabs.developers.google.com/codelabs/android-room-with-a-view/index.html?index=..%2F..index#0)      
+
 
 # Debugging
 
@@ -1647,13 +1649,19 @@ The exam is only available in Java at this time (4/1/2019)
 [PlaylistAdapter]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/adapters/PlaylistAdapter.java>
 [PlaylistFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/PlaylistFragment.java>
 [AlbumsFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/AlbumsFragment.java>
+[AlbumViewModelFactory]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/jetpack/view_models/AlbumViewModelFactory.java>
+[AlbumViewModel]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/jetpack/view_models/AlbumViewModel.java>
+[AlbumRepository]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/jetpack/repositories/AlbumRepository.java>
+[AlbumRoomDatabase]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/jetpack/databases/AlbumRoomDatabase.java>
+[AlbumDao]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/jetpack/daos/AlbumDao.java>
+[Album]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/jetpack/entities/Album.java>
 [ArtistsFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/ArtistsFragment.java>
 [ArtistAdapter]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/adapters/ArtistAdapter.java>
 [ArtistItemKeyProvider]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/components/ArtistItemKeyProvider.java>
 [ArtistItemDetailsLookup]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/components/ArtistItemDetailsLookup.java>
 [RecyclerViewItemTouchHelper]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/components/RecyclerViewItemTouchHelper.java>
 [MusicFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/MusicFragment.java>
-[SystemBroadcastReceiverFragment]<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/SystemBroadcastReceiverFragment.java>
+[SystemBroadcastReceiverFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/SystemBroadcastReceiverFragment.java>
 [UIComponentsActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/UIComponentsActivity.java>
 [SearchSongsActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/SearchSongsActivity.java>
 [DynamicDeliveryActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/DynamicDeliveryActivity.java>

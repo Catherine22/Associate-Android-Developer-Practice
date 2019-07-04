@@ -58,6 +58,7 @@
     <string name="notice">Notice</string>
     <string name="ok">OK</string>
     <string name="unfold">Unfold</string>
+    <string name="undo_deleted_playlist">Playlist deleted: %1$s</string>
 
     <!--radio group-->
     <string name="require_network">网络限制</string>

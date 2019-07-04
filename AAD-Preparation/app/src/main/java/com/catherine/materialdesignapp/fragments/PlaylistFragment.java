@@ -2,7 +2,6 @@ package com.catherine.materialdesignapp.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,26 +19,19 @@ import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.activities.SearchableSongsActivity;
 import com.catherine.materialdesignapp.activities.UIComponentsActivity;
 import com.catherine.materialdesignapp.adapters.PlaylistAdapter;
-import com.catherine.materialdesignapp.components.RecyclerViewItemTouchHelper;
 import com.catherine.materialdesignapp.jetpack.entities.Playlist;
 import com.catherine.materialdesignapp.jetpack.view_models.PlaylistViewModel;
 import com.catherine.materialdesignapp.jetpack.view_models.PlaylistViewModelFactory;
-import com.catherine.materialdesignapp.listeners.OnPlaylistItemClickListener;
 import com.catherine.materialdesignapp.listeners.OnSearchViewListener;
 import com.catherine.materialdesignapp.listeners.UIComponentsListener;
-import com.catherine.materialdesignapp.utils.TextHelper;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.google.android.material.snackbar.Snackbar;
 
 public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchViewListener {
     public final static String TAG = PlaylistFragment.class.getSimpleName();
-    private PlaylistAdapter adapter;
-    private List<Playlist> playlists;
-    private List<Playlist> filteredPlaylists;
     private ConstraintLayout empty_page;
-    private RecyclerView recyclerView;
     private UIComponentsListener listener;
+    private RecyclerView recyclerView;
+    private PlaylistViewModel playlistViewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -55,58 +47,34 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
 
         SwipeRefreshLayout swipeRefreshLayout = view.findViewById(R.id.srl);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary, R.color.colorAccent, R.color.colorPrimaryDark, R.color.colorAccentDark);
-        swipeRefreshLayout.setOnRefreshListener(() -> {
-            swipeRefreshLayout.setRefreshing(false);
-        });
+        swipeRefreshLayout.setOnRefreshListener(() -> swipeRefreshLayout.setRefreshing(false));
 
         empty_page = view.findViewById(R.id.empty_page);
         recyclerView = view.findViewById(R.id.rv_playlists);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        playlists = new ArrayList<>();
-        filteredPlaylists = new ArrayList<>();
-        adapter = new PlaylistAdapter(getActivity(), filteredPlaylists, new OnPlaylistItemClickListener<Playlist>() {
-            @Override
-            public void onItemClicked(View view, int position) {
-                Log.d(TAG, "onItemClicked:" + position);
-            }
-
-            @Override
-            public void onAddButtonClicked(View view, int position) {
-                Log.d(TAG, "onAddButtonClicked:" + position);
-
-                // add new songs
-                Playlist playlist = filteredPlaylists.get(position);
-                Intent searchableActivity = new Intent(getActivity(), SearchableSongsActivity.class);
-                searchableActivity.putExtra("playlist", playlist);
-                startActivity(searchableActivity);
-            }
-
-            @Override
-            public void onDragged(int oldPosition, int newPosition) {
-                Log.d(TAG, "onDragged:" + newPosition);
-            }
-
-            @Override
-            public void onSwiped(Playlist swipedPlaylist) {
-                Log.d(TAG, "onSwiped:" + swipedPlaylist);
-            }
-        });
+        PlaylistAdapter adapter = new PlaylistAdapter(this::goToPlaylist);
         recyclerView.setAdapter(adapter);
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new RecyclerViewItemTouchHelper(adapter));
-        itemTouchHelper.attachToRecyclerView(recyclerView);
+        initAction();
+
+        if (getActivity() == null)
+            return;
 
         if (UIComponentsActivity.TAG.equals(getActivity().getClass().getSimpleName()))
             listener = (UIComponentsListener) getActivity();
 
         // RoomDatabase
         PlaylistViewModelFactory playlistViewModelFactory = PlaylistViewModelFactory.createFactory(getActivity());
-        PlaylistViewModel playlistViewModel = ViewModelProviders.of(this, playlistViewModelFactory).get(PlaylistViewModel.class);
-        playlistViewModel.getAllPlaylists().observe(this, playlists -> {
-            filteredPlaylists.clear();
-            filteredPlaylists.addAll(playlists);
-            adapter.setEntities(filteredPlaylists);
-            updateList();
+        playlistViewModel = ViewModelProviders.of(this, playlistViewModelFactory).get(PlaylistViewModel.class);
+        playlistViewModel.getPlaylistLiveData().observe(this, playlists -> {
+            if (playlists.getLoadedCount() == 0) {
+                recyclerView.setVisibility(View.INVISIBLE);
+                empty_page.setVisibility(View.VISIBLE);
+            } else {
+                recyclerView.setVisibility(View.VISIBLE);
+                empty_page.setVisibility(View.INVISIBLE);
+                adapter.submitList(playlists);
+            }
         });
     }
 
@@ -117,44 +85,54 @@ public class PlaylistFragment extends ChildOfMusicFragment implements OnSearchVi
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        filteredPlaylists.clear();
-        for (Playlist playlist : playlists) {
-            if (TextHelper.matcher(playlist.getName(), newText)) {
-                filteredPlaylists.add(playlist);
-            }
-        }
-        updateList();
+        playlistViewModel.search(newText);
         return false;
     }
 
-
-    private void updateList() {
-        // Empty playlist
-        if (playlists.isEmpty() && filteredPlaylists.isEmpty()) {
-            recyclerView.setVisibility(View.GONE);
-            empty_page.setVisibility(View.VISIBLE);
-        } else {
-            recyclerView.setVisibility(View.VISIBLE);
-            empty_page.setVisibility(View.GONE);
-        }
-        adapter.notifyDataSetChanged();
+    private void goToPlaylist(View view, Playlist playlist) {
+        Intent searchableActivity = new Intent(getActivity(), SearchableSongsActivity.class);
+        searchableActivity.putExtra("playlist", playlist);
+        startActivity(searchableActivity);
     }
-
 
     @Override
     public void onFragmentShow() {
         if (listener != null)
-            listener.addOnSearchListener(this);
+            listener.setOnSearchListener(this);
     }
 
     @Override
     public void onFragmentHide() {
-
     }
 
+    // TODO: not working
+    private void initAction() {
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.Callback() {
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
+            @Override
+            public int getMovementFlags(@NonNull RecyclerView recyclerView,
+                                        @NonNull RecyclerView.ViewHolder viewHolder) {
+                return makeMovementFlags(0, ItemTouchHelper.LEFT);
+            }
+
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView,
+                                  @NonNull RecyclerView.ViewHolder viewHolder,
+                                  @NonNull RecyclerView.ViewHolder target) {
+                return true;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                Playlist playlist = ((PlaylistAdapter.MainRvHolder) viewHolder).getPlaylist();
+                playlistViewModel.delete(playlist);
+
+                String text = getString(R.string.undo_deleted_playlist, playlist.getName());
+                Snackbar.make(recyclerView, getString(R.string.undo), Snackbar.LENGTH_LONG)
+                        .setAction(text, view -> playlistViewModel.insert(playlist)).show();
+            }
+        });
+
+        itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 }

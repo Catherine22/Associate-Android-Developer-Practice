@@ -49,16 +49,14 @@ public class UIComponentsActivity extends BaseActivity implements UIComponentsLi
         }
     }
 
-
     private final static String STATE_SELECTED_BOTTOM_NAVIGATION = "STATE_SELECTED_BOTTOM_NAVIGATION";
 
     private BottomNavigationView navigationView;
     private Toolbar toolbar;
     private TabLayout tabLayout;
-    private ViewPager viewpager;
     private String[] titles;
     private Fragment[] fragments = new Fragment[3];
-    private OnSearchViewListener[] onSearchViewListeners = new OnSearchViewListener[3];
+    private OnSearchViewListener onSearchViewListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,7 +171,6 @@ public class UIComponentsActivity extends BaseActivity implements UIComponentsLi
 
     @Override
     public void addViewPagerManager(ViewPager viewpager, String[] titles) {
-        this.viewpager = viewpager;
         tabLayout.setVisibility(View.VISIBLE);
         tabLayout.setupWithViewPager(viewpager);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -211,8 +208,8 @@ public class UIComponentsActivity extends BaseActivity implements UIComponentsLi
     }
 
     @Override
-    public void addOnSearchListener(OnSearchViewListener listener) {
-        onSearchViewListeners[viewpager.getCurrentItem()] = listener;
+    public void setOnSearchListener(OnSearchViewListener listener) {
+        onSearchViewListener = listener;
     }
 
     @Override
@@ -251,17 +248,15 @@ public class UIComponentsActivity extends BaseActivity implements UIComponentsLi
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-        OnSearchViewListener listener = onSearchViewListeners[viewpager.getCurrentItem()];
-        if (listener != null)
-            listener.onQueryTextSubmit(query);
+        if (onSearchViewListener != null)
+            onSearchViewListener.onQueryTextSubmit(query);
         return false;
     }
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        OnSearchViewListener listener = onSearchViewListeners[viewpager.getCurrentItem()];
-        if (listener != null)
-            listener.onQueryTextChange(newText);
+        if (onSearchViewListener != null)
+            onSearchViewListener.onQueryTextChange(newText);
         return false;
     }
 }

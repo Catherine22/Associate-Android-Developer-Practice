@@ -19,26 +19,18 @@ import com.catherine.materialdesignapp.R;
 import com.catherine.materialdesignapp.adapters.ArtistAdapter;
 import com.catherine.materialdesignapp.components.ArtistItemDetailsLookup;
 import com.catherine.materialdesignapp.components.ArtistItemKeyProvider;
-import com.catherine.materialdesignapp.jetpack.entities.Artist;
 import com.catherine.materialdesignapp.jetpack.view_models.ArtistViewModel;
 import com.catherine.materialdesignapp.jetpack.view_models.ArtistViewModelFactory;
 import com.catherine.materialdesignapp.listeners.OnSearchViewListener;
 import com.catherine.materialdesignapp.listeners.UIComponentsListener;
-import com.catherine.materialdesignapp.utils.TextHelper;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ArtistsFragment extends ChildOfMusicFragment implements OnSearchViewListener {
     public final static String TAG = ArtistsFragment.class.getSimpleName();
-    private ArtistAdapter adapter;
-    private List<Artist> artists;
-    private List<Artist> filteredArtists;
-    private ArtistItemKeyProvider artistItemKeyProvider;
-    private SelectionTracker<String> tracker;
     private UIComponentsListener listener;
+    private ArtistViewModel artistViewModel;
 
     @Override
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
@@ -51,18 +43,14 @@ public class ArtistsFragment extends ChildOfMusicFragment implements OnSearchVie
         super.onViewCreated(view, savedInstanceState);
         SwipeRefreshLayout swipeRefreshLayout = view.findViewById(R.id.srl);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary, R.color.colorAccent, R.color.colorPrimaryDark, R.color.colorAccentDark);
-        swipeRefreshLayout.setOnRefreshListener(() -> {
-            swipeRefreshLayout.setRefreshing(false);
-        });
+        swipeRefreshLayout.setOnRefreshListener(() -> swipeRefreshLayout.setRefreshing(false));
         RecyclerView recyclerView = view.findViewById(R.id.rv_artist);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), ArtistAdapter.MAX_COLUMNS));
 
-        artists = new ArrayList<>();
-        filteredArtists = new ArrayList<>();
-        adapter = new ArtistAdapter(getActivity(), artists);
+        ArtistAdapter adapter = new ArtistAdapter();
         recyclerView.setAdapter(adapter);
-        artistItemKeyProvider = new ArtistItemKeyProvider(artists);
-        tracker = new SelectionTracker.Builder<>(
+        ArtistItemKeyProvider artistItemKeyProvider = new ArtistItemKeyProvider(null);
+        SelectionTracker<String> tracker = new SelectionTracker.Builder<>(
                 "my-selection-id",
                 recyclerView,
                 artistItemKeyProvider,
@@ -76,13 +64,15 @@ public class ArtistsFragment extends ChildOfMusicFragment implements OnSearchVie
         tracker.addObserver(new SelectionObserver());
         listener = (UIComponentsListener) getActivity();
 
+        if (getActivity() == null)
+            return;
+
         // RoomDatabase
         ArtistViewModelFactory artistViewModelFactory = ArtistViewModelFactory.createFactory(getActivity());
-        ArtistViewModel artistViewModel = ViewModelProviders.of(this, artistViewModelFactory).get(ArtistViewModel.class);
+        artistViewModel = ViewModelProviders.of(this, artistViewModelFactory).get(ArtistViewModel.class);
         artistViewModel.getArtistLiveData().observe(this, artists -> {
-            filteredArtists.clear();
-            filteredArtists.addAll(artists);
-            updateList();
+            adapter.submitList(artists);
+            artistItemKeyProvider.updateList(artists.snapshot());
         });
     }
 
@@ -93,36 +83,18 @@ public class ArtistsFragment extends ChildOfMusicFragment implements OnSearchVie
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        filteredArtists.clear();
-        for (Artist artist : artists) {
-            if (TextHelper.matcher(artist.getArtist(), newText)) {
-                filteredArtists.add(artist);
-            }
-        }
-        updateList();
+        artistViewModel.search(newText);
         return false;
-    }
-
-    private void updateList() {
-        tracker.clearSelection();
-        adapter.setEntities(filteredArtists);
-        artistItemKeyProvider.updateList(filteredArtists);
-        try {
-            getActivity().runOnUiThread(() -> adapter.notifyDataSetChanged());
-        } catch (NullPointerException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
     public void onFragmentShow() {
         if (listener != null)
-            listener.addOnSearchListener(this);
+            listener.setOnSearchListener(this);
     }
 
     @Override
     public void onFragmentHide() {
-
     }
 
     private class SelectionObserver extends SelectionTracker.SelectionObserver<String> {
@@ -132,7 +104,6 @@ public class ArtistsFragment extends ChildOfMusicFragment implements OnSearchVie
             super.onItemStateChanged(key, selected);
         }
     }
-
 
     @Override
     public void onDestroy() {
