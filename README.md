@@ -18,40 +18,55 @@ https://developers.google.com/training/certification/associate-android-developer
 - [Jetpack]    
 - [Architecture]  
 - [Debugging]  
-- [Test]  
-- [Others]      
+- [Test]    
 - [Kotlin]
 
 # Android updates
 https://developer.android.com/preview?hl=en
 
-## Code and solution
+## Android Q
+1. ```SYSTEM_ALERT_WINDOW``` on longer works on Android GO devices    
+  - Bubbles: ```Notification.BubbleMetadata.Builder()```    
+2. Dark theme   
+  - (option1) use theme: ```xxx.DayNight```, [code](https://github.com/Catherine22/AAD-Preparation#daynight-mode)   
+  - (option2) ```android:forceDarkAllowed="true"```, ```view.setForceDarkAllowed(false)```    
+  - (option3) DIY   
+3. New share sheet    
+4. Notification actions   
+5. WebView: Detect hung renderer if you like    
+6. More easy to set accessibility   
+7. Text   
+8. ```Magnifier```    
+9. TLS 1.3 enabled by default   
+10. Improved biometric dialog   
+11. ```PowerManager```    
+12. ```androidx.preference```   
+13. Architecture components:    
+  - WorkManager   
+  - Navigation    
+  - savedState for ViewModel    
+  - Benchmarking    
+  - Lifecycle, Lifedata, Room   
+14. CameraX library   
+15. Jetpack Compose (New generation UI toolkit)   
+16. UI    
+  - ViewPager2 (like ViewPager, but better)    
+  - ViewBindings (```SearchItemBinding```, no more ```findViewById()```)   
+17. Graph   
+  - Blend Mode    
+  - RenderNode (display properties such as alpha, shadows)    
+  - HardwareRender    
+  - Wrap Bitmap with ```HardwareBuffer```   
+18. Vulkan    
+19. ANGEL   
+20. Audio playback capture    
+21. External storage (targetSDK = Q)    
+  - sandboxed by default    
+  - Media files: Storage permission + MediaStore    
+  - Photo metadata: Storage + MediaLocation permission    
+  - All files: Manifest tags    
+22. Location permission (allows only while the app is in use)   
 
-### Android Marshmallow
-1. Runtime permission       
-    - [Ask for runtime permission](https://github.com/Catherine22/MobileManager#android60%E6%88%96%E4%BB%A5%E4%B8%8A%E6%9D%83%E9%99%90%E8%AE%BE%E7%BD%AE)        
-    - Code: [BaseActivity]      
-2. Support ```JobScheduler```       
-    - [Read more](https://github.com/Catherine22/AAD-Preparation#services)      
-3. Cannot get mac addresses     
-    - Require ```ACCESS_COARSE_LOCATION``` and ```ACCESS_FINE_LOCATION``` permission        
-
-### Android Nougat
-1. New types of notifications        
-    - Code: [NotificationUtils]     
-2. App shortcuts        
-
-### Android Oreo
-1. Notification channel     
-    - Code: [NotificationUtils]     
-2. More job restrictions        
-    - [Read more](https://github.com/Catherine22/AAD-Preparation#services)      
-3. Support ForegroundService        
-    - [Read more](https://github.com/Catherine22/AAD-Preparation#services)      
-
-### Android Pie
-1. New types of notifications       
-2. 
 
 
 # Material design
@@ -296,7 +311,7 @@ List all resource directories you should take care of:
 11. font/       
 
 ## Create your own resources for specific needs
-E.g. 
+E.g.
 Language and region: ```en```, ```en-rUS```     
 Layout Direction: ```ldrtl```, ```ldltr```      
 HDR: ```highdr```, ```lowdr```      
@@ -393,7 +408,7 @@ Code: [LifecycleActivity], [LifecycleObserverImpl]
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         // do something
-        
+
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             Log.d(TAG, "landscape");
         } else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
@@ -508,7 +523,7 @@ Create your own content providers to share data with other applications or acces
 1. Go to https://android.googlesource.com/platform/packages/providers/ContactsProvider/+/master/ and pick out needed providers      
 2. Search ```<provider>``` tag in [AndroidManifest](https://android.googlesource.com/platform/packages/providers/ContactsProvider/+/master/AndroidManifest.xml), e.g.       
 ```xml
-<provider 
+<provider
     android:name="CallLogProvider"
     android:authorities="call_log"
     android:syncable="false" android:multiprocess="false"
@@ -824,10 +839,10 @@ Code: [styles](https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Pr
 [Guide](https://developer.android.com/jetpack/docs/guide)
 
 ## Room
-A robust SQLite object mapping library. 
+A robust SQLite object mapping library.
 
 ## WorkManager
-WorkManager providers APIs for deferrable, one-off and recurring background tasks that need guaranteed execution 
+WorkManager providers APIs for deferrable, one-off and recurring background tasks that need guaranteed execution
 
 ## ViewModel
 ViewModel is constructed when app configuration changes such as screen rotation
@@ -1029,7 +1044,7 @@ public class DataRepository {
                     StudentDatabase database = StudentDatabase.getInstance(application);
                     sInstance = new DataRepository(database.studentDao(),
                             Executors.newSingleThreadExecutor());
-                            
+
                     // load default data from .json or .db files from /raw/ directory if you like
                 }
             }
@@ -1225,8 +1240,8 @@ public class AddEntityReadWriteTest {
 ```
 
 Code: [AlbumsFragment], [AlbumAdapter], [AlbumViewModelFactory], [AlbumViewModel], [AlbumRepository], [AlbumRoomDatabase], [AlbumDao], [Album]       
-[Room doc](https://developer.android.com/training/data-storage/room)        
-[Practice](https://codelabs.developers.google.com/codelabs/android-room-with-a-view/index.html?index=..%2F..index#0)      
+Doc: https://developer.android.com/training/data-storage/room        
+Practice: https://codelabs.developers.google.com/codelabs/android-room-with-a-view/index.html?index=..%2F..index#0      
 
 
 # Debugging
@@ -1347,7 +1362,7 @@ public class NewsPageActivity extends AppCompatActivity {
     </application>
 ```
 
-7. Install and launch this bbc_news module 
+7. Install and launch this bbc_news module
 See [DynamicDeliveryActivity], [bbc_news module]     
 
 Code: [DynamicDeliveryActivity], [bbc_news module], [tour_guide module], [assets module], [open_weather module]     
@@ -1357,7 +1372,7 @@ Code: [DynamicDeliveryActivity], [bbc_news module], [tour_guide module], [assets
 8. bundletool (Generate signed Android bundles)    
 Before you publish your Android bundles and APK to Google Play, you need ```bundletool```, a command line tool, to test those bundles locally.     
 Download [bundletool](https://github.com/google/bundletool/releases) and move to AAD-Preparation/       
- 
+
 - In Android Studio, go to Build -> Generate Signed Bundle/APK... -> generate a .aab file
 - Generate a set of APKs         
 ```sh
@@ -1403,7 +1418,7 @@ unzip app/debug/MaterialDesign.apks -d app/debug/apks
 ![screenshot](https://raw.githubusercontent.com/Catherine22/AAD-Preparation/master/AAD-Preparation/screenshots/tests.png)       
 
 [Blog](https://testing.googleblog.com/2010/12/test-sizes.html)      
-[Video](https://www.youtube.com/watch?v=pK7W5npkhho) 
+[Video](https://www.youtube.com/watch?v=pK7W5npkhho)
 
 ## TDD, Test Driven Development
 ![screenshot](https://raw.githubusercontent.com/Catherine22/AAD-Preparation/master/AAD-Preparation/screenshots/TDD.png)  
@@ -1424,7 +1439,7 @@ You could run your unit tests on any of them:
 
 > Robolectric supports testing on JVM-powered development machines      
 
-## Instrumented test 
+## Instrumented test
 ```Espresso```        
 - [NavigationDrawer unit test code]       
 - [Options menu unit test code]      
@@ -1437,7 +1452,7 @@ You could run your unit tests on any of them:
 ## Mockito      
 
 
-[Google sample](https://github.com/googlesamples/android-testing) 
+[Google sample](https://github.com/googlesamples/android-testing)
 [Google testing blog](https://testing.googleblog.com/)      
 [Google doc](https://developer.android.com/training/testing)        
 
@@ -1657,6 +1672,7 @@ The exam is only available in Java at this time (4/1/2019)
 [Album]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/jetpack/entities/Album.java>
 [ArtistsFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/ArtistsFragment.java>
 [ArtistAdapter]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/adapters/ArtistAdapter.java>
+[AlbumAdapter]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/adapters/AlbumAdapter.java>
 [ArtistItemKeyProvider]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/components/ArtistItemKeyProvider.java>
 [ArtistItemDetailsLookup]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/components/ArtistItemDetailsLookup.java>
 [RecyclerViewItemTouchHelper]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/components/RecyclerViewItemTouchHelper.java>
