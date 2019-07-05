@@ -104,7 +104,7 @@ implementation 'com.google.android.material:material:1.0.0'
 - TextInputLayout, TextInputEditText -> [NotificationActivity]      
 - RecyclerView (grid) -> [ArtistsFragment]   
 - RecyclerView (linear) -> [AlbumsFragment]   
-- RecyclerView (drag + swipe) -> [PlaylistFragment], [PlaylistAdapter], [RecyclerViewItemTouchHelper]    
+- RecyclerView (drag + swipe) -> [PlaylistFragment], [PlaylistAdapter]    
 - RecyclerView (SelectionTracker) -> [ArtistsFragment], [ArtistAdapter], [ArtistItemKeyProvider], [ArtistItemDetailsLookup]    
   ```SelectionTracker``` is another to do ```setOnClickListener```, which is more powerful while multiple items need selecting   
 - RecyclerView + PagedListAdapter -> [AlbumsFragment]     
@@ -125,32 +125,39 @@ Before we get started, let's take a look at some features of SearchView:
 
 First thing first, you need to create either Search Dialog (a SearchView inside NavigationView) or Search Widget (your custom search view, which could be an EditText placed anywhere in your layout).     
 
-Secondly, think about how you handle the search view. Here is my workflow:        
+Secondly, think about how you handle the search view. You could start a new activity to search or just search in the current view.     
+
+### A. Launch a search activity        
+
 1. Start the ```SearchSongsActivity```       
 2. User types something in ```SearchView``` and press enter        
 3. Start the ```SearchSongsActivity``` again        
 4. Handle searches in ```onNewIntent()```      
 
 You need the following:      
+
 1. Add tags to your result activity in AndroidManifest.xml
 ```xml
 <activity
     android:name=".activities.SearchSongsActivity"
     android:launchMode="singleTop">
 
+    <!-- this is the searchable activity, it performs searches -->
     <intent-filter>
         <action android:name="android.intent.action.SEARCH" />
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
     </intent-filter>
 
+    <!-- implement Voice Search -->
     <intent-filter>
         <action android:name="com.google.android.gms.actions.SEARCH_ACTION" />
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
     </intent-filter>
 
-     <meta-data
+    <!-- searchable configuration -->
+    <meta-data
         android:name="android.app.searchable"
         android:resource="@xml/searchable" />
 </activity>
@@ -271,7 +278,36 @@ public class SearchSongsActivity extends AppCompatActivity {
 }
 ```
 
-4. In menu/ui_components_menu.xml    
+4. In menu/searchable_menu.xml    
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_search"
+        android:actionLayout="@layout/searchview_layout"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="@string/action_search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom|collapseActionView" />
+
+    <item
+        android:id="@+id/action_clear"
+        android:icon="@drawable/ic_delete_black_24dp"
+        android:orderInCategory="100"
+        android:title="@string/action_clear_history"
+        app:showAsAction="ifRoom" />
+</menu>
+```
+> ```app:showAsAction="collapseActionView"```: Click the search icon and stretch the view   
+> ```setIconified(false)```: Always show the search field       
+
+### B. Search in Fragments, and not start a new Activity
+Another workflow is to search in Fragments:     
+
+1. Set the search menu      
+
+menu/ui_components_menu.xml
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
@@ -285,8 +321,91 @@ public class SearchSongsActivity extends AppCompatActivity {
         app:showAsAction="ifRoom|collapseActionView" />
 </menu>
 ```
-> ```app:showAsAction="collapseActionView"```: Click the search icon and stretch the view   
-> ```setIconified(false)```: Always show the search field       
+
+[UIComponentsActivity]
+```Java
+@Override
+public boolean onCreateOptionsMenu(Menu menu) {
+    // Inflate the menu; this adds items to the action bar if it is present.
+    getMenuInflater().inflate(R.menu.ui_components_menu, menu);
+
+    SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+    SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+    searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+    searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        @Override
+        public boolean onQueryTextSubmit(String query) {
+            if (onSearchViewListener != null)
+                onSearchViewListener.onQueryTextSubmit(query);
+            return false;
+        }
+
+        @Override
+        public boolean onQueryTextChange(String newText) {
+            if (onSearchViewListener != null)
+                onSearchViewListener.onQueryTextChange(newText);
+            return false;
+        }
+    });
+    return true;
+}
+```
+
+2. Fragment triggers search result from Activity via interface      
+
+```Java
+public interface UIComponentsListener {
+    void setOnSearchListener(OnSearchViewListener listener);
+}
+```
+
+```Java
+public interface OnSearchViewListener {
+    boolean onQueryTextSubmit(String query);
+
+    boolean onQueryTextChange(String newText);
+}
+```
+
+[UIComponentsActivity]
+```Java
+public class UIComponentsActivity extends BaseActivity implements UIComponentsListener {
+    private OnSearchViewListener onSearchViewListener;
+
+    @Override
+    public void setOnSearchListener(OnSearchViewListener listener) {
+        onSearchViewListener = listener;
+    }
+}
+```
+
+[ArtistsFragment]
+```Java
+public class ArtistsFragment extends Fragment implements OnSearchViewListener {
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        listener = (UIComponentsListener) getActivity();
+        // special case, this fragment will be called at first lunch, which means onFragmentShow() won't be triggered
+        listener.setOnSearchListener(this);
+        }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        // handle search here
+        artistViewModel.search(newText);
+        return false;
+    }
+}
+```
+
+3. Use Android Architecture components to build your app        
+Code: [ArtistsFragment], [ArtistAdapter], [ArtistViewModelFactory], [ArtistViewModel], [ArtistRepository], [ArtistRoomDatabase], [ArtistDao], [Artist]       
 
 
 ## Custom Layouts
@@ -554,11 +673,6 @@ You are able to query call logs, register observers to listen to fetch events li
 Check all fields you can query: [CallLogProvider], [CallLog](https://android.googlesource.com/platform/frameworks/base/+/master/core/java/android/provider/CallLog.java)       
 
 Code: [CursorLoaderActivity]
-
-### User-defined content providers
-A content provider uri should be ```scheme + authority + table + [id] + [filter]```. E.g. ```content://com.catherine.myapp/member/1/name```     
-
-ContactsProvider + CallLogs code: [ContentProviderFragment]
 
 ### Define your own content provider
 code: [AlbumsProvider]      
@@ -1162,8 +1276,7 @@ public class MainActivity extends AppCompatActivity {
 ```
 
 
-## 8. Unit tests (Espresso)
-
+## 8. Unit tests (Espresso)     
 ```gradle
 dependencies {
     def android_test_version = "1.0.2"
@@ -1671,11 +1784,16 @@ The exam is only available in Java at this time (4/1/2019)
 [AlbumDao]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/jetpack/daos/AlbumDao.java>
 [Album]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/jetpack/entities/Album.java>
 [ArtistsFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/ArtistsFragment.java>
+[ArtistViewModelFactory]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/jetpack/view_models/ArtistViewModelFactory.java>
+[ArtistViewModel]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/jetpack/view_models/ArtistViewModel.java>
+[ArtistRepository]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/jetpack/repositories/ArtistRepository.java>
+[ArtistRoomDatabase]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/jetpack/databases/ArtistRoomDatabase.java>
+[ArtistDao]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/jetpack/daos/ArtistDao.java>
+[Artist]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/jetpack/entities/Artist.java>
 [ArtistAdapter]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/adapters/ArtistAdapter.java>
 [AlbumAdapter]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/adapters/AlbumAdapter.java>
 [ArtistItemKeyProvider]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/components/ArtistItemKeyProvider.java>
 [ArtistItemDetailsLookup]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/components/ArtistItemDetailsLookup.java>
-[RecyclerViewItemTouchHelper]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/components/RecyclerViewItemTouchHelper.java>
 [MusicFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/MusicFragment.java>
 [SystemBroadcastReceiverFragment]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/fragments/SystemBroadcastReceiverFragment.java>
 [UIComponentsActivity]:<https://github.com/Catherine22/AAD-Preparation/blob/master/AAD-Preparation/app/src/main/java/com/catherine/materialdesignapp/activities/UIComponentsActivity.java>
