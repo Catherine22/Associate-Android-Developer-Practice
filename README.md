@@ -201,7 +201,7 @@ And register your content provider in AndroidManifest.xml
 
 3. Handle intents and create a search icon in your activity
 ```Java
-public class SearchSongsActivity extends AppCompatActivity {  
+public class SearchSongsActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {  
     private final static String TAG = SearchSongsActivity.class.getSimpleName();  
     private SearchManager searchManager;
     private SearchView searchView;
@@ -675,7 +675,7 @@ Check all fields you can query: [CallLogProvider], [CallLog](https://android.goo
 Code: [CursorLoaderActivity]
 
 ### Define your own content provider
-code: [AlbumsProvider]      
+code: [AlbumsProvider], [AndroidManifest]      
 
 Query examples:     
 1. Query all of Taylor Swift's albums and return ```title``` and ```url```
@@ -809,7 +809,7 @@ try {
 
 
 # Working in the background
-Tasks on a background thread using ```AsyncTask``` (for short or interruptible tasks) or ```AsyncTaskLoader``` (for tasks that are high-priority, or tasks that need to report back to the user or UI).   
+Tasks on a background thread using ```AsyncTask``` (for short or interruptable tasks) or ```AsyncTaskLoader``` (for tasks that are high-priority, or tasks that need to report back to the user or UI).   
 
 ## AsyncTask
 - run on UI thread: ```onPreExecute```, ```onProgressUpdate``` and ```onPostExecute```    
@@ -1426,11 +1426,12 @@ android {
         // dynamic delivery
         implementation "com.google.android.play:core:${rootProject.ext.playcore}"
         // bundle's dependencies
-        implementation 'com.android.support:customtabs:28.0.0'
+        api "com.android.support:customtabs:${rootProject.ext.material}"
+        api "com.google.android.gms:play-services-maps:${rootProject.ext.googleMap}"
     }
 
-    // bundles
-    dynamicFeatures = [":bbc_news"]
+    // dynamic delivery
+    dynamicFeatures = [":bbc_news", ":tour_guide", ":assets", ":open_weather"]
 }
 ```
 
@@ -1466,13 +1467,28 @@ public class NewsPageActivity extends AppCompatActivity {
 
 6. Update AndroidManifest.xml in bbc_news module       
 ```xml
-<application>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
+    package="com.catherine.materialdesignapp.bbc_news">
+
+    <dist:module
+        dist:instant="false"
+        dist:title="@string/title_bbc_news">
+        <dist:delivery>
+            <dist:on-demand />
+        </dist:delivery>
+        <dist:fusing dist:include="true" />
+    </dist:module>
+
+    <application>
         <activity android:name=".NewsPageActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
     </application>
+</manifest>
+
 ```
 
 7. Install and launch this bbc_news module
