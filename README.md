@@ -1,5 +1,7 @@
 # AAD-Preparation
 
+![img](https://api.accredible.com/v1/frontend/credential_website_embed_image/certificate/13394960)
+
 Associate Android Developer Study Guide   
 https://developers.google.com/training/certification/associate-android-developer/study-guide/   
 
