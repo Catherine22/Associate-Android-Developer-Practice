@@ -25,7 +25,7 @@ https://developers.google.com/training/certification/associate-android-developer
 https://developer.android.com/preview?hl=en
 
 ## Android Q
-1. ```SYSTEM_ALERT_WINDOW``` on longer works on Android GO devices    
+1. ```SYSTEM_ALERT_WINDOW``` no longer works on Android GO devices    
     - Bubbles: ```Notification.BubbleMetadata.Builder()```    
 2. Dark theme   
     - (option1) use theme: ```xxx.DayNight```, [code](https://github.com/Catherine22/AAD-Preparation#daynight-mode)   
@@ -469,7 +469,7 @@ Pixel density is how many pixels within a physical area of the screen, ```dpi```
 |               | ldpi     | mdpi     | hdpi     | xhdpi    | xxhdpi     | xxxhdpi    |
 |---------------|----------|----------|----------|----------|------------|------------|
 | Scaling ratio | 0.75x    | 1x       | 1.5x     | 2x       | 3x         | 4x         |
-| Dpi           | ~120dpi  | ~160dpi  | ~240dpi  | 320dpi   | 480dpi     | 640dip     |
+| Dpi           | ~120dpi  | ~160dpi  | ~240dpi  | 320dpi   | 480dpi     | 640dpi     |
 | App icon size | 36x36 px | 48x48 px | 72x72 px | 96x96 px | 144x144 px | 192x192 px |
 
 > nodpi: bitmaps in nodpi drawables look larger in xhdpi devices whereas it seems smaller on mdpi devices.      
