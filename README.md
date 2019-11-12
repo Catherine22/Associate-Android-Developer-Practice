@@ -1170,6 +1170,10 @@ public class DataRepository {
         mIoExecutor = executor;
         mDao = dao;
     }
+
+    public void insert(Student student) {
+        mIoExecutor.submit(() -> mDao.insert(student));
+    }
 }
 ```
 
