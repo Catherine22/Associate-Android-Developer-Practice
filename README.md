@@ -848,15 +848,16 @@ Code: [BackgroundActivity], [SleepTaskLoader]
 - Run a lot of parallel small works.        
 - There are a couple of ThreadPools: FixedThreadPool, CachedThreadPool and ScheduledThreadPool.     
 
-1. FixedThreadPool: A thread pool with fixed number of threads.     
+1. FixedThreadPool      
+    - A thread pool with fixed number of threads.     
     - Instead of building a fixed thread pool with random number of threads, you should check how many processors your device have to avoid out of memory or high latency. E.g. ```val coreCount = Runtime.getRuntime().availableProcessors() // in my case, it's six.```.       
-    - In RxJava, ```Schedulers.computation()``` refers to FixedThreadPool.
 
-2. CachedThreadPool: A thread pool that creates new threads as needed, but will reuse previously constructed threads when they are available.       
+2. CachedThreadPool     
+    - A thread pool that creates new threads as needed, but will reuse previously constructed threads when they are available.       
     - Notice, CachedThreadPool may cause out of memory or high latency.        
-    - In Rxjave, ```Schedulers.io()``` create CachedThreadPool.     
 
-3. ScheduledThreadPool: A thread pool that can schedule commands to run after a ginven delay, or to execute periodically.       
+3. ScheduledThreadPool      
+    - A thread pool that can schedule commands to run after a ginven delay, or to execute periodically.       
 
 [Read more](https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Executors.html)
 
