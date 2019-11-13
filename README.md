@@ -1052,6 +1052,7 @@ Follow the instruction and create your first MVVM app
 
 ```Java
 @Database(entities = {School.class}, version = SchoolDatabase.SCHOOL_DB_VERSION, exportSchema = false)
+@TypeConverters({Converters.class})
 public abstract class SchoolDatabase extends RoomDatabase {
     public final static int SCHOOL_DB_VERSION = 1;
     public final static String SCHOOL_DB = "school_database";
@@ -1075,6 +1076,22 @@ public abstract class SchoolDatabase extends RoomDatabase {
             }
         }
         return sInstance;
+    }
+}
+```
+
+You need a Converters class to covert json array data to List<Type> and vice versa.     
+```Java
+class Converters {
+    @TypeConverter
+    public String listToJson(List<Student> value) {
+        return Gson().toJson(value);
+    }
+
+    @TypeConverter
+    public List<Album> jsonToList(String value) {
+        Album[] objects = Gson().fromJson(value, Album[].class);
+        return objects.toList();
     }
 }
 ```
@@ -1157,13 +1174,22 @@ public interface StudentDao {
     List<Student> getRawList();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(Student... students);
+    void insertAll(List<Student> students);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Student student);
 
-    @Update
-    int updateAll(Student... students);
+    @Transaction
+    void updateAll(List<Student> students) {
+        deleteAll();
+        insertAll(students);
+    }
+
+    @Transaction
+    void update(Student oldStudent, Student newStudent) {
+        insert(newStudent);
+        deleteByRawQuery(oldStudent.getStudentId());
+    }
 
     @RawQuery
     int updateByRawQuery(SupportSQLiteQuery query);
@@ -1194,7 +1220,8 @@ public class DataRepository {
                     sInstance = new DataRepository(database.studentDao(),
                             Executors.newSingleThreadExecutor());
 
-                    // load default data from .json or .db files from /raw/ directory if you like
+                    // load default data source from raw directory or do a network request
+                    // After retrieving data, do not forget to call insert() or insertAll() to update data
                 }
             }
         }
@@ -1209,6 +1236,14 @@ public class DataRepository {
     public void insert(Student student) {
         mIoExecutor.submit(() -> mDao.insert(student));
     }
+    
+    
+    public void insertAll(List<Student> students) {
+        mIoExecutor.submit(() -> mDao.insertAll(students));
+    }
+    
+    // ...
+    // more operations, it depends on what data you are going to show on the UI Controller.
 }
 ```
 
