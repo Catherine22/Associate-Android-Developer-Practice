@@ -1065,6 +1065,7 @@ public abstract class SchoolDatabase extends RoomDatabase {
         if (sInstance == null) {
             synchronized (SchoolDatabase.class) {
                 if (sInstance == null) {
+                    // persist data in local storage
                     sInstance = Room.databaseBuilder(context.getApplicationContext(),
                             SchoolDatabase.class, SCHOOL_DB)
                             // Wipes and rebuilds instead of migrating
@@ -1072,6 +1073,10 @@ public abstract class SchoolDatabase extends RoomDatabase {
                             // Migration is not part of this practical.
                             .fallbackToDestructiveMigration()
                             .build();
+                            
+                    // Notice, if you do not want to persist data in local storage, still, you can implement this jetpack architecture. By using inMemoryDatabaseBuilder, data stored in an in memory database disappear when the process is killed.  
+                    sInstance = Room.inMemoryDatabaseBuilder(),
+                         SchoolDatabase.class).build();
                 }
             }
         }
@@ -1095,6 +1100,7 @@ class Converters {
     }
 }
 ```
+
 
 ## 2. Entity
 Tables within the database.
