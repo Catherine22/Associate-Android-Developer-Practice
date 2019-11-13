@@ -812,14 +812,23 @@ try {
 Tasks on a background thread using ```AsyncTask``` (for short or interruptable tasks) or ```AsyncTaskLoader``` (for tasks that are high-priority, or tasks that need to report back to the user or UI).   
 
 ## AsyncTask
+- Help get work on/off the UI thread.      
+- Basically, all AsyncTasks are created in a same thread. That means them will execute in a serial fashion from a single message queue.     
 - run on UI thread: ```onPreExecute```, ```onProgressUpdate``` and ```onPostExecute```    
 - update progress to UI via ```publishProgress```, handle data in ```onProgressUpdate```   
 - ```WeakReference```   
-- ```executeOnExecutor```      
+- There is a way to force AsyncTask works in thread-pooled way: ```executeOnExecutor```      
 
 Code: [BackgroundActivity], [SleepTask]   
 
-## AsyncTaskLoader    
+> Don't hold references to any type of UI specific objects in any       
+> threading scenarios.     
+> Don't declare your task as an inner class of an activity.     
+
+Looper class keeps the thread alive, holds a message queue and pop works off a queue and execute on.        
+Handler class helps put work at the head, the tail or even set a time-based delay.
+
+### AsyncTaskLoader    
 When you want the data to be available even if the device configuration changes, use ```loaders```    
 This ```getLoaderManager()``` or ```getSupportLoaderManager()``` is deprecated since Android P. Instead, we use ```ViewModels``` and ```LiveData```   
 
@@ -829,6 +838,28 @@ This ```getLoaderManager()``` or ```getSupportLoaderManager()``` is deprecated s
 - ```onLoadFinished``` is run on background thread, this may cause memory leak if updating UI here - use at your own risk.    
 
 Code: [BackgroundActivity], [SleepTaskLoader]   
+
+## HandlerThread
+- Dedicate thread for API callbacks.        
+- HandlerThread is a nifty solution for the work that not deal with UI updates.
+- Don't forget to assign the priority because CPU can only execute a few parallel threads.
+
+## ThreadPool
+- Run a lot of parallel small works.        
+- There are a couple of ThreadPools: FixedThreadPool, CachedThreadPool and ScheduledThreadPool.     
+
+1. FixedThreadPool: A thread pool with fixed number of threads.     
+Instead of building a fixed thread pool with random number of threads, you should check how many processors your device have. E.g. ```val coreCount = Runtime.getRuntime().availableProcessors() // in my case, it's six.```.       
+
+2. CachedThreadPool: A thread pool that creates new threads as needed, but will reuse previously constructed threads when they are available.       
+
+3. ScheduledThreadPool: A thread pool that can schedule commands to run after a ginven delay, or to execute periodically.       
+
+[Read more](https://docs.oracle.com/javase/7/docs/api/java/util/concurrent/Executors.html)
+
+## IntentService
+- It's ideal for background tasks. It also helps get intents off UI thread.     
+- It's the easiest way to update UI by running on AsyncTask, and HandlerThread is also a excellent solution for the work that not deal with UI updates.
 
 ## ViewModels and LiveData
 
