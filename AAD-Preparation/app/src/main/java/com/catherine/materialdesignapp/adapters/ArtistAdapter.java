@@ -40,7 +40,7 @@ public class ArtistAdapter extends PagedListAdapter<Artist, ArtistAdapter.MainRv
     @Override
     public MainRvHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         float gridMargin = viewGroup.getContext().getResources().getDimension(R.dimen.grid_margin);
-        cellWidth = (DisplayHelper.getScreenWidth() * 1.0f - (MAX_COLUMNS + 1) * gridMargin) / MAX_COLUMNS;
+        cellWidth = (DisplayHelper.getScreenWidth() * 1.0f - (MAX_COLUMNS - 1) * gridMargin) / MAX_COLUMNS;
         return new MainRvHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.rv_artist_item, viewGroup, false));
     }
 
