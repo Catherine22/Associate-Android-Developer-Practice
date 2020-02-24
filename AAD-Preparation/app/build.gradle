@@ -79,7 +79,7 @@ android {
         resultsDir "$rootDir/test-results"
         reportDir "$rootDir/test-reports"
         unitTests {
-            // Your unit tests can then access compiled versions of your resources, allowing the tests to run more quickly and accurately.
+            // Your unit tests can then access compiled versions of your resources, letting the tests run more quickly and accurately.
 //            includeAndroidResources = true
         }
     }

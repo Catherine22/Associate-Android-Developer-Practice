@@ -453,7 +453,7 @@ public class CursorLoaderActivity extends BaseActivity {
          */
         static final int FEATURES_HD_CALL = 1 << 2;
         /**
-         * Call was WIFI call.
+         * Call was WI-FI call.
          */
         static final int FEATURES_WIFI = 1 << 3;
         /**

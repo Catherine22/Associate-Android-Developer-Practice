@@ -133,7 +133,7 @@ public class SearchableSongsActivity extends BaseActivity implements SearchView.
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
+        // Inflate the menu; this adds items to the app bar if it is present.
         getMenuInflater().inflate(R.menu.searchable_menu, menu);
 
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);

@@ -20,7 +20,7 @@ class Lambdas {
 
         println("")
         println("Replace callbacks - Kotlin style")
-        // By using higher-order functions, the above code could be optimised
+        // By using higher-order functions, the preceding code could be optimised
         val kotlinButton = KotlinButton()
         kotlinButton.setOnClickListener {
             println("onClick")

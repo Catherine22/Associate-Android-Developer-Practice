@@ -251,7 +251,7 @@ public class DynamicDeliveryActivity extends BaseActivity {
             case SplitInstallSessionStatus.REQUIRES_USER_CONFIRMATION:
                 /*
                   This may occur when attempting to download a sufficiently large module.
-                  In order to see this, the application has to be uploaded to the Play Store.
+                  To see this, the application has to be uploaded to the Play Store.
                   Then features can be requested until the confirmation path is triggered.
                  */
                 Log.d(TAG, "startConfirmationDialogForResult");
